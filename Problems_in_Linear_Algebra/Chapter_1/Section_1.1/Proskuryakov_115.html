@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 115</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 115:</i><br><br>
+    <i>Cách 1:</i>
+    Trừ hàng 1 vào hàng 2 và 3:
+    \[
+    D = 
+    \begin{vmatrix}
+    1 & a & bc \\
+    1 & b & ca \\
+    1 & c & ab
+    \end{vmatrix} =
+    \begin{vmatrix}
+    1 & a & bc \\
+    0 & b-a & ca - bc \\
+    0 & c-a & ab - bc
+    \end{vmatrix}
+    \]
+
+    Khai triển theo cột 1 đối với định thức mới
+    \[
+    D = \begin{vmatrix}
+    b - a & c\left( a - b \right) \\
+    c - a & b\left( a - c \right)
+    \end{vmatrix}
+    \]
+
+    Trong định thức mới, hàng 1 có thừa số chung là \(b-a\), hàng 2 có thừa số chung là \(c-a\) nên
+    \begin{align}
+    D = 
+    \left( b-a \right) \left( c-a \right) \begin{vmatrix}
+    1 & -c \\
+    1 & -b
+    \end{vmatrix} & =
+    \left( b-a \right) \left( c-a \right) \left[ \left( 1 \right) \left( -b \right) - \left( 1 \right) \left( -c \right) \right] \\
+    & = \left( b-a \right) \left( c-a \right) \left( c - b \right)
+    \end{align}
+
+    <i>Cách 2:</i>
+    Trước hết nhận xét rằng trong khai triển của định thức 
+    \begin{align}
+    D & = \begin{vmatrix}
+    1 & a & bc \\
+    1 & b & ca \\
+    1 & c & ab
+    \end{vmatrix} \\
+    & = \left( 1 \right)\left( b \right)\left( {ab} \right) + \left( a \right)\left( {ca} \right)\left( 1 \right) + \left( 1 \right)\left( c \right)\left( {bc} \right) - \left( 1 \right)\left( b \right)\left( {bc} \right) - \left( 1 \right)\left( a \right)\left( {ab} \right) - \left( c \right)\left( {ca} \right)\left( 1 \right) 
+    \end{align}
+    mỗi số hạng đều là đơn thức bậc ba từ các biến \(a, b, c\).<br>
+
+    Mặt khác, khi \(a = b\) thì hàng 1 và 2 của \(D\) giống nhau, nên \(D = 0\). Do đó đa thức \(D\) chia hết cho \(a - b\). Tương tự \(D\) chia hết cho \(a - c\) và \(b - c\). Vì các đa thức \(a - b\), \(b - c\), và \(c - a\) đôi một nguyên tố cùng nhau nên
+    \[
+    D = \left( a - b \right) \left( a - c \right) \left( b - c \right) \times k
+    \]
+    trong đó \(k\) là đa thức. Tuy nhiên \(k\) không phụ thuộc vào \(a, b, c\) vì nếu ngược lại, áp dụng tính chất phân phối cho vế phải ở trên, sẽ dẫn đến biểu thức (sau khi rút gọn các số hạng đồng dạng) chứa đơn thức bậc cao hơn~3, do mỗi số hạng khi khai triển \(\left( a - b \right) \left( a - c \right) \left( b - c \right)\) đều là đơn thức bậc~3. Ta xác định \(k\) bằng cách xét một trường hợp cụ thể, chẳng hạn \(a = 0\), \(b = 1\), \(c = 2\):
+    \[
+    D = 4 - 2 = \left( -1 \right) \left( -2 \right) \left( -1 \right) k = -2k \Rightarrow k = -1
+    \]
+
+    Suy ra \(D = \left( a - b \right) \left( a - c \right) \left( b - c \right) \times \left( -1 \right) = \left( b - a \right) \left( c - a \right) \left( c - b \right)\)
+
+</body>

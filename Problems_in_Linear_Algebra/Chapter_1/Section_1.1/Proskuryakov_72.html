@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 72</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 72:</i><br><br>
+    Xét định thức \(\begin{vmatrix}
+    a & b & c \\
+    d & e & f \\
+    g & h & k
+    \end{vmatrix} = aek + bfg + dhc - gec - dbk - hfa\), trong đó các phần tử \(a, b,\ldots, k\) đều là \(\pm 1\).<br>
+
+    Trước hết, nhận xét rằng 6 hạng tử \(aek\), \(bfg\), \(dhc\), \(-gec\), \(-dbk\), \(-hfa\) không thể đều bằng~\(+1\), vì khi đó tích của 3 hạng tử đầu
+    \[
+    \left( aek \right) \left( bfg \right) \left( dhc \right) = abcdefghk = \left( 1 \right) \left( 1 \right) \left( 1 \right) = 1
+    \]
+    và tích của 3 hạng tử sau
+    \[
+    \left( -gec \right) \left( -dbk \right) \left( -hfa \right) = - abcdefghk = \left( 1 \right) \left( 1 \right) \left( 1 \right) = 1,
+    \]
+    hai điều này dẫn đến mẫu thuẫn. Như vậy định thức trên phải \(< 6\).
+
+    Mặt khác, theo <a href="Proskuryakov_71.html">Bài tập 71</a>, định thức trên là số chẵn, nên nó \(\le 4\). Ngoài ra, ta thấy
+    \begin{align}
+    & \begin{vmatrix}
+    -1 & 1 & 1 \\
+    1 & -1 & 1 \\
+    1 & 1 & -1
+    \end{vmatrix} \\
+    =\; & \left( -1 \right) \left( -1 \right) \left( -1 \right) + \left( 1 \right) \left( 1 \right) \left( 1  \right) + \left( 1 \right) \left( 1 \right) \left( 1  \right) - \left( 1  \right) \left( -1  \right) \left( 1 \right) - \left( 1 \right) \left( 1 \right) \left( -1 \right) - \left( 1 \right) \left( 1 \right) \left( -1 \right) \\
+    =\; & \left( -1 \right) + 1 + 1 + 1 + 1 + 1 = 4
+    \end{align}
+
+    Vậy định thức trên có giá trị lớn nhất là 4.
+
+</body>

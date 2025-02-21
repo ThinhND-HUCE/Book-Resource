@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 58</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 58:</i><br><br>
+    <i>Cách 1:</i>
+    Tính trực tiếp theo quy tắc tam giác:
+    \[
+    \begin{vmatrix}
+    0 & a & 0 \\
+    b & c & d \\
+    0 & e & 0
+    \end{vmatrix} = 0\left( c \right)\left( 0 \right) + a\left( d \right)\left( 0 \right) + b\left( e \right)\left( 0 \right) - 0\left( c \right)\left( 0 \right) - b\left( a \right)\left( 0 \right) - e\left( d \right)\left( 0 \right) = 0
+    \]
+
+    <i>Cách 2:</i> 
+    Khai triển theo hàng 1 (có nhiều phần tử 0):
+    \[
+    \begin{vmatrix}
+    0 & a & 0 \\
+    b & c & d \\
+    0 & e & 0
+    \end{vmatrix} = a\times \left( -1  \right)^{1 + 2} \times \begin{vmatrix}
+    b & d \\
+    0 & 0 
+    \end{vmatrix} = -a\left( b\times 0 - 0\times d \right) = 0
+    \]
+
+</body>

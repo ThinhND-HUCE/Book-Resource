@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 35</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 35:</i><br><br>
+    Xét ma trận mở rộng của hệ: \(\overline{A} = \left[\begin{array}{cc|c}
+    a & b & ad \\
+    b & c & bd
+    \end{array}\right]\)
+
+    <ul>
+        <li>Nếu \(a \ne 0\) thì \(\overline{A} = 
+            \begin{array}{ll}
+            \left[\begin{array}{ccc}
+            a & b & ad \\
+            b & c & bd
+            \end{array}\right]
+            \begin{array}{l}
+            \\
+            \times a - b\times h_1
+            \end{array}
+            \end{array}
+            \sim \left[\begin{array}{cc|c}
+            a & b & ad \\
+            0 & ac - b^2 & 0
+            \end{array}\right] \)
+            <ul>
+                <li>Nếu \(ac - b^2 \ne 0\) thì \(r\left( A \right) = r\left( {\overline A } \right) = 2 = \) số ẩn \(\Rightarrow\) hệ có nghiệm duy nhất</li>
+                <li>Nếu \(ac - b^2 = 0\) thì \(r\left( A \right) = r\left( {\overline A } \right) = 1 < \) số ẩn \(\Rightarrow\) hệ có vô số nghiệm</li>
+            </ul>
+        </li>
+        <li>Nếu \(a = 0\), ta có \(\overline{A} = \left[\begin{array}{rr|c}
+            0 & b & 0 \\
+            b & c & bd
+            \end{array}\right] \)
+            <ul>
+                <li>Nếu \(b\ne 0\) thì \(r\left( A \right) = r\left( {\overline A } \right) = 2 = \) số ẩn \(\Rightarrow\) hệ có nghiệm duy nhất</li>
+                <li>Nếu \(b = 0\) thì \(\overline{A} = \left[\begin{array}{cc|c}
+                    0 & 0 & 0 \\
+                    0 & c & 0
+                    \end{array} \right] \Rightarrow r\left( A \right) = r\left( {\overline A } \right) \le 1 < 2 =  \) số ẩn \(\Rightarrow\) hệ có vô số nghiệm
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    Tóm lại, nếu \(ac - b^2 \ne 0\) thì hệ có nghiệm duy nhất. Ngược lại, \(ac - b^2 = 0\), thì hệ có vô số nghiệm
+</body>

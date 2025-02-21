@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 97</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 97:</i><br><br>
+    Xét định thức \(D = \begin{vmatrix}
+    a & b & c \\
+    d & e & f \\
+    g & h & k
+    \end{vmatrix} = aek + bfg + dhc - gec - dbk - hfa\), và định thức thu được từ \(D\) bằng cách thêm vào các phần tử của cột 1 một bội \(\lambda\) của các phần tử tương ứng của cột 2:
+    \begin{align}
+    & \begin{vmatrix}
+    a + \lambda b & b & c \\
+    d + \lambda e & e & f \\
+    g + \lambda h & h & k
+    \end{vmatrix} \\
+    =\; & \left( {a + \lambda b} \right)ek + bf\left( {g + \lambda h} \right) + \left( {d + \lambda e} \right)hc - \left( {g + \lambda h} \right)ec - \left( {d + \lambda e} \right)bk - hf\left( {a + \lambda b} \right) \\
+    =\; & aek + bfg + dhc - gec - dbk - hfa = D
+    \end{align}
+
+    Trường hợp thêm vào các phần tử của cột 1 cùng một bội của các phần tử tương ứng của cột 3, chứng minh tương tự.<br>
+
+    Trường hợp thêm vào các phần tử của cột 2 (hoặc cột 3) cùng một bội của các phần tử tương ứng của một cột khác, chứng minh tương tự.
+
+</body>

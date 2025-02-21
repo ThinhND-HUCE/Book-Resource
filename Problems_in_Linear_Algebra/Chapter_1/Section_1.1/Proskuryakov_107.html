@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 107</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 107:</i><br><br>
+    \(D = \begin{vmatrix}
+    \sin\alpha & \cos\alpha & \sin\left( \alpha + \delta \right) \\
+    \sin\beta & \cos\beta & \sin\left( \beta + \delta \right) \\
+    \sin\gamma & \cos\gamma & \sin\left( \gamma + \delta \right)
+    \end{vmatrix} = 
+    \begin{vmatrix}
+    \sin\alpha & \cos\alpha & \sin\alpha \times \mathbf{\cos\delta} + \cos\alpha\times \mathbf{\sin\delta} \\
+    \sin\beta & \cos\beta & \sin\beta \times \mathbf{\cos\delta} + \cos\beta\times \mathbf{\sin\delta} \\
+    \sin\gamma & \cos\gamma & \sin\gamma \times \mathbf{\cos\delta} + \cos\gamma\times \mathbf{\sin\delta}
+    \end{vmatrix} \)<br>
+
+    Định thức mới có cột 3 là tổ hợp tuyến tính của cột 1 và 2 (với các hệ số lần lượt là \(\cos\delta\) và \(\sin\delta\)) nên \(D = 0\).
+
+</body>

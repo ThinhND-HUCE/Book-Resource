@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 114</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 114:</i><br><br>
+    Trừ \(x\) lần cột 1 vào cột 2, ta có
+    \[
+    D = \begin{vmatrix}
+    a_1 + b_1 x & a_1 x + b_1 & c_1 \\
+    a_2 + b_2 x & a_2 x + b_2 & c_2 \\
+    a_3 + b_3 x & a_3 x + b_3 & c_3
+    \end{vmatrix}
+    = \begin{vmatrix}
+    a_1 + b_1 i & b_1 \left( 1 - x^2 \right) & c_1 \\
+    a_2 + b_2 i & b_2 \left( 1 - x^2 \right) & c_2 \\
+    a_3 + b_3 i & b_3 \left( 1 - x^2 \right) & c_3
+    \end{vmatrix}
+    \]
+
+    Cột 2 của định thức mới có thừa số chung là \(1 - x^2\) nên \(D = \left( 1 - x^2 \right)\begin{vmatrix}
+    a_1 + b_1 x & b_1 & c_1 \\
+    a_2 + b_2 x & b_2 & c_2 \\
+    a_3 + b_3 x & b_3 & c_3
+    \end{vmatrix} \). Cuối cùng, trừ \(x\) lần cột 2 vào cột 1, ta có điều phải chứng minh.
+
+</body>

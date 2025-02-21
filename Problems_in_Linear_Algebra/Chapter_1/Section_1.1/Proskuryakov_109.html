@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 109</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 109:</i><br><br>
+    \(\begin{array}{lll}
+    D & = & \begin{vmatrix}
+    x_1 & y_1 & 1 \\
+    x_2 & y_2 & 1 \\
+    \dfrac{{{x_1} + \lambda {x_2}}}{{1 + \lambda }} & \dfrac{{{y_1} + \lambda {y_2}}}{{1 + \lambda }} & \framebox{1}
+    \end{vmatrix} \\
+    & = & \begin{vmatrix}
+    x_1 & y_1 & 1 \\
+    x_2 & y_2 & 1 \\
+    \frac{1}{{1 - \lambda }} \times {x_1} - \frac{\lambda }{{1 - \lambda }} \times {x_2} & \frac{1}{{1 - \lambda }} \times {y_1} - \frac{\lambda }{{1 - \lambda }} \times {y_2} & \frac{1}{{1 - \lambda }} \times 1 - \frac{\lambda }{{1 - \lambda }} \times 1
+    \end{vmatrix}
+    \end{array}\)<br>
+
+    Định thức mới có hàng 3 là tổ hợp tuyến tính của hàng 1 và 2 (với các hệ số lần lượt là \(\dfrac{1}{1 - \lambda}\) và \(-\dfrac{\lambda}{1 - \lambda}\)) nên \(D = 0\).<br>
+
+    Về mặt hình học, trong không gian ba chiều \(Oxyz\), xét hai điểm \(A\left( {{x_1},{y_1},1} \right)\) và \(B\left( {{x_2},{y_2},1} \right)\). Điểm \(M\left( {{x_M},{y_M},{z_M}} \right)\) chia đoạn \(AB\) theo tỷ lệ \(\lambda\), tức là \(\overrightarrow {MA}  = \lambda \overrightarrow {MB} \). Bằng cách giải hệ phương trình với các biến là các tọa độ của \(M\):
+    \begin{align}
+    {x_A} - {x_M} = \lambda \left( {{x_B} - {x_M}} \right) & \Leftrightarrow {x_1} - {x_M} = \lambda \left( {{x_2} - {x_M}} \right) \\
+    {y_A} - {y_M} = \lambda \left( {{y_B} - {y_M}} \right) & \Leftrightarrow {y_1} - {y_M} = \lambda \left( {{y_2} - {y_M}} \right) \\
+    {z_A} - {z_M} = \lambda \left( {{z_B} - {z_M}} \right) & \Leftrightarrow 1 - {z_M} = \lambda \left( {1 - {z_M}} \right)
+    \end{align}
+    ta được \(M\left( \dfrac{{{x_1} - \lambda {x_2}}}{{1 - \lambda }},\; \dfrac{{{y_1} - \lambda {y_2}}}{{1 - \lambda }},\; 1\right)\). Định thức bằng~0 có ý nghĩa rằng ba điểm \(A, B, M\) thẳng hàng.
+
+</body>
