@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 383</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 383:</i><br><br>
+
+    Ký hiệu định thức đã cho là \(D\).
+    Ta viết lại \(D\) chi tiết hơn:
+    \[
+    D = 
+    \begin{vmatrix}
+    \binom{p+n}{n} & \binom{p+n+1}{n} & \binom{p+n+2}{n} & \binom{p+n+3}{n} & \ldots & \binom{p+2n-1}{n} & \binom{p+2n}{n} \\
+    \binom{p+n+1}{n} & \binom{p+n+2}{n} & \binom{p+n+3}{n} & \binom{p+n+4}{n} & \ldots & \binom{p+2n}{n} & \binom{p+2n+1}{n} \\
+    \binom{p+n+2}{n} & \binom{p+n+3}{n} & \binom{p+n+4}{n} & \binom{p+n+5}{n} & \ldots & \binom{p+2n+1}{n} & \binom{p+2n+2}{n} \\
+    \binom{p+n+3}{n} & \binom{p+n+4}{n} & \binom{p+n+5}{n} & \binom{p+n+6}{n} & \ldots & \binom{p+2n+2}{n} & \binom{p+2n+3}{n} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{p+2n-1}{n} & \binom{p+2n}{n} & \binom{p+2n+1}{n} & \binom{p+2n+2}{n} & \ldots & \binom{p+3n-2}{n} & \binom{p+3n-1}{n} \\
+    \binom{p+2n}{n} & \binom{p+2n+1}{n} & \binom{p+2n+2}{n} & \binom{p+2n+3}{n} & \ldots & \binom{p+3n-1}{n} & \binom{p+3n}{n} 
+    \end{vmatrix}
+    \]
+    
+    Từ cột thứ hai, trừ mỗi cột cho cột trước, sử dụng công thức Pascal
+    \[
+    \binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1} \quad\Rightarrow\quad
+    \binom{n}{k} - \binom{n-1}{k} = \binom{n-1}{k-1},
+    \]
+    ta có
+    \[
+    D =
+    \begin{vmatrix}
+    \binom{p+n}{n} & \binom{p+n}{n-1} & \binom{p+n+1}{n-1} & \binom{p+n+2}{n-1} & \ldots & \binom{p+2n-2}{n-1} & \binom{p+2n-1}{n-1} \\
+    \binom{p+n+1}{n} & \binom{p+n+1}{n-1} & \binom{p+n+2}{n-1} & \binom{p+n+3}{n-1} & \ldots & \binom{p+2n-1}{n-1} & \binom{p+2n}{n-1} \\
+    \binom{p+n+2}{n} & \binom{p+n+2}{n-1} & \binom{p+n+3}{n-1} & \binom{p+n+4}{n-1} & \ldots & \binom{p+2n}{n-1} & \binom{p+2n+1}{n-1} \\
+    \binom{p+n+3}{n} & \binom{p+n+3}{n-1} & \binom{p+n+4}{n-1} & \binom{p+n+5}{n-1} & \ldots & \binom{p+2n+1}{n-1} & \binom{p+2n+2}{n-1} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{p+2n-1}{n} & \binom{p+2n-1}{n-1} & \binom{p+2n}{n-1} & \binom{p+2n+1}{n-1} & \ldots & \binom{p+3n-3}{n-1} & \binom{p+3n-2}{n-1} \\
+    \binom{p+2n}{n} & \binom{p+2n}{n-1} & \binom{p+2n+1}{n-1} & \binom{p+2n+2}{n-1} & \ldots & \binom{p+3n-2}{n-1} & \binom{p+3n-1}{n-1} 
+    \end{vmatrix}
+    \]
+    
+    Trong định thức trên, từ cột thứ ba, trừ mỗi cột cho cột trước
+    \[
+    D = 
+    \begin{vmatrix}
+    \binom{p+n}{n} & \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n+1}{n-2} & \ldots & \binom{p+2n-3}{n-2} & \binom{p+2n-2}{n-2} \\
+    \binom{p+n+1}{n} & \binom{p+n+1}{n-1} & \binom{p+n+1}{n-2} & \binom{p+n+2}{n-2} & \ldots & \binom{p+2n-2}{n-2} & \binom{p+2n-1}{n-2} \\
+    \binom{p+n+2}{n} & \binom{p+n+2}{n-1} & \binom{p+n+2}{n-2} & \binom{p+n+3}{n-2} & \ldots & \binom{p+2n-1}{n-2} & \binom{p+2n}{n-2} \\
+    \binom{p+n+3}{n} & \binom{p+n+3}{n-1} & \binom{p+n+3}{n-2} & \binom{p+n+4}{n-2} & \ldots & \binom{p+2n}{n-2} & \binom{p+2n+1}{n-2} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{p+2n-1}{n} & \binom{p+2n-1}{n-1} & \binom{p+2n-1}{n-2} & \binom{p+2n}{n-2} & \ldots & \binom{p+3n-4}{n-2} & \binom{p+3n-3}{n-2} \\
+    \binom{p+2n}{n} & \binom{p+2n}{n-1} & \binom{p+2n}{n-2} & \binom{p+2n+1}{n-2} & \ldots & \binom{p+3n-3}{n-2} & \binom{p+3n-2}{n-2} 
+    \end{vmatrix}
+    \]
+    
+    Trong định thức thu được, từ cột thứ tư, trừ mỗi cột cho cột trước
+    \[
+    D = 
+    \begin{vmatrix}
+    \binom{p+n}{n} & \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n}{n-3} & \ldots & \binom{p+2n-4}{n-3} & \binom{p+2n-3}{n-3} \\
+    \binom{p+n+1}{n} & \binom{p+n+1}{n-1} & \binom{p+n+1}{n-2} & \binom{p+n+1}{n-3} & \ldots & \binom{p+2n-3}{n-3} & \binom{p+2n-2}{n-3} \\
+    \binom{p+n+2}{n} & \binom{p+n+2}{n-1} & \binom{p+n+2}{n-2} & \binom{p+n+2}{n-3} & \ldots & \binom{p+2n-2}{n-3} & \binom{p+2n-1}{n-3} \\
+    \binom{p+n+3}{n} & \binom{p+n+3}{n-1} & \binom{p+n+3}{n-2} & \binom{p+n+3}{n-3} & \ldots & \binom{p+2n-1}{n-3} & \binom{p+2n}{n-3} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{p+2n-1}{n} & \binom{p+2n-1}{n-1} & \binom{p+2n-1}{n-2} & \binom{p+2n-1}{n-3} & \ldots & \binom{p+3n-5}{n-3} & \binom{p+3n-4}{n-3} \\
+    \binom{p+2n}{n} & \binom{p+2n}{n-1} & \binom{p+2n}{n-2} & \binom{p+2n}{n-3} & \ldots & \binom{p+3n-4}{n-3} & \binom{p+3n-3}{n-3} 
+    \end{vmatrix}
+    \]
+    
+    Cứ tiếp tục như vậy, ta được
+    \[
+    D = 
+    \begin{vmatrix}
+    \binom{p+n}{n} & \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n}{n-3} & \ldots & \binom{p+n}{1} & \binom{p+n}{0} \\
+    \binom{p+n+1}{n} & \binom{p+n+1}{n-1} & \binom{p+n+1}{n-2} & \binom{p+n+1}{n-3} & \ldots & \binom{p+n+1}{1} & \binom{p+n+1}{0} \\
+    \binom{p+n+2}{n} & \binom{p+n+2}{n-1} & \binom{p+n+2}{n-2} & \binom{p+n+2}{n-3} & \ldots & \binom{p+n+2}{1} & \binom{p+n+2}{0} \\
+    \binom{p+n+3}{n} & \binom{p+n+3}{n-1} & \binom{p+n+3}{n-2} & \binom{p+n+3}{n-3} & \ldots & \binom{p+n+3}{1} & \binom{p+n+3}{0} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{p+2n-1}{n} & \binom{p+2n-1}{n-1} & \binom{p+2n-1}{n-2} & \binom{p+2n-1}{n-3} & \ldots & \binom{p+2n-1}{1} & \binom{p+2n-1}{0} \\
+    \binom{p+2n}{n} & \binom{p+2n}{n-1} & \binom{p+2n}{n-2} & \binom{p+2n}{n-3} & \ldots & \binom{p+2n}{1} & \binom{p+2n}{0} 
+    \end{vmatrix}
+    \]
+    
+    Thực hiện phép biến đổi tương tự như trên, nhưng áp dụng đối với hàng. 
+    Từ hàng thứ hai trở đi, trừ mỗi hàng cho hàng trên.
+    Trong định thức mới, từ hàng thứ ba, lại trừ mỗi hàng cho hàng trên,\(\ldots\), và lưu ý \(\displaystyle \binom{n}{0} = 1\), ta có
+    \begin{align}
+    D & = 
+    \begin{vmatrix}
+    \binom{p+n}{n} & \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n}{n-3} & \ldots & \binom{p+n}{1} & 1 \\
+    \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n}{n-3} & \binom{p+n}{n-4} & \ldots & \binom{p+n}{0} & 0 \\
+    \binom{p+n+1}{n-1} & \binom{p+n+1}{n-2} & \binom{p+n+1}{n-3} & \binom{p+n+1}{n-4} & \ldots & \binom{p+n+1}{0} & 0 \\
+    \binom{p+n+2}{n-1} & \binom{p+n+2}{n-2} & \binom{p+n+2}{n-3} & \binom{p+n+2}{n-4} & \ldots & \binom{p+n+2}{0} & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{p+2n-2}{n-1} & \binom{p+2n-2}{n-2} & \binom{p+2n-2}{n-3} & \binom{p+2n-2}{n-4} & \ldots & \binom{p+2n-2}{0} & 0 \\
+    \binom{p+2n-1}{n-1} & \binom{p+2n-1}{n-2} & \binom{p+2n-1}{n-3} & \binom{p+2n-1}{n-4} & \ldots & \binom{p+2n-1}{0} & 0 
+    \end{vmatrix} \\
+    & =
+    \begin{vmatrix}
+    \binom{p+n}{n} & \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n}{n-3} & \ldots & \binom{p+n}{1} & 1 \\
+    \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n}{n-3} & \binom{p+n}{n-4} & \ldots & 1 & 0 \\
+    \binom{p+n}{n-2} & \binom{p+n}{n-3} & \binom{p+n}{n-4} & \binom{p+n}{n-5} & \ldots & 1 & 0 \\
+    \binom{p+n+1}{n-2} & \binom{p+n+1}{n-3} & \binom{p+n+1}{n-4} & \binom{p+n+1}{n-5} & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{p+2n-3}{n-2} & \binom{p+2n-3}{n-3} & \binom{p+2n-3}{n-4} & \binom{p+2n-3}{n-5} & \ldots & 0 & 0 \\
+    \binom{p+2n-2}{n-2} & \binom{p+2n-2}{n-3} & \binom{p+2n-2}{n-4} & \binom{p+2n-2}{n-5} & \ldots & 0 & 0 
+    \end{vmatrix} \\
+    & = 
+    \begin{vmatrix}
+    \binom{p+n}{n} & \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n}{n-3} & \ldots & \binom{p+n}{1} & 1 \\
+    \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n}{n-3} & \binom{p+n}{n-4} & \ldots & 1 & 0 \\
+    \binom{p+n}{n-2} & \binom{p+n}{n-3} & \binom{p+n}{n-4} & \binom{p+n}{n-5} & \ldots & 0 & 0 \\
+    \binom{p+n}{n-3} & \binom{p+n}{n-4} & \binom{p+n}{n-5} & \binom{p+n}{n-6} & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{p+2n-4}{n-3} & \binom{p+2n-4}{n-4} & \binom{p+2n-4}{n-5} & \binom{p+2n-4}{n-6} & \ldots & 0 & 0 \\
+    \binom{p+2n-3}{n-3} & \binom{p+2n-3}{n-4} & \binom{p+2n-3}{n-5} & \binom{p+2n-3}{n-6} & \ldots & 0 & 0 
+    \end{vmatrix} = \ldots \\
+    & =
+    \begin{vmatrix}
+    \binom{p+n}{n} & \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n}{n-3} & \ldots & \binom{p+n}{1} & 1 \\
+    \binom{p+n}{n-1} & \binom{p+n}{n-2} & \binom{p+n}{n-3} & \binom{p+n}{n-4} & \ldots & 1 & 0 \\
+    \binom{p+n}{n-2} & \binom{p+n}{n-3} & \binom{p+n}{n-4} & \binom{p+n}{n-5} & \ldots & 0 & 0 \\
+    \binom{p+n}{n-3} & \binom{p+n}{n-4} & \binom{p+n}{n-5} & \binom{p+n}{n-6} & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{p+n}{1} & 1 & 0 & 0 & \ldots & 0 & 0 \\
+    1 & 0 & 0 & 0 & \ldots & 0 & 0 
+    \end{vmatrix}
+    \end{align}
+    
+    Định thức trên có dạng tam giác trên đường chéo phụ, có cấp \(n+1\).
+    Áp dụng kết quả trong <a href="Proskuryakov_204.html">Bài tập 204</a> (hoặc chứng minh trực tiếp bằng cách đổi chỗ liên tiếp hai hàng cạnh nhau để đưa định thức này về dạng tam giác dưới), ta có
+    \[
+    D = \left( -1 \right)^{\frac{n\left( n+1 \right)}{2}} \left( 1 \right)^{n+1} = \left( -1 \right)^{\frac{n\left( n+1 \right)}{2}} .
+    \]
+    
+</body>
+</html>

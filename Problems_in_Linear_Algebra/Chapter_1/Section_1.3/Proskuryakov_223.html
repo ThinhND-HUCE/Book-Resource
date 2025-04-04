@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 223</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 223:</i><br><br>
+    
+    Xét định thức cấp \(n\):\quad
+    \(\displaystyle D = \sum\limits_{\sigma  \in {S_n}} {{\mathop{\rm sign}\nolimits} \left( \sigma  \right){a_{1\sigma \left( 1 \right)}}{a_{2\sigma \left( 2 \right)}} \cdots {a_{n\sigma \left( n \right)}}} \). 
+    Giả sử một tích nào đó có \(k\) phần tử ở vị trí \(\left(i, \sigma\left( i \right)\right)\) chẵn, tức là tổng chỉ số \(i + \sigma\left( i \right)\) là chẵn, và \(n-k\) phần tử ở vị trí lẻ.<br>
+
+    Ta cần chứng minh \(k\) cùng tính chẵn lẻ với \(n\). Thật vậy trước hết xét rằng tổng chỉ số của tất cả các vị trí:
+    \[
+    \left[ 1 + \sigma\left( 1 \right) \right] + \left[ 2 + \sigma\left( 2 \right) \right] + \cdots + \left[ n + \sigma\left( n \right) \right] = 
+    \left(1 + 2 + \cdots + n \right) + \left[ \sigma\left( 1 \right) + \sigma\left( 2 \right) + \cdots + \sigma\left( n \right) \right]
+    \]
+
+    Vì \(\sigma\) là phép thế, tức là \(\sigma\left( 1 \right), \sigma\left( 2 \right),\ldots, \sigma\left( n \right)\) là hoán vị của \(1, 2,\ldots, n\), nên
+    \[
+    \sigma\left( 1 \right) + \sigma\left( 2 \right) + \cdots + \sigma\left( n \right) = 1 + 2 + \cdots + n
+    \]
+
+    Suy ra tổng chỉ số tại tất cả các vị trí bằng \(2\left( 1 + 2 + \cdots + n \right)\) là số chẵn. (1) <br>
+
+    Mặt khác, tổng chỉ số tại tất cả các vị trí chia thành hai phần:
+    <ul>
+        <li>
+            Tổng chỉ số tại các vị trí chẵn, cho ta một số chẵn. (2)
+        </li>
+        <li>
+            Tổng chỉ số tại \(n-k\) vị trí lẻ. 
+            Từ (1) và (2) suy ra tổng này là số chẵn. 
+            Do đó, để tổng của \(n - k\) số lẻ là số chẵn, thì \(n - k\) là số chẵn, tức là \(k\) cùng tính chẵn lẻ với \(n\). 
+            Ta có điều phải chứng minh.
+        </li>
+    </ul>
+
+</body>

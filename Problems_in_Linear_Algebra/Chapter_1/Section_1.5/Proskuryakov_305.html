@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 305</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 305:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D_n\). Áp dụng tính cộng tính của định thức cho cột cuối cùng, ta được
+    \begin{align}
+    D_n & = \begin{vmatrix}
+    x + a_1 & a_2 & a_3 & \ldots & a_{n-1} & 0 \\
+    a_1 & x + a_2 & a_3 & \ldots & a_{n-1} & 0 \\
+    a_1 & a_2 & x + a_3 & \ldots & a_{n-1} & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_1 & a_2 & a_3 & \ldots & x + a_{n-1} & 0 \\
+    a_1 & a_2 & a_3 & \ldots & a_{n-1} & x
+    \end{vmatrix} \\
+    & + \begin{vmatrix}
+    x + a_1 & a_2 & a_3 & \ldots & a_{n-1} & a_n \\
+    a_1 & x + a_2 & a_3 & \ldots & a_{n-1} & a_n \\
+    a_1 & a_2 & x + a_3 & \ldots & a_{n-1} & a_n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_1 & a_2 & a_3 & \ldots & x + a_{n-1} & a_n \\
+    a_1 & a_2 & a_3 & \ldots & a_{n-1} & a_n
+    \end{vmatrix}
+    \end{align}
+
+
+    Trong vế phải của đẳng thức trên, khai triển định thức thứ nhất theo cột cuối. Với định thức thứ hai, trước hết ta đưa thừa số chung \(a_n\) của cột cuối ra ngoài dấu định thức:
+    \begin{align}
+    D_n & = \left( x \right) \begin{vmatrix}
+    x + a_1 & a_2 & a_3 & \ldots & a_{n-1} \\
+    a_1 & x + a_2 & a_3 & \ldots & a_{n-1} \\
+    a_1 & a_2 & x + a_3 & \ldots & a_{n-1} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_1 & a_2 & a_3 & \ldots & x + a_{n-1}
+    \end{vmatrix} \\
+    + & \left( a_n \right) \begin{vmatrix}
+    x + a_1 & a_2 & a_3 & \ldots & a_{n-1} & 1 \\
+    a_1 & x + a_2 & a_3 & \ldots & a_{n-1} & 1 \\
+    a_1 & a_2 & x + a_3 & \ldots & a_{n-1} & 1 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_1 & a_2 & a_3 & \ldots & x + a_{n-1} & 1 \\
+    a_1 & a_2 & a_3 & \ldots & a_{n-1} & 1
+    \end{vmatrix}
+    \end{align}
+
+    Lưu ý rằng định thức thứ nhất là \(D_{n-1}\). Trong định thức thứ hai, trừ cột 1 cho \(a_1\) lần cột cuối, trừ cột 2 cho \(a_2\) lần cột cuối, v.v. và trừ cột thứ \(n-1\) cho \(a_{n-1}\) lần cột cuối, ta được
+    \[
+    D_n = x D_{n-1} + a_n
+    \begin{vmatrix}
+    x & 0 & 0 & \ldots & 0 & 1 \\
+    0 & x & 0 & \ldots & 0 & 1 \\
+    0 & 0 & x & \ldots & 0 & 1 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & x & 1 \\
+    0 & 0 & 0 & \ldots & 0 & 1
+    \end{vmatrix}
+    \]
+
+    Vế phải xuất hiện định thức tam giác trên cấp \(n\), suy ra
+    \[
+    D_n = x D_{n-1} + a_n x^{n-1}
+    \]
+
+    Đây là hệ thức truy hồi tuyến tính không thuần nhất cấp một \(D_n = p_n D_{n-1} + q_n\), trong đó \(p_n = x\), và \(q_n = a_n x^{n-1}\). Ta đã biết
+    \[
+    D_n = p_2 p_3 \cdots p_n \left( D_1 + \frac{q_2}{p_2} + \frac{q_3}{p_2 p_3} + \cdots \frac{q_n}{p_2 p_3\cdots p_n} \right) .
+    \]
+
+    Thay \(p_n, q_n\), và lưu ý rằng \(D_1 = x + a_1\), ta có
+    \[
+    D_n = x^{n-1} \left( x + a_1 + \frac{a_2 x}{x} + \frac{a_3 x^2}{x^2} + \cdots + \frac{a_n x^{n-1}}{x^{n-1}} \right)
+    = x^{n-1} \left( x + a_1 + a_2 + \cdots a_n \right).
+    \]
+
+    <i>Nhận xét:</i>
+    Một cách khác để tính định thức \(D\) đã cho. 
+    Trước hết cộng vào cột 1 tất cả các cột còn lại, thì định thức không đổi:
+    \[
+    D = 
+    \begin{vmatrix}
+    x + a_1 + a_2 + \cdots + a_n & a_2 & a_3 & \ldots & a_n \\
+    x + a_1 + a_2 + \cdots + a_n & x + a_2 & a_3 & \ldots & a_n \\
+    x + a_1 + a_2 + \cdots + a_n & a_2 & x + a_3 & \ldots & a_n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    x + a_1 + a_2 + \cdots + a_n & a_2 & a_3 & \ldots & x + a_n
+    \end{vmatrix} .
+    \]
+
+    Đưa thừa số chung ở cột 1 ra ngoài dấu định thức:
+    \[
+    D = \left( x + a_1 + a_2 + \cdots + a_n \right)
+    \begin{vmatrix}
+    1 & a_2 & a_3 & \ldots & a_n \\
+    1 & x + a_2 & a_3 & \ldots & a_n \\
+    1 & a_2 & x + a_3 & \ldots & a_n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & a_2 & a_3 & \ldots & x + a_n
+    \end{vmatrix} .
+    \]
+
+    Trừ cột 2 cho \(a_2\) lần cột 1, cột 3 cho \(a_3\) lần cột 1,..., và cột cuối cùng cho \(a_n\) lần cột 1, thì định thức không đổi:
+    \[
+    D = \left( x + a_1 + a_2 + \cdots + a_n \right)
+    \begin{vmatrix}
+    1 & 0 & 0 & \ldots & 0 \\
+    1 & x & 0 & \ldots & 0 \\
+    1 & 0 & x & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 0 & 0 & \ldots & x
+    \end{vmatrix} .
+    \]
+
+    Ta thu được định thức của ma trận tam giác dưới, mà trên đường chéo chính có số 1 và \(n-1\) phần tử \(x\). Do đó
+    \[
+    D = \left( x + a_1 + a_2 + \cdots + a_n \right) x^{n-1} .
+    \]
+
+</body>

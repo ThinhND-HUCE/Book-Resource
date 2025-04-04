@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 209</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 209:</i><br><br>
+    
+    Điểm \(a_{xy}\) thuộc đường chéo phụ nếu \(x + y = n+1\).<br>
+
+    Đặt \(a_{i^* k^*}\) là phần tử đối xứng với \(a_{ik}\) qua đường chéo phụ. 
+    Khi đó 
+    <ul>
+        <li>
+            Véctơ tạo bởi hai điểm \(\left( i, k \right)\) và \(\left( i^*, k^* \right)\) vuông góc với đường thẳng \(x + y = n+1\), tức là \(\left( 1 \right) \left( i^* - i \right) + \left( -1 \right) \left( k^* - k \right) = 0\), hay \(i^* - k^* = i - k\). (1)
+        </li>
+        <li>
+            Trung điểm của đoạn thẳng nối hai điểm trên thuộc đường thẳng \(x + y = n + 1\), tức là \(\dfrac{i^* + i}{2} + \dfrac{k^* + k}{2} = n+1\), hay \(i^* + k^* = 2\left( n+1 \right) - i - k\). (2)
+        </li>
+    </ul>
+
+    Giải hệ (1) và (2) ta được \(i^* = n + 1 - k\) và \(k^* = n + 1 - i\). 
+    Vậy phần tử đối xứng với \(a_{ik}\) qua đường chéo phụ là \(a_{n+1-k, n+1-i}\).
+
+</body>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 216</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 216:</i><br><br>
+    
+    Giả sử \(D\) là định thức đối xứng lệch cấp \(n\), với \(n\) lẻ. Trước hết với \(i = k\) ta có \(a_{ii} = - a_{ii}\), hay \(a_{ii} = 0\), tức là các phần tử trên đường chéo chính của \(D\) bằng 0. 
+    Như vậy \(D\) có dạng
+    \[
+    D = \begin{vmatrix}
+    0 & a_{12} & a_{13} & \ldots & a_{1n} \\
+    -a_{12} & 0 & a_{23} & \ldots & a_{2n} \\
+    -a_{13} & -a_{23} & 0 & \ldots & a_{3n} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    -a_{1n} & -a_{2n} & -a_{3n} & \ldots & 0
+    \end{vmatrix}
+    \]
+
+    Lấy chuyển vị của \(D\), thì định thức không đổi
+    \[
+    D = \begin{vmatrix}
+    0 & -a_{12} & -a_{13} & \ldots & -a_{1n} \\
+    a_{12} & 0 & -a_{23} & \ldots & -a_{2n} \\
+    a_{13} & a_{23} & 0 & \ldots & -a_{3n} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_{1n} & a_{2n} & a_{3n} & \ldots & 0
+    \end{vmatrix}
+    \]
+
+    Đổi dấu \(n\) hàng của định thức này, thì định thức đổi dấu \(n\) lần, và định thức mới lại là \(D\). Ta có \(\left( - 1 \right)^n D = D\). Vì \(n\) lẻ, nên \(-D = D\) hay \(D = 0\).
+
+</body>

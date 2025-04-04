@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 320</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 320:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D_n\).
+    Khai triển \(D_n\) theo cột cuối, ta có
+    \begin{align}
+    D_n & = \left( 1 - b_n \right)
+    \begin{vmatrix}
+    1 & b_1 & 0 & 0 & \ldots & 0 & 0 \\
+    -1 & 1-b_1 & b_2 & 0 & \ldots & 0 & 0 \\
+    0 & -1 & 1-b_2 & b_3 & \ldots & 0 & 0\\
+    0 & 0 & -1 & 1-b_3 & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & 0 & \ldots & 1 - b_{n-2} & b_{n-1}\\
+    0 & 0 & 0 & 0 & \ldots & -1 &  1-b_{n-1}\\
+    \end{vmatrix} \\
+    & \hspace{6mm} - \left( b_n \right)
+    \begin{vmatrix}
+    1 & b_1 & 0 & 0 & \ldots & 0 & 0 \\
+    -1 & 1-b_1 & b_2 & 0 & \ldots & 0 & 0 \\
+    0 & -1 & 1-b_2 & b_3 & \ldots & 0 & 0 \\
+    0 & 0 & -1 & 1-b_3 & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & 0 & \ldots & 1 - b_{n-2} & b_{n-1} \\
+    0 & 0 & 0 & 0 & \ldots & 0 & -1
+    \end{vmatrix}
+    \end{align}
+
+    Định thức thứ nhất chính là \(D_{n-1}\); còn với định thức thứ hai, ta khai triển theo hàng cuối lại được \(\left( -1 \right)D_{n-2}\). Suy ra
+    \[
+    D_n = \left( 1 - b_n \right) D_{n-1} + b_n D_{n-2}, \quad n\ge 2,
+    \]
+    trong đó \(D_0 = 1\), và \(D_1 = \begin{vmatrix}
+    1 & b_1 \\
+    -1 & 1 - b_1
+    \end{vmatrix} 
+    = \left( 1 \right) \left( 1 - b_1 \right) - \left( -1 \right) \left( b_1 \right) = 1\).
+
+    Chuyển số hạng \(D_{n-1}\) sang vế trái:
+    \[
+    D_n - D_{n-1} = -b_n \left( D_{n-1} - D_{n-2}\right),
+    \]
+    ta được dãy \(\{D_n - D_{n-1}\}\) xác định theo hệ thức truy hồi tuyến tính thuần nhất cấp một. Ta có
+    \[
+    D_n - D_{n-1} = \left( -b_2 \right) \left( -b_3 \right) \cdots \left( -b_n \right) \left( D_1 - D_0 \right)
+    = \left( -1  \right)^{n-1} \left( D_1 - D_0 \right), \quad n\ge 2. 
+    \]
+
+    Vì \(D_0 = D_1 = 1\) nên \(D_n - D_{n-1} = 0\) với \(n\ge 2\). Vậy \(D_n = 1\) với mọi \(n\).
+
+</body>

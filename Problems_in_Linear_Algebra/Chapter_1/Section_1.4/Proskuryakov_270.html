@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 270</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 270:</i><br><br>
+    
+    Trong định thức \(D\) đã cho, biến đổi theo chỉ dẫn ghi bên phải định thức, thì định thức không đổi
+    \[
+    D = 
+    \left|\begin{array}{ccccc}
+    1 & 2 & 3 & 4 & 5 \\
+    2 & 3 & 7 & 10 & 13 \\
+    3 & 5 & 11 & 16 & 21 \\
+    2 & -7 & 7 & 7 & 2 \\
+    1 & 4 & 5 & 3 & 10 
+    \end{array}\right|
+    \begin{array}{l}
+    \\
+    - 2h_1 \\
+    - 3h_1 \\
+    - 2h_1 \\
+    - h_1 \\
+    \end{array}
+    = \begin{vmatrix}
+    1 & 2 & 3 & 4 & 5 \\
+    0 & -1 & 1 & 2 & 3 \\
+    0 & -1 & 2 & 4 & 6 \\
+    0 & -11 & 1 & -1 & -8 \\
+    0 & 2 & 2 & -1 & 5
+    \end{vmatrix}
+    \]
+
+    Khai triển định thức mới theo cột 1, rồi tiếp tục biến đổi:
+    \[
+    D = \left( 1 \right) 
+    \left|\begin{array}{cccc}
+    -1 & 1 & 2 & 3 \\
+    -1 & 2 & 4 & 6 \\
+    -11 & 1 & -1 & -8 \\
+    2 & 2 & -1 & 5 
+    \end{array}\right|
+    \begin{array}{l}
+    \\
+    - 2h_1 \\
+    - h_1 \\
+    - 2h_1 \\
+    \end{array}
+    = \begin{vmatrix}
+    -1 & 1 & 2 & 3 \\
+    1 & 0 & 0 & 0 \\
+    -10 & 0 & -3 & -11 \\
+    4 & 0 & -5 & -1
+    \end{vmatrix}
+    \]
+
+    Khai triển định thức thu được theo cột 2:
+    \[
+    D = - \left( 1 \right) \begin{vmatrix}
+    1 & 0 & 0 \\
+    -10 & -3 & -11 \\
+    4 & -5 & -1
+    \end{vmatrix}
+    \]
+    và tiếp tục khai triển định thức trên theo hàng 1:
+    \[
+    D = - \left( 1 \right) \begin{vmatrix}
+    -3 & -11 \\
+    -5 & -1
+    \end{vmatrix}
+    = - \left[ \left( -3 \right) \left( -1 \right) - \left( -5 \right) \left( -11 \right) \right] = - \left( 3 - 55 \right) = 52.
+    \]
+
+</body>

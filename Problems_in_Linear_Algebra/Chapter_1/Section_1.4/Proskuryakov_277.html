@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 277</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 277:</i><br><br>
+    
+    Với định thức \(D\) đã cho, nhân hàng 1 với 4, hàng 2 với 2, hàng 3 với 6, và hàng 4 với 10, ta có
+    \[
+    D = \frac{1}{4} \times \frac{1}{2} \times \frac{1}{6} \times \frac{1}{10} \times  \begin{vmatrix}
+    3 & 8 & -2 & -20 \\
+    2 & -4 & 3 & 16 \\
+    \framebox{5} & -8 & 8 & 28 \\
+    4 & -8 & 5 & 24
+    \end{vmatrix}
+    \]
+
+    Trong định thức thu được, trừ hàng 3 cho hàng 4, sau đó tiếp tục khử các phần tử ở cột~1 theo ghi chú bên phải định thức:
+    \[
+    D = \frac{1}{480} 
+    \left|\begin{array}{cccc}
+    3 & 8 & -2 & -20 \\
+    2 & -4 & 3 & 16 \\
+    \framebox{1} & 0 & 3 & 4 \\
+    4 & -8 & 5 & 24 
+    \end{array}\right|
+    \begin{array}{l}
+    - 3h_3 \\
+    - 2h_3 \\
+    \\
+    - 4h_3 \\
+    \end{array}
+    = \frac{1}{480} \begin{vmatrix}
+    0 & 8 & -11 & -32 \\
+    0 & -4 & -3 & 8 \\
+    \mathbf{1} & 0 & 3 & 4 \\
+    0 & -8 & -7 & 8
+    \end{vmatrix}
+    \]
+
+    Khai triển định thức trên theo cột 1:
+    \[
+    D = \frac{1}{480} \times \left( 1 \right) \begin{vmatrix}
+    8 & -11 & -32 \\
+    -4 & -3 & 8 \\
+    -8 & -7 & 8
+    \end{vmatrix}
+    \]
+
+    Trong định thức trên, đưa thừa số chung 4 ở cột 1, 8 ở cột 3 ra ngoài dấu định thức. Sau đó khử các phần tử ở cột~1, ta có
+    \[
+    D = \dfrac{1}{480} \times \left( 4\times 8 \right) 
+    \left|\begin{array}{cccc}
+    2 & -11 & -4 \\
+    \framebox{\(-1\)} & -3 & 1 \\
+    -2 & -7 & 1 
+    \end{array}\right|
+    2h_2 \\
+    \\
+    - 2h_2 \\
+    \begin{array}{l}
+    \end{array}
+    = \frac{1}{15} \begin{vmatrix}
+    0 & -17 & -2 \\
+    \mathbf{-1} & -3 & 1 \\
+    0 & -1 & -1
+    \end{vmatrix}
+    \]
+
+    Khai triển định thức mới theo cột 1:
+    \[
+    D = \frac{1}{15} \left[ - \left( -1 \right) \right] \begin{vmatrix}
+    -17 & -2 \\
+    -1 & -1
+    \end{vmatrix}
+    = \frac{1}{15} \left[ \left(-17\right) \left( -1 \right) - \left( -1 \right) \left( -2 \right) \right] = \frac{1}{15} \left( 17 - 2 \right) = 1.
+    \]
+
+</body>

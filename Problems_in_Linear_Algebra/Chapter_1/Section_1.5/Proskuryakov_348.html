@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 348</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 348:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D\).
+    Ta tìm cách khử các số hạng 1 tại các vị trí của \(D\). 
+    Ta mở rộng định thức \(D\) bằng cách thêm một hàng và một cột có các giá trị đặc biệt, lúc này \(D\) là một định thức con của định thức mới \(d\), mà nếu hai định thức này có hệ thức liên hệ thì thay vì tính \(D\), ta tính \(d\).
+    Bổ sung vào \(D\) để có hàng đầu tiên là \(\left[1, 0, 0,\ldots, 0\right]\), và cột đầu tiên toàn số 1:
+    \[
+    d = \begin{vmatrix}
+    1 & 0 & 0 & \ldots & 0 \\
+    1 & 1 + x_1 & 1 + x_1^2 & \ldots & 1 + x_1^n \\
+    1 & 1 + x_2 & 1 + x_2^2 & \ldots & 1 + x_2^n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 1 + x_n & 1 + x_n^2 & \ldots & 1 + x_n^n 
+    \end{vmatrix}
+    \]
+
+    Khi đó, nếu khai triển \(d\) theo hàng 1, thì
+    \[
+    d = \left( 1 \right) D = D.
+    \]
+
+    Bây giờ, thay vì tính \(D\), ta tính \(d\). 
+    Trước hết, khử các số hạng 1 tại hầu hết các vị trí của \(d\), bằng cách trừ cột 1 vào các cột còn lại, khi đó \(d\) không đổi:
+    \[
+    d = \begin{vmatrix}
+    1 & -1 & -1 & \ldots & -1 \\
+    1 & x_1 & x_1^2 & \ldots & x_1^n \\
+    1 & x_2 & x_2^2 & \ldots & x_2^n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & x_n & x_n^2 & \ldots & x_n^n 
+    \end{vmatrix}
+    \]
+
+    Áp dụng tính chất cộng tính của định thức tại hàng đầu:
+    \[
+    d = \begin{vmatrix}
+    2 & 0 & 0 & \ldots & 0 \\
+    1 & x_1 & x_1^2 & \ldots & x_1^n \\
+    1 & x_2 & x_2^2 & \ldots & x_2^n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & x_n & x_n^2 & \ldots & x_n^n 
+    \end{vmatrix}
+    -
+    \begin{vmatrix}
+    1 & 1 & 1 & \ldots & 1 \\
+    1 & x_1 & x_1^2 & \ldots & x_1^n \\
+    1 & x_2 & x_2^2 & \ldots & x_2^n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & x_n & x_n^2 & \ldots & x_n^n 
+    \end{vmatrix}
+    \]
+
+    Trong vế phải ở trên, ký hiệu hai định thức lần lượt là \(d_1\) và \(d_2\). 
+    Trong \(d_1\), tại hàng đầu, đưa thừa số chung 2 ra ngoài dấu định thức:
+    \[
+    d_1 = \left( 2 \right)
+    \begin{vmatrix}
+    1 & 0 & 0 & \ldots & 0 \\
+    1 & x_1 & x_1^2 & \ldots & x_1^n \\
+    1 & x_2 & x_2^2 & \ldots & x_2^n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & x_n & x_n^2 & \ldots & x_n^n 
+    \end{vmatrix}
+    \]
+    sẽ thấy xuất hiện định thức Vandermonde với các ẩn \(x_0 = 0, x_1, x_2,\ldots, x_n\):
+    \[
+    d_1 = \left( 2 \right)
+    \begin{vmatrix}
+    1 & x_0 & x_0^2 & \ldots & x_0^n \\
+    1 & x_1 & x_1^2 & \ldots & x_1^n \\
+    1 & x_2 & x_2^2 & \ldots & x_2^n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & x_n & x_n^2 & \ldots & x_n^n 
+    \end{vmatrix}
+    \]
+
+    Áp dụng kết quả trong <a href="Proskuryakov_vd_4.html">Ví dụ 4</a>, ta được
+    \[
+    d_1 = \left( 2 \right) \prod\limits_{n \ge i > j \ge 0} {\left( {{x_i} - {x_j}} \right)} .
+    \]
+
+    Trong tích trên, tách riêng các thừa số chứa \(x_i - x_j\) chứa \(x_0 = 0\), ta có
+    \[
+    d_1 = 2x_1x_2\cdots x_n \prod\limits_{n \ge i > j \ge 1} {\left( {{x_i} - {x_j}} \right)} .
+    \]
+
+    Ta tính tiếp \(d_2\). Cũng tương tự, \(d_2\) là định thức Vandermonde với các ẩn \(x_0 = 1, x_1, x_2,\ldots, x_n\):
+    \[
+    d_2 = \prod\limits_{n \ge i > j \ge 0} {\left( {{x_i} - {x_j}} \right)}  = \left( {{x_1} - 1} \right)\left( {{x_2} - 1} \right) \cdots \left( {{x_n} - 1} \right)\prod\limits_{n \ge i > j \ge 1} {\left( {{x_i} - {x_j}} \right)} .
+    \]
+
+    Do đó
+    \[
+    D = d = d_1 - d_2 = \left[ 2x_1x_2\cdots x_n - \left( {{x_1} - 1} \right)\left( {{x_2} - 1} \right) \cdots \left( {{x_n} - 1} \right) \right]
+    \prod\limits_{n \ge i > j \ge 1} {\left( {{x_i} - {x_j}} \right)} .
+    \]
+</body>

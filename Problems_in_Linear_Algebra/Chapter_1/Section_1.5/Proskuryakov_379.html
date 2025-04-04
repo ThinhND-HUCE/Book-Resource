@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 379</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 379:</i><br><br>
+
+    Ký hiệu định thức đã cho là \(D_n\).
+    Trừ mỗi cột cho cột trước nó, sử dụng công thức Pascal
+    \[
+    \binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1} \quad\Rightarrow\quad
+    \binom{n}{k} - \binom{n-1}{k} = \binom{n-1}{k-1},
+    \]
+    và lưu ý \(\displaystyle\binom{k}{k} = 1\), ta có
+    \[
+    D_n =
+    \begin{vmatrix}
+    1 & 0 & 0 & \ldots & 0 \\
+    1 & \binom{1}{0} & \binom{2}{0} & \ldots & \binom{n-1}{0} \\
+    1 & \binom{2}{1} & \binom{3}{1} & \ldots & \binom{n}{1} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & \binom{n-1}{n-2} & \binom{n}{n-2} & \ldots & \binom{2n-3}{n-2}
+    \end{vmatrix}
+    \]
+    
+    Khai triển định thức theo hàng đầu:
+    \[
+    D_n = \left( 1 \right)
+    \begin{vmatrix}
+    \binom{1}{0} & \binom{2}{0} & \binom{3}{0} & \ldots & \binom{n-1}{0} \\
+    \binom{2}{1} & \binom{3}{1} & \binom{4}{1} & \ldots & \binom{n}{1} \\
+    \binom{3}{2} & \binom{4}{2} & \binom{5}{2} & \ldots & \binom{n+1}{2} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{n-1}{n-2} & \binom{n}{n-2} & \binom{n+1}{n-2} & \ldots & \binom{2n-3}{n-2}
+    \end{vmatrix}
+    \]
+    
+    Trừ mỗi hàng cho hàng trước nó, vẫn áp dụng công thức Pascal \(\displaystyle \binom{n}{k} - \binom{n-1}{k-1} = \binom{n-1}{k}\),
+    \[
+    D_n = 
+    \begin{vmatrix}
+    \binom{1}{0} & \binom{2}{0} & \binom{3}{0} & \ldots & \binom{n-1}{0} \\
+    \binom{1}{1} & \binom{2}{1} & \binom{3}{1} & \ldots & \binom{n-1}{1} \\
+    \binom{2}{2} & \binom{3}{2} & \binom{4}{2} & \ldots & \binom{n}{2} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{n-2}{n-2} & \binom{n-1}{n-2} & \binom{n}{n-2} & \ldots & \binom{2n-4}{n-2}
+    \end{vmatrix}
+    =
+    \begin{vmatrix}
+    1 & 1 & 1 & \ldots & 1 \\
+    1 & \binom{2}{1} & \binom{3}{1} & \ldots & \binom{n-1}{1} \\
+    1 & \binom{3}{2} & \binom{4}{2} & \ldots & \binom{n}{2} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & \binom{n-1}{n-2} & \binom{n}{n-2} & \ldots & \binom{2n-4}{n-2}
+    \end{vmatrix}
+    = D_{n-1}
+    \]
+    với \(n\ge 2\), trong đó \(D_1 = 1\). Vậy \(D_n = 1\) với mọi \(n\).
+
+</body>
+</html>

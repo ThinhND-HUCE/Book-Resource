@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 222</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 222:</i><br><br>
+    
+
+    \(*\quad\)
+    <i>Cách 1:</i>\(\quad\)
+    Xét định thức cấp \(n\):
+    \[
+    D = \begin{vmatrix}
+    a_{11} & a_{12} & \ldots & a_{1n} \\
+    a_{21} & a_{22} & \ldots & a_{2n} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    a_{n1} & a_{n2} & \ldots & a_{nn} 
+    \end{vmatrix}
+    \]
+
+    Sau khi nhân \(a_{ik}\) với \(c^{i-k}\) ta được định thức
+    \[
+    D_1 = \begin{vmatrix}
+    a_{11} & a_{12} c^{-1} & a_{13} c^{-2} & \ldots & a_{1n} c^{1-n} \\
+    a_{21} c & a_{22} & a_{23} c^{-1} & \ldots & a_{1n} c^{2-n} \\
+    a_{31} c^2 & a_{32} c & a_{33} & \ldots & a_{3n} c^{3-n} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_{n1} c^{n-1} & a_{n2} c^{n-2} & a_{n3} c^{n-3} & \ldots & a_{nn}
+    \end{vmatrix}
+    \]
+
+    Trong \(D_1\), đưa các thừa số chung \(c^{1-n}\) ở hàng 1, \(c^{2-n}\) ở hàng 2, \(c^{3-n}\) ở hàng 3, và cuối cùng, \(c^{-1}\) ở hàng \(n-1\), ta có
+    \[
+    D_1 = c^{1-n} c^{2-n} c^{3-n} \cdots c^{-1}
+    \begin{vmatrix}
+    a_{11} c^{n-1} & a_{12} c^{n-2} & a_{13} c^{n-3} & \ldots & a_{1n} \\
+    a_{21} c^{n-1} & a_{22} c^{n-2} & a_{23} c^{n-3} & \ldots & a_{2n} \\
+    a_{31} c^{n-1} & a_{32} c^{n-2} & a_{33} c^{n-3} & \ldots & a_{1n} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_{n1} c^{n-1} & a_{n2} c^{n-2} & a_{n3} c^{n-3} & \ldots & a_{nn}
+    \end{vmatrix}
+    \]
+
+    Trong định thức mới, lại đưa thừa số chung \(c^{n-1}\) ở cột 1, \(c^{n-2}\) ở cột 2, \(c^{n-3}\) ở cột 3, và cuối cùng, \(c\) ở cột \(n-1\), ta lại thu được định thức \(D\):
+    \[
+    D_1 = c^{1-n} c^{2-n} c^{3-n} \cdots c^{-1}\times c^{n-1} c^{n-2} c^{n-3} \cdots c\, D = D
+    \]
+
+    Vậy định thức thu được sau khi biến đổi các phần tử theo giả thiết không thay đổi so với định thức ban đầu.<br>
+
+    \(*\quad\)
+    <i>Cách 2:</i>\(\quad\)
+    Sử dụng định nghĩa của định thức, ta có định thức thu được sau khi đã biến đổi các phần tư bằng
+    \begin{align}
+    D & = \sum\limits_{\sigma  \in {S_n}} {{\mathop{\rm sign}\nolimits} \left( \sigma  \right)\left[ {{a_{1\sigma \left( 1 \right)}}{c^{1 - \sigma \left( 1 \right)}}} \right]\left[ {{a_{2\sigma \left( 2 \right)}}{c^{2 - \sigma \left( 2 \right)}}} \right] \cdots \left[ {{a_{n\sigma \left( n \right)}}{c^{n - \sigma \left( n \right)}}} \right]} \\
+    & = \sum\limits_{\sigma  \in {S_n}} {{\mathop{\rm sign}\nolimits} \left( \sigma  \right){a_{1\sigma \left( 1 \right)}}{a_{2\sigma \left( 2 \right)}} \cdots {a_{n\sigma \left( n \right)}}{c^{\left( {1 + 2 +  \cdots  + n} \right) - \left[ {\sigma \left( 1 \right) + \sigma \left( 2 \right) +  \cdots  + \sigma \left( n \right)} \right]}}}
+    \end{align}
+
+    Vì \(\sigma\) là phép thế nên \(\sigma\left(1\right), \sigma\left( 2 \right),\ldots, \sigma\left( n \right)\) là hoán vị của các số \(1, 2,\ldots, n\), suy ra \(\sigma\left( 1 \right) + \sigma\left( 2 \right) + \cdots + \sigma\left( n \right) = 1 + 2 + \cdots + n\). Do đó
+    \[
+    D = \sum\limits_{\sigma  \in {S_n}} {{\mathop{\rm sign}\nolimits} \left( \sigma  \right){a_{1\sigma \left( 1 \right)}}{a_{2\sigma \left( 2 \right)}} \cdots {a_{n\sigma \left( n \right)}}} 
+    \]
+    và đây chính là định thức ban đầu.
+
+</body>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 237</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 237:</i><br><br>
+    
+    Trên cột thứ hai của định thức \(D\) đã cho, phần tử đầu tiên, \(a\), có vị trí lẻ nên trong khai triển của \(D\) theo cột này, số hạng đầu tiên có dấu \(-\), và các số hạng luân phiên đổi dấu:
+    \[
+    D = -\left( a \right) \begin{vmatrix}
+    4 & 4 & -3 \\
+    2 & 3 & -2 \\
+    4 & 5 & -4
+    \end{vmatrix} 
+    + \left( b \right) \begin{vmatrix}
+    5 & 2 & -1 \\
+    2 & 3 & -2 \\
+    4 & 5 & -4
+    \end{vmatrix}
+    - \left( c \right) \begin{vmatrix}
+    5 & 2 & -1 \\
+    4 & 4 & -3 \\
+    4 & 5 & -4
+    \end{vmatrix}
+    + \left( d \right) \begin{vmatrix}
+    5 & 2 & -1 \\
+    4 & 4 & -3 \\
+    2 & 3 & -2
+    \end{vmatrix}
+    \]
+
+    Ký hiệu \(D_1, D_2, D_3, D_4\) lần lượt là các định thức cấp ba ở vế phải. 
+    Áp dụng quy tắc tam giác ta có
+    \begin{align}
+    D_1 & = \left( 4 \right)\left( 3 \right)\left( { - 4} \right) + \left( 4 \right)\left( { - 2} \right)\left( 4 \right) + \left( 2 \right)\left( 5 \right)\left( { - 3} \right) - \left( 4 \right)\left( 3 \right)\left( { - 3} \right) - \left( 2 \right)\left( 4 \right)\left( { - 4} \right) - \left( 5 \right)\left( { - 2} \right)\left( 4 \right) \\
+    &  =  - 48 - 32 - 30 + 36 + 32 + 40 =  - 2 \\
+    D_2 & = \left( 5 \right)\left( 3 \right)\left( { - 4} \right) + \left( 2 \right)\left( { - 2} \right)\left( 4 \right) + \left( 2 \right)\left( 5 \right)\left( { - 1} \right) - \left( 4 \right)\left( 3 \right)\left( { - 1} \right) - \left( 2 \right)\left( 2 \right)\left( { - 4} \right) - \left( 5 \right)\left( { - 2} \right)\left( 5 \right) \\
+    &  =  - 60 - 16 - 10 + 12 + 16 + 50 =  - 8 \\
+    D_3 & = \left( 5 \right)\left( 4 \right)\left( { - 4} \right) + \left( 2 \right)\left( { - 3} \right)\left( 4 \right) + \left( 4 \right)\left( 5 \right)\left( { - 1} \right) - \left( 4 \right)\left( 4 \right)\left( { - 1} \right) - \left( 4 \right)\left( 2 \right)\left( { - 4} \right) - \left( 5 \right)\left( { - 3} \right)\left( 5 \right) \\
+    &  =  - 80 - 24 - 20 + 16 + 32 + 75 =  - 1 \\
+    D_4 & = \left( 5 \right)\left( 4 \right)\left( { - 2} \right) + \left( 2 \right)\left( { - 3} \right)\left( 2 \right) + \left( 4 \right)\left( 3 \right)\left( { - 1} \right) - \left( 2 \right)\left( 4 \right)\left( { - 1} \right) - \left( 4 \right)\left( 2 \right)\left( { - 2} \right) - \left( 3 \right)\left( { - 3} \right)\left( 5 \right) \\
+    &  =  - 40 - 12 - 12 + 8 + 16 + 45 = 5
+    \end{align}
+
+    Vậy \(D = -aD_1 + bD_2 - cD_3 + d D_4 = 2a - 8b + c + 5d\).
+
+</body>

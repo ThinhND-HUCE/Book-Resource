@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 358</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 358:</i><br><br>
+    
+    Thực hiện tương tự cách 1 trong <a href="Proskuryakov_357.html">Bài tập 357</a>, ta cũng biến đối định thức để đưa về sử dụng kết quả của Bài tập <a href="Proskuryakov_355.html">Bài tập 355</a>.
+    Ký hiệu định thức đã cho là \(D\).
+    Các phần tử ở cột \(i\) có thể tách dưới dạng
+    \[
+    \begin{bmatrix}
+    1 + x_1 y_i \\
+    \ldots \\
+    1 + x_{i-1} y_i \\
+    x_i y_i \\
+    1 + x_{i+1} y_i \\
+    \ldots \\
+    1 + x_n y_i
+    \end{bmatrix}
+    = \begin{bmatrix}
+    \left( 0 \right) + \left( 1 + x_1 y_i \right) \\
+    \ldots \\
+    \left( 0 \right) + \left( 1 + x_{i-1} y_i \right) \\
+    \left( -1 \right) + \left( 1 + x_i y_i \right) \\
+    \left( 0 \right) + \left( x_{i+1} y_i \right) \\
+    \ldots \\
+    \left( 0 \right) + \left( 1 + x_n y_i \right)
+    \end{bmatrix}
+    \]
+    gợi ý rằng ta sử dụng tính chất cộng tính trên mỗi cột này theo cách tách trên. 
+    Ở đây ta lưu ý rằng vị trí chứa số hạng \(-1\) nằm trên đường chéo chính.
+    Ký hiệu \(D_{i_1i_2\ldots i_k}\), \(1\le i_1 < \ldots < i_k \le n\), là một trong các định thức sau khi áp dụng tính chất cộng tính trên tất cả các cột theo cách tách trên, trong đó các cột \(i_{\ell}\), \(1\le \ell \le k\), có dạng
+    \begin{equation}\label{proskuryakov-358-eq1}\tag{\(*\)}
+    \begin{bmatrix}
+    1 + x_1 y_{i_{\ell}} \\
+    1 + x_2 y_{i_{\ell}} \\
+    \ldots \\
+    1 + x_n y_{i_{\ell}}
+    \end{bmatrix}
+    \end{equation}
+    và các cột còn lại \(i'_{\ell}\), \(1\le \ell \le n-k\), có các phần tử \(\left[ 0,\ldots, 0, -1, 0,\ldots, 0 \right]\) gồm hầu hết các vị trí bằng 0, ngoại trừ vị trí thứ \(i'_{\ell}\) nằm trên đường chéo chính.
+    Khi đó, nếu khai triển \(D_{i_1i_2\ldots i_k}\) lần lượt theo từng cột \(i'_{\ell}\) (thứ tự các cột này sẽ thay đổi sau mỗi lần khai triển theo cột ở bước trước, nên ở đây ta ngụ ý thứ tự được đánh dấu theo thứ tự ban đầu), thì
+    \[
+    D_{i_1i_2\ldots i_k} = \left( -1 \right)^{n-k}
+    \begin{vmatrix}
+    1 + x_{i_1} y_{i_1} & 1 + x_{i_1} y_{i_2} & \ldots & 1 + x_{i_1} y_{i_k} \\
+    1 + x_{i_2} y_{i_1} & 1 + x_{i_2} y_{i_2} & \ldots & 1 + x_{i_2} y_{i_k} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    1 + x_{i_k} y_{i_1} & 1 + x_{i_k} y_{i_2} & \ldots & 1 + x_{i_k} y_{i_k}
+    \end{vmatrix}
+    \]
+
+    Theo <a href="Proskuryakov_355.html">Bài tập 355</a>, trong \(D_{i_1i_2\ldots i_k}\), nếu số cột \(k \ge 3\) thì \(D_{i_1i_2\ldots i_k} = 0\). 
+    Do đó ta chỉ cần xét ba trường hợp
+    <ul>
+        <li>
+            \(k = 0\), định thức lúc này có thể ký hiệu là \(D_{\varnothing}\), không có cột nào có dạng \eqref{proskuryakov-358-eq1}, có dạng đường chéo, mà mọi phần tử trên đường chéo đều là \(-1\), nên \(D_{\varnothing} = \left( -1 \right)^n\).
+        </li>
+        <li>
+            \(k = 1\), định thức có thể ký hiệu là \(D_{i}\), \(1\le i\le n\), có cột \(i\) có dạng \eqref{proskuryakov-358-eq1}, ta có
+            \[
+            D_i = \left( -1 \right)^{n-1} \left( 1 + x_i y_i \right).
+            \]
+        </li>
+        <li>
+            \(k = 2\), định thức có thể ký hiệu là \(D_{ij}\), \(1\le i < j \le n\), có hai cột \(i, j\) có dạng \eqref{proskuryakov-358-eq1}, ta có
+            \[
+            D_{ij} = \left( -1 \right)^{n-2} \left( a_i - a_j \right) \left( b_i - b_j \right) .
+            \]
+        </li>
+    </ul>
+
+    Vậy
+    \begin{align*}
+    D = \sum\limits_{1 \le {i_1} <  \ldots  < {i_k} \le n} {{D_{{i_1}{i_2} \ldots {i_k}}}} & = 
+    \left( -1 \right)^n + \sum\limits_{i = 1}^n {\left( -1 \right)^{n-1} \left( {1 + {x_i}{y_i}} \right)} + \sum\limits_{i < j} {\left( -1 \right)^{n-1} \left( {{x_i} - {x_j}} \right)\left( {{y_i} - {y_j}} \right)} \\
+    & = \left( -1 \right)^n \left[ 1 - n - \sum\limits_{i = 1}^n {{x_i}{y_i}} + \sum\limits_{i < j} {\left( -1 \right)^{n-1} \left( {{x_i} - {x_j}} \right)\left( {{y_i} - {y_j}} \right)} \right] .
+    \end{align*}
+
+</body>
+</html>

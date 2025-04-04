@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 332</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 332:</i><br><br>
+    
+    Đặt \(x_i = \sin \varphi_i\), với \(i = 1,\ldots, n\), ta được định thức Vandermonde:
+    \[
+    D_n = \begin{vmatrix}
+    1 & x_1 & x_1^2 & \ldots & x_1^{n-1} \\
+    1 & x_2 & x_2^2 & \ldots & x_2^{n-1} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & x_n & x_n^2 & \ldots & x_n^{n-1}
+    \end{vmatrix}
+    \]
+
+    Áp dụng kết quả trong <a href="Proskuryakov_vd_4.html">Ví dụ 4</a>, ta có
+    \[
+    D_n = \prod\limits_{i > j} {\left( {{x_i} - {x_j}} \right)}  = \prod\limits_{i > j} {\left( {\sin {\varphi _i} - \sin {\varphi _j}} \right)} .
+    \]
+</body>
