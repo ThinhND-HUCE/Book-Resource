@@ -1,5 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
+
+// Thêm type declaration cho MathJax
+declare global {
+    interface Window {
+        MathJax: {
+            typeset: () => void;
+            startup: {
+                promise: Promise<void>;
+            };
+        };
+    }
+}
 
 interface FileItem {
     type: "file";
@@ -22,165 +35,212 @@ interface Course {
     content: ContentItem[];
 }
 
+const Container = styled.div`
+    display: grid;
+    grid-template-columns: 25% 70%;
+    gap: 24px;
+    height: 80vh;
+    width: 100vw;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    box-sizing: border-box;
+`;
+
+const Sidebar = styled.div`
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 8px;
+    height: 91vh;
+    overflow-x: auto;
+`;
+
+const Button = styled.button`
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: #2196f3;
+    }
+
+    &.active {
+        background-color: #1976d2;
+        border-color: #a4c8f0;
+    }
+`;
+
+const HtmlViewer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+`;
+
+const Iframe = styled.iframe`
+    width: 100%;
+    height: 80vh;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+`;
+
+const HorizontalWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 16px;
+`;
+
+const VerticalGroup = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+`;
+
 const CourseDetail: React.FC = () => {
-    const { id } = useParams();
+    const { courseId } = useParams<{ courseId: string }>();
     const [course, setCourse] = useState<Course | null>(null);
     const [selectedChapter, setSelectedChapter] = useState<string | null>(null);
     const [selectedSection, setSelectedSection] = useState<string | null>(null);
-    const [expandedFolders, setExpandedFolders] = useState<Record<string, boolean>>({});
     const [htmlContent, setHtmlContent] = useState<string | null>(null);
     const [htmlFiles, setHtmlFiles] = useState<FileItem[]>([]);
     const [currentFileIndex, setCurrentFileIndex] = useState<number | null>(null);
+
+    useEffect(() => {
+        if (courseId) {
+            fetch(`http://localhost:8000/api/courses/${courseId}`)
+                .then(res => res.json())
+                .then((data: Course) => setCourse(data))
+                .catch(err => console.error("Lỗi lấy dữ liệu khóa học:", err));
+        }
+    }, [courseId]);
 
     const extractNumber = (filename: string) => {
         const match = filename.match(/Proskuryakov_(\d+)\.html/);
         return match ? match[1] : filename;
     };
 
-    const filterContent = (content: ContentItem[]): ContentItem[] => {
-        return content.map(item => {
-            if (item.type === "folder") {
-                return {
-                    ...item,
-                    children: filterContent(item.children)
-                };
-            }
-            return item;
-        });
-    };
-
-    useEffect(() => {
-        if (id) {
-            fetch(`http://localhost:5000/courses/${id}`)
-                .then(response => response.json())
-                .then((data: Course) => {
-                    const filteredContent = filterContent(data.content);
-                    setCourse({
-                        ...data,
-                        content: filteredContent
-                    });
-                })
-                .catch(error => console.error("Lỗi khi lấy thông tin khóa học:", error));
-        }
-    }, [id]);
-
-    const toggleFolder = (path: string) => {
-        setExpandedFolders(prev => ({
-            ...prev,
-            [path]: !prev[path]
-        }));
-    };
-
     const fetchHtmlContent = async (filePath: string, files: FileItem[], index: number) => {
         try {
-            const response = await fetch(`http://localhost:5000/file?path=${encodeURIComponent(filePath)}`);
+            const response = await fetch(`http://localhost:8000/api/files/view?path=${encodeURIComponent(filePath)}`);
             const text = await response.text();
-            const bodyContent = text.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || text;
+            const body = text.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || text;
 
+            setHtmlContent(body.trim());
             setHtmlFiles(files);
             setCurrentFileIndex(index);
-            setHtmlContent(bodyContent.trim());
         } catch (error) {
-            console.error("Error fetching HTML content:", error);
+            console.error("Lỗi khi tải HTML:", error);
         }
     };
 
-    const renderFolderContent = (folder: FolderItem) => {
-        const filesOnly = folder.children.filter(c => c.type === 'file') as FileItem[];
+    const renderHtmlViewer = () => {
+        const goNext = () => {
+            if (currentFileIndex !== null && currentFileIndex < htmlFiles.length - 1) {
+                fetchHtmlContent(htmlFiles[currentFileIndex + 1].path, htmlFiles, currentFileIndex + 1);
+            } else {
+                setHtmlContent(null);
+                setCurrentFileIndex(null);
+            }
+        };
+
+        const html = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8" />
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+                <style>
+                    body { font-family: system-ui; padding: 20px; font-size: 16px; }
+                </style>
+            </head>
+            <body>
+                ${htmlContent}
+            </body>
+            </html>
+        `;
 
         return (
-            <div>
-                {filesOnly.map((item, index) => (
-                    <button
-                        key={index}
-                        onClick={() => {
-                            fetchHtmlContent(item.path, filesOnly, index);
-                        }}
-                    >
-                        {extractNumber(item.name)}
-                    </button>
-                ))}
-            </div>
+            <HtmlViewer>
+                <Button onClick={() => setHtmlContent(null)}>← Quay lại</Button>
+                <Button onClick={goNext}>Tiếp →</Button>
+                <Iframe
+                    srcDoc={html}  // Hiển thị nội dung HTML mà không bị escape
+                    title="Course Content"
+                    onLoad={async () => {
+                        try {
+                            await window.MathJax?.startup?.promise;  // Đảm bảo MathJax khởi tạo
+                            window.MathJax?.typeset();  // Render LaTeX
+                        } catch (error) {
+                            console.error("Lỗi khi render LaTeX:", error);
+                        }
+                    }}
+                />
+            </HtmlViewer>
         );
     };
 
-    const renderChapterContent = (chapter: FolderItem) => {
+    const renderSectionButtons = (folder: FolderItem) => {
+        const filesOnly = folder.children.filter(c => c.type === "file") as FileItem[];
+
+        return filesOnly.map((item, index) => (
+            <Button key={item.path} onClick={() => fetchHtmlContent(item.path, filesOnly, index)}>
+                {extractNumber(item.name)}
+            </Button>
+        ));
+    };
+
+    const renderChapters = () => {
         return (
-            <div>
-                <button
-                    onClick={() => {
-                        setSelectedChapter(chapter.name);
-                        setSelectedSection(null);
-                    }}
-                >
-                    {chapter.name}
-                </button>
-                {selectedChapter === chapter.name && chapter.children.map((section) => (
-                    <div key={section.path}>
-                        <button onClick={() => setSelectedSection(section.name)}>
-                            {section.name}
-                        </button>
-                    </div>
-                ))}
-            </div>
+            <HorizontalWrapper>
+                {course?.content
+                    .filter(item => item.type === "folder")
+                    .map(chapter => {
+                        const folder = chapter as FolderItem;
+
+                        return (
+                            <VerticalGroup key={folder.path}>
+                                <Button
+                                    className={selectedChapter === folder.name ? "active" : ""}
+                                    onClick={() => {
+                                        setSelectedChapter(folder.name);
+                                        setSelectedSection(null);
+                                    }}
+                                >
+                                    {folder.name}
+                                </Button>
+                                {selectedChapter === folder.name &&
+                                    folder.children.map(section =>
+                                        section.type === "folder" ? (
+                                            <Button
+                                                key={section.path}
+                                                style={{ marginLeft: "8px" }}
+                                                className={selectedSection === section.name ? "active" : ""}
+                                                onClick={() => setSelectedSection(section.name)}
+                                            >
+                                                {section.name}
+                                            </Button>
+                                        ) : null
+                                    )}
+                            </VerticalGroup>
+                        );
+                    })}
+            </HorizontalWrapper>
         );
     };
 
     const renderSectionContent = () => {
-        if (htmlContent) {
-            const htmlTemplate = `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-                    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-                    <style>
-                        body {
-                            font-family: system-ui;
-                            padding: 20px;
-                            font-size: 16px;
-                            line-height: 1.5;
-                        }
-                    </style>
-                </head>
-                <body>
-                    ${htmlContent}
-                </body>
-                </html>
-            `;
-
-            const goNext = () => {
-                if (currentFileIndex !== null && currentFileIndex < htmlFiles.length - 1) {
-                    const nextIndex = currentFileIndex + 1;
-                    fetchHtmlContent(htmlFiles[nextIndex].path, htmlFiles, nextIndex);
-                } else {
-                    setHtmlContent(null);
-                    setCurrentFileIndex(null);
-                }
-            };
-
-            return (
-                <div>
-                    <button onClick={() => setHtmlContent(null)}>← Quay lại</button>
-                    <button onClick={goNext}>Tiếp →</button>
-                    <iframe
-                        srcDoc={htmlTemplate}
-                        title="HTML Content"
-                        style={{ width: '100%', height: '80vh', border: '1px solid #ccc' }}
-                    />
-                </div>
-            );
-        }
-
-        if (!selectedSection || !course) return null;
+        if (!course || !selectedChapter || !selectedSection) return null;
 
         const findSection = (items: ContentItem[]): FolderItem | null => {
             for (const item of items) {
-                if (item.type === "folder" && item.name === selectedSection) {
-                    return item;
-                }
+                if (item.type === "folder" && item.name === selectedSection) return item;
                 if (item.type === "folder") {
                     const found = findSection(item.children);
                     if (found) return found;
@@ -189,40 +249,28 @@ const CourseDetail: React.FC = () => {
             return null;
         };
 
-        const chapter = course.content.find(item => item.type === "folder" && item.name === selectedChapter) as FolderItem | undefined;
-        if (!chapter) return null;
+        const chapter = course.content.find(
+            item => item.type === "folder" && item.name === selectedChapter
+        ) as FolderItem | undefined;
 
-        const section = chapter.type === "folder" ? findSection(chapter.children) : null;
+        const section = chapter ? findSection(chapter.children) : null;
         if (!section) return <span>Không tìm thấy section</span>;
 
         return (
             <>
-                <h2>Nội dung {section.name}</h2>
-                {renderFolderContent(section)}
+                <h2>Nội dung: {section.name}</h2>
+                {renderSectionButtons(section)}
             </>
         );
     };
 
-    if (!course) {
-        return <span>Đang tải dữ liệu...</span>;
-    }
-
-    const chapters = course.content.filter(item => item.type === "folder");
+    if (!course) return <span>Đang tải dữ liệu...</span>;
 
     return (
-        <div>
-            <div>
-                {chapters.map(chapter => renderChapterContent(chapter))}
-            </div>
-
-            <div>
-                {selectedSection ? (
-                    renderSectionContent()
-                ) : (
-                    <span>Chọn một section để xem nội dung</span>
-                )}
-            </div>
-        </div>
+        <Container>
+            <Sidebar>{renderChapters()}</Sidebar>
+            <div>{htmlContent ? renderHtmlViewer() : renderSectionContent()}</div>
+        </Container>
     );
 };
 

@@ -53,6 +53,7 @@ const Title = styled.h2`
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
+  color: rgba(0, 0, 0);
 `;
 
 const Label = styled.label`
@@ -60,6 +61,7 @@ const Label = styled.label`
   font-weight: 600;
   margin-bottom: 5px;
   display: block;
+  color: rgba(0, 0, 0);
 `;
 
 const Input = styled.input`
@@ -80,6 +82,7 @@ const Row = styled.div`
 const Checkbox = styled.label`
   font-size: 14px;
   cursor: pointer;
+  color: rgba(0, 0, 0);
 `;
 
 const Error = styled.div`
@@ -110,6 +113,7 @@ const Footer = styled.div`
 
 const FooterText = styled.span`
   font-size: 14px;
+  color: rgba(0, 0, 0);
 `;
 
 const Link = styled.button`

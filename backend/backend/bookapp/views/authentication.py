@@ -8,6 +8,7 @@ from ..auth.jwt_handler import JWTHandler
 from bookapp import serializers
 from bookapp.models import User
 from django.shortcuts import get_object_or_404
+
 @api_view(['POST'])
 def register_user(request):
     serializer = serializers(data=request.data)
@@ -49,8 +50,6 @@ def login_user(request):
 
     except User.DoesNotExist:
         return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
-
-
 
 
 @api_view(['POST'])

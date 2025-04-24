@@ -24,6 +24,6 @@ def home_view(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/auth/", include("bookapp.urls")),  # Đảm bảo app của bạn được include
+    path("api/", include("bookapp.urls")),  # Đảm bảo app của bạn được include
     path("", home_view, name="home"),  # Thêm route cho trang chủ "/"
 ]

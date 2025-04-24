@@ -29,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
+    '127.0.0.1',
 ]
 
 
@@ -82,9 +83,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Book_store',
+        'NAME': 'bookstore',
         'USER': 'postgres',
-        'PASSWORD': 'hung31122004',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '5432',
 
