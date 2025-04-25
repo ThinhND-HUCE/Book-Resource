@@ -43,7 +43,6 @@ def login_user(request):
             return Response({
                 'refresh': str(refresh_token),
                 'access': str(access_token),
-                'user': UserSerializer(user).data
             })
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)

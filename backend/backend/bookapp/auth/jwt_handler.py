@@ -15,6 +15,7 @@ class JWTHandler:
             'username': user.username,
             'lastName': user.lastName,
             'firstName': user.firstName,
+            'email': user.email,
         }
         return jwt.encode(payload, self.secret, algorithm=self.algorithm)  # Đảm bảo dùng PyJWT
 

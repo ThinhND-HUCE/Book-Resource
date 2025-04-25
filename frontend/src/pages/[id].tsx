@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 interface FileItem {
@@ -30,7 +30,7 @@ const Container = styled.div`
     height: 80vh;
     width: 100vw;
     position: fixed;
-    top: 20px;
+    top: 70px; // Modified from 20px to 70px to make room for the dashboard button
     left: 20px;
     right: 20px;
     bottom: 20px;
@@ -106,6 +106,7 @@ const ChapterButton = styled(Button)`
 
     &:hover {
         background-color: #2196f3;
+        border: 1px solid #ddd;
     }
 
     &.active {
@@ -116,6 +117,14 @@ const ChapterButton = styled(Button)`
 
 const SectionButton = styled(ChapterButton)`
     width: 325px;
+`;
+
+const DashboardButton = styled(BackButton)`
+    position: fixed;
+    top: 8px;
+    left: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 150px;
 `;
 
 const VerticalWrapper = styled.div`
@@ -147,6 +156,7 @@ const CourseDetail: React.FC = () => {
     const [htmlContent, setHtmlContent] = useState<string | null>(null);
     const [htmlFiles, setHtmlFiles] = useState<FileItem[]>([]);
     const [currentFileIndex, setCurrentFileIndex] = useState<number | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (courseId) {
@@ -301,10 +311,15 @@ const CourseDetail: React.FC = () => {
     if (!course) return <span>Đang tải dữ liệu...</span>;
 
     return (
-        <Container>
-            <SelectionBar>{renderChapters()}</SelectionBar>
-            <DetailBar>{htmlContent ? renderHtmlViewer() : renderSectionContent()}</DetailBar>
-        </Container>
+        <>
+            <DashboardButton onClick={() => navigate('/Dashboard')}>
+                ← Khóa học
+            </DashboardButton>
+            <Container>
+                <SelectionBar>{renderChapters()}</SelectionBar>
+                <DetailBar>{htmlContent ? renderHtmlViewer() : renderSectionContent()}</DetailBar>
+            </Container>
+        </>
     );
 };
 

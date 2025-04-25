@@ -70,6 +70,12 @@ const CourseList: React.FC = () => {
   }, []);
 
   const handleCoursePress = (courseId: string) => {
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      alert("Bạn cần đăng nhập để xem nội dung khóa học");
+      navigate("/login");
+      return;
+    }
     navigate(`/course/${courseId}`);
   };
 
