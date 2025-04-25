@@ -2,18 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-// Thêm type declaration cho MathJax
-declare global {
-    interface Window {
-        MathJax: {
-            typeset: () => void;
-            startup: {
-                promise: Promise<void>;
-            };
-        };
-    }
-}
-
 interface FileItem {
     type: "file";
     name: string;
@@ -49,49 +37,90 @@ const Container = styled.div`
     box-sizing: border-box;
 `;
 
-const Sidebar = styled.div`
-    background-color: #f5f5f5;
+const SelectionBar = styled.div`
+    background-color: #f8f8f8;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     padding: 16px;
     border-radius: 8px;
     height: 91vh;
     overflow-x: auto;
 `;
 
+const DetailBar = styled.div`
+    background-color: #f8f8f8;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    border-radius: 8px;
+    height: 91vh;
+    overflow-x: auto;
+`;
+
+const Title = styled.h2`
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0);
+`;
+
 const Button = styled.button`
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
     border-radius: 8px;
     padding: 10px;
     font-size: 16px;
-    text-align: left;
+    width: 105px;
+    margin: 8px;
+    text-align: center;
     cursor: pointer;
     transition: 0.2s;
+    
+    &:hover {
+        background-color: #c5c5c5;
+        border: 1px solid #2e2e2e;
+    }
+`;
+
+const BackButton = styled(Button)`
+    background-color: #2196f3;
+    border: none;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 15px;
+
+    &:hover {
+        background-color: #1976d2;
+        border: none;
+    }
+`;
+
+const NextButton = styled(BackButton)`
+    position: absolute;
+    right: 0;
+`;
+
+const ChapterButton = styled(Button)`
+    border: 1px solid #ddd;
+    text-align: left;
+    width: 333px;
+    margin: 0;
 
     &:hover {
         background-color: #2196f3;
     }
 
     &.active {
-        background-color: #1976d2;
-        border-color: #a4c8f0;
+    background-color: #2196f3;
+    border-color: #a4c8f0;
     }
 `;
 
-const HtmlViewer = styled.div`
+const SectionButton = styled(ChapterButton)`
+    width: 325px;
+`;
+
+const VerticalWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 16px;
-`;
-
-const Iframe = styled.iframe`
-    width: 100%;
-    height: 80vh;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-`;
-
-const HorizontalWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
     gap: 16px;
@@ -100,7 +129,14 @@ const HorizontalWrapper = styled.div`
 const VerticalGroup = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
+`;
+
+const Iframe = styled.iframe`
+    width: 100%;
+    height: 80vh;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 `;
 
 const CourseDetail: React.FC = () => {
@@ -167,22 +203,14 @@ const CourseDetail: React.FC = () => {
         `;
 
         return (
-            <HtmlViewer>
-                <Button onClick={() => setHtmlContent(null)}>← Quay lại</Button>
-                <Button onClick={goNext}>Tiếp →</Button>
+            <div style={{ position: "relative" }}>
+                <BackButton onClick={() => setHtmlContent(null)}>← Quay lại</BackButton>
+                <NextButton onClick={goNext}>Tiếp →</NextButton>
                 <Iframe
                     srcDoc={html}  // Hiển thị nội dung HTML mà không bị escape
                     title="Course Content"
-                    onLoad={async () => {
-                        try {
-                            await window.MathJax?.startup?.promise;  // Đảm bảo MathJax khởi tạo
-                            window.MathJax?.typeset();  // Render LaTeX
-                        } catch (error) {
-                            console.error("Lỗi khi render LaTeX:", error);
-                        }
-                    }}
                 />
-            </HtmlViewer>
+            </div>
         );
     };
 
@@ -190,7 +218,13 @@ const CourseDetail: React.FC = () => {
         const filesOnly = folder.children.filter(c => c.type === "file") as FileItem[];
 
         return filesOnly.map((item, index) => (
-            <Button key={item.path} onClick={() => fetchHtmlContent(item.path, filesOnly, index)}>
+            <Button 
+                key={item.path} 
+                onClick={() => {
+                    setHtmlContent(null); // Clear current content
+                    fetchHtmlContent(item.path, filesOnly, index);
+                }}
+            >
                 {extractNumber(item.name)}
             </Button>
         ));
@@ -198,7 +232,7 @@ const CourseDetail: React.FC = () => {
 
     const renderChapters = () => {
         return (
-            <HorizontalWrapper>
+            <VerticalWrapper>
                 {course?.content
                     .filter(item => item.type === "folder")
                     .map(chapter => {
@@ -206,7 +240,7 @@ const CourseDetail: React.FC = () => {
 
                         return (
                             <VerticalGroup key={folder.path}>
-                                <Button
+                                <ChapterButton
                                     className={selectedChapter === folder.name ? "active" : ""}
                                     onClick={() => {
                                         setSelectedChapter(folder.name);
@@ -214,24 +248,24 @@ const CourseDetail: React.FC = () => {
                                     }}
                                 >
                                     {folder.name}
-                                </Button>
+                                </ChapterButton>
                                 {selectedChapter === folder.name &&
                                     folder.children.map(section =>
                                         section.type === "folder" ? (
-                                            <Button
+                                            <SectionButton
                                                 key={section.path}
                                                 style={{ marginLeft: "8px" }}
                                                 className={selectedSection === section.name ? "active" : ""}
                                                 onClick={() => setSelectedSection(section.name)}
                                             >
                                                 {section.name}
-                                            </Button>
+                                            </SectionButton>
                                         ) : null
                                     )}
                             </VerticalGroup>
                         );
                     })}
-            </HorizontalWrapper>
+            </VerticalWrapper>
         );
     };
 
@@ -258,7 +292,7 @@ const CourseDetail: React.FC = () => {
 
         return (
             <>
-                <h2>Nội dung: {section.name}</h2>
+                <Title>Nội dung: {section.name}</Title>
                 {renderSectionButtons(section)}
             </>
         );
@@ -268,8 +302,8 @@ const CourseDetail: React.FC = () => {
 
     return (
         <Container>
-            <Sidebar>{renderChapters()}</Sidebar>
-            <div>{htmlContent ? renderHtmlViewer() : renderSectionContent()}</div>
+            <SelectionBar>{renderChapters()}</SelectionBar>
+            <DetailBar>{htmlContent ? renderHtmlViewer() : renderSectionContent()}</DetailBar>
         </Container>
     );
 };

@@ -23,6 +23,7 @@ const Button = styled.button`
   cursor: pointer;
   margin-left: 20px;
   user-select: none;
+  height: 50px;
 `;
 
 const MainContent = styled.div`
