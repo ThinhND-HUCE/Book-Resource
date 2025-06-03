@@ -68,9 +68,11 @@ const Input = styled.input`
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
+  width: 430px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+  background-color: #fff;
 `;
 
 const Row = styled.div`
@@ -94,7 +96,7 @@ const Error = styled.div`
 const LoginButton = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: #4caf50;
+  background-color: #2196f3;
   color: white;
   font-size: 16px;
   border: none;
@@ -102,7 +104,7 @@ const LoginButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #45a049;
+    background-color: #007bff;
   }
 `;
 
@@ -118,11 +120,51 @@ const FooterText = styled.span`
 
 const Link = styled.button`
   background: none;
-  color: #007bff;
+  color: #2196f3;
   border: none;
   cursor: pointer;
   text-decoration: underline;
   font-size: 14px;
+`;
+
+const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const LoadingSpinner = styled.div`
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+
+const LoadingText = styled.div`
+  color: white;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+`;
+
+const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default function LoginScreen() {
@@ -131,9 +173,11 @@ export default function LoginScreen() {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleLogin = async () => {
     setError(null);
+    setIsLoading(true);
     try {
       console.log("📤 Gửi yêu cầu đăng nhập với:", { username, password });
       const data = await loginUser(username, password);
@@ -150,6 +194,8 @@ export default function LoginScreen() {
     } catch (err: any) {
       console.error("🔥 Lỗi đăng nhập:", err);
       setError(err.message || "Không thể kết nối đến server!");
+    } finally {
+      setIsLoading(false);
     }
   };
   
@@ -166,6 +212,7 @@ export default function LoginScreen() {
           placeholder="Nhập mã số sinh viên"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          disabled={isLoading}
         />
 
         <Label>Mật khẩu*</Label>
@@ -174,24 +221,35 @@ export default function LoginScreen() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          disabled={isLoading}
         />
 
         <Row>
-          <Checkbox onClick={() => setRememberMe(!rememberMe)}>
+          <Checkbox onClick={() => !isLoading && setRememberMe(!rememberMe)}>
             {rememberMe ? "☑" : "☐"} Ghi nhớ
           </Checkbox>
-          <Link onClick={() => navigate("/forgot-password")}>Quên mật khẩu?</Link>
+          <Link onClick={() => !isLoading && navigate("/forgot-password")}>Quên mật khẩu?</Link>
         </Row>
 
         {error && <Error>{error}</Error>}
 
-        <LoginButton onClick={handleLogin}>Đăng nhập</LoginButton>
+        <LoginButton onClick={handleLogin} disabled={isLoading}>
+          {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
+        </LoginButton>
 
         <Footer>
           <FooterText>Chưa có tài khoản? </FooterText>
-          <Link onClick={() => navigate("/register")}>Đăng ký</Link>
+          <Link onClick={() => !isLoading && navigate("/register")}>Đăng ký</Link>
         </Footer>
       </LoginCard>
+      {isLoading && (
+        <LoadingOverlay>
+          <LoadingContainer>
+            <LoadingSpinner />
+            <LoadingText>Đang đăng nhập...</LoadingText>
+          </LoadingContainer>
+        </LoadingOverlay>
+      )}
     </LoginBackground>
   );
 }
