@@ -25,7 +25,7 @@ interface Course {
 
 const Container = styled.div`
     display: grid;
-    grid-template-columns: 25% 70%;
+    grid-template-columns: 25.5% 70%;
     gap: 24px;
     height: 80vh;
     width: 100vw;
@@ -43,7 +43,25 @@ const SelectionBar = styled.div`
     padding: 16px;
     border-radius: 8px;
     height: 100%;
-    overflow-x: auto;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #ffffff;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #cccccc;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #999999;
+    }
 `;
 
 const DetailBar = styled.div`
@@ -52,7 +70,25 @@ const DetailBar = styled.div`
     padding: 16px;
     border-radius: 8px;
     height: 100%;
-    overflow-x: auto;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #ffffff;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #cccccc;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #999999;
+    }
 `;
 
 const Title = styled.h2`
@@ -103,6 +139,9 @@ const ChapterButton = styled(Button)`
     text-align: left;
     width: 333px;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     &:hover {
         background-color: #2196f3;
@@ -110,13 +149,19 @@ const ChapterButton = styled(Button)`
     }
 
     &.active {
-    background-color: #2196f3;
-    border-color: #a4c8f0;
+        background-color: #2196f3;
+        border-color: #a4c8f0;
     }
 `;
 
 const SectionButton = styled(ChapterButton)`
     width: 325px;
+`;
+
+const SectionContainer = styled.div<{ isOpen: boolean }>`
+    max-height: ${props => props.isOpen ? '1000px' : '0'};
+    overflow: hidden;
+    transition: max-height 0.3s ease;
 `;
 
 const DashboardButton = styled(BackButton)`
@@ -156,7 +201,38 @@ const CourseDetail: React.FC = () => {
     const [htmlContent, setHtmlContent] = useState<string | null>(null);
     const [htmlFiles, setHtmlFiles] = useState<FileItem[]>([]);
     const [currentFileIndex, setCurrentFileIndex] = useState<number | null>(null);
+    const [openChapters, setOpenChapters] = useState<Set<string>>(new Set());
+    const [openSections, setOpenSections] = useState<Set<string>>(new Set());
     const navigate = useNavigate();
+
+    const formatName = (name: string) => {
+        // Xóa các từ "section", "chapter" và dấu hai chấm ở đầu
+        return name.replace(/^(section|chapter)\s*/i, '').replace(/^:\s*/, '');
+    };
+
+    const toggleChapter = (chapterName: string) => {
+        setOpenChapters(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(chapterName)) {
+                newSet.delete(chapterName);
+            } else {
+                newSet.add(chapterName);
+            }
+            return newSet;
+        });
+    };
+
+    const toggleSection = (sectionName: string) => {
+        setOpenSections(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(sectionName)) {
+                newSet.delete(sectionName);
+            } else {
+                newSet.add(sectionName);
+            }
+            return newSet;
+        });
+    };
 
     useEffect(() => {
         if (courseId) {
@@ -168,7 +244,7 @@ const CourseDetail: React.FC = () => {
     }, [courseId]);
 
     const extractNumber = (filename: string) => {
-        const match = filename.match(/Proskuryakov_(\d+)\.html/);
+        const match = filename.match(/Proskuryakov (\d+)\.html/);
         return match ? match[1] : filename;
     };
 
@@ -247,6 +323,7 @@ const CourseDetail: React.FC = () => {
                     .filter(item => item.type === "folder")
                     .map(chapter => {
                         const folder = chapter as FolderItem;
+                        const isChapterOpen = openChapters.has(folder.name);
 
                         return (
                             <VerticalGroup key={folder.path}>
@@ -255,23 +332,28 @@ const CourseDetail: React.FC = () => {
                                     onClick={() => {
                                         setSelectedChapter(folder.name);
                                         setSelectedSection(null);
+                                        toggleChapter(folder.name);
                                     }}
                                 >
-                                    {folder.name}
+                                    <span>{formatName(folder.name)}</span>
                                 </ChapterButton>
-                                {selectedChapter === folder.name &&
-                                    folder.children.map(section =>
+                                <SectionContainer isOpen={isChapterOpen}>
+                                    {folder.children.map(section =>
                                         section.type === "folder" ? (
                                             <SectionButton
                                                 key={section.path}
-                                                style={{ marginLeft: "8px" }}
+                                                style={{ margin: "8px 8px 10px 8px" }}
                                                 className={selectedSection === section.name ? "active" : ""}
-                                                onClick={() => setSelectedSection(section.name)}
+                                                onClick={() => {
+                                                    setSelectedSection(section.name);
+                                                    toggleSection(section.name);
+                                                }}
                                             >
-                                                {section.name}
+                                                <span>{formatName(section.name)}</span>
                                             </SectionButton>
                                         ) : null
                                     )}
+                                </SectionContainer>
                             </VerticalGroup>
                         );
                     })}
@@ -302,7 +384,7 @@ const CourseDetail: React.FC = () => {
 
         return (
             <>
-                <Title>Nội dung: {section.name}</Title>
+                <Title>Nội dung: {formatName(section.name)}</Title>
                 {renderSectionButtons(section)}
             </>
         );

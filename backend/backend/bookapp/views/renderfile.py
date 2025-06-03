@@ -4,6 +4,7 @@ from rest_framework import status
 from django.http import HttpResponse
 import os
 import json
+import re
 
 COURSES_DIR = "C:/Users/crist/OneDrive/Desktop/Book-Resource/Resource"
 
@@ -23,29 +24,42 @@ def read_folder_structure(dir_path):
         for entry in os.listdir(dir_path):
             full_path = os.path.join(dir_path, entry)
             if os.path.isdir(full_path):
+                info = get_course_info(full_path)
                 if "review" in entry.lower():
                     continue
                 children = read_folder_structure(full_path)
-                results.append({
-                    "type": "folder",
-                    "name": entry,
-                    "path": full_path,
-                    "children": children
-                })
+                if info:
+                    results.append({
+                        "type": "folder",
+                        "name": entry.replace("_", " ") + ". " + (info.get("chapter_name") or info.get("section_name") or ""),
+                        "path": full_path,
+                        "children": children,
+                        "sort_key": entry
+                    })
+                else:
+                    results.append({
+                        "type": "folder",
+                        "name": entry.replace("_", " "),
+                        "path": full_path,
+                        "children": children,
+                        "sort_key": entry
+                    })
             elif entry.lower().endswith(".html"):
                 results.append({
                     "type": "file",
-                    "name": entry,
-                    "path": full_path
+                    "name": entry.replace("_", " "),
+                    "path": full_path,
+                    "sort_key": entry
                 })
 
-        # Sắp xếp theo số trong tên file
-        def get_number(name):
-            import re
-            match = re.search(r'\d+', name)
-            return int(match.group()) if match else 0
+        def get_number(item):
+            match = re.search(r'(\d+\.?\d*)', item["sort_key"])
+            if match:
+                # Chuyển đổi số thành float để sắp xếp đúng thứ tự (1.1, 1.2, 1.10, 1.11)
+                return float(match.group(1))
+            return 0
 
-        results.sort(key=lambda x: get_number(x["name"]))
+        results.sort(key=get_number)
     except Exception as e:
         print(f"Lỗi khi đọc thư mục {dir_path}:", e)
 
