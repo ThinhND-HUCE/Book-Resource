@@ -42,7 +42,7 @@ const SelectionBar = styled.div`
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     padding: 16px;
     border-radius: 8px;
-    height: 91vh;
+    height: 100%;
     overflow-x: auto;
 `;
 
@@ -51,7 +51,7 @@ const DetailBar = styled.div`
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     padding: 16px;
     border-radius: 8px;
-    height: 91vh;
+    height: 100%;
     overflow-x: auto;
 `;
 

@@ -33,7 +33,8 @@ def login_user(request):
     try:
         # Lấy thông tin người dùng từ cơ sở dữ liệu
         user = User.objects.get(username=username)
-
+        print(user.password)
+        print(make_password(password))
         # Kiểm tra mật khẩu (bạn đã thực hiện trong code trước)
         if check_password(password, user.password):
             jwt_handler = JWTHandler()

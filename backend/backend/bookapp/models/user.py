@@ -16,8 +16,6 @@ class User(models.Model):
         db_table = 'users'  # Để kết nối với bảng MySQL hiện có
         managed = False
 
-    def save(self, *args, **kwargs):
-        # Mã hóa password trước khi lưu, chỉ khi password mới thay đổi hoặc là đối tượng mới
-        if self.password and (self._state.adding or self.password != self.__class__.objects.filter(pk=self.pk).first().password):
-            self.password = make_password(self.password)
-        super().save(*args, **kwargs)
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
+        self.save() 

@@ -143,8 +143,6 @@ export default function LoginScreen() {
         // Lưu token vào localStorage
         localStorage.setItem("access_token", data.access);
         localStorage.setItem("refresh_token", data.refresh);
-        
-        alert("✅ Đăng nhập thành công!");
         navigate("/Dashboard"); // Chuyển hướng đến trang Dashboard
       } else {
         setError("Không nhận được token từ server.");
