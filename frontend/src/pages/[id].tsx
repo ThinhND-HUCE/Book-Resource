@@ -193,6 +193,33 @@ const Iframe = styled.iframe`
     border-radius: 8px;
 `;
 
+const PracticeButton = styled(Button)`
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    margin: 8px 0;
+    width: 100%;
+    min-width: 100px;
+
+    &:hover {
+        background-color: #1976d2;
+        border: none;
+    }
+`;
+
+const ButtonGroup = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+`;
+
+const ChapterContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+`;
+
 const CourseDetail: React.FC = () => {
     const { courseId } = useParams<{ courseId: string }>();
     const [course, setCourse] = useState<Course | null>(null);
@@ -327,36 +354,45 @@ const CourseDetail: React.FC = () => {
 
                         return (
                             <VerticalGroup key={folder.path}>
-                                <ChapterButton
-                                    className={selectedChapter === folder.name ? "active" : ""}
-                                    onClick={() => {
-                                        setSelectedChapter(folder.name);
-                                        setSelectedSection(null);
-                                        toggleChapter(folder.name);
-                                    }}
-                                >
-                                    <span>{formatName(folder.name)}</span>
-                                </ChapterButton>
+                                <ChapterContainer>
+                                    <ChapterButton
+                                        className={selectedChapter === folder.name ? "active" : ""}
+                                        onClick={() => {
+                                            setSelectedChapter(folder.name);
+                                            setSelectedSection(null);
+                                            toggleChapter(folder.name);
+                                        }}
+                                    >
+                                        <span>{formatName(folder.name)}</span>
+                                    </ChapterButton>
+                                </ChapterContainer>
                                 <SectionContainer isOpen={isChapterOpen}>
                                     {folder.children.map(section =>
                                         section.type === "folder" ? (
-                                            <SectionButton
-                                                key={section.path}
-                                                style={{ margin: "8px 8px 10px 8px" }}
-                                                className={selectedSection === section.name ? "active" : ""}
-                                                onClick={() => {
-                                                    setSelectedSection(section.name);
-                                                    toggleSection(section.name);
-                                                }}
-                                            >
-                                                <span>{formatName(section.name)}</span>
-                                            </SectionButton>
+                                            <ChapterContainer key={section.path}>
+                                                <SectionButton
+                                                    style={{ margin: "8px 8px 0 8px" }}
+                                                    className={selectedSection === section.name ? "active" : ""}
+                                                    onClick={() => {
+                                                        setSelectedSection(section.name);
+                                                        toggleSection(section.name);
+                                                    }}
+                                                >
+                                                    <span>{formatName(section.name)}</span>
+                                                </SectionButton>
+                                            </ChapterContainer>
                                         ) : null
                                     )}
                                 </SectionContainer>
                             </VerticalGroup>
                         );
                     })}
+                <PracticeButton 
+                    style={{ margin: "20px 0" }}
+                    onClick={() => console.log("Luyện tập tất cả chapter")}
+                >
+                    Luyện tập tất cả chapter
+                </PracticeButton>
             </VerticalWrapper>
         );
     };
@@ -386,6 +422,12 @@ const CourseDetail: React.FC = () => {
             <>
                 <Title>Nội dung: {formatName(section.name)}</Title>
                 {renderSectionButtons(section)}
+                <PracticeButton 
+                    style={{ marginTop: '10px', marginLeft: 'auto', marginRight: 'auto',  width: '300px', display: 'block' }}
+                    onClick={() => console.log("Luyện tập toàn bộ khóa học")}
+                >
+                    Luyện tập
+                </PracticeButton>
             </>
         );
     };
