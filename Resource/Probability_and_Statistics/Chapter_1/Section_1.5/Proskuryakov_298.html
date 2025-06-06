@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 298</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 298:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D\). Khai triển \(D\) theo cột cuối, và lưu ý rằng \(D\) là định thức cấp \(n+1\), ta có
+    \[
+    D = \left( a_n \right)
+    \begin{vmatrix}
+    1 & 0 & 0 & 0 & \ldots & 0 \\
+    1 & a_1 & 0 & 0 & \ldots & 0 \\
+    1 & 1 & a_2 & 0 & \ldots & 0 \\
+    1 & 0 & 1 & a_3 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 0 & 0 & 0 & \ldots & a_{n-1}
+    \end{vmatrix}
+    + \left( 1 \right) \left( -1 \right)^{1 + \left( n+1 \right)}
+    \begin{vmatrix}
+    1 & a_1 & 0 & 0 & \ldots & 0 \\
+    1 & 1 & a_2 & 0 & \ldots & 0 \\
+    1 & 0 & 1 & a_3 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 0 & 0 & 0 & \ldots & a_{n-1} \\
+    1 & 0 & 0 & 0 & \ldots & 1
+    \end{vmatrix}
+    \]
+
+    Trong vế phải, định thức thứ nhất có dạng tam giác dưới, còn với định thức thứ hai, ta ký hiệu là \(d_n\), thì
+    \[
+    D = a_1 a_2 \cdots a_n + \left( -1 \right)^n d_n .
+    \]
+
+    Bây giờ ta tập trung vào việc tính \(d_n\). Khai triển \(d_n\) theo hàng cuối, và nhớ rằng \(d_n\) là định thức cấp \(n\), ta có
+    \[
+    d_n = \left( 1 \right)
+    \begin{vmatrix}
+    1 & a_1 & 0 & 0 & \ldots & 0 \\
+    1 & 1 & a_2 & 0 & \ldots & 0 \\
+    1 & 0 & 1 & a_3 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 0 & 0 & 0 & \ldots & a_{n-2} \\
+    1 & 0 & 0 & 0 & \ldots & 1
+    \end{vmatrix}
+    + \left( 1 \right) \left( -1 \right)^{n+1}
+    \begin{vmatrix}
+    a_1 & 0 & 0 & \ldots & 0 \\
+    1 & a_2 & 0 & \ldots & 0 \\
+    0 & 1 & a_3 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & a_{n-1} \\
+    \end{vmatrix}
+    \]
+
+    Trong vế phải ở trên, định thức thứ nhất chính là \(d_n\), còn định thức thứ hai có dạng tam giác dưới, suy ra
+    \[
+    d_n = d_{n-1} + \left( -1 \right)^{n+1} a_1 a_2 \cdots a_{n-1},\quad n\ge 2 .
+    \]
+
+    Thay \(n = 2, 3,\ldots\) ta có
+    \begin{align}
+    d_2 & = d_1 - a_1 \\
+    d_3 & = d_2 + a_1 a_2 \\
+    & \ldots \\
+    d_n & = d_{n-1} + \left( -1 \right)^{n+1} a_1 a_2 \cdots a_{n-1} .
+    \end{align}
+
+    Cộng từng vế rồi rút gọn, và nhớ rằng \(d_1 = 1\), ta có
+    \[
+    d_n = 1 - a_1 + a_1 a_2 - \cdots + \left( -1 \right)^{n+1} a_1 a_2 \cdots a_{n-1} .
+    \]
+
+    Vậy 
+    \begin{align}
+    D & = a_1 a_2 \cdots a_n + \left( -1 \right)^n \left[ 1 - a_1 + a_1 a_2 - \cdots + \left( -1 \right)^{n+1} a_1 a_2 \cdots a_{n-1}  \right] \\
+    & = a_1 a_2 \cdots a_n - a_1 a_2 \cdots a_{n-1} + a_1 a_2 \cdots a_{n-2} - \cdots + \left( -1 \right)^{n-1} a_1 + \left( -1 \right)^n .
+    \end{align}
+
+</body>

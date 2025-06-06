@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 373</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 373:</i><br><br>
+
+Đặt \(D_n\), \(d_n\) lần lượt là các định thức ở vế trái và vế phải.
+Trước hết xét \(D_n\), ta có
+\begin{align}
+D_1 & = a_1 \\
+D_2 & = \begin{vmatrix}
+a_1 & b_1 \\
+c_1 & a_2
+\end{vmatrix} = a_1a_2 - b_1c_1 .
+\end{align}
+
+Với \(n \ge 3\), khai triển \(D_n\) theo cột cuối, được
+\[
+D_n = \left( a_n \right)
+\begin{vmatrix}
+a_1 & b_1 & 0 & 0 & \ldots & 0 & 0 \\
+c_1 & a_2 & b_2 & 0 & \ldots & 0 & 0 \\
+0 & c_2 & a_3 & b_3 & \ldots & 0 & 0 \\
+\ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+0 & 0 & 0 & 0 & \ldots & a_{n-2} & b_{n-2} \\
+0 & 0 & 0 & 0 & \ldots & c_{n-2} & a_{n-1} \\
+\end{vmatrix}
+- \left( b_{n-1} \right)
+\begin{vmatrix}
+a_1 & b_1 & 0 & \ldots & 0 & 0 & 0 \\
+c_1 & a_2 & b_2 & \ldots & 0 & 0 & 0 \\
+0 & c_2 & a_3 & \ldots & 0 & 0 & 0 \\
+\ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+0 & 0 & 0 & \ldots & a_{n-3} & b_{n-3} & 0 \\
+0 & 0 & 0 & \ldots & c_{n-3} & a_{n-2} & b_{n-2} \\
+0 & 0 & 0 & \ldots & 0 & 0 & c_{n-1}
+\end{vmatrix}
+\]
+
+Trong hai định thức trên, định thức thứ nhất chính là \(D_{n-1}\); với định thức thứ hai, ta khai triển theo hàng cuối, lại được \(c_{n-1} D_{n-2}\). Suy ra
+\[
+D_n = a_n D_{n-1} - b_{n-1} c_{n-1} D_{n-2} .
+\]
+
+
+Tiếp theo ta xử lý \(d_n\).
+Dễ dàng nhận thấy \(d_n\) thu được từ \(D_n\) bằng cách thay vai trò \(b_i\) và \(c_i\) bởi 1 và \(b_ic_i\) tương ứng, \(i = 1, 2,\ldots, n-1\). Ta cũng có công thức truy hồi
+\begin{align}
+d_1 & = a_1 \\
+d_2 & = a_1a_2 - \left( b_1c_1 \right) \left( 1 \right) = a_1a_2 - b_1c_1 \\
+d_n & = a_n d_{n-1} - \left( b_{n-1} c_{n-1} \right) \left( 1 \right) d_{n-2} = a_n d_{n-1} - b_{n-1} c_{n-1} d_{n-2},\quad n\ge 3.
+\end{align}
+
+Vì \(D_n\) và \(d_n\) đều có cùng công thức truy hồi và giá trị ban đầu, nên \(D_n = d_n\) với mọi \(n\) (có thể chứng minh bằng quy nạp).
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 85</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 85:</i><br><br>
+    Ma trận mở rộng của hệ:
+    \begin{align}
+    \overline{A} & = 
+    \left[\begin{array}{rrr|r}
+    2 & -1 & 3 & 4 \\
+    3 & -2 & \framebox{2} & 3 \\
+    5 & -4 & 0 & 2
+    \end{array}\right]
+    \begin{array}{l}
+    \times 2 - 3h_2 \\
+    \\
+    \\
+    \end{array}
+    \sim
+    \left[\begin{array}{rrr|r}
+    \framebox{\(-5\)} & 4 & 0 & -1 \\
+    3 & -2 & \mathbf{2} & 3 \\
+    5 & -4 & 0 & 2 
+    \end{array}\right]
+    \begin{array}{l}
+    \\
+    \times 5 + 3h_1 \\
+    +h_1 \\
+    \end{array} \\
+    & \sim
+    \left[\begin{array}{rrr|r}
+    \mathbf{-5} & 4 & 0 & -1 \\
+    0 & 2 & \mathbf{10} & 12 \\
+    0 & 0 & 0 & 1
+    \end{array}\right]
+    \end{align}
+
+    \(r\left( A \right) = 2\), \(r\left( {\overline A } \right) = 3\Rightarrow r\left( A \right) < r\left( {\overline A } \right) \Rightarrow \) hệ vô nghiệm.
+
+</body>

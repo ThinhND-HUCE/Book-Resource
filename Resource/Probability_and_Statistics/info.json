@@ -1,3 +1,5 @@
 {
-    "course_name": "Xác suất và thống kê toán học"
+    "course_name": "Xác suất và thống kê",
+    "next_practices": ["1.1", "1.2.4"]
+
 }

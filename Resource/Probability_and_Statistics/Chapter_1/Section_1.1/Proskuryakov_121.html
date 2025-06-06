@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 121</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 121:</i><br><br>
+    Trong vế phải, nhân thừa số \(\left( a + b + c \right)\) vào cột 3:
+    \[
+    D = \begin{vmatrix}
+    1 & a & a^2 \\
+    1 & b & b^2 \\
+    1 & c & c^2
+    \end{vmatrix} =
+    \begin{vmatrix}
+    1 & a & a^2 \left( a + b + c \right) \\
+    1 & b & b^2 \left( a + b + c \right) \\
+    1 & c & c^2 \left( a + b + c \right)
+    \end{vmatrix} =
+    \begin{vmatrix}
+    1 & a & a^3 + a^2 \left( b + c \right) \\
+    1 & b & b^3 + b^2 \left( c + a \right) \\
+    1 & c & c^3 + c^2 \left( a + b \right)
+    \end{vmatrix}
+    \]
+
+    Áp dụng tính cộng tính theo cột đối với cột 3 của định thức mới
+    \[
+    D = \begin{vmatrix}
+    1 & a & a^3 \\
+    1 & b & b^3 \\
+    1 & c & c^3 
+    \end{vmatrix} + 
+    \begin{vmatrix}
+    1 & a & a^2 \left( b + c \right) \\
+    1 & b & b^2 \left( c + a \right) \\
+    1 & c & c^2 \left( a + b \right)
+    \end{vmatrix}
+    \]
+
+    Ta thấy trong vế phải ở trên, định thức thứ nhất chính là vế trái của đẳng thức cần chứng minh, nên ta chỉ cần chứng minh định thức thứ hai, ký hiệu \(D_1\), bằng 0. Thật vậy, trong \(D_1\), trừ \(\left( ab + bc + ca \right)\) lần cột 2 vào cột 3:
+    \[
+    D_1 = \begin{vmatrix}
+    1 & a & a^2 \left( b + c \right) - a\left( ab + bc + ca \right) \\
+    1 & b & b^2 \left( c + a \right) - b\left( ab + bc + ca \right) \\
+    1 & c & c^2 \left( a + b \right) - c\left( ab + bc + ca \right)
+    \end{vmatrix} = 
+    \begin{vmatrix}
+    1 & a & -abc \\
+    1 & b & -abc \\
+    1 & c & -abc
+    \end{vmatrix}
+    \]
+
+    Định thức mới có cột 1 và 3 tỷ lệ thuận nên \(D_1 = 0\). Ta có điều phải chứng minh.<br>
+
+    <i>Chú ý:</i>
+    Xem cách 1 trong <a href="Proskuryakov_117.html">Bài tập 117</a> để nắm chứng minh bài bản hơn.
+
+</body>

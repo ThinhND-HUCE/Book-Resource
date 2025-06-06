@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 229</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 229:</i><br><br>
+    
+    Từ định thức
+    \(\begin{vmatrix}
+    a_{11} & a_{12} & \ldots & a_{1n} \\
+    a_{21} & a_{22} & \ldots & a_{2n} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    a_{n1} & a_{n2} & \ldots & a_{nn} 
+    \end{vmatrix}\) 
+    theo giả thiết ta xây dựng định thức mới 
+    \[
+    D = \begin{vmatrix}
+    a_{11} - a_{21} & a_{12} - a_{22} & \ldots & a_{1n} - a_{2n} \\
+    a_{21} - a_{31} & a_{22} - a_{32} & \ldots & a_{2n} - a_{3n} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    a_{n-1,1} - a_{n1} & a_{n-1,2} - a_{n2} & \ldots & a_{n-1,n} - a_{nn} \\
+    a_{n1} - a_{11} & a_{n2} - a_{12} & \ldots & a_{nn} - a_{1n}
+    \end{vmatrix}
+    \]
+
+    Cộng hàng 1 với các hàng còn lại, thì định thức không đổi. 
+    Trong định thức mới, hàng 1 có tất cả các phần tử bằng 0, nên \(D = 0\).
+
+</body>

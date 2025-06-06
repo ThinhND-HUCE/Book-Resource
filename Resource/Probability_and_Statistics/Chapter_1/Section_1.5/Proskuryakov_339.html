@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 339</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 339:</i><br><br>
+    
+    Đặt \(x_i = i\), với \(i = 1,\ldots, n\), xét bài toán tổng quát
+    \[
+    D = \begin{vmatrix}
+    x_1 & x_2 & x_3 & \ldots & x_n \\
+    x_1^3 & x_2^3 & x_3^3 & \ldots & x_n^3 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    x_1^{2n-1} & x_2^{2n-1} & x_3^{2n-1} & \ldots & x_n^{2n-1}
+    \end{vmatrix}
+    \]
+
+    Đưa thừa số chung \(x_i\) tại cột \(i\) ra ngoài dấu định thức:
+    \[
+    D = \left( x_1 x_2 \cdots x_n \right)
+    \begin{vmatrix}
+    1 & 1 & 1 & \ldots & 1 \\
+    x_1^2 & x_2^2 & x_3^2 & \ldots & x_n^2 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    x_1^{2n-2} & x_2^{2n-2} & x_3^{2n-2} & \ldots & x_n^{2n-2}
+    \end{vmatrix}
+    \]
+
+    Tiếp theo, đặt \(y_i = x_i^2\), thì xuất hiện định thức Vandermonde:
+    \[
+    D = \left( x_1 x_2 \cdots x_n \right)
+    \begin{vmatrix}
+    1 & 1 & \ldots & 1 \\
+    y_1 & y_2 & \ldots & y_n \\
+    \ldots & \ldots & \ldots & \ldots \\
+    y_1^{n-1} & y_2^{n-1} & \ldots & y_n^{n-1}
+    \end{vmatrix}
+    \]
+
+    Áp dụng kết quả trong <a href="Proskuryakov_vd_4.html">Ví dụ 4</a>, định thức trong vế phải ở trên bằng:
+    \[
+    D_n = \prod\limits_{i > j} {\left( {{y_i} - {y_j}} \right)} .
+    \]
+
+    Do đó
+    \begin{align}
+    D & = x_1 x_2 \cdots x_n \, D_n = x_1 x_2 \cdots x_n \prod\limits_{i > j} {\left( {{x_i^2} - {x_j^2}} \right)}
+    = n!\, \prod\limits_{i > j} {\left( {{i^2} - {j^2}} \right)} \\
+    & = \prod\limits_{i > j} {\left( {i - j} \right)\left( {i + j} \right)}  = \prod\limits_{i > j} {\left( {i - j} \right)}  \times \prod\limits_{i > j} {\left( {i + j} \right)} .
+    \end{align}
+
+    Biến đổi
+    \begin{align}
+    \prod\limits_{i > j} {\left( {i - j} \right)} & = \prod\limits_{i = 2}^n {\prod\limits_{j = 1}^{i - 1} {\left( {i - j} \right)} } = \prod\limits_{i = 2}^n {\left[ {\left( {i - 1} \right)!} \right]}  = \prod\limits_{i = 1}^{n - 1} {\left( {i!} \right)} \\
+    \prod\limits_{i > j} {\left( {i + j} \right)} & = \prod\limits_{i = 2}^n {\prod\limits_{j = 1}^{i - 1} {\left( {i + j} \right)} } = \prod\limits_{i = 2}^n {\left( {i + 1} \right)\left( {i + 2} \right) \cdots \left( {2i - 1} \right)}  = \prod\limits_{i = 2}^n {\frac{{\left( {2i - 1} \right)!}}{{i!}}} ,
+    \end{align}
+    suy ra
+    \[
+    D = n! \times \prod\limits_{i = 1}^{n - 1} {\left( {i!} \right)}  \times \prod\limits_{i = 2}^n {\frac{{\left( {2i - 1} \right)!}}{{i!}}}
+    = \prod\limits_{i = 1}^n {\left[ {\left( {2i - 1} \right)!} \right]} .
+    \]
+
+</body>

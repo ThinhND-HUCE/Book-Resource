@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 297</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 297:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D_n\). Khai triển \(D_n\) theo cột cuối, và lưu ý rằng \(D_n\) là định thức cấp \(n+1\), ta có
+    \[
+    D_n = \left( a_n \right)
+    \begin{vmatrix}
+    0 & 1 & 1 & \ldots & 1 \\
+    1 & a_1 & 0 & \ldots & 0 \\
+    1 & 0 & a_2 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 0 & 0 & \ldots & a_{n-1}
+    \end{vmatrix} 
+    + \left( 1 \right) \left( -1 \right)^{1 + \left( n+1 \right)}
+    \begin{vmatrix}
+    1 & a_1 & 0 & \ldots & 0 & 0\\
+    1 & 0 & a_2 & \ldots & 0 & 0 \\
+    1 & 0 & 0 & \ldots & 0 & 0\\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 0 & 0 & \ldots & 0 & a_{n-1} \\
+    1 & 0 & 0 & \ldots & 0 & 0
+    \end{vmatrix} 
+    \]
+
+    Trong vế phải, định thức thứ nhất chính là \(D_{n-1}\), còn với định thức thứ hai (định thức cấp \(n\)), ta khai triển theo hàng cuối sẽ được định thức đường chéo:
+    \[
+    D_n = a_n D_{n-1} + \left(-1\right)^n \left( 1 \right) \left( -1 \right)^{n+1} 
+    \begin{vmatrix}
+    a_1 & 0 & \ldots & 0 & 0\\
+    0 & a_2 & \ldots & 0 & 0 \\
+    0 & 0 & \ldots & 0 & 0\\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & \ldots & 0 & a_{n-1}
+    \end{vmatrix} 
+    = a_n D_{n-1} - a_1 a_2 \cdots a_{n-1} .
+    \]
+
+
+    Đây là hệ thức truy hồi tuyến tính không thuần nhất cấp một \(D_n = p_n D_{n-1} + q_n\), trong đó \(p_n = a_n\), và \(q_n = a_1 a_2 \cdots a_{n-2}\), có công thức nghiệm
+    \[
+    D_n = {p_2}{p_3} \cdots {p_n}\left( {{D_1} + \frac{{{q_2}}}{{{p_1}{p_2}}} + \frac{{{q_3}}}{{{p_1}{p_2}{p_3}}} +  \cdots  + \frac{{{q_n}}}{{{p_1}{p_2} \cdots {p_n}}}} \right) .
+    \]
+    trong đó \(D_1 = \begin{vmatrix}
+    0 & 1 \\
+    1 & a_1
+    \end{vmatrix}
+    = \left( 0 \right) \left( a_1 \right) - \left( 1 \right) \left( 1 \right) = -1\).
+    Thay vai trò \(p_n\) và \(q_n\) thì
+    \begin{align}
+    D_n & = {a_2}{a_3} \cdots {a_n}\left( { - 1 + \frac{{ - {a_1}}}{{{a_1}{a_2}}} + \frac{{ - {a_1}{a_2}}}{{{a_1}{a_2}{a_3}}} +  \cdots  + \frac{{ - {a_1}{a_2} \cdots {a_{n - 1}}}}{{{a_1}{a_2} \cdots {a_n}}}} \right) \\
+    & = - {a_1}{a_2} \cdots {a_n}\left( {\frac{1}{{{a_1}}} + \frac{1}{{{a_2}}} +  \cdots  + \frac{1}{{{a_n}}}} \right)
+    \end{align}
+
+</body>

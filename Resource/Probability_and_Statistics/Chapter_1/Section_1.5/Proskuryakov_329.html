@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 329</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 329:</i><br><br>
+    
+    Đặt \(x_i = a - i\), với \(i = 0, 1,\ldots, n\), ta đưa về bài toán tổng quát
+    \[
+    D_n = 
+    \begin{vmatrix}
+    x_0^n & x_1^n & \ldots & x_n^n \\
+    x_0^{n-1} & x_1^{n-1} & \ldots & x_n^{n-1} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    x_0 & x_1 & \ldots & x_n \\
+    1 & 1 & \ldots & 1
+    \end{vmatrix}
+    \]
+
+    Đây là một biến thể của định thức Vandermonde bằng cách thay đổi thứ tự các hàng. 
+    Lập luận tương tự <a href="Proskuryakov_vd_4.html">Ví dụ 4</a>, ta cũng chỉ ra được
+    \[
+    D_n = \prod\limits_{i < j} {\left( {{x_i} - {x_j}} \right)}  = \prod\limits_{j = 1}^n {\prod\limits_{i = 0}^{j - 1} {\left[ {\left( {a - i} \right) - \left( {a - j} \right)} \right]} }  = \prod\limits_{j = 1}^n {\prod\limits_{i = 0}^{j - 1} {\left( {j - i} \right)} }  = \prod\limits_{j = 1}^n {\left( j! \right)} .
+    \]
+    
+</body>

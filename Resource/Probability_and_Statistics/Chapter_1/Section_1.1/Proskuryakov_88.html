@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 88</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 88:</i><br><br>
+    Biến đổi
+    \[
+    \left\{
+    \begin{array}{*{9}{r}}
+    ax & + & 4y & + & z  &   &   & = & 0 \\
+    &   & 2y & + & 3z & - & 1 & = & 0 \\
+    3x &   &    & - & bz & + & 2 & = & 0
+    \end{array}
+    \right.
+    \Leftrightarrow
+    \left\{
+    \begin{array}{*{7}{r}}
+    ax & + & 4y & + & z  & = & 0 \\
+    &   & 2y & + & 3z & = & 1 \\
+    3x &   &    & - & bz & = & -2
+    \end{array}
+    \right.
+    \]
+
+    Ma trận mở rộng của hệ
+    \begin{align}
+    \overline{A} & = 
+    \left[\begin{array}{rrr|r}
+    a & 4 & 1 & 0 \\
+    0 & \framebox{2} & 3 & 1 \\
+    3 & 0 & -b & -2
+    \end{array}\right]
+    \begin{array}{l}
+    -2h_2 \\
+    \\
+    \\
+    \end{array}
+    \sim
+    \left[\begin{array}{rrr|r}
+    a & 0 & -5 & -2 \\
+    0 & \mathbf{2} & 3 & 1 \\
+    \framebox{3} & 0 & -b & -2
+    \end{array}\right]
+    \begin{array}{l}
+    \times 3 - a\times h_3 \\
+    \\
+    \\
+    \end{array} \\
+    & \sim
+    \left[\begin{array}{rrr|r}
+    0 & 0 & \framebox{\(ab - 15\)} & 2a - 6 \\
+    0 & \mathbf{2} & 3 & 1 \\
+    \mathbf{3} & 0 & -b & -2
+    \end{array}\right]
+    \end{align}
+
+    <ul>
+        <li>Nếu \(ab - 15 \ne 0\) hay \(ab \ne 15\) thì \(r\left( A \right) = r\left( {\overline A } \right) = 3 = \) số ẩn \(\Rightarrow\) hệ có nghiệm duy nhất</li>
+        <li>Nếu \(ab = 15\) thì \(r\left( A \right) = 2\)
+            <ul>
+                <li>Nếu \(2a - 6 = 0\) hay \(a = 3\) và từ đó \(b = \dfrac{15}{a} = 5\), thì \(r\left( {\overline A } \right) = 2\). Khi đó \(r\left( A \right) = r\left( {\overline A } \right) < \) số ẩn, nên hệ có vô số nghiệm</li>
+                <li>Nếu \(a\ne 3\) thì \(r\left( {\overline A } \right) = 3\). Khi đó \(r\left( A \right) < r\left( {\overline A } \right)\) nên hệ vô nghiệm.</li>
+            </ul>
+        </li>    
+    </ul>
+
+</body>

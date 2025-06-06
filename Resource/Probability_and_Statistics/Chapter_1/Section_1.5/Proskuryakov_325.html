@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 325</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 325:</i><br><br>
+    
+    Trong định thức \(D\) đã cho, từ hàng đầu tới hàng gần cuối, trừ mỗi hàng cho \(x\) lần hàng dưới, thì định thức đã cho không đổi
+    \[
+    D = 
+    \begin{vmatrix}
+    1 - a_{11}x & 0 & 0 & 0 & \ldots & 0 & 0 \\
+    a_{11} - a_{21}x & 1 - a_{22} x & 0 & 0 & \ldots & 0 & 0 \\
+    a_{21} - a_{31} x & a_{22} - a_{32} x & 1 - a_{33} x & 0 & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_{n-1,1} - a_{n1} x & a_{n-1,2} - a_{n2} x & a_{n-1,3} - a_{n3} x & a_{n-1,4} - a_{n4} x & \ldots & 1 - a_{nn}x & 0 \\
+    a_{n1} & a_{n2} & a_{n3} & a_{n4} & \ldots & a_{nn} & 1
+    \end{vmatrix}
+    \]
+
+    Đây là định thức tam giác dưới, bằng tích các phần tử trên đường chéo chính, tức là
+    \[
+    D = \prod\limits_{i = 1}^n {\left( {1 - {a_{ii}}x} \right)} .
+    \]
+
+    <i>Chú ý:</i>
+    Vì định thức không phụ thuộc vào các phần tử dưới đường chéo chính, nên thay vì ghi cụ thể phần tử tại các vị trí này, ta có thể viết dấu \(*\) vào đó.
+
+</body>

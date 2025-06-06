@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 253</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 253:</i><br><br>
+    
+    Khai triển định thức \(D\) đã cho theo hàng 3 ta có
+    \begin{align}
+    D & = \left( \sin \varphi \sin \theta \right)
+    \begin{vmatrix}
+    { - \sin \varphi \cos \psi  - \cos \varphi \sin \psi \cos \theta } & {\sin \psi \sin \theta } \\
+    { - \sin \varphi \sin \psi  + \cos \varphi \cos \psi \cos \theta } & { - \cos \psi \sin \theta }
+    \end{vmatrix} \\
+    & \hspace{1cm} - \left( \cos \varphi \sin \theta \right)
+    \begin{vmatrix}
+    {\cos \varphi \cos \psi  - \sin \varphi \sin \psi \cos \theta } & {\sin \psi \sin \theta } \\
+    {\cos \varphi \sin \psi  + \sin \varphi \cos \psi \cos \theta } & { - \cos \psi \sin \theta }
+    \end{vmatrix} \\
+    & \hspace{1cm} + \left( \cos \theta \right)
+    \begin{vmatrix}
+    {\cos \varphi \cos \psi  - \sin \varphi \sin \psi \cos \theta } & { - \sin \varphi \cos \psi  - \cos \varphi \sin \psi \cos \theta } \\
+    {\cos \varphi \sin \psi  + \sin \varphi \cos \psi \cos \theta } & { - \sin \varphi \sin \psi  + \cos \varphi \cos \psi \cos \theta }
+    \end{vmatrix}
+    \end{align}
+
+    Ký hiệu \(D_1, D_2, D_3\) lần lượt là các định thức cấp hai trong vế phải. 
+    Trong \(D_1\), đưa thừa số chung ở cột 2 ra ngoài:
+    \begin{align}
+    D_1 & = \left( \sin \theta \right)
+    \begin{vmatrix}
+    { - \sin \varphi \cos \psi  - \cos \varphi \sin \psi \cos \theta } & {\sin \psi } \\
+    { - \sin \varphi \sin \psi  + \cos \varphi \cos \psi \cos \theta } & { - \cos \psi }
+    \end{vmatrix} \\
+    & = \sin \theta \left[ \left( - \sin \varphi \cos \psi  - \cos \varphi \sin \psi \cos \theta \right) \left( - \cos \psi \right) \right. \\
+    & \hspace{1cm} \left. - \left( - \sin \varphi \sin \psi  + \cos \varphi \cos \psi \cos \theta \right) \left( \sin \psi \right) \right] \\
+    & = \sin \theta \left[ \sin \varphi \cos^2 \psi + \cos \varphi \sin \psi \cos \theta \cos \psi + \sin \varphi \sin^2 \psi - \cos \varphi \cos \psi \cos \theta \sin \psi  \right] \\
+    & = \sin \theta \sin \varphi \left( \cos^2 \psi +  \sin^2 \psi \right) = \sin \theta \sin \varphi \\
+    D_2 & = \left( \sin \theta \right) 
+    \begin{vmatrix}
+    {\cos \varphi \cos \psi  - \sin \varphi \sin \psi \cos \theta } & {\sin \psi } \\
+    {\cos \varphi \sin \psi  + \sin \varphi \cos \psi \cos \theta } & { - \cos \psi }
+    \end{vmatrix} \\
+    & = \sin \theta \left[ \left( \cos \varphi \cos \psi  - \sin \varphi \sin \psi \cos \theta \right) \left( - \cos \psi \right) \right. \\
+    & \hspace{1cm} \left. - \left( \cos \varphi \sin \psi  + \sin \varphi \cos \psi \cos \theta \right) \left( \sin \psi \right) \right] \\
+    & = \sin \theta \left( - \cos \varphi \cos^2 \psi + \sin \varphi \sin \psi \cos \theta \cos \psi - \cos \varphi \sin^2 \psi - \sin \varphi \cos \psi \cos \theta \sin \psi \right) \\
+    & = - \sin \theta \cos \varphi \left( \cos^2 \psi + \sin^2 \psi \right) = - \sin \theta \cos \varphi \\
+    D_3 & = \left( \cos \varphi \cos \psi  - \sin \varphi \sin \psi \cos \theta \right) \left( - \sin \varphi \sin \psi  + \cos \varphi \cos \psi \cos \theta \right) \\
+    & \hspace{1cm} - \left( \cos \varphi \sin \psi  + \sin \varphi \cos \psi \cos \theta \right) \left( - \sin \varphi \cos \psi  - \cos \varphi \sin \psi \cos \theta \right) \\
+    & =            - \cos \varphi \cos \psi  \sin \varphi \sin \psi
+                + \cos^2 \varphi \cos^2 \psi \cos \theta \\
+    & \hspace{1cm} + \sin^2 \varphi \sin^2 \psi \cos \theta
+                - \sin \varphi \sin \psi \cos^2 \theta \cos \varphi \cos \psi \\
+    & \hspace{1cm} + \cos \varphi \sin \psi  \sin \varphi \cos \psi 
+                + \cos^2 \varphi \sin^2 \psi \cos \theta \\
+    & \hspace{1cm} + \sin^2 \varphi \cos^2 \psi \cos \theta  
+                + \sin \varphi \cos \psi \cos^2 \theta  \cos \varphi \sin \psi \\
+    & = \cos \theta \left( {{{\cos }^2}\varphi {{\cos }^2}\psi  + {{\sin }^2}\theta {{\sin }^2}\psi  + {{\cos }^2}\varphi {{\sin }^2}\psi  + {{\sin }^2}\varphi {{\cos }^2}\psi } \right) \\
+    & = \cos \theta \left( {{{\cos }^2}\varphi  + {{\sin }^2}\varphi } \right)\left( {{{\cos }^2}\psi  + {{\sin }^2}\psi } \right) = \cos \theta 
+    \end{align}
+
+    Thay \(D_1, D_2, D_3\) vào \(D\) ta có
+    \begin{align}
+    D & = \left( \sin \varphi \sin \theta \right) D_1 - \left( \cos \varphi \sin \theta \right) D_2 + \left( \cos \theta \right) D_3 \\
+    & = \left( \sin \varphi \sin \theta \right) \left( \sin \theta \sin \varphi \right) - \left( \cos \varphi \sin \theta \right) \left( - \sin \theta \cos \varphi \right) + \left( \cos \theta \right) \left( \cos \theta \right) \\
+    &  = {\sin ^2}\theta \left( {{{\sin }^2}\varphi  + {{\cos }^2}\varphi } \right) + {\cos ^2}\theta  = {\sin ^2}\theta  + {\cos ^2}\theta  = 1
+    \end{align}
+
+</body>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 231</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 231:</i><br><br>
+    
+    Trong hệ tọa độ Descartes \(Oxy\), xét bài toán tìm tọa độ điểm \(A^*\left(x^*, y^*\right)\) khi quay điểm \(A\left( x, y \right)\) quanh điểm \(I\left( a, b \right)\) một góc \(\theta\) theo chiều dương (ngược chiều kim đồng hồ). 
+    Bài toán tương đương với việc quay véctơ \(\overrightarrow {IA}  = \left( {x - a,y - b} \right)\) một góc \(\theta\) thành véctơ \(\overrightarrow {IA^*}  = \left( {x^* - a, y^* - b} \right)\). 
+    Theo công thức biến đổi tọa độ
+    \[
+    \begin{bmatrix}
+    x^* - a \\
+    y^* - b
+    \end{bmatrix}
+    = \begin{bmatrix}
+    \cos\theta & -\sin\theta \\
+    \sin\theta & \cos\theta
+    \end{bmatrix}
+    \begin{bmatrix}
+    x - a \\
+    y - b
+    \end{bmatrix}
+    \]
+
+    Trong bài toán này "tâm" của định thức có tọa độ \(\left( \dfrac{n+1}{2},\; \dfrac{n+1}{2} \right)\). <br>
+
+    \(*\quad\) Trường hợp quay định thức quanh "tâm" ngược chiều kim đồng hồ, tức là \(\theta = 90^{\circ}\). Điểm ở hàng \(i\) cột \(j\) quay tới hàng \(i^*\) cột \(j^*\). 
+    Áp dụng công thức trên ta có
+    \begin{align}
+    & \begin{bmatrix}
+    i^* - \dfrac{n+1}{2} \\
+    j^* - \dfrac{n+1}{2}
+    \end{bmatrix}
+    = \begin{bmatrix}
+    0 & -1 \\
+    1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    i - \dfrac{n+1}{2} \\
+    j - \dfrac{n+1}{2}
+    \end{bmatrix} \\
+    \Rightarrow\; & \begin{cases}
+    i^* - \dfrac{n+1}{2} = - \left( j - \dfrac{n+1}{2} \right) \\
+    j^* - \dfrac{n+1}{2} = i - \dfrac{n+1}{2}
+    \end{cases}
+    \Rightarrow \begin{cases}
+    i^* = n + 1 - j \\
+    j^* = i
+    \end{cases}
+    \end{align}
+
+    Phép biến đổi các phần tử của định thức có thể viết thành sơ đồ
+    \[
+    \left( i, j \right) \mapsto \left( n+1-j, i \right)
+    \]
+
+    Sơ đồ này có thể thực hiện qua giai đoạn trung gian
+    \[
+    \left( i, j \right) \mapsto \left( j, i \right) \mapsto \left( n+1-j, i \right)
+    \]
+    trong đó giai đoạn đầu làm chuyển vị định thức, giá trị định thức không đổi. 
+    Còn giai đoạn thứ hai, theo <a href="Proskuryakov_213.html">Bài tập 213</a>, là sắp xếp các hàng của định thức theo thứ tự ngược lại, làm định thức đổi dấu \(\dfrac{n\left(n-1\right)}{2}\) lần. 
+    Vậy định thức thu được bằng định thức ban đầu nhân với \(\left( -1 \right)^{\tfrac{n\left( n-1 \right)}{2}}\).<br>
+
+    \(*\quad\)
+    Trường hợp quay định thức quanh "tâm" theo chiều kim đồng hồ (\(\theta = -90^{\circ}\)), tương tự, ta có sơ đồ biến đổi các phần tử của định thức
+    \[
+    \left( i, j \right) \mapsto \left( j, n+1-i \right)
+    \]
+    và định thức mới cũng bằng định thức cũ nhân với \(\left( -1 \right)^{\tfrac{n\left( n-1 \right)}{2}}\).<br>
+
+    Vậy định thức mới luôn bằng định thức cũ nhân với \(\left( -1 \right)^{\tfrac{n\left( n-1 \right)}{2}}\).
+
+</body>

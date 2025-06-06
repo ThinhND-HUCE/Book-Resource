@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 365</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 365:</i><br><br>
+    
+    Theo mô tả, dãy Fibonacci xác định bởi
+    \[
+    F_1 = 1, F_2 = 2, \quad \text{và} \quad
+    F_{n} = F_{n-1} + F_{n-2}, \text{ với } n\ge 3.
+    \]
+
+    Ký hiệu \(D_n\) là định thức cấp \(n\) đã cho.
+    Ta sẽ chứng minh \(D_n\) cũng được xác định bởi hệ thức trên, và do đó \(D_n = F_n\).
+    Thậy vậy, trước hết tính
+    \[
+    D_1 = 1,\quad \text{và} \quad
+    D_2 = \begin{vmatrix}
+    1 & 1 \\
+    -1 & 1
+    \end{vmatrix} = \left( 1 \right) \left( 1 \right) - \left( -1 \right) \left( 1 \right) = 2 .
+    \]
+
+    Bây giờ, khai triển \(D_n\), \(n\ge 3\), theo hàng đầu
+    \[
+    D_n = \left( 1 \right)
+    \begin{vmatrix}
+    1 & 1 & 0 & 0 & \ldots & 0 & 0 \\
+    -1 & 1 & 1 & 0 & \ldots & 0 & 0 \\
+    0 & -1 & 1 & 1 & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & 0 & \ldots & 1 & 1 \\
+    0 & 0 & 0 & 0 & \ldots & -1 & 1
+    \end{vmatrix}_{n-1}
+    - \left( 1 \right)
+    \begin{vmatrix}
+    -1 & 1 & 0 & 0 & \ldots & 0 & 0 \\
+    0 & 1 & 1 & 0 & \ldots & 0 & 0 \\
+    0 & 0 & -1 & 1 & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & 0 & \ldots & 1 & 1 \\
+    0 & 0 & 0 & 0 & \ldots & -1 & 1
+    \end{vmatrix}_{n-1}
+    \]
+
+    Trong hai định thức trên, định thức thứ nhất chính là \(D_{n-1}\); còn với định thức thứ hai, ta khai triển theo cột đầu, lại được \(\left( -1 \right) D_{n-2}\). Suy ra
+    \[
+    D_n = D_{n-1} + D_{n-2} .
+    \]
+
+    Như vậy dãy \(\{D_n\}\) cũng thỏa mãn định nghĩa truy hồi của dãy Fibonacci \(\{F_n\}\), nên \(D_n = F_n\) với mọi \(n\).
+
+
+</body>
+</html>

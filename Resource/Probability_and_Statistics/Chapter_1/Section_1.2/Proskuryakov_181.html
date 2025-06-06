@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 181</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 181:</i><br><br>
+    
+    Sắp xếp các số trong hàng đầu tiên của phép thế \(\sigma\) theo thứ tự tăng dần, thì hàng thứ hai của \(\sigma\) là một hoán vị của hàng thứ nhất.
+    Như <a href="Proskuryakov_147.html">Bài tập 147</a>, ta có thể biến đổi hàng thứ hai về sắp xếp ban đầu thông qua chuỗi \(k\) phép chuyển vị kề \(\tau_1, \tau_2,\ldots, \tau_k\), với \(k\) là số nghịch thế của \(\sigma\). 
+    Theo <a href="Proskuryakov_179.html">Bài tập 179</a>, ta có
+    \begin{equation}
+    \sigma \tau_1 \tau_2 \cdots \tau_k = E, \quad (*)
+    \end{equation}
+    trong đó \(E\) là phép thế đơn vị.<br>
+
+
+    Vì mỗi xích có độ giảm bằng độ dài xích trừ đi 1, nên nếu phép thế được phân tích thành tích các xích độc lập, thì độ giảm của phép thế bằng tổng độ giảm của các xích đó. 
+    Ngoài ra, các xích độc lập có tính giao hoán.<br>
+
+    Theo kết quả của <a href="Proskuryakov_180.html">Bài tập 180</a>, mỗi phép chuyển vị làm thay đổi độ giảm của phép thế đi 1 đơn vị. 
+    Thật vậy, xét phép chuyển vị \(\left( \alpha, \beta \right)\):
+    <ul>
+        <li>
+            Trường hợp \(\alpha\) và \(\beta\) nằm trong cùng một xích của phép thế. 
+            Nhân phép chuyển vị vào bên phải xích đó:
+            \[
+            \left(\alpha, a_1, \ldots, a_k, \beta, b_1, \ldots, b_{\ell} \right) \left( \alpha, \beta \right)
+            = \left( \alpha, a_1, \ldots , a_k \right) \left( \beta, b_1, \ldots , b_{\ell} \right)
+            \]
+            thì xích đó sẽ phân tách thành hai xích độc lập. 
+            Xích ban đầu \(\left(\alpha, a_1, \ldots, a_k, \beta, b_1, \ldots, b_{\ell} \right)\) có độ giảm \(\left( k + l + 2 \right) - 1 = k + l + 1\), còn vế phải có độ giảm \(\left( k+1 \right) + \left( l+1 \right) - 2 = k + l\). 
+            Như vậy phép chuyển vị làm giảm độ giảm của phép thế xuống 1 đơn vị.
+        </li>
+        <li>
+            Trường hợp \(\alpha\) và \(\beta\) nằm trong hai xích độc lập của phép thế. 
+            Nhân phép chuyển vị vào bên phải tích hai xích đó:
+            \[
+            \left( \alpha, a_1, \ldots , a_k \right) \left( \beta, b_1, \ldots , b_{\ell} \right) \left( \alpha, \beta \right) 
+            = \left(\alpha, a_1, \ldots, a_k, \beta, b_1, \ldots, b_{\ell} \right)
+            \]
+            thì hai xích này sẽ hợp nhất thành một xích. 
+            Tương tự trường hợp trên, phép chuyển vị làm tăng độ giảm của phép thế lên 1 đơn vị.
+        </li>
+    </ul>
+
+
+    Theo (\(*\)), mỗi phép chuyển vị \(\tau_i\), \(1 \le i\le k\) làm thay đổi độ giảm của phép thế \(\sigma\) đi 1 đơn vị (1 là số lẻ). 
+    Mặc khác, việc cộng trừ \(k\) số lẻ với nhau sẽ cho kết quả là một số có cùng tính chẵn lẻ với \(k\). 
+    Ngoài ra trong (\(*\)), phép thế đơn vị \(E\) có độ giảm bằng 0. 
+    Vậy độ giảm của \(\sigma\) cùng tính chẵn lẻ với \(k\). 
+    Ta có điều phải chứng minh.<br>
+
+    <i>Nhận xét:</i>
+    Một kết quả chi tiết hơn của (\(*\)), mỗi phép thế đều là tích của của các phép chuyển vị ứng với các nghịch thế \(\left( a_i, a_j \right)\), trong đó thứ tự các chuyển vị duyệt theo \(a_j\) giảm dần, và \(a_i > a_j\) duyệt từ trái tớii \(a_j\). 
+    Chẳng hạn
+    \[
+    \left( \begin{array}{*{5}{c}}
+    1 & 2 & 3 & 4 & 5 \\
+    4 & 2 & 1 & 5 & 3
+    \end{array} \right)
+    = \left( 4,\; 3 \right) \left( 5,\; 3 \right) \left( 4,\; 2 \right) \left( 4,\; 1 \right) \left( 2,\; 1 \right)
+    \]
+
+</body>

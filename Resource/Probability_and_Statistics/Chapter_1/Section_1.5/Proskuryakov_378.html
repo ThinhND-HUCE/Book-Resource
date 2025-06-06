@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 378</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 378:</i><br><br>
+
+    Ký hiệu hai định thức lần lượt là \(D_1\) và \(D_2\).
+    Ta thấy \(D_1\) và \(D_2\) có hàng đầu giống nhau.
+    Xét các hàng còn lại của hai định thức, ta thấy hàng \(2, 3,\ldots, n\) của \(D_1\) lần lượt là hàng \(n, n-2,\ldots, 2\) của \(D_2\).
+    Ta sẽ thực hiện liên tiếp các phép đổi chỗ hai hàng cạnh nhau để biến đổi \(D_1\) về \(D_2\).
+    Trong \(D_1\), đổi chỗ liên tiếp hàng cuối với mỗi hàng trong \(n-2\) hàng trên.
+    Lúc này, hàng cuối của định thức thu được trùng với hàng 3 của \(D_2\).
+    Đổi chỗ liên tiếp hàng cuối này với mỗi hàng trong \(n-3\) hàng trên.
+    Cứ tiếp tục như vậy, số phép đổi chỗ hai hàng liên tiếp để biến đổi \(D_1\) thành \(D_2\) là
+    \[
+    \left( n-2  \right) + \left( n-3 \right) + \cdots + 2 + 1 = \frac{\left( n-1 \right) \left( n-2 \right)}{2} .
+    \]
+    
+    Vì mỗi phép đổi chỗ hai hàng làm đổi dấu định thức, nên hai định thức \(D_1\) và \(D_2\) chỉ khác nhau một hệ số dấu:
+    \[
+    D_1 = \frac{\left( n-1 \right) \left( n-2 \right)}{2} D_2.
+    \]
+
+</body>
+</html>

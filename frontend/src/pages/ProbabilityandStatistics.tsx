@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Exercise from '../components/Exercise';
 
 interface FileItem {
     type: "file";
@@ -207,11 +208,11 @@ const PracticeButton = styled(Button)`
     }
 `;
 
-const ButtonGroup = styled.div`
+const PracticeButtonsContainer = styled.div`
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
 `;
 
 const ChapterContainer = styled.div`
@@ -220,8 +221,7 @@ const ChapterContainer = styled.div`
     width: 100%;
 `;
 
-const CourseDetail: React.FC = () => {
-    const { courseId } = useParams<{ courseId: string }>();
+const ProbabilityandStatistics: React.FC = () => {
     const [course, setCourse] = useState<Course | null>(null);
     const [selectedChapter, setSelectedChapter] = useState<string | null>(null);
     const [selectedSection, setSelectedSection] = useState<string | null>(null);
@@ -230,6 +230,7 @@ const CourseDetail: React.FC = () => {
     const [currentFileIndex, setCurrentFileIndex] = useState<number | null>(null);
     const [openChapters, setOpenChapters] = useState<Set<string>>(new Set());
     const [openSections, setOpenSections] = useState<Set<string>>(new Set());
+    const [showExercise, setShowExercise] = useState(false);
     const navigate = useNavigate();
 
     const formatName = (name: string) => {
@@ -262,13 +263,11 @@ const CourseDetail: React.FC = () => {
     };
 
     useEffect(() => {
-        if (courseId) {
-            fetch(`http://localhost:8000/api/courses/${courseId}`)
-                .then(res => res.json())
-                .then((data: Course) => setCourse(data))
-                .catch(err => console.error("Lỗi lấy dữ liệu khóa học:", err));
-        }
-    }, [courseId]);
+        fetch(`http://localhost:8000/api/courses/Probability_and_Statistics`)
+            .then(res => res.json())
+            .then((data: Course) => setCourse(data))
+            .catch(err => console.error("Lỗi lấy dữ liệu khóa học:", err));
+    }, []);
 
     const extractNumber = (filename: string) => {
         const match = filename.match(/Proskuryakov (\d+)\.html/);
@@ -418,16 +417,34 @@ const CourseDetail: React.FC = () => {
         const section = chapter ? findSection(chapter.children) : null;
         if (!section) return <span>Không tìm thấy section</span>;
 
+        if (showExercise) {
+            return <Exercise onBack={() => setShowExercise(false)} />;
+        }
+
         return (
             <>
-                <Title>Nội dung: {formatName(section.name)}</Title>
+                <Title>{formatName(section.name)}</Title>
                 {renderSectionButtons(section)}
-                <PracticeButton 
-                    style={{ marginTop: '10px', marginLeft: 'auto', marginRight: 'auto',  width: '300px', display: 'block' }}
-                    onClick={() => console.log("Luyện tập toàn bộ khóa học")}
-                >
-                    Luyện tập
-                </PracticeButton>
+                <PracticeButtonsContainer>
+                    <PracticeButton 
+                        style={{ width: '200px' }}
+                        onClick={() => setShowExercise(true)}
+                    >
+                        Luyện tập dạng 1
+                    </PracticeButton>
+                    <PracticeButton 
+                        style={{ width: '200px' }}
+                        onClick={() => setShowExercise(true)}
+                    >
+                        Luyện tập dạng 2
+                    </PracticeButton>
+                    <PracticeButton 
+                        style={{ width: '200px' }}
+                        onClick={() => setShowExercise(true)}
+                    >
+                        Luyện tập dạng 3
+                    </PracticeButton>
+                </PracticeButtonsContainer>
             </>
         );
     };
@@ -447,4 +464,4 @@ const CourseDetail: React.FC = () => {
     );
 };
 
-export default CourseDetail;
+export default ProbabilityandStatistics;

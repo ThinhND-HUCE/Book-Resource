@@ -42,11 +42,11 @@ const LoginCard = styled.div`
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 `;
 
-const Logo = styled.img`
-  display: block;
-  margin: 0 auto;
-  max-width: 100px;
-`;
+// const Logo = styled.img`
+//   display: block;
+//   margin: 0 auto;
+//   max-width: 100px;
+// `;
 
 const Title = styled.h2`
   text-align: center;
@@ -204,7 +204,7 @@ export default function LoginScreen() {
     <LoginBackground>
       <Overlay />
       <LoginCard>
-        <Logo src={logoImage} alt="Logo" />
+        {/* <Logo src={logoImage} alt="Logo" /> */}
         <Title>Đăng nhập</Title>
 
         <Label>Tài khoản*</Label>

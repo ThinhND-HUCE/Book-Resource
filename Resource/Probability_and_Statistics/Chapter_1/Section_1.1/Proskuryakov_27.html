@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 27</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 27:</i><br><br>
+    Định thức của hệ: \(\Delta = \begin{vmatrix}
+    \tan\alpha & 1 \\
+    1 & - \tan\alpha
+    \end{vmatrix} = \tan\alpha\times \left( -\tan\alpha \right) - 1\times 1 = - \left( 1 + \tan^2\alpha \right) = -
+    \dfrac{1}{\cos^2\alpha} \ne 0\Rightarrow \) hệ có nghiệm duy nhất.<br>
+
+    \(\Delta _x = \begin{vmatrix}
+    \sin\left( \alpha + \beta \right) & 1 
+    \cos\left( \alpha + \beta \right) & - \tan\alpha
+    \end{vmatrix} = \sin\left( \alpha + \beta \right)\times \left( - \tan\alpha \right) - \cos\left( \alpha + \beta
+    \right)\times 1 =
+    \sin\left( \alpha + \beta \right) \dfrac{-\sin\alpha}{\cos\alpha} - \cos\left( \alpha + \beta \right) =
+    - \dfrac{\cos\left( \alpha + \beta \right) \cos\alpha + \sin\left( \alpha + \beta \right)
+    \sin\alpha}{\cos\alpha} = \) 
+    \( - \dfrac{\cos\left[\left( \alpha + \beta \right) - \alpha \right]}{\cos\alpha} =
+    - \dfrac{\cos\beta}{\cos\alpha} \Rightarrow x = \dfrac{\Delta _x}{\Delta} = \dfrac{-
+    \dfrac{\cos\beta}{\cos\alpha}}{- \dfrac{1}{\cos^2\alpha}} =
+    \cos\alpha \cos\beta \)<br>
+
+    \(\Delta _y = \begin{vmatrix}
+    \tan\alpha & \sin\left( \alpha + \beta \right) 
+    1 & \cos\left( \alpha + \beta \right)
+    \end{vmatrix} =
+    \tan\alpha\times \cos\left( \alpha + \beta \right) - 1\times \sin\left( \alpha + \beta \right) = \) 
+    \(\dfrac{\sin\alpha}{\cos\alpha} \cos\left( \alpha + \beta \right) - \sin\left( \alpha + \beta \right) =
+    - \dfrac{\sin\left( \alpha + \beta \right) \cos\alpha - \cos\left( \alpha + \beta \right)
+    \sin\alpha}{\cos\alpha} = \) 
+    \(- \dfrac{\sin\left[\left( \alpha + \beta \right) - \alpha \right]}{\cos\alpha} =
+    - \dfrac{\sin\beta}{\cos\alpha} \Rightarrow y = \dfrac{\Delta _y}{\Delta} = \dfrac{-
+    \dfrac{\sin\beta}{\cos\alpha}}{- \dfrac{1}{\cos^2\alpha}} =
+    \cos\alpha \sin\beta \)
+</body>

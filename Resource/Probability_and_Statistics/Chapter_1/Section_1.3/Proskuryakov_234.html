@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 234</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 234:</i><br><br>
+    
+    Định thức đã cho có thể viết thành
+    \(\displaystyle D = \sum\limits_{{\alpha _2}, \ldots ,{\alpha _n} = 1}^n {\sum\limits_{{\alpha _1} = 1}^n 
+    \begin{vmatrix}
+    a_{1\alpha_1} & a_{1\alpha_2} & \ldots & a_{1\alpha_n} \\
+    a_{2\alpha_1} & a_{2\alpha_2} & \ldots & a_{2\alpha_n} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    a_{n\alpha_1} & a_{n\alpha_2} & \ldots & a_{n\alpha_n}
+    \end{vmatrix} } \). 
+
+    Áp dụng tính cộng tính của định thức theo cột 1 ta có
+    \[
+    D = \sum\limits_{{\alpha _2}, \ldots ,{\alpha _n} = 1}^n 
+    \begin{vmatrix}
+    \sum\limits_{{\alpha _1} = 1}^n {{a_{1{\alpha _1}}}}  & a_{1\alpha_2} & \ldots & a_{1\alpha_n} \\
+    \sum\limits_{{\alpha _1} = 1}^n {{a_{2{\alpha _1}}}}  & a_{2\alpha_2} & \ldots & a_{2\alpha_n} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    \sum\limits_{{\alpha _1} = 1}^n {{a_{n{\alpha _1}}}}  & a_{n\alpha_2} & \ldots & a_{n\alpha_n}
+    \end{vmatrix}
+    \]
+
+    Tương tự, lại tiếp tục biến đổi
+    \begin{align}
+    D & = 
+    \sum\limits_{{\alpha _3},{\alpha _4}, \ldots ,{\alpha _n} = 1}^n {\sum\limits_{{\alpha _2} = 1}^n 
+    \begin{vmatrix}
+    \sum\limits_{{\alpha _1} = 1}^n {{a_{1{\alpha _1}}}}  & a_{1\alpha_2} & \ldots & a_{1\alpha_n} \\
+    \sum\limits_{{\alpha _1} = 1}^n {{a_{2{\alpha _1}}}}  & a_{2\alpha_2} & \ldots & a_{2\alpha_n} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    \sum\limits_{{\alpha _1} = 1}^n {{a_{n{\alpha _1}}}}  & a_{n\alpha_2} & \ldots & a_{n\alpha_n}
+    \end{vmatrix} } \\
+    & = \sum\limits_{{\alpha _3},{\alpha _4}, \ldots ,{\alpha _n} = 1}^n 
+    \begin{vmatrix}
+    \sum\limits_{{\alpha _1} = 1}^n {{a_{1{\alpha _1}}}}  & \sum\limits_{{\alpha _2} = 1}^n {{a_{1{\alpha _2}}}} & \ldots & a_{1\alpha_n} \\
+    \sum\limits_{{\alpha _1} = 1}^n {{a_{2{\alpha _1}}}}  & \sum\limits_{{\alpha _2} = 1}^n {{a_{2{\alpha _2}}}} & \ldots & a_{2\alpha_n} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    \sum\limits_{{\alpha _1} = 1}^n {{a_{n{\alpha _1}}}}  & \sum\limits_{{\alpha _2} = 1}^n {{a_{n{\alpha _2}}}} & \ldots & a_{n\alpha_n}
+    \end{vmatrix}
+    \end{align}
+
+    Ta thấy mỗi định thức ở trên có cột 1 và 2 giống nhau nên nó bằng 0. 
+    Vậy \(D = 0\).
+
+</body>
