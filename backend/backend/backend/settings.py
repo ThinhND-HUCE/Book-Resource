@@ -83,9 +83,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bookstore',
+        'NAME': 'Book_store',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': 'hung31122004',
         'HOST': 'localhost',
         'PORT': '5432',
 
@@ -145,3 +145,9 @@ load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 JWT_ALGORITHM = os.getenv('JWT_ALGORITHM')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ndthinh1402@gmail.com'  
+EMAIL_HOST_PASSWORD = 'ckpb pcfa jpqv ztmb'  

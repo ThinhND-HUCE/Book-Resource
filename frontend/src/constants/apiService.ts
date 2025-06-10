@@ -43,3 +43,25 @@ export const loginUser = async (username: string, password: string) => {
 export const sendOtp = async (email: string) => {
     return fetchAPI(API_ENDPOINTS.SEND_OTP, "POST", { email });
   };
+
+export const verifyBookCode = async (bookCode: string, email: string) => {
+  const response = await fetch(API_ENDPOINTS.VERIFY_BOOK_CODE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ book_code: bookCode, email }),
+  });
+
+  if (!response.ok) throw new Error("Không thể xác nhận mã sách.");
+  return await response.json();
+};
+
+export const registerUser = async (userData: any) => {
+  const response = await fetch(API_ENDPOINTS.REGISTER, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userData),
+  });
+
+  if (!response.ok) throw new Error("Đăng ký thất bại.");
+  return await response.json();
+};

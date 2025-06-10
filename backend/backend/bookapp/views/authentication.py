@@ -7,17 +7,37 @@ from django.contrib.auth.hashers import make_password, check_password
 from ..auth.jwt_handler import JWTHandler
 from bookapp import serializers
 from bookapp.models import User
+from bookapp.models import BookCode
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
+from bookapp.utils.email_utils import send_html_email
+
 
 @api_view(['POST'])
 def register_user(request):
-    serializer = serializers(data=request.data)
+    verify_code = request.data.get('verifyCode')  # Lấy verifyCode từ payload
+    if not verify_code:
+        return Response({'error': 'Verify code is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        # Kiểm tra verifyCode trong bảng book_code
+        book_entry = BookCode.objects.get(matched_code=verify_code)
+    except BookCode.DoesNotExist:
+        return Response({'error': 'Invalid verify code'}, status=status.HTTP_400_BAD_REQUEST)
+
+    # Sử dụng UserSerializer để ánh xạ dữ liệu
+    serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
-        # Password sẽ được mã hóa tự động thông qua serializer
+        # Mã hóa mật khẩu trước khi lưu
         user = serializer.save()
+
+        # Đánh dấu user_id vào bảng book_code
+        book_entry.user_id = user.id
+        book_entry.save()
+
         return Response({
             'message': 'User created successfully',
-            'user': serializers(user).data
+            'user': UserSerializer(user).data
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -51,6 +71,30 @@ def login_user(request):
     except User.DoesNotExist:
         return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
 
+@api_view(['POST'])
+def verify_book_code(request):
+    email = request.data.get('email')
+    book_code = request.data.get('book_code')
+
+    if not email or not book_code:
+        return Response({'error': 'Thiếu email hoặc mã sách.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        # Tìm mã sách trong bảng BookCode
+        book_entry = BookCode.objects.get(book_code=book_code)
+
+        matched_code = book_entry.matched_code
+
+        # Gửi matched_code đến email người dùng
+        send_html_email(email, matched_code)
+        
+
+        return Response({'message': 'Mã xác nhận đã được gửi về email.'}, status=status.HTTP_200_OK)
+
+    except BookCode.DoesNotExist:
+        return Response({'error': 'Mã sách không tồn tại.'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({'error': f'Lỗi gửi email: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticatedWithJWT])
