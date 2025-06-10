@@ -41,7 +41,7 @@ def score(input_answer, exact_answer):
     input_answer, exact_answer: float
     kết quả:
         đúng nếu:   (TH1) exact_answer = 0, | input_answer | < 10^-6; 
-                    (TH2) exact_answer != 0, sai số tương đối delta = | (input_answer - exact_answer) / exact_answer | < 10^-4
+                    (TH2) exact_answer != 0, sai số tương đối delta = | (input_answer - exact_answer) / exact_answer | < 10^-2
         sai nếu ngược lại
     '''
     if exact_answer == 0 and abs(input_answer) or exact_answer != 0 and abs( (input_answer - exact_answer) / exact_answer ) < 10**-2:
@@ -50,7 +50,7 @@ def score(input_answer, exact_answer):
         return False
     
 @api_view(['GET', 'POST'])
-def xstk_kinh_dien_view(request):
+def xac_suat_co_dien_view(request):
     auth_header = request.headers.get('Authorization')
     if not auth_header or not auth_header.startswith('Bearer '):
         return Response({'detail': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestion } from '../api/exerciseApi';
+import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestion } from '../api/xacSuatCoDienApi';
 import 'katex/dist/katex.min.css';
 import { InlineMath } from 'react-katex';
 
@@ -190,7 +190,7 @@ interface ExerciseProps {
     timeLimit?: number; // Time limit in seconds, default to 300 (5 minutes)
 }
 
-const Exercise: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => {
+const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => {
     const [question, setQuestion] = useState<ExerciseQuestion | null>(null);
     const [answer, setAnswer] = useState<ExerciseAnswer>({ m: '', t: '', p: '' });
     const [result, setResult] = useState<any>(null);
@@ -459,4 +459,4 @@ const Exercise: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => {
     );
 };
 
-export default Exercise; 
+export default XacSuatCoDien; 

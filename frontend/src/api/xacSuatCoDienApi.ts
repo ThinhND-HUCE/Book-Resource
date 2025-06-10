@@ -1,3 +1,4 @@
+//Câu hỏi
 export interface ExerciseQuestion {
     k1: number;
     k2: number;
@@ -7,12 +8,14 @@ export interface ExerciseQuestion {
     answers: string;
 }
 
+//Thông tin người dùng nhập vào
 export interface ExerciseAnswer {
     m: number;
     t: number;
     p: number;
 }
 
+//Thông tin được trả về sau khi kiểm tra (kết quả)
 export interface ExerciseResponse {
     frame_scores: {
         m_score: number;

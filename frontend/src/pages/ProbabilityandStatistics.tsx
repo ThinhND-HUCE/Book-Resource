@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Exercise from '../components/Exercise';
+import XacSuatCoDien from '../components/XacSuatCoDien';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -232,6 +232,7 @@ const ProbabilityandStatistics: React.FC = () => {
     const [currentFileIndex, setCurrentFileIndex] = useState<number | null>(null);
     const [openChapters, setOpenChapters] = useState<Set<string>>(new Set());
     const [openSections, setOpenSections] = useState<Set<string>>(new Set());
+    //1. Điều kiện hiển thị cái Exercise
     const [showExercise, setShowExercise] = useState(false);
     const navigate = useNavigate();
 
@@ -276,6 +277,7 @@ const ProbabilityandStatistics: React.FC = () => {
         return match ? match[1] : filename;
     };
 
+    //2. Hàm xử lý khi nhấn vào nút
     const showExerciseContent = async (type: number) => {
         setShowExercise(true);
         toast.success(`Bắt đầu luyện tập dạng ${type}!`, {
@@ -431,9 +433,10 @@ const ProbabilityandStatistics: React.FC = () => {
         const section = chapter ? findSection(chapter.children) : null;
         if (!section) return <span>Không tìm thấy section</span>;
 
+        //3. Hiển thị giao diện
         if (showExercise) {
-            return <Exercise onBack={() => setShowExercise(false)} />;
-        }
+            return <XacSuatCoDien onBack={() => setShowExercise(false)} />;
+        } 
 
         return (
             <>
