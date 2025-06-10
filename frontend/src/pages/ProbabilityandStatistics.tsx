@@ -1,200 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import XacSuatCoDien from '../components/XacSuatCoDien';
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { BackButton, NextButton,Course,FileItem, Iframe, FolderItem, ContentItem, Button, VerticalWrapper, VerticalGroup, ChapterContainer, ChapterButton, SectionContainer, SectionButton, PracticeButton, Title, PracticeButtonsContainer, DashboardButton, Container, SelectionBar, DetailBar } from "../pages/UseInterFace";
 
-interface FileItem {
-    type: "file";
-    name: string;
-    path: string;
-}
 
-interface FolderItem {
-    type: "folder";
-    name: string;
-    path: string;
-    children: ContentItem[];
-}
-
-type ContentItem = FileItem | FolderItem;
-
-interface Course {
-    id: string;
-    course_name: string;
-    content: ContentItem[];
-}
-
-const Container = styled.div`
-    display: grid;
-    grid-template-columns: 25.5% 70%;
-    gap: 24px;
-    height: 80vh;
-    width: 100vw;
-    position: fixed;
-    top: 70px; // Modified from 20px to 70px to make room for the dashboard button
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    box-sizing: border-box;
-`;
-
-const SelectionBar = styled.div`
-    background-color: #f8f8f8;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    border-radius: 8px;
-    height: 100%;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: #ffffff;
-        border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: #cccccc;
-        border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background: #999999;
-    }
-`;
-
-const DetailBar = styled.div`
-    background-color: #f8f8f8;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    border-radius: 8px;
-    height: 100%;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: #ffffff;
-        border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: #cccccc;
-        border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background: #999999;
-    }
-`;
-
-const Title = styled.h2`
-  text-align: center;
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: rgba(0, 0, 0);
-`;
-
-const Button = styled.button`
-    border: 1px solid #000000;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 16px;
-    width: 105px;
-    margin: 8px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.2s;
-    
-    &:hover {
-        background-color: #c5c5c5;
-        border: 1px solid #2e2e2e;
-    }
-`;
-
-const BackButton = styled(Button)`
-    background-color: #2196f3;
-    border: none;
-    color: #ffffff;
-    font-weight: 700;
-    margin-bottom: 15px;
-
-    &:hover {
-        background-color: #1976d2;
-        border: none;
-    }
-`;
-
-const NextButton = styled(BackButton)`
-    position: absolute;
-    right: 0;
-`;
-
-const ChapterButton = styled(Button)`
-    border: 1px solid #ddd;
-    text-align: left;
-    width: 333px;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &:hover {
-        background-color: #2196f3;
-        border: 1px solid #ddd;
-    }
-
-    &.active {
-        background-color: #2196f3;
-        border-color: #a4c8f0;
-    }
-`;
-
-const SectionButton = styled(ChapterButton)`
-    width: 325px;
-`;
-
-const SectionContainer = styled.div<{ isOpen: boolean }>`
-    max-height: ${props => props.isOpen ? '1000px' : '0'};
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-`;
-
-const DashboardButton = styled(BackButton)`
-    position: fixed;
-    top: 8px;
-    left: 12px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 150px;
-`;
-
-const VerticalWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 16px;
-`;
-
-const VerticalGroup = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-`;
-
-const Iframe = styled.iframe`
-    width: 100%;
-    height: 80vh;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-`;
-
-const CourseDetail: React.FC = () => {
-    const { courseId } = useParams<{ courseId: string }>();
+const ProbabilityandStatistics: React.FC = () => {
     const [course, setCourse] = useState<Course | null>(null);
     const [selectedChapter, setSelectedChapter] = useState<string | null>(null);
     const [selectedSection, setSelectedSection] = useState<string | null>(null);
@@ -203,6 +16,8 @@ const CourseDetail: React.FC = () => {
     const [currentFileIndex, setCurrentFileIndex] = useState<number | null>(null);
     const [openChapters, setOpenChapters] = useState<Set<string>>(new Set());
     const [openSections, setOpenSections] = useState<Set<string>>(new Set());
+    //1. Điều kiện hiển thị cái Exercise
+    const [showExercise, setShowExercise] = useState(false);
     const navigate = useNavigate();
 
     const formatName = (name: string) => {
@@ -235,18 +50,29 @@ const CourseDetail: React.FC = () => {
     };
 
     useEffect(() => {
-        if (courseId) {
-            fetch(`http://localhost:8000/api/courses/${courseId}`)
-                .then(res => res.json())
-                .then((data: Course) => setCourse(data))
-                .catch(err => console.error("Lỗi lấy dữ liệu khóa học:", err));
-        }
-    }, [courseId]);
+        fetch(`http://localhost:8000/api/courses/Probability_and_Statistics`)
+            .then(res => res.json())
+            .then((data: Course) => setCourse(data))
+            .catch(err => console.error("Lỗi lấy dữ liệu khóa học:", err));
+    }, []);
 
     const extractNumber = (filename: string) => {
         const match = filename.match(/Proskuryakov (\d+)\.html/);
         return match ? match[1] : filename;
     };
+
+    //2. Hàm xử lý khi nhấn vào nút
+    const showExerciseContent = async (type: number) => {
+        setShowExercise(true);
+        toast.success(`Bắt đầu luyện tập dạng ${type}!`, {
+            autoClose: 2000,
+            position: "top-right",
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+    }
 
     const fetchHtmlContent = async (filePath: string, files: FileItem[], index: number) => {
         try {
@@ -315,7 +141,6 @@ const CourseDetail: React.FC = () => {
             </Button>
         ));
     };
-
     const renderChapters = () => {
         return (
             <VerticalWrapper>
@@ -327,36 +152,45 @@ const CourseDetail: React.FC = () => {
 
                         return (
                             <VerticalGroup key={folder.path}>
-                                <ChapterButton
-                                    className={selectedChapter === folder.name ? "active" : ""}
-                                    onClick={() => {
-                                        setSelectedChapter(folder.name);
-                                        setSelectedSection(null);
-                                        toggleChapter(folder.name);
-                                    }}
-                                >
-                                    <span>{formatName(folder.name)}</span>
-                                </ChapterButton>
+                                <ChapterContainer>
+                                    <ChapterButton
+                                        className={selectedChapter === folder.name ? "active" : ""}
+                                        onClick={() => {
+                                            setSelectedChapter(folder.name);
+                                            setSelectedSection(null);
+                                            toggleChapter(folder.name);
+                                        }}
+                                    >
+                                        <span>{formatName(folder.name)}</span>
+                                    </ChapterButton>
+                                </ChapterContainer>
                                 <SectionContainer isOpen={isChapterOpen}>
                                     {folder.children.map(section =>
                                         section.type === "folder" ? (
-                                            <SectionButton
-                                                key={section.path}
-                                                style={{ margin: "8px 8px 10px 8px" }}
-                                                className={selectedSection === section.name ? "active" : ""}
-                                                onClick={() => {
-                                                    setSelectedSection(section.name);
-                                                    toggleSection(section.name);
-                                                }}
-                                            >
-                                                <span>{formatName(section.name)}</span>
-                                            </SectionButton>
+                                            <ChapterContainer key={section.path}>
+                                                <SectionButton
+                                                    style={{ margin: "8px 8px 0 8px" }}
+                                                    className={selectedSection === section.name ? "active" : ""}
+                                                    onClick={() => {
+                                                        setSelectedSection(section.name);
+                                                        toggleSection(section.name);
+                                                    }}
+                                                >
+                                                    <span>{formatName(section.name)}</span>
+                                                </SectionButton>
+                                            </ChapterContainer>
                                         ) : null
                                     )}
                                 </SectionContainer>
                             </VerticalGroup>
                         );
                     })}
+                <PracticeButton 
+                    style={{ margin: "20px 0" }}
+                    onClick={() => console.log("Luyện tập tất cả chapter")}
+                >
+                    Luyện tập tất cả chapter
+                </PracticeButton>
             </VerticalWrapper>
         );
     };
@@ -382,10 +216,35 @@ const CourseDetail: React.FC = () => {
         const section = chapter ? findSection(chapter.children) : null;
         if (!section) return <span>Không tìm thấy section</span>;
 
+        //3. Hiển thị giao diện
+        if (showExercise) {
+            return <XacSuatCoDien onBack={() => setShowExercise(false)} />;
+        } 
+
         return (
             <>
-                <Title>Nội dung: {formatName(section.name)}</Title>
+                <Title>{formatName(section.name)}</Title>
                 {renderSectionButtons(section)}
+                <PracticeButtonsContainer>
+                    <PracticeButton 
+                        style={{ width: '200px' }}
+                        onClick={() => showExerciseContent(1)}
+                    >
+                        Luyện tập dạng 1
+                    </PracticeButton>
+                    <PracticeButton 
+                        style={{ width: '200px' }}
+                        onClick={() => showExerciseContent(2)}
+                    >
+                        Luyện tập dạng 2
+                    </PracticeButton>
+                    <PracticeButton 
+                        style={{ width: '200px' }}
+                        onClick={() => showExerciseContent(3)}
+                    >
+                        Luyện tập dạng 3
+                    </PracticeButton>
+                </PracticeButtonsContainer>
             </>
         );
     };
@@ -405,4 +264,4 @@ const CourseDetail: React.FC = () => {
     );
 };
 
-export default CourseDetail;
+export default ProbabilityandStatistics;

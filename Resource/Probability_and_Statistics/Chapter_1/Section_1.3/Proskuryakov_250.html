@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 250</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 250:</i><br><br>
+    
+    Trong định thức \(D\) đã cho, trừ hàng 2 và hàng 3 cho hàng 1, thì định thức không đổi:
+    \[
+    D = 
+    \begin{vmatrix}
+    \dfrac{1}{a+x} & \dfrac{1}{a+y} & 1 \\
+    \dfrac{1}{b+x} - \dfrac{1}{a+x} & \dfrac{1}{b+y} - \dfrac{1}{a+y} & 0 \\
+    \dfrac{1}{c+x} - \dfrac{1}{a+x} & \dfrac{1}{c+y} - \dfrac{1}{a+y} & 0
+    \end{vmatrix} 
+    \]
+
+    Khai triển định thức này theo cột 3, đồng thời xử lý các phần tử trong định thức con:
+    \[
+    D = \left( 1 \right) \begin{vmatrix}
+    \dfrac{{a - b}}{{\left( {a + x} \right)\left( {b + x} \right)}} & \dfrac{{a - b}}{{\left( {a + y} \right)\left( {b + y} \right)}} \\
+    \dfrac{{a - c}}{{\left( {a + x} \right)\left( {c + x} \right)}} & \dfrac{{a - c}}{{\left( {a + y} \right)\left( {c + y} \right)}} 
+    \end{vmatrix}
+    \]
+
+
+    Đưa thừa số chung ở hàng thứ nhất là \(\left( a-b \right)\), ở hàng thứ hai là \(\left( a-c \right)\), ở cột thứ nhất là \(\dfrac{1}{a+x}\), ở cột thứ hai là \(\dfrac{1}{a+y}\) ra ngoài định thức:
+    \[
+    D = \left( a-b \right) \left( a-c \right) \frac{1}{a+x}\;\frac{1}{a+y}
+    \begin{vmatrix}
+    \dfrac{1}{b+x} & \dfrac{1}{b+y} \\
+    \dfrac{1}{c+x} & \dfrac{1}{c+y} 
+    \end{vmatrix}
+    \]
+
+    Ta tính định thức cấp hai trong đẳng thức trên:
+    \begin{align}
+    D_1 & = \frac{1}{{b + x}} \times \frac{1}{{c + y}} - \frac{1}{{c + x}} \times \frac{1}{{b + y}} = \frac{{\left( {c + x} \right)\left( {b + y} \right) - \left( {b + x} \right)\left( {c + y} \right)}}{{\left( {b + x} \right)\left( {c + y} \right) \times \left( {c + x} \right)\left( {b + y} \right)}} \\
+    & = \frac{{\left( {bc + bx + cy + xy} \right) - \left( {bc + cx + by + xy} \right)}}{{\left( {b + x} \right)\left( {c + x} \right)\left( {b + y} \right)\left( {c + y} \right)}} = \frac{{bx + cy - cx - by}}{{\left( {b + x} \right)\left( {c + x} \right)\left( {b + y} \right)\left( {c + y} \right)}} \\
+    & = \frac{{\left( {b - c} \right)\left( {x - y} \right)}}{{\left( {b + x} \right)\left( {c + x} \right)\left( {b + y} \right)\left( {c + y} \right)}}
+    \end{align}
+    và có điều phải chứng minh.
+
+</body>

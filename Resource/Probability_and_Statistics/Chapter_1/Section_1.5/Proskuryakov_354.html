@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 354</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 354:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D\).<br>
+
+    \(\star\quad\) Cách 1:\(\quad\)
+    Trừ cột 1 vào các cột còn lại, thì định thức không đổi:
+    \[
+    D = 
+    \begin{vmatrix}
+    a_1 - b_1 & b_1 - b_2 & \ldots & b_1 - b_n \\
+    a_2 - b_1 & b_1 - b_2 & \ldots & b_1 - b_n \\
+    \ldots & \ldots & \ldots & \ldots \\
+    a_n - b_1 & b_1 - b_2 & \ldots & b_1 - b_n
+    \end{vmatrix}
+    \]
+
+    Khi đó nếu \(n \ge 3\), thì trong định thức trên, hai cột 2 và 3 tỷ lệ với nhau, nên \(D = 0\). <br>
+
+    Với \(n = 1\) thì \(D = a_1 - b_1\), còn với \(n = 2\), ta có
+    \begin{align}
+    D & = \begin{vmatrix}
+    a_1 - b_1 & a_1 - b_2 \\
+    a_2 - b_1 & a_2 - b_2
+    \end{vmatrix}
+    = \left( a_1 - b_1 \right) \left( a_2 - b_2 \right) - \left( a_2 - b_1 \right) \left(a_1 - b_2 \right) \\
+    & = \left( a_1a_2 - a_1b_2 - a_2b_1 + b_1b_2 \right) - \left( a_1a_2 - a_2b_2 - a_1b_1 + b_1b_2 \right) \\
+    & = -a_1b_2 -a_2b_1 + a_2b_2 + a_1b_1
+    = \left( a_1 - a_2 \right) \left( b_1 - b_2 \right) .
+    \end{align}
+
+
+
+    \(\star\quad\) Cách 2:\(\quad\)
+    Xét trường hợp \(n\ge 2\). Trong định thức, nếu thay \(a_1\) bởi \(a_2\), thì hàng 1 và 2 giống nhau, khi đó \(D\) nhận giá trị bằng~0, nên \(D\) chia hết cho \(a_1 - a_2\). Lập luận tương tự, \(D\) chia hết cho \(a_1 - a_i\), với \(i = 2,\ldots, n\).
+    Mặt khác, \(a_1 - a_2, a_1 - a_3, \ldots, a_1 - a_n\) đôi một nguyên tố cùng nhau, nên \(D\) chia hết cho tích của chúng. Đặt
+    \[
+    D = \left( q \right) \left( a_1 - a_2 \right) \left( a_1 - a_3 \right) \cdots \left( a_1 - a_n \right).
+    \]
+
+    Khai triển \(D\) thành tổng các đơn thức, thì hệ số của \(a_1^{n-1}\) là \(q\).<br>
+
+    Tuy nhiên, nếu khai triển \(D\) theo định nghĩa phép thế, thì do \(a_1\) chỉ xuất hiện tại hàng đầu, nên lũy thừa cao nhất của \(a_1\) (sau khi rút gọn) không quá~1. Do đó, nếu \(n-1 > 1\), hay \(n\ge 3\), thì hệ số của \(x^{n-1}\) phải bằng~0, tức là \(q = 0\). Khi đó \(D = 0\).<br>
+
+    Trường hợp \(n = 1, 2\), \(D\) được xác định như trong cách 1.
+
+</body>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 184</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 184:</i><br><br>
+    
+    Nếu \(X\) là phép thế giao hoán với \(S\), thì \(SX = XS\), hay \(X^{-1} S X = S\). Phân tích \(S\) thành các xích
+    \[
+    S = \left( 1,\; 2 \right) \left( 3,\; 4 \right) = X^{-1} \left( 1,\; 2 \right) X \; X^{-1} \left( 3,\; 4 \right) X
+    \]
+
+    Nhận xét rằng \( X^{-1} \left( 1,\; 2 \right) X \) lại là một xích có độ dài 2, được tạo ra từ xích \( \left( 1,\; 2 \right) \) bằng cách thay thế các số 1 và 2 bởi những số tương ứng với chúng trong phép thế \(X\). 
+    Thật vậy, đặt 
+    \(X = \left( \begin{array}{*{4}{c}}
+    1 & 2 & 3 & 4 \\
+    x_1 & x_2 & x_3 & x_4
+    \end{array} \right)\)
+    thì
+    \(X^{-1} = \left( \begin{array}{*{4}{c}}
+    x_1 & x_2 & x_3 & x_4 \\
+    1 & 2 & 3 & 4
+    \end{array} \right)\). Suy ra
+    \begin{align}
+    X^{-1} \left( 1,\; 2 \right) X & = \left( \begin{array}{*{4}{c}}
+    x_1 & x_2 & x_3 & x_4 \\
+    1 & 2 & 3 & 4
+    \end{array} \right) \left( 1,\; 2 \right) \left( \begin{array}{*{4}{c}}
+    1 & 2 & 3 & 4 \\
+    x_1 & x_2 & x_3 & x_4
+    \end{array} \right) \\
+    & =
+    \left( \begin{array}{*{4}{c}}
+    x_1 & x_2 & x_3 & x_4 \\
+    x_2 & x_1 & x_3 & x_4
+    \end{array} \right) = \left( x_1,\; x_2 \right)
+    \end{align}
+
+    Điều này cũng đúng với xích \( \left(3,\; 4\right) \). 
+    Do đó, phép thế \( X \) phải biến các xích của \( S \) thành các xích có cùng độ dài, và phân tích của \( S \) thành các xích là duy nhất, nên các xích hoặc giữ nguyên, hoặc biến đổi lẫn nhau. 
+    Vì mỗi xích độ dài 2 có thể viết theo hai cách, \( \left(1,\; 2\right) = \left(2,\; 1\right) \), \( \left(3,\; 4\right) = \left(4,\; 3\right) \), nên tất cả các phép thế giao hoán với \( S \) là:
+    \begin{align}
+    & \left( \begin{array}{*{4}{c}}
+    1 & 2 & 3 & 4 \\
+    1 & 2 & 3 & 4
+    \end{array} \right),\quad\quad
+    \left( \begin{array}{*{4}{c}}
+    1 & 2 & 3 & 4 \\
+    1 & 2 & 4 & 3
+    \end{array} \right),\quad\quad
+    \left( \begin{array}{*{4}{c}}
+    1 & 2 & 3 & 4 \\
+    2 & 1 & 3 & 4
+    \end{array} \right),\quad\quad
+    \left( \begin{array}{*{4}{c}}
+    1 & 2 & 3 & 4 \\
+    2 & 1 & 4 & 3
+    \end{array} \right),                \\
+    & \left( \begin{array}{*{4}{c}}
+    1 & 2 & 3 & 4 \\
+    3 & 4 & 1 & 2
+    \end{array} \right),\quad\quad
+    \left( \begin{array}{*{4}{c}}
+    1 & 2 & 3 & 4 \\
+    3 & 4 & 2 & 1
+    \end{array} \right),\quad\quad
+    \left( \begin{array}{*{4}{c}}
+    1 & 2 & 3 & 4 \\
+    4 & 3 & 1 & 2
+    \end{array} \right),\quad\quad
+    \left( \begin{array}{*{4}{c}}
+    1 & 2 & 3 & 4 \\
+    4 & 3 & 2 & 1
+    \end{array} \right)
+    \end{align}
+
+</body>

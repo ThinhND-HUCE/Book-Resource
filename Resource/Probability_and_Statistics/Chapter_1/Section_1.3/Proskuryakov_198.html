@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 198</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 198:</i><br><br>
+    
+    Ta cần tìm \(i, k\) để có phép thế chẵn: \(\left( \begin{array}{*{7}{c}}
+    4 & 6 & 1 & 5 & 7 & 2 & 3 \\
+    7 & 3 & i & 5 & k & 4 & 1
+    \end{array} \right)\).
+    Vì hàng thứ hai của phép thế phải đầy đủ các số từ 1 tới 7 nên \(i\) và \(k\) nhận hai giá trị còn lại là 2 và 6. Xét hai trường hợp:
+    <ul>
+        <li>
+            Trường hợp \(i = 2, k = 6\), phân tích phép thế thành 2 xích
+            \[
+            \left( \begin{array}{*{7}{c}}
+            4 & 6 & 1 & 5 & 7 & 2 & 3 \\
+            7 & 3 & 2 & 5 & 6 & 4 & 1
+            \end{array} \right) = 
+            \left( 1,\; 2,\; 4,\; 7,\; 6,\; 3 \right) \left( 5 \right)
+            \]
+            nên độ giảm của phép thế bằng \(7 - 2 = 5\), là số lẻ. 
+            Theo bài \ref{proskuryakov-181}, số nghịch thế của phép thế cũng lẻ. 
+            Do đó dấu của tích này trong khai triển định thức là dấu âm (loại).
+        </li>
+        <li>
+            Trường hợp \(i = 6, k = 2\), phân tích phép thế thành 3 xích
+            \[
+            \left( \begin{array}{*{7}{c}}
+            4 & 6 & 1 & 5 & 7 & 2 & 3 \\
+            7 & 3 & 6 & 5 & 2 & 4 & 1
+            \end{array} \right) = 
+            \left( 1,\; 6,\; 3 \right) \left( 2,\; 4,\; 7 \right) \left( 5 \right)
+            \]
+            nên độ giảm của phép thế bằng \(7 - 3 = 4\), là số chẵn, suy ra số nghịch thế của phép thế cũng chẵn. 
+            Do đó dấu của tích này trong khai triển định thức là dấu dương (thỏa mãn).
+        </li>
+    </ul>
+
+    Vậy \(i = 6, k = 2\).
+
+</body>

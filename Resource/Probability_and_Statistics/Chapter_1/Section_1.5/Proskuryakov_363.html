@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 363</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 363:</i><br><br>
+    
+    Ký hiệu \(D_n\) là định thức đã cho.
+    Khai triển theo cột đầu ta có
+    \[
+    D_n = \left( \frac{2}{x} \right)
+    \begin{vmatrix}
+    \dfrac{2}{x} & \dfrac{1}{x^2} & 0 & \ldots & 0 & 0 \\
+    1 & \dfrac{2}{x} & \dfrac{1}{x^2} & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & 1 & \dfrac{2}{x}
+    \end{vmatrix}_{n-1}
+    - \left( 1 \right)
+    \begin{vmatrix}
+    \dfrac{1}{x^2} & 0 & 0 & \ldots & 0 & 0 \\
+    1 & \dfrac{2}{x} & \dfrac{1}{x^2} & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & 1 & \dfrac{2}{x}
+    \end{vmatrix}_{n-1}
+    \]
+
+    Trong hai định thức trên, định thức thứ nhất chính là \(D_{n-1}\); còn với định thức thứ hai, ta khai triển theo hàng đầu, lại được \(\dfrac{1}{x^2} D_{n-2}\). Suy ra
+    \[
+    D_n = \frac{2}{x} D_{n-1} - \frac{1}{x^2} D_{n-2} .
+    \]
+
+    Đây là hệ thức truy hồi tuyến tính thuần nhất cấp hai hệ số hằng, với 
+    \[
+    D_1 = \dfrac{2}{x},\quad
+    D_2 = \begin{vmatrix}
+    \dfrac{2}{x} & \dfrac{1}{x^2} \\
+    1 & \dfrac{2}{x}
+    \end{vmatrix} = \left( \dfrac{2}{x} \right) \left( \dfrac{2}{x} \right) - \left( 1 \right) \left( \dfrac{1}{x^2} \right) = \dfrac{3}{x^2} .
+    \]
+
+    Hệ thức có phương trình đặc trưng
+    \[
+    \lambda^2 = \frac{2}{x} \lambda - \frac{1}{x^2}  \Leftrightarrow 
+    \lambda^2 - \frac{2}{x} \lambda + \frac{1}{x^2} = 0 \Leftrightarrow
+    \left( \lambda - \frac{1}{x} \right)^2 = 0  \Leftrightarrow 
+    \lambda = \frac{1}{x}\quad (\text{nghiệm kép } \alpha)
+    \]
+
+    Khi đó
+    \[
+    D_n = \alpha^n \left( C_1 + C_2 n \right) =  \frac{C_1 + C_2 n}{x^n} .
+    \]
+
+    Để tính hai hệ số \(C_1, C_2\), ta sử dụng hai điều kiện ban đầu
+    \[
+    D_1 = \frac{2}{x} = \frac{C_1 + C_2}{x}, \quad \text{và} \quad
+    D_2 = \frac{3}{x^2} = \frac{C_1 + 2C_2}{x^2} .
+    \]
+
+    Giải hệ trên, dễ dàng có \(C_1 = 1,\; C_2 = 1\). Vậy \(D_n = \dfrac{n + 1}{x^n}\).
+
+</body>
+</html>

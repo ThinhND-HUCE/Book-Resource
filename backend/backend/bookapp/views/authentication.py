@@ -2,16 +2,18 @@ from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from bookapp.permissions import IsAuthenticatedWithJWT
-from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password, check_password
 from ..auth.jwt_handler import JWTHandler
 from bookapp import serializers
 from bookapp.models import User
+<<<<<<< HEAD
 from bookapp.models import BookCode
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from bookapp.utils.email_utils import send_html_email
 
+=======
+>>>>>>> f32ef398ca03f0c4d9a267da1b6a6c0a803d9964
 
 @api_view(['POST'])
 def register_user(request):

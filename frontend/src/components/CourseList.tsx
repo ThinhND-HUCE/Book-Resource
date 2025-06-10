@@ -69,23 +69,31 @@ const CourseList: React.FC = () => {
       .catch((error) => console.error("Lỗi khi lấy danh sách khóa học:", error));
   }, []);
 
-  const handleCoursePress = (courseId: string) => {
+  const handleCoursePress = (courseId: string, courseName: string) => {
     const token = localStorage.getItem("access_token");
     if (!token) {
       alert("Bạn cần đăng nhập để xem nội dung khóa học");
       navigate("/login");
       return;
     }
-    navigate(`/course/${courseId}`);
+  
+    // Xử lý tên route: bỏ dấu "_" và chuyển thường
+    const routeName = courseId.replace(/_/g, "");
+  
+    navigate(`/${routeName}`);
   };
+  
 
   return (
     <Container>
       <Grid>
         {courses.map((course) => (
-          <Card key={course.id} onClick={() => handleCoursePress(course.id)}>
-            <CardText>{course.course_name}</CardText>
-          </Card>
+          <Card
+          key={course.id}
+          onClick={() => handleCoursePress(course.id, course.course_name)}
+        >
+          <CardText>{course.course_name}</CardText>
+        </Card>
         ))}
       </Grid>
     </Container>

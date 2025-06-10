@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 340</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 340:</i><br><br>
+
+    Ký hiệu định thức đã cho là \(D\).
+    Tại hàng thứ \(i\) của \(D\), với \(i = 1,\ldots, n+1\), đưa thừa số \(a_i^n\) ra ngoài dấu định thức:
+    \[
+    D = \left( a_1^n a_2^n \cdots a_{n+1}^n \right)
+    \begin{vmatrix}
+    1 & \dfrac{b_1}{a_1} & \left( \dfrac{b_1}{a_1} \right)^2 & \ldots & \left( \dfrac{b_1}{a_1} \right)^n \\
+    1 & \dfrac{b_2}{a_2} & \left( \dfrac{b_2}{a_2} \right)^2 & \ldots & \left( \dfrac{b_2}{a_2} \right)^n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & \dfrac{b_{n+1}}{a_{n+1}} & \left( \dfrac{b_{n+1}}{a_{n+1}} \right)^2 & \ldots & \left( \dfrac{b_{n+1}}{a_{n+1}} \right)^n 
+    \end{vmatrix}
+    \]
+
+    Nếu đặt \(x_i = \dfrac{b_i}{a_i}\), với \(i = 1,\ldots, n+1\), thì xuất hiện định thức Vandermonde:
+    \[
+    D_n = \begin{vmatrix}
+    1 & x_1 & x_1^2 & \ldots & x_1^n \\
+    1 & x_2 & x_2^2 & \ldots & x_2^n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & x_{n+1} & x_{n+1}^2 & \ldots & x_{n+1}^n
+    \end{vmatrix}
+    \]
+
+    Áp dụng kết quả trong <a href="Proskuryakov_vd_4.html">Ví dụ 4</a>, ta có
+    \[
+    D_n = \prod\limits_{i > j} {\left( {{x_i} - {x_j}} \right)} .
+    \]
+
+    Do đó
+    \begin{align}
+    D & = a_1^n a_2^n \cdots a_{n+1}^n\, D_n 
+    = a_1^n a_2^n \cdots a_{n+1}^n \prod\limits_{i > j} {\left( \frac{b_i}{a_i} - \frac{b_j}{a_j} \ \right)}
+    = a_1^n a_2^n \cdots a_{n+1}^n \prod\limits_{i > j} {\frac{a_j b_i - a_i b_j}{a_i a_j}} \\
+    & = a_1^n a_2^n \cdots a_{n+1}^n \prod\limits_{i > j} {\left( {{a_j}{b_i} - {a_i}{b_j}} \right)} \Big/ \prod\limits_{i > j} {\left( {{a_i}{a_j}} \right)} ,
+    \end{align}
+    trong đó
+    \begin{align}
+    \prod\limits_{i > j} {\left( {{a_i}{a_j}} \right)} & = \prod\limits_{i = 2}^{n + 1} {\prod\limits_{j = 1}^{i - 1} {\left( {{a_i}{a_j}} \right)} }  = \prod\limits_{i = 2}^{n + 1} {a_i^{i - 1}\prod\limits_{j = 1}^{i - 1} {{a_j}} }  = \prod\limits_{i = 2}^{n + 1} {\left( {{a_1}{a_2} \cdots {a_{i - 1}}a_i^{i - 1}} \right)} \\
+    & = \left( {{a_1}a_2^1} \right)\left( {{a_1}{a_2}a_3^2} \right)\left( {{a_1}{a_2}{a_3}a_4^3} \right) \cdots \left( {{a_1}{a_2} \cdots {a_{n - 1}}a_n^{n - 1}} \right)\left( {{a_1}{a_2} \cdots {a_n}a_{n + 1}^n} \right) \\
+    &  = a_1^na_2^n \cdots a_{n + 1}^n .
+    \end{align}
+
+    Vậy \(\displaystyle D = \prod\limits_{i > j} {\left( {{a_j}{b_i} - {a_i}{b_j}} \right)} \).
+
+    
+</body>

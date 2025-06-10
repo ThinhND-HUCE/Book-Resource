@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 249</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 249:</i><br><br>
+    
+    Khai triển định thức theo công thức tam giác
+    \begin{align}
+    D & = \left( a+b \right)^2 \left( b+c \right)^2 \left( c+a \right)^2 + \left( c^2 \right) \left( a^2 \right) \left( b^2 \right) + \left( a^2 \right) \left( b^2 \right) \left( c^2 \right) - \left( b^2 \right) \left( b+c \right)^2 \left( c^2 \right) \\
+    & \hspace{1cm} - \left( a^2 \right) \left( c^2 \right) \left( c+a \right)^2 - \left( b^2 \right) \left( a^2 \right) \left( a+b \right)^2 \\
+    & = {\left[ {\left( {a + b} \right)\left( {b + c} \right)\left( {c + a} \right)} \right]^2} + 2{\left( {abc} \right)^2} - {\left[ {ab\left( {a + b} \right)} \right]^2} - {\left[ {bc\left( {b + c} \right)} \right]^2} - {\left[ {ca\left( {c + a} \right)} \right]^2}
+    \end{align}
+
+    Lưu ý rằng
+    \[
+    \left( {a + b} \right)\left( {b + c} \right)\left( {c + a} \right) = ab\left( {a + b} \right) + bc\left( {b + c} \right) + ca\left( {c + a} \right) + 2abc
+    \]
+    và áp dụng công thức khai triển bình phương của tổng 4 số hạng
+    \begin{align}
+    {\left( {x + y + z + t} \right)^2} & = {x^2} + {y^2} + {z^2} + {t^2} + 2xy + 2xz + 2xt + 2yz + 2yt + 2zt \\
+    & = x^2 + y^2 + z^2 + t^2 + 2xy + 2xz + 2yz + 2t\left( x+y+z \right)
+    \end{align}
+    ta có
+    \begin{align}
+    D & = {\left( {2abc} \right)^2} + 2ab\left( {a + b} \right)bc\left( {b + c} \right) + 2ab\left( {a + b} \right)ca\left( {c + a} \right) + 2bc\left( {b + c} \right)ca\left( {c + a} \right) \\
+    & \hspace{1cm} + 2\left( {2abc} \right)\left[ {ab\left( {a + b} \right) + bc\left( {b + c} \right) + ca\left( {c + a} \right)} \right] \quad + 2{\left( {abc} \right)^2} \\
+    & = 2abc\left[ 3abc + b\left( {a + b} \right)\left( {b + c} \right) + a\left( {a + b} \right)\left( {c + a} \right) + c\left( {b + c} \right)\left( {c + a} \right) + 2ab\left( {a + b} \right) \right. \\
+    & \hspace{1cm} \left. +\; 2bc\left( {b + c} \right) + 2ca\left( {c + a} \right) \right] \\
+    & = 2abc\left[ 3abc + b\left( {{b^2} + ab + bc + ca} \right) + a\left( {{a^2} + ab + bc + ca} \right) + c\left( {{c^2} + ab + bc + ca} \right) \right. \\
+    & \hspace{1cm} \left. +\; 2ab\left( {a + b} \right) + 2bc\left( {b + c} \right) + 2ca\left( {c + a} \right) \right] \\
+    & = 2abc\left[ {a^3} + {b^3} + {c^3} + {b^2}\left( {c + a} \right) + abc + {a^2}\left( {b + c} \right) + {c^2}\left( {a + b} \right) + 2ab\left( {a + b} \right) \right. \\
+    & \hspace{1cm} \left. + 2bc\left( {b + c} \right) + 2ca\left( {c + a} \right) + 6abc \right] \\
+    & = 2abc\left[ {{a^3} + {b^3} + {c^3} + 3{a^2}\left( {b + c} \right) + 3{b^2}\left( {c + a} \right) + 3{c^2}\left( {a + b} \right) + 6abc} \right] \\
+    & = 2abc{\left( {a + b + c} \right)^3}
+    \end{align}
+
+</body>

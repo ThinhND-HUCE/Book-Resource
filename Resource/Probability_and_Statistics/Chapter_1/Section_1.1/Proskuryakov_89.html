@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 89</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 89:</i><br><br>
+    Ma trận mở rộng của hệ
+    \begin{align}
+    \overline{A} & = 
+    \left[\begin{array}{rrr|r}
+    a & 0 & 2 & 2 \\
+    5 & \framebox{2} & 0 & 1 \\
+    1 & -2 & b & 3 
+    \end{array}\right]
+    \begin{array}{l}
+    \\
+    \\
+    +h_2 \\
+    \end{array}
+    \sim
+    \left[\begin{array}{rrr|r}
+    a & 0 & \framebox{2} & 2 \\
+    5 & \mathbf{2} & 0 & 1 \\
+    6 & 0 & b & 4 
+    \end{array}\right]
+    \begin{array}{l}
+    \\
+    \\
+    \times 2 - b\times h_1 \\
+    \end{array} \\
+    & \sim
+    \left[\begin{array}{rrr|r}
+    a & 0 & \mathbf{2} & 2 \\
+    5 & \mathbf{2} & 0 & 1 \\
+    \framebox{\(12 - ab\)} & 0 & 0 & 8 - 2b
+    \end{array}\right]
+    \end{align}
+
+    <ul>
+        <li>Nếu \(12 - ab \ne 0\) hay \(ab \ne 12\) thì \(r\left( A \right) = r\left( {\overline A } \right) = 3 = \) số ẩn, nên hệ có nghiệm duy nhất</li>
+        <li>Nếu \(ab = 12\) thì \(r\left( A \right) = 2\)
+            <ul>
+                <li>Nếu \(8 - 2b = 0\) hay \(b = 4\) và từ đó \(a = \dfrac{12}{b} = 3\), thì \(r\left( {\overline A } \right) = 2\). Khi đó \(r\left( A \right) = r\left( {\overline A } \right) < \) số ẩn, nên hệ có vô số nghiệm</li>
+                <li>Nếu \(b\ne 4\) thì \(r\left( {\overline A } \right) = 3\). Khi đó \(r\left( A \right) < r\left( {\overline A } \right)\), nên hệ vô nghiệm.</li>
+            </ul>
+        </li>
+    </ul>
+
+</body>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 226</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 226:</i><br><br>
+    
+    Ta cần chứng minh
+    \[
+    \begin{vmatrix}
+    a_{11} & a_{12} & \ldots & a_{1n} \\
+    a_{21} & a_{22} & \ldots & a_{2n} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    a_{n1} & a_{n2} & \ldots & a_{nn} 
+    \end{vmatrix} = 
+    \begin{vmatrix}
+    a_{11} & a_{11} + a_{12} & a_{12} + a_{13} & \cdots & a_{1,n-1} + a_{1n} \\
+    a_{21} & a_{21} + a_{22} & a_{22} + a_{23} & \cdots & a_{2,n-1} + a_{2n} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_{n1} & a_{n1} + a_{n2} & a_{n2} + a_{n3} & \cdots & a_{n,n-1} + a_{nn}
+    \end{vmatrix}
+    \]
+
+    Cộng cột \(n-1\) vào cột \(n\), thì định thức không đổi. 
+    Trong định thức mới, lại cộng cột \(n-2\) vào cột \(n-1\), thì định thức không đổi. Cứ tiếp tục như vậy, cuối cùng trong định thức thu được ở bước trước, cộng cột 1 vào cột 2, thì định thức cũng không đổi. 
+    Đó chính là định thức trong vế phải ở trên.
+
+</body>

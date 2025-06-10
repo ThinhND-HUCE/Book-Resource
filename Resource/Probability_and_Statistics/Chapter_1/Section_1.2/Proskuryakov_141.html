@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 141</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 141:</i><br><br>
+    
+    Trong hoán vị \(a_1, a_2,\ldots, a_n\) của \(1, 2,\ldots, n\), xét hai phần tử \(a_i, a_j\) với \(i < j\).<br>
+
+    Nếu trong hoán vị trên, \(a_i < a_j\), tức là các phần tử này được sắp theo thứ tự (tăng), thì khi sắp xếp lại hoán vị này theo thứ tự, \(a_i\) cũng đứng trước \(a_j\), và vì thế trong hoán vị mới của các chỉ số tương ứng, \(i\) cũng đứng trước \(j\). 
+    Ngược lại nếu trong hoán vị trên, \(a_i > a_j\), tức là các phần tử này tạo thành một nghịch thế, thì khi sắp xếp lại hoán vị này theo thứ tự, \(a_j\) sẽ đứng trước \(a_i\), và vì thế trong hoán vị mới của các chỉ số tương ứng, \(j\) đứng trước \(i\), tức là các chỉ số \(j\), \(i\) cũng tạo thành một nghịch thế.<br>
+
+    Như, có sự tương ứng 1\,--\,1 giữa các nghịch thế của hoán vị cho trước với các nghịch thế của hoán vị các chỉ số tương ứng của các phần tử của hoán vị này khi sắp xếp hoán vị này theo thứ tự. Do đó số nghịch thế của hai loại hoán vị này là bằng nhau.<br>
+
+    Ví dụ, xét hoán vị 2, 3, 5, 4, 1 trong <a href="Proskuryakov_123.html">Bài tập 123</a>. Ta có hoán vị của các chỉ số tương ứng của các phần tử của hoán vị này khi sắp xếp hoán vị này theo thứ tự được xây dựng như sau:
+    \[
+    \begin{array}{ccc}\hline
+    \text{Hoán vị } a_1, a_2,\ldots, a_n & \text{Sắp xếp lại hoán vị} & \text{Chỉ số tương ứng (Hoán vị mới)} \\ \hline
+    a_1 = 2 & 1 = a_5 & 5 \\
+    a_2 = 3 & 2 = a_1 & 1 \\
+    a_3 = 5 & 3 = a_2 & 2 \\
+    a_4 = 4 & 4 = a_4 & 4 \\
+    a_5 = 1 & 5 = a_3 & 3 \\ \hline
+    \end{array}
+    \]
+
+    Từ đó ta có tương ứng 1-1 giữa các nghịch thế của hai loại hoán vị này
+    \[
+    \begin{array}{cc}\hline
+    \text{Nghịch thế của } a_1, a_2,\ldots, a_n & \text{Nghịch thế của hoán vị mới} \\ \hline
+    \left( 2 = a_1, 1 = a_5 \right) & \left( 5, 1 \right) \\
+    \left( 3 = a_2, 1 = a_5 \right) & \left( 5, 2 \right) \\
+    \left( 5 = a_3, 4 = a_4 \right) & \left( 4, 3 \right) \\
+    \left( 5 = a_3, 1 = a_5 \right) & \left( 5, 3 \right) \\
+    \left( 4 = a_4, 1 = a_5 \right) & \left( 5, 4 \right) \\ \hline
+    \end{array}
+    \]
+
+</body>
