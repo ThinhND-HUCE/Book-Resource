@@ -6,7 +6,7 @@ import os
 import json
 import re
 
-COURSES_DIR = "C:/Users/Admin/Desktop/Book-Resource/Resource"
+COURSES_DIR = "C:/Users/ndthi/Documents/GitHub/Book-Resource/Resource"
 
 def get_course_info(course_path):
     info_path = os.path.join(course_path, "info.json")

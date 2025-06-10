@@ -6,14 +6,11 @@ from django.contrib.auth.hashers import make_password, check_password
 from ..auth.jwt_handler import JWTHandler
 from bookapp import serializers
 from bookapp.models import User
-<<<<<<< HEAD
 from bookapp.models import BookCode
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from bookapp.utils.email_utils import send_html_email
 
-=======
->>>>>>> f32ef398ca03f0c4d9a267da1b6a6c0a803d9964
 
 @api_view(['POST'])
 def register_user(request):
@@ -75,6 +72,7 @@ def login_user(request):
 
 @api_view(['POST'])
 def verify_book_code(request):
+    print(request.data)
     email = request.data.get('email')
     book_code = request.data.get('book_code')
 
@@ -96,6 +94,7 @@ def verify_book_code(request):
     except BookCode.DoesNotExist:
         return Response({'error': 'Mã sách không tồn tại.'}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
+        print(e);
         return Response({'error': f'Lỗi gửi email: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])

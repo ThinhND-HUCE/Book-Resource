@@ -19,7 +19,7 @@ export default function LoginScreen() {
       console.log("📤 Gửi yêu cầu đăng nhập với:", { username, password });
       const data = await loginUser(username, password);
       console.log("📥 Response từ server:", data);
-      
+
       if (data.access && data.refresh) {
         // Lưu token vào localStorage
         localStorage.setItem("access_token", data.access);
@@ -35,13 +35,13 @@ export default function LoginScreen() {
       setIsLoading(false);
     }
   };
-  
+
 
   return (
     <LoginBackground>
       <Overlay />
       <LoginCard>
-        <Logo src={logoImage} alt="Logo" />
+        {/* <Logo src={logoImage} alt="Logo" /> */}
         <Title>Đăng nhập</Title>
 
         <Label>Tài khoản*</Label>
@@ -128,11 +128,11 @@ const LoginCard = styled.div`
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 `;
 
-// const Logo = styled.img`
-//   display: block;
-//   margin: 0 auto;
-//   max-width: 100px;
-// `;
+const Logo = styled.img`
+  display: block;
+  margin: 0 auto;
+  max-width: 100px;
+`;
 
 const Title = styled.h2`
   text-align: center;
@@ -252,93 +252,3 @@ const LoadingContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-<<<<<<< HEAD
-=======
-
-export default function LoginScreen() {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
-  const [rememberMe, setRememberMe] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const handleLogin = async () => {
-    setError(null);
-    setIsLoading(true);
-    try {
-      console.log("📤 Gửi yêu cầu đăng nhập với:", { username, password });
-      const data = await loginUser(username, password);
-      console.log("📥 Response từ server:", data);
-      
-      if (data.access && data.refresh) {
-        // Lưu token vào localStorage
-        localStorage.setItem("access_token", data.access);
-        localStorage.setItem("refresh_token", data.refresh);
-        navigate("/Dashboard"); // Chuyển hướng đến trang Dashboard
-      } else {
-        setError("Không nhận được token từ server.");
-      }
-    } catch (err: any) {
-      console.error("🔥 Lỗi đăng nhập:", err);
-      setError(err.message || "Không thể kết nối đến server!");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  
-
-  return (
-    <LoginBackground>
-      <Overlay />
-      <LoginCard>
-        {/* <Logo src={logoImage} alt="Logo" /> */}
-        <Title>Đăng nhập</Title>
-
-        <Label>Tài khoản*</Label>
-        <Input
-          placeholder="Nhập mã số sinh viên"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          disabled={isLoading}
-        />
-
-        <Label>Mật khẩu*</Label>
-        <Input
-          placeholder="Nhập mật khẩu"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          disabled={isLoading}
-        />
-
-        <Row>
-          <Checkbox onClick={() => !isLoading && setRememberMe(!rememberMe)}>
-            {rememberMe ? "☑" : "☐"} Ghi nhớ
-          </Checkbox>
-          <Link onClick={() => !isLoading && navigate("/forgot-password")}>Quên mật khẩu?</Link>
-        </Row>
-
-        {error && <Error>{error}</Error>}
-
-        <LoginButton onClick={handleLogin} disabled={isLoading}>
-          {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
-        </LoginButton>
-
-        <Footer>
-          <FooterText>Chưa có tài khoản? </FooterText>
-          <Link onClick={() => !isLoading && navigate("/register")}>Đăng ký</Link>
-        </Footer>
-      </LoginCard>
-      {isLoading && (
-        <LoadingOverlay>
-          <LoadingContainer>
-            <LoadingSpinner />
-            <LoadingText>Đang đăng nhập...</LoadingText>
-          </LoadingContainer>
-        </LoadingOverlay>
-      )}
-    </LoginBackground>
-  );
-}
->>>>>>> f32ef398ca03f0c4d9a267da1b6a6c0a803d9964

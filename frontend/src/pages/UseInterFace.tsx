@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import 'react-toastify/dist/ReactToastify.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 export interface FileItem {
