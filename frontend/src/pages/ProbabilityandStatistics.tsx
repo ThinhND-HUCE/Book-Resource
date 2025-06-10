@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Exercise from '../components/Exercise';
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 interface FileItem {
     type: "file";
@@ -274,6 +276,18 @@ const ProbabilityandStatistics: React.FC = () => {
         return match ? match[1] : filename;
     };
 
+    const showExerciseContent = async (type: number) => {
+        setShowExercise(true);
+        toast.success(`Bắt đầu luyện tập dạng ${type}!`, {
+            autoClose: 2000,
+            position: "top-right",
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+    }
+
     const fetchHtmlContent = async (filePath: string, files: FileItem[], index: number) => {
         try {
             const response = await fetch(`http://localhost:8000/api/files/view?path=${encodeURIComponent(filePath)}`);
@@ -428,19 +442,19 @@ const ProbabilityandStatistics: React.FC = () => {
                 <PracticeButtonsContainer>
                     <PracticeButton 
                         style={{ width: '200px' }}
-                        onClick={() => setShowExercise(true)}
+                        onClick={() => showExerciseContent(1)}
                     >
                         Luyện tập dạng 1
                     </PracticeButton>
                     <PracticeButton 
                         style={{ width: '200px' }}
-                        onClick={() => setShowExercise(true)}
+                        onClick={() => showExerciseContent(2)}
                     >
                         Luyện tập dạng 2
                     </PracticeButton>
                     <PracticeButton 
                         style={{ width: '200px' }}
-                        onClick={() => setShowExercise(true)}
+                        onClick={() => showExerciseContent(3)}
                     >
                         Luyện tập dạng 3
                     </PracticeButton>

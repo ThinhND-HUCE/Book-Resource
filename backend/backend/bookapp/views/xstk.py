@@ -36,6 +36,19 @@ def correct_answer(k1: int, k2: int, k3: int, k4: int):
     p = round(t / m, 4)
     return m, t, p
 
+def score(input_answer, exact_answer):
+    '''
+    input_answer, exact_answer: float
+    kết quả:
+        đúng nếu:   (TH1) exact_answer = 0, | input_answer | < 10^-6; 
+                    (TH2) exact_answer != 0, sai số tương đối delta = | (input_answer - exact_answer) / exact_answer | < 10^-4
+        sai nếu ngược lại
+    '''
+    if exact_answer == 0 and abs(input_answer) or exact_answer != 0 and abs( (input_answer - exact_answer) / exact_answer ) < 10**-2:
+        return True
+    else:
+        return False
+    
 @api_view(['GET', 'POST'])
 def xstk_kinh_dien_view(request):
     auth_header = request.headers.get('Authorization')
@@ -63,12 +76,12 @@ def xstk_kinh_dien_view(request):
         k4 = int(data.get('k4', 0))
 
         correct_m, correct_t, correct_p = correct_answer(k1, k2, k3, k4)
-
+        
         frame_scores = {'m_score': 4, 't_score': 7, 'p_score': 2}
         scores = {
             'm_score': frame_scores['m_score'] if user_m == correct_m else 0,
             't_score': frame_scores['t_score'] if user_t == correct_t else 0,
-            'p_score': frame_scores['p_score'] if abs(user_p - correct_p) < 1e-4 else 0
+            'p_score': frame_scores['p_score'] if score(user_p, correct_p) else 0
         }
         scores['total_score'] = sum(scores.values())
 
@@ -81,7 +94,7 @@ def xstk_kinh_dien_view(request):
                 't': correct_t,
                 'p': correct_p
             },
-            'success': scores['total_score'] == 10
+            'success': scores['total_score'] == sum(frame_scores.values())
         })
     
     except Exception as e:

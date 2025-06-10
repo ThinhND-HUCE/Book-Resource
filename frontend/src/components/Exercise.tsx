@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestion } from '../api/exerciseApi';
 import 'katex/dist/katex.min.css';
-import { BlockMath, InlineMath } from 'react-katex';
+import { InlineMath } from 'react-katex';
 
 const ExerciseContainer = styled.div`
     padding: 20px;
@@ -147,6 +147,38 @@ const Hint = styled.span`
     }
 `;
 
+const PopupOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+`;
+
+const PopupContent = styled.div`
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    color: #000;
+    width: 90%;
+`;
+
+const TimerDisplay = styled.div<{ isWarning?: boolean }>`
+    font-size: 24px;
+    font-weight: bold;
+    color: ${props => props.isWarning ? '#f44336' : '#2196f3'};
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+`;
+
 interface ExerciseAnswer {
     m: string;
     t: string;
@@ -155,28 +187,74 @@ interface ExerciseAnswer {
 
 interface ExerciseProps {
     onBack: () => void;
+    timeLimit?: number; // Time limit in seconds, default to 300 (5 minutes)
 }
 
-const Exercise: React.FC<ExerciseProps> = ({ onBack }) => {
+const Exercise: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => {
     const [question, setQuestion] = useState<ExerciseQuestion | null>(null);
     const [answer, setAnswer] = useState<ExerciseAnswer>({ m: '', t: '', p: '' });
     const [result, setResult] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [hintVisible, setHintVisible] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(timeLimit);
+    const [showTimeoutPopup, setShowTimeoutPopup] = useState(false);
 
     useEffect(() => {
         loadQuestion();
     }, []);
 
+    useEffect(() => {
+        if (timeLeft > 0 && !result) {
+            const timer = setInterval(() => {
+                setTimeLeft(prev => prev - 1);
+            }, 1000);
+            return () => clearInterval(timer);
+        } else if (timeLeft === 0 && !result) {
+            // Tự động điền 0 cho các ô còn trống
+            setAnswer(prev => ({
+                m: prev.m === '' ? '0' : prev.m,
+                t: prev.t === '' ? '0' : prev.t,
+                p: prev.p === '' ? '0' : prev.p
+            }));
+            setShowTimeoutPopup(true);
+        }
+    }, [timeLeft, result]);
+
+    const formatTime = (seconds: number): string => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    };
+
     const loadQuestion = async () => {
         try {
-            const newQuestion = await fetchExerciseQuestion();
-            setQuestion(newQuestion);
+            // Reset all states first
             setAnswer({ m: '', t: '', p: '' });
             setResult(null);
+            setLoading(false);
+            setHintVisible(false);
+            setTimeLeft(timeLimit);
+            setShowTimeoutPopup(false);
+            
+            // Then load new question
+            setLoading(true);
+            const newQuestion = await fetchExerciseQuestion();
+            setQuestion(newQuestion);
+            setLoading(false);
         } catch (error) {
             console.error('Error loading question:', error);
+            setLoading(false);
         }
+    };
+
+    const convertFractionToDecimal = (value: string): number => {
+        if (value.includes('/')) {
+            const [numerator, denominator] = value.split('/').map(Number);
+            if (!isNaN(numerator) && !isNaN(denominator) && denominator !== 0) {
+                return numerator / denominator;
+            }
+        }
+        return parseFloat(value);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -193,9 +271,9 @@ const Exercise: React.FC<ExerciseProps> = ({ onBack }) => {
         try {
             const response = await submitExerciseAnswer(
                 {
-                    m: parseFloat(answer.m),
-                    t: parseFloat(answer.t),
-                    p: parseFloat(answer.p)
+                    m: convertFractionToDecimal(answer.m),
+                    t: convertFractionToDecimal(answer.t),
+                    p: convertFractionToDecimal(answer.p)
                 },
                 question
             );
@@ -208,8 +286,7 @@ const Exercise: React.FC<ExerciseProps> = ({ onBack }) => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        // Allow empty string or valid numbers
-        if (value === '' || !isNaN(parseFloat(value))) {
+        if (value === '' || !isNaN(parseFloat(value)) || value.includes('/')) {
             setAnswer(prev => ({
                 ...prev,
                 [name]: value
@@ -224,6 +301,9 @@ const Exercise: React.FC<ExerciseProps> = ({ onBack }) => {
     return (
         <ExerciseContainer>
             <BackButton onClick={onBack}>← Quay lại</BackButton>
+            <TimerDisplay isWarning={timeLeft < 60}>
+                Thời gian còn lại: {formatTime(timeLeft)}
+            </TimerDisplay>
             <QuestionText>
                 {question.content}
                 <p><i>Lời giải:</i></p>
@@ -233,45 +313,46 @@ const Exercise: React.FC<ExerciseProps> = ({ onBack }) => {
                 <InputGroup>
                     <Label>Phép thử: Rút ngẫu nhiên {question.k3} bi. Số trường hợp có thể của phép thử: </Label>
                     <Input
-                        type="number"
+                        type="text"
                         name="m"
                         value={answer.m}
                         onChange={handleInputChange}
                         required
-                        // placeholder="Nhập giá trị M"
+                        autoComplete="off"
                     />
                 </InputGroup>
 
                 <InputGroup>
-                    <Label>Biến cố <InlineMath math="A"></InlineMath> = {'{'}rút được {question.k4} bi xanh {'('} và {question.k3 - question.k4} bi đỏ{')'}{'}'}. <br />Áp dụng quy tắc nhân và quy tắc tổ hợp, số trường hợp thuận lợi cho <InlineMath math="A"></InlineMath> là: 
+                    <Label>Biến cố <InlineMath math="A"></InlineMath> = {'{'}rút được {question.k4} bi đỏ {'('} và {question.k3 - question.k4} bi xanh{')'}{'}'}. <br />Áp dụng quy tắc nhân và quy tắc tổ hợp, số trường hợp thuận lợi cho <InlineMath math="A"></InlineMath> là:
                     </Label>
                     <Input
-                        type="number"
+                        type="text"
                         name="t"
                         value={answer.t}
                         onChange={handleInputChange}
                         required
-                        // placeholder="Nhập giá trị T"
+                        autoComplete="off"
                     />
                 </InputGroup>
-                    <InputGroup>
-                        <Label>Suy ra <InlineMath math="P\!\left(A\right)"></InlineMath> là:</Label>
-                        <Input
-                            type="number"
-                            name="p"
-                            value={answer.p}
-                            onChange={handleInputChange}
-                            step="0.0001"
-                            required
-                            onFocus={() => setHintVisible(true)}
-                            onBlur={() => setHintVisible(false)}
-                          />
-                          <Hint className={hintVisible ? 'hint' : ''}>(Làm tròn đến 4 chữ số thập phân)</Hint>
-                    </InputGroup>
+                <InputGroup>
+                    <Label>Suy ra <InlineMath math="P\!\left(A\right)"></InlineMath> là:</Label>
+                    <Input
+                        type="text"
+                        name="p"
+                        value={answer.p}
+                        onChange={handleInputChange}
+                        step="0.0001"
+                        required
+                        onFocus={() => setHintVisible(true)}
+                        onBlur={() => setHintVisible(false)}
+                        autoComplete="off"
+                    />
+                    <Hint className={hintVisible ? 'hint' : ''}>(Làm tròn đến 4 chữ số có nghĩa)</Hint>
+                </InputGroup>
 
                 <ButtonContainer>
-                    <SubmitButton 
-                        type="submit" 
+                    <SubmitButton
+                        type="submit"
                         disabled={loading || result !== null}
                     >
                         {loading ? 'Đang kiểm tra...' : 'Kiểm tra'}
@@ -290,13 +371,15 @@ const Exercise: React.FC<ExerciseProps> = ({ onBack }) => {
                     <p>Ý thứ 1: {result.scores.m_score}/{result.frame_scores.m_score}</p>
                     <p>Ý thứ 2: {result.scores.t_score}/{result.frame_scores.t_score}</p>
                     <p>Ý thứ 3: {result.scores.p_score}/{result.frame_scores.p_score}</p>
-                    <p>Tổng điểm: {result.scores.total_score}/{result.frame_scores_total}</p>
-                    
+                    <p>Tổng điểm: {result.scores.total_score}/{result.frame_scores_total}
+                        {result.frame_scores_total !== 10 && ` (${((result.scores.total_score / result.frame_scores_total) * 10).toFixed(1)}/10)`}
+                    </p>
+
                     <AnswerDetail>
                         <h4>Chi tiết đáp án:</h4>
                         <p>
                             Ý thứ 1 (Tổng số cách chọn):{' '}
-                            {result.scores.m_score === 3 ? (
+                            {result.scores.m_score === result.frame_scores.m_score ? (
                                 <CorrectAnswer>✓ {answer.m}</CorrectAnswer>
                             ) : (
                                 <>
@@ -308,7 +391,7 @@ const Exercise: React.FC<ExerciseProps> = ({ onBack }) => {
                         </p>
                         <p>
                             Ý thứ 2 (Số cách chọn thỏa mãn):{' '}
-                            {result.scores.t_score === 4 ? (
+                            {result.scores.t_score === result.frame_scores.t_score ? (
                                 <CorrectAnswer>✓ {answer.t}</CorrectAnswer>
                             ) : (
                                 <>
@@ -320,7 +403,7 @@ const Exercise: React.FC<ExerciseProps> = ({ onBack }) => {
                         </p>
                         <p>
                             Ý thứ 3 (Xác suất):{' '}
-                            {result.scores.p_score === 3 ? (
+                            {result.scores.p_score === result.frame_scores.p_score ? (
                                 <CorrectAnswer>✓ {answer.p}</CorrectAnswer>
                             ) : (
                                 <>
@@ -338,6 +421,39 @@ const Exercise: React.FC<ExerciseProps> = ({ onBack }) => {
                         <p style={{ color: 'red', fontWeight: 'bold' }}>Hãy thử lại!</p>
                     )}
                 </ResultContainer>
+            )}
+
+            {showTimeoutPopup && (
+                <PopupOverlay>
+                    <PopupContent>
+                        <h2>Hết thời gian!</h2>
+                        <p>Thời gian làm bài của bạn đã hết.</p>
+                        <SubmitButton
+                            onClick={async () => {
+                                if (!question) return;
+                                setLoading(true);
+                                try {
+                                    const response = await submitExerciseAnswer(
+                                        {
+                                            m: convertFractionToDecimal(answer.m),
+                                            t: convertFractionToDecimal(answer.t),
+                                            p: convertFractionToDecimal(answer.p)
+                                        },
+                                        question
+                                    );
+                                    setResult(response);
+                                    setShowTimeoutPopup(false);
+                                } catch (error) {
+                                    console.error('Error submitting answer:', error);
+                                }
+                                setLoading(false);
+                            }}
+                            disabled={loading}
+                        >
+                            {loading ? 'Đang kiểm tra...' : 'Kiểm tra'}
+                        </SubmitButton>
+                    </PopupContent>
+                </PopupOverlay>
             )}
         </ExerciseContainer>
     );

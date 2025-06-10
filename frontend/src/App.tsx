@@ -3,6 +3,8 @@ import LoginScreen from "./pages/LoginScreen"; // đường dẫn đến LoginSc
 import ForgotPassword from "./pages/ForgotPassword"; // đường dẫn đến ForgotPassword
 import Dashboard from "./pages/Dashboard";
 import ProbabilityandStatistics from "./pages/ProbabilityandStatistics";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
@@ -15,6 +17,7 @@ const App = () => {
         <Route path="/ProbabilityandStatistics" element={<ProbabilityandStatistics />} />
         {/* Thêm các route khác tại đây */}
       </Routes>
+      <ToastContainer position="top-right" autoClose={3000} />
     </BrowserRouter>
   );
 };
