@@ -1,20 +1,21 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+
+from sympy import *
 import random as rd
-import math
+
 import json
 from ..auth.jwt_handler import JWTHandler  # giả sử bạn có sẵn hàm này
-from sympy import *
-import math
+
 
 def question():
     while True:
         k1, k2 = rd.sample(range(3, 11), 2)
         k3 = rd.randint(3, min(k1, k2))
         k4 = rd.randint(1, k3 - 1)
-        m = math.comb(k1 + k2, k3)
-        t = math.comb(k1, k4) * math.comb(k2, k3 - k4)
+        m = binomial(k1 + k2, k3)
+        t = binomial(k1, k4) * binomial(k2, k3 - k4)
         p = t / m
         if 0.01 <= p < 0.99:
             break
@@ -25,15 +26,15 @@ def question():
         "k3": k3,
         "k4": k4,
         "content": f"Trong hộp có {k1} bi đỏ, {k2} bi xanh. Rút ngẫu nhiên {k3} bi. Tính xác suất để rút được {k4} bi đỏ.",
-        "answers": [m, t, round(p, 4)],
+        # "answers": [m, t, round(p, 4)],
     }
     return result
 
 
 def correct_answer(k1: int, k2: int, k3: int, k4: int):
-    m = math.comb(k1 + k2, k3)
-    t = math.comb(k1, k4) * math.comb(k2, k3 - k4)
-    p = round(t / m, 4)
+    m = int(binomial(k1 + k2, k3))
+    t = int(binomial(k1, k4) * binomial(k2, k3 - k4))
+    p = float(t / m)
     return m, t, p
 
 def score(input_answer, exact_answer):
@@ -92,7 +93,7 @@ def xac_suat_co_dien_view(request):
             'correct_answers': {
                 'm': correct_m,
                 't': correct_t,
-                'p': correct_p
+                'p': f"{N(correct_p, 6)}"
             },
             'success': scores['total_score'] == sum(frame_scores.values())
         })
