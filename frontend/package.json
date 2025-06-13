@@ -13,6 +13,7 @@
   "dependencies": {
     "@types/styled-components": "^5.1.34",
     "axios": "^1.8.4",
+    "framer-motion": "^12.17.3",
     "jwt-decode": "^4.0.0",
     "katex": "^0.16.22",
     "lucide-react": "^0.492.0",

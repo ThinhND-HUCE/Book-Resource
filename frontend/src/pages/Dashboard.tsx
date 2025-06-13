@@ -21,8 +21,9 @@ interface MyJwtPayload {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   padding: 20px;
-  height: 90vh;
+  box-sizing: border-box;
 `;
 
 const FlexRight = styled.div`
@@ -51,8 +52,10 @@ const Button = styled.button`
 `;
 
 const MainContent = styled.div`
-  flex: 1;
   display: flex;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
 `;
@@ -67,7 +70,7 @@ const UserInfo = styled.div`
   font-weight: 600;
 `;
 
-export default function Index() {
+export default function Dashboard() {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
 
@@ -99,7 +102,7 @@ export default function Index() {
     <Container>
       {user && (
         <UserInfo>
-          Xin chào, {user.lastname} {user.firstname} <br/>
+          Xin chào, {user.lastname} {user.firstname} <br />
           ({user.email})
         </UserInfo>
       )}
@@ -109,18 +112,14 @@ export default function Index() {
           <Button onClick={handleLogout}>Đăng xuất</Button>
         ) : (
           <>
-            <Button onClick={() => navigate("/register")}>
-              Đăng ký
-            </Button>
-            <Button onClick={() => navigate("/login")}>
-              Đăng nhập
-            </Button>
+            <Button onClick={() => navigate("/register")}>Đăng ký</Button>
+            <Button onClick={() => navigate("/login")}>Đăng nhập</Button>
           </>
         )}
       </FlexRight>
 
       <MainContent>
-        <CourseList/>
+        <CourseList />
       </MainContent>
     </Container>
   );

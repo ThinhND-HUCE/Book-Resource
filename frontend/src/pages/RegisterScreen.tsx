@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import backgroundImage from "../assets/images/HUCE.jpg";
-import logoImage from "../assets/images/logothay.jpg";
 import { verifyBookCode, registerUser } from "../constants/apiService";
 import { toast } from 'react-toastify';
 
