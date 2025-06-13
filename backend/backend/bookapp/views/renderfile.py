@@ -2,11 +2,12 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import HttpResponse
+from django.conf import settings
 import os
 import json
 import re
 
-COURSES_DIR = "C:/Users/ndthi/Documents/GitHub/Book-Resource/Resource"
+COURSES_DIR = os.path.abspath(os.path.join(settings.BASE_DIR, '..', '..', 'Resource'))
 
 def get_course_info(course_path):
     info_path = os.path.join(course_path, "info.json")
