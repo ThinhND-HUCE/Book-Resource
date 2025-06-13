@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import XacSuatCoDien from '../components/XacSuatCoDien';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
