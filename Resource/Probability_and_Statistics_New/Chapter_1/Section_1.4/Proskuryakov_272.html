@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 272</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 272:</i><br><br>
+    
+    Trong định thức \(D\) đã cho, lấy hàng 1, 2 trừ đi hàng~3, rồi lấy hàng~3 trừ hàng~4, thì định thức không đổi, rồi tiếp tục biến đổi theo chỉ dẫn bên phải định thức thu được:
+    \[
+    D = 
+    \left|\begin{array}{cccc}
+    -8 & -9 & -1 & 0 \\
+    -1 & 2 & 5 & \framebox{2} \\
+    14 & 19 & 7 & 2 \\
+    29 & 49 & 65 & 50 
+    \end{array}\right|
+    \begin{array}{l}
+    \\
+    \\
+    - h_2 \\
+    - 25h_2 \\
+    \end{array}
+    = \begin{vmatrix}
+    -8 & -9 & -1 & 0 \\
+    -1 & 2 & 5 & \mathbf{2} \\
+    15 & 17 & 2 & 0 \\
+    54 & -1 & -60 & 0
+    \end{vmatrix}
+    \]
+
+    Khai triển định thức mới theo cột 4, và tiếp tục biến đổi định thức cấp~3:
+    \[
+    D = \left( 2 \right) 
+    \left|\begin{array}{ccc}
+    -8 & -9 & \framebox{\(-1\)} \\
+    15 & 17 & 2 \\
+    54 & -1 & -60 
+    \end{array}\right|
+    \begin{array}{l}
+    \\
+    + 2h_1 \\
+    - 60h_1 \\
+    \end{array}
+    = 2 \begin{vmatrix}
+    -8 & -9 & \mathbf{-1} \\
+    -1 & -1 & 0 \\
+    534 & 539 & 0
+    \end{vmatrix}
+    \]
+
+    Khai triển theo cột 3:
+    \[
+    D = 2 \left( -1 \right) \begin{vmatrix}
+    -1 & -1 & 0 \\
+    534 & 539 & 0
+    \end{vmatrix}
+    = -2 \left[ \left( -1 \right) \left( 539 \right) - \left( 534 \right) \left( -1 \right) \right] = -2 \left( - 539 + 534 \right) = 10.
+    \]
+
+</body>

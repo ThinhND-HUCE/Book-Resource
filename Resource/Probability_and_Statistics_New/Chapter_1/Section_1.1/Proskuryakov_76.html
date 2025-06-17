@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 76</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 76:</i><br><br>
+    Biến đổi
+    \[
+    \left\{
+    \begin{array}{*{9}{r}}
+    4x & - & 3y & + & 2z & + & 4 & = & 0 \\
+    6x & - & 2y & + & 3z & + & 1 & = & 0 \\
+    5x & - & 3y & + & 2z & + & 3 & = & 0
+    \end{array} \right.
+    \Leftrightarrow
+    \left\{
+    \begin{array}{*{7}{r}}
+    4x & - & 3y & + & 2z & = & -4 \\
+    6x & - & 2y & + & 3z & = & -1 \\
+    5x & - & 3y & + & 2z & = & -3
+    \end{array}
+    \right.
+    \]
+
+    Ma trận mở rộng của hệ:
+    \begin{align}
+    \overline{A} & =     
+    \left[\begin{array}{rrr|r}
+    4 & -3 & \framebox{2} & -4 \\
+    6 & -2 & 3 & -1 \\
+    5 & -3 & 2 & -3
+    \end{array}\right]
+    \begin{array}{l}
+    \\
+    \times 2 - 3h_1 \\
+    -h_1
+    \end{array}
+    \sim
+    \left[\begin{array}{rrr|r}
+    4 & -3 & \mathbf{2} & -4 \\
+    0 & 5 & 0 & 10 \\
+    \framebox{1} & 0 & 0 & 1
+    \end{array}\right]
+    \begin{array}{l}
+    -4h_3 \\
+    /5 \\
+    \\
+    \end{array} \\
+    & \sim
+    \left[\begin{array}{rrr|r}
+    0 & -3 & \mathbf{2} & -8 \\
+    0 & \framebox{1} & 0 & 2 \\
+    \mathbf{1} & 0 & 0 & 1
+    \end{array}\right]
+    \begin{array}{l}
+    +3h_2 \\
+    \\
+    \\
+    \end{array}
+    \sim
+    \left[\begin{array}{rrr|r}
+    0 & 0 & \mathbf{2} & -2 \\
+    0 & \mathbf{1} & 0 & 2 \\
+    \mathbf{1} & 0 & 0 & 1 
+    \end{array}\right]
+    \begin{array}{l}
+    /2 \\
+    \\
+    \\
+    \end{array}
+    \sim
+    \left[\begin{array}{rrr|r}
+    0 & 0 & \mathbf{1} & -1 \\
+    0 & \mathbf{1} & 0 & 2 \\
+    \mathbf{1} & 0 & 0 & 1
+    \end{array}\right]
+    \end{align}
+
+    \(r\left( A \right) = r\left( {\overline A } \right) = 3 = \) số ẩn \(\Rightarrow\) hệ có nghiệm duy nhất \(x = 1\), \(y = 2\), \(z = -1\)
+
+</body>

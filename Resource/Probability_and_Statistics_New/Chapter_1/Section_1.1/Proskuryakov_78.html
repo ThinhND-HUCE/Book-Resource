@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 78</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 78:</i><br><br>
+    Điều kiện: \(a, b, c\ne 0\). Đặt \(\dfrac{x}{a} = x'\), \(\dfrac{y}{b} = y'\), \(\dfrac{z}{c} = z'\), ta được hệ phương trình
+    \[
+    \left\{
+    \begin{array}{*{9}{r}}
+    x' & - & y'  &   &     & + & 2 & = & 0 \\
+    & - & 2y' & + & 3z' & - & 1 & = & 0 \\
+    x' &   &     & + & z'  &   &   & = & 0
+    \end{array}
+    \right.
+    \Leftrightarrow
+    \left\{
+    \begin{array}{*{7}{r}}
+    x' & - & y'  &   &     & = & -2 \\
+    & - & 2y' & + & 3z' & = & 1 \\
+    x' &   &     & + & z'  & = & 0
+    \end{array}
+    \right.
+    \]
+
+    Ma trận mở rộng của hệ này:
+    \begin{align}
+    \overline{A} & = 
+    \left[\begin{array}{rrr|r}
+    \framebox{1} & -1 & 0 & -2 \\
+    0 & -2 & 3 & 1 \\
+    1 & 0 & 1 & 0
+    \end{array}\right]
+    \begin{array}{l}
+    \\
+    \\
+    -h_1 \\
+    \end{array}
+    \sim
+    \left[\begin{array}{rrr|r}
+    \mathbf{1} & -1 & 0 & -2 \\
+    0 & -2 & 3 & 1 \\
+    0 & 1 & \framebox{1} & 2
+    \end{array}\right]
+    \begin{array}{l}
+    \\
+    -3h_3 \\
+    \\
+    \end{array} \\
+    & \sim
+    \left[\begin{array}{rrr|r}
+    \mathbf{1} & -1 & 0 & -2 \\
+    0 & -5 & 0 & -5 \\
+    0 & 1 & \mathbf{1} & 2
+    \end{array}\right]
+    \begin{array}{l}
+    \\
+    /-5 \\
+    \\
+    \end{array}
+    \sim
+    \left[\begin{array}{rrr|r}
+    \mathbf{1} & -1 & 0 & -2 \\
+    0 & \framebox{1} & 0 & 1 \\
+    0 & 1 & \mathbf{1} & 2
+    \end{array}\right]
+    \begin{array}{l}
+    +h_2 \\
+    \\
+    -h_2 \\
+    \end{array}
+    \sim
+    \left[\begin{array}{rrr|r}
+    \mathbf{1} & 0 & 0 & -1 \\
+    0 & \mathbf{1} & 0 & 1 \\
+    0 & 0 & \mathbf{1} & 1
+    \end{array}\right]
+    \end{align}
+
+    \(r\left( A \right) = r\left( {\overline A } \right) = 3 = \) số ẩn \(\Rightarrow\) hệ này có nghiệm duy nhất \(x' = -1\), \(y' = 1\), \(z' = 1\). Suy ra \(x = -a\), \(y = b\), \(z = c\).
+
+</body>

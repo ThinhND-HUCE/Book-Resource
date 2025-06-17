@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 147</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 147:</i><br><br>
+    
+    Trước hết nhận xét rằng mỗi phép chuyển vị kề làm thay đổi số lượng nghịch thế đi một đơn vị. 
+    Thật vậy xét hoán vị \(a_1, a_2, \ldots , a_{i-1}, a_i, a_{i+1}, a_{i+2}, \ldots , a_n\), và phép chuyển vị kề \(a_i\) với \(a_{i+1}\) cho ta hoán vị \(a_1, a_2, \ldots , a_{i-1}, a_{i+1}, a_i, a_{i+2}, \ldots , a_n\). 
+    Khi xét các cặp phần tử để liệt kê nghịch thế, hai hoán vị này chỉ khác nhau cặp \(\left( a_{i}, a_{i+1} \right)\) và \(\left( a_{i+1}, a_i \right)\). 
+    Do đó nếu \(a_i < a_{i+1}\) thì phép chuyển vị kề này làm số nghịch thế tăng lên 1, và ngược lại, số nghịch thế giảm đi 1.<br>
+
+    Sử dụng các phép chuyển vị kề để đưa dần số 1 lên vị trí đầu tiên, sau đó đưa dần số 2 lên vị trí thứ hai, và cứ tiếp tục như vậy. 
+    Lưu ý rằng mỗi phép chuyển vị kề như vậy làm giảm số lượng nghịch thế xuống một đơn vị. 
+    Hoán vị cuối cùng thu được chính là sắp xếp ban đầu (với số nghịch thế bằng 0).
+    Do đó số phép chuyển vị kề như vậy để biến đổi hoán vị bất kỳ của các số \(1, 2, \ldots , n\) thành sắp xếp ban đầu chính là số nghịch thế của hoán vị này.<br>
+
+
+    Vì mỗi phép chuyển vị kề bất kỳ làm thay đổi (tăng hoặc giảm) số lượng nghịch thế đi một đơn vị, nên không thể biến đổi hoán vị có \(k\) nghịch thế về sắp xếp ban đầu bằng ít hơn \(k\) phép chuyển vị kề, vì nếu ngược lại thì số nghịch thế giảm đi nhiều nhất là \(k-1\) nghịch thế, tức là hoán vị thu được cuối cùng có ít nhất một nghịch thế, và đó không thể là sắp xếp ban đầu.
+
+</body>

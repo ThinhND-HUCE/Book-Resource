@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 180</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 180:</i><br><br>
+    
+    Trước hết nhận xét rằng các xích rời nhau thì giao hoán với nhau, nên ta chỉ cần xét phép nhân phép chuyển vị \(\left( \alpha, \beta \right)\) (là xích độ dài~2) vào trước và sau các xích được đề cập trong giả thiết. 
+    Ngoài ra, không mất tổng quát, ta có thể đưa \(\alpha\) (hoặc \(\beta\)) lên vị trí đầu của xích chứa nó. 
+    <ul>
+        <li>
+            Trường hợp \(\alpha\) và \(\beta\) nằm trong cùng một xích. 
+            Khi nhân vào bên trái hoặc bên phải xích với phép chuyển vị \( \left( \alpha, \beta \right) \):
+            \begin{align}
+            & \left( \alpha, \beta \right) \left(\alpha, a_1, \ldots, a_k, \beta, b_1, \ldots, b_{\ell} \right) 
+            = \left( \alpha, b_1, \ldots , b_{\ell} \right) \left( \beta, a_1, \ldots , a_k \right) \\
+            & \left(\alpha, a_1, \ldots, a_k, \beta, b_1, \ldots, b_{\ell} \right) \left( \alpha, \beta \right)
+            = \left( \alpha, a_1, \ldots , a_k \right) \left( \beta, b_1, \ldots , b_{\ell} \right)
+            \end{align}
+            ta thấy xích đó sẽ phân tách thành hai xích độc lập.
+        </li>
+        <li>
+            Trường hợp \(\alpha\) và \(\beta\) nằm trong hai xích độc lập. 
+            Khi nhân vào bên trái hoặc bên phải tích hai xích đó với phép chuyển vị \( \left( \alpha, \beta \right) \):
+            \begin{align}
+            & \left( \alpha, \beta \right) \left( \alpha, a_1, \ldots , a_k \right) \left( \beta, b_1, \ldots , b_{\ell} \right) 
+            = \left( \alpha, b_1, \ldots , b_{\ell}, \beta, a_1, \ldots, a_k \right) \\
+            & \left( \alpha, a_1, \ldots , a_k \right) \left( \beta, b_1, \ldots , b_{\ell} \right) \left( \alpha, \beta \right) 
+            = \left(\alpha, a_1, \ldots, a_k, \beta, b_1, \ldots, b_{\ell} \right)
+            \end{align}
+            ta thấy hai xích này sẽ hợp nhất thành một xích.
+        </li>
+    </ul>
+</body>

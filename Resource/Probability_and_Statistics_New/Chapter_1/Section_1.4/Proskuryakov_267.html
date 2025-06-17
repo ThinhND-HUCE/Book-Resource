@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 267</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 267:</i><br><br>
+    
+    Trong định thức \(D\) đã cho, trừ cột cho cột 2, thì định thức không đổi, rồi biến đổi tiếp:
+    \[
+    D = 
+    \left|\begin{array}{cccc}
+    1 & 6 & 3 & 7 \\
+    -2 & 5 & 7 & 2 \\
+    1 & 4 & 3 & 5 \\
+    -1 & 6 & 5 & 4 
+    \end{array}\right|
+    \begin{array}{l}
+    \\
+    + 2h_1 \\
+    - h_1 \\
+    + h_1 \\
+    \end{array}
+    = \begin{vmatrix}
+    1 & 6 & 3 & 7 \\
+    0 & 17 & 13 & 16 \\
+    0 & -2 & 0 & -2 \\
+    0 & 12 & 8 & 11
+    \end{vmatrix}
+    \]
+
+    Khai triển định thức thu được theo cột 1:
+    \[
+    D = \left( 1 \right) \begin{vmatrix}
+    17 & 13 & 16 \\
+    -2 & 0 & -2 \\
+    12 & 8 & 11
+    \end{vmatrix}
+    \]
+
+    Trong định thức cấp 3, tiếp tục trừ cột 1 cho cột 3:
+    \[
+    D = \begin{vmatrix}
+    1 & 13 & 16 \\
+    0 & 0 & -2 \\
+    1 & 8 & 11
+    \end{vmatrix} 
+    \]
+    rồi khai triển định thức mới theo cột 3:
+    \[
+    D = - \left( -2 \right) \begin{vmatrix}
+    1 & 13 \\
+    1 & 8
+    \end{vmatrix}
+    = 2 \left(1 \times 8 - 1\times 13\right) = -10 .
+    \]
+
+</body>

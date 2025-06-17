@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 280</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 280:</i><br><br>
+    
+    Trong định thức \(D\) đã cho, thực hiện đồng thời hàng~2 trừ hàng~1, hàng~3 trừ hàng~2,\ldots, hàng~\(n\) trừ hàng thứ \(n-1\), thì định thức không đổi:
+    \[
+    D = 
+    \begin{vmatrix}
+    1 & 2 & 3 & \ldots & n-2 & n-1 & n \\
+    1 & 1 & 1 & \ldots & 1 & 1 & 0 \\
+    1 & 1 & 1 & \ldots & 1 & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 1 & 1 & \ldots & 0 & 0 & 0 \\
+    1 & 1 & 0 & \ldots & 0 & 0 & 0 \\
+    1 & 0 & 0 & \ldots & 0 & 0 & 0
+    \end{vmatrix}
+    \]
+
+    Ta sẽ  biến đổi để đưa \(D\) về dạng tam giác bằng chuỗi các phép đổi chỗ hai hàng liên tiếp. 
+    Trước hết,  ta đưa hàng~1 về vị trí hàng thứ \(n\) bằng cách đổi chỗ nó liên tiếp với các hàng 2, 3,\ldots, \(n\), và có \(n-1\) phép đổi chỗ hai hàng. Trong định thức thu được, lại đưa hàng~1 (là hàng~2 trong định thức trên) về vị trí hàng thứ \(n-1\) bằng cách đổi chỗ nó liên tiếp với các hàng 2, 3,\ldots, \(n-1\), với \(n-2\) phép đổi chỗ hai hàng. 
+    Cứ tiếp tục như vậy, đến bước gần cuối cùng, trong định thức thu được, đổi chỗ hàng~1 và~2 (chính là hàng \(n-1\) và \(n\) trong định thức trên). 
+    Vì mỗi phép đổi chỗ hai hàng làm định thức đổi dấu, và tổng số phép đổi chỗ ở đây là
+    \[
+    \left( n - 1 \right) + \left( n-2 \right) + \cdots + 1 = \frac{n\left( n - 1 \right)}{2} ,
+    \]
+    nên
+    \[
+    D = \left( -1 \right)^{\dfrac{n\left( n - 1 \right)}{2}} 
+    \begin{vmatrix}
+    1 & 0 & 0 & \ldots & 0 & 0 & 0 \\
+    1 & 1 & 0 & \ldots & 0 & 0 & 0 \\
+    1 & 1 & 1 & \ldots & 0 & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 1 & 1 & \ldots & 1 & 0 & 0 \\
+    1 & 1 & 1 & \ldots & 1 & 1 & 0 \\
+    1 & 2 & 3 & \ldots & n-2 & n-1 & n 
+    \end{vmatrix}
+    \]
+
+    Định thức thu được ở vế phải có dạng tam giác, bằng tích các phần tử trên đường chéo chính. 
+    Do đó
+    \[
+    D = \left( -1 \right)^{\dfrac{n\left( n - 1 \right)}{2}} \left( 1 \right) \left( 1 \right) \cdots \left( 1 \right) \left( n \right) = 
+    n \left( -1 \right)^{\dfrac{n\left( n - 1 \right)}{2}} .
+    \]
+
+    <i>Nhận xét:</i>
+    Xem công thức tính định thức có dạng tam giác trên (hoặc dưới) đường chéo phụ trong <a href="Proskuryakov_204.html">Bài tập 204</a>.
+
+
+</body>

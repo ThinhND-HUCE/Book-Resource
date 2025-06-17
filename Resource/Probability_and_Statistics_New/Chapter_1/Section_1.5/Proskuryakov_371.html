@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 371</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 371:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D_n\).
+    Sử dụng khai triển tương tự của lời giải trong <a href="Proskuryakov_369.html">Bài tập 369</a> (thay vì khai triển định thức theo cột đầu rồi sau đó theo cột cuối, ta khai triển theo cột cuối rồi sau đó theo hàng cuối, nhưng vẫn đạt được hệ thức truy hồi như vậy), ta có
+    \[
+    D_n = \left( 2\cos\alpha \right) D_{n-1} - D_{n-2},\quad n\ge 3,
+    \]
+    trong đó \(D_1 = \cos\alpha\), và 
+    \[
+    D_2 = \begin{vmatrix}
+    \cos\alpha & 1 \\
+    1 & 2\cos\alpha
+    \end{vmatrix} = \left( \cos\alpha \right) \left( 2\cos\alpha \right) - \left( 1 \right) \left( 1 \right) = 2\cos^2 \alpha - 1 = \cos 2\alpha .
+    \]
+
+    Ta chứng minh \(D_n = \cos n \alpha\) với mọi \(n\ge 1\) bằng phương pháp quy nạp. 
+    <ul>
+        <li>
+            Trước hết, khẳng định đúng với \(n = 1, 2\).
+        </li>
+        <li>
+            Giả sử khẳng định đúng tới \(n\ge 2\), tức là \(D_k = \cos k \alpha\), với mọi \(k = 1,\ldots, n\). Khi đó
+            \begin{align}
+            D_{n+1} & = \left( 2\cos \alpha \right) D_{n} - D_{n-1}
+            = 2 \cos\alpha \cos n\alpha - \cos\left(n-1\right)\alpha \\
+            & = \left( \cos\left( n\alpha + \alpha \right) + \cos\left( n\alpha - \alpha \right) \right) - \cos\left(n-1\right)\alpha 
+            = \cos\left(n+1\right)\alpha
+            \end{align}
+        </li>
+    </ul>
+
+    Ta có điều phải chứng minh.
+
+    Tiếp theo, để tìm biểu thức của \(D_n = \cos n \alpha\) phụ thuộc vào \(x = \cos\alpha\), ta ký hiệu
+    \[
+    {D_n} = \sum\limits_{k = 0}^n {a_k^{\left( n \right)}{ x^k } }
+    \]
+    và sử dụng hệ thức truy hồi 
+    \begin{align}
+    D_n & = \left( 2x \right) D_{n-1} - D_{n-2} 
+    = \left( {2x} \right)\sum\limits_{k = 0}^{n - 1} {a_k^{\left( {n - 1} \right)}{x^k}}  - \sum\limits_{k = 0}^{n - 2} {a_k^{\left( {n - 2} \right)}{x^k}}  \\
+    & = 2\sum\limits_{k = 0}^{n - 1} {a_k^{\left( {n - 1} \right)}{x^{k + 1}}}  - \sum\limits_{k = 0}^{n - 2} {a_k^{\left( {n - 2} \right)}{x^k}} 
+    = 2\sum\limits_{k = 1}^n {a_{k - 1}^{\left( {n - 1} \right)}{x^k}}  - \sum\limits_{k = 0}^{n - 2} {a_k^{\left( {n - 2} \right)}{x^k}} .
+    \end{align}
+
+    Cân bằng hệ số ở hai vế ta được
+    \begin{align}
+    a_n^{\left( n \right)} & = 2a_{n - 1}^{\left( {n - 1} \right)} \\
+    a_{n - 1}^{\left( n \right)} & = 2a_{n - 2}^{\left( {n - 1} \right)} \\
+    a_k^{\left( n \right)} & = 2a_{k - 1}^{\left( {n - 1} \right)} - a_k^{\left( {n - 2} \right)},\quad k = 1,\ldots,n-2 \\
+    a_0^{\left( n \right)} & =  - a_0^{\left( {n - 2} \right)}
+    \end{align}
+
+    Dưới đây là bảng hệ số \(a_k^{\left( n \right)}\), với \(n = 1,\ldots, 10\), và \(k = 0,\ldots, n\).
+    \[
+    \begin{array}{c | *{11}{r}}
+    n \backslash k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+    1 & 0 & 1 \\
+    2 & -1 & 0 & 2 \\
+    3 & 0 & -3 & 0 & 4 \\
+    4 & 1 & 0 & -8 & 0 & 8 \\
+    5 & 0 & 5 & 0 & -20 & 0 & 16 \\
+    6 & -1 & 0 & 18 & 0 & -48 & 0 & 32 \\
+    7 & 0 & -7 & 0 & 56 & 0 & -112 & 0 & 64 \\
+    8 & 1 & 0 & -32 & 0 & 160 & 0 & -256 & 0 & 128 \\
+    9 & 0 & 9 & 0 & -120 & 0 & 432 & 0 & -576 & 0 & 256 \\
+    10 & -1 & 0 & 50 & 0 & -400 & 0 & 1120 & 0 & -1280 & 0 & 512
+    \end{array}
+    \]
+
+    Ta tìm các hệ số lần lượt theo các đường chéo
+    <ul>
+        <li>
+            \(a_{n - 2}^{\left( n \right)} = 2a_{n - 3}^{\left( {n - 1} \right)} - a_{n - 2}^{\left( {n - 2} \right)} = 2a_{n - 3}^{\left( {n - 1} \right)} - {2^{n - 3}}\), với \(n\ge 3\), trong đó \(a_0^{\left( 2 \right)} = {\left( { - 1} \right)^1} =  - 1\).
+
+            Đặt \(x_n = a_{n - 2}^{\left( n \right)}\), thì \({x_n} = 2{x_{n - 1}} - {2^{n - 3}}\), với \(n\ge 3\), trong đó \({x_2} = a_0^{\left( 2 \right)} =  - 1\). 
+            Đây là hệ thức truy hồi tuyến tính không thuần nhất, \(x_n = p_n x_{n-1} + q_n\), trong đó \(p_n = 2\), và \(q_n =  - {2^{n - 3}}\), có nghiệm
+            \begin{align}
+            {x_n} & = {p_3}{p_4} \cdots {p_n}\left( {{x_2} + \frac{{{q_3}}}{{{p_3}}} + \frac{{{q_4}}}{{{p_3}{p_4}}} +  \cdots  + \frac{{{q_n}}}{{{p_3}{p_4} \cdots {p_n}}}} \right) \\
+            & = {2^{n - 2}}\left( { - 1 + \frac{{ - {2^0}}}{2} + \frac{{ - {2^1}}}{{{2^2}}} +  \cdots  + \frac{{ - {2^{n - 3}}}}{{{2^{n - 2}}}}} \right) \\
+            & =  - {2^{n - 2}}\left( {1 + \frac{1}{2}\left( {n - 2} \right)} \right) =  - {2^{n - 3}}n
+            \end{align}
+        </li>    
+        <li>
+            \(a_{n - 3}^{\left( n \right)} = 2a_{n - 4}^{\left( {n - 1} \right)} - a_{n - 3}^{\left( {n - 2} \right)} = 2a_{n - 4}^{\left( {n - 1} \right)}\), với \(n\ge 4\), trong đó \(a_0^{\left( 3 \right)} = 0\). 
+            Suy ra \(a_{n - 3}^{\left( n \right)} = 0\), với \(n\ge 3\).
+        </li>
+        <li>
+            \(a_{n - 4}^{\left( n \right)} = 2a_{n - 5}^{\left( {n - 1} \right)} - a_{n - 4}^{\left( {n - 2} \right)} = 2a_{n - 5}^{\left( {n - 1} \right)} + {2^{n - 5}}\left( {n - 2} \right)\), với \(n\ge 5\), trong đó \(a_0^{\left( 4 \right)} = {\left( { - 1} \right)^2} = 1\). 
+            Bằng cách ký hiệu \(x_n, p_n, q_n\) tương tự, ta có
+            \begin{align}
+            a_{n - 4}^{\left( n \right)} & = {p_5}{p_6} \cdots {p_n}\left( {a_0^{\left( 4 \right)} + \frac{{{q_5}}}{{{p_5}}} + \frac{{{q_6}}}{{{p_5}{p_6}}} +  \cdots  + \frac{{{q_n}}}{{{p_5}{p_6} \cdots {p_n}}}} \right) \\
+            & = {2^{n - 4}}\left( {1 + \frac{{{2^0} \cdot 3}}{2} + \frac{{{2^1} \cdot 4}}{{{2^2}}} +  \cdots  + \frac{{{2^{n - 5}}\left( {n - 2} \right)}}{{{2^{n - 4}}}}} \right) \\
+            & = {2^{n - 4}}\left( {1 + \frac{3}{2} + \frac{4}{2} +  \cdots  + \frac{{n - 2}}{2}} \right) = {2^{n - 5}}\left( {2 + 3 +  \cdots  + \left( {n - 2} \right)} \right) = {2^{n - 6}}n\left( {n - 3} \right)
+            \end{align}
+        </li>
+        <li>
+            \(a_{n - 5}^{\left( n \right)} = 2a_{n - 6}^{\left( {n - 1} \right)} - a_{n - 5}^{\left( {n - 2} \right)} = 2a_{n - 6}^{\left( {n - 1} \right)}\), với \(n\ge 6\), trong đó \(a_0^{\left( 5 \right)} = 0\). 
+            Suy ra \(a_{n - 5}^{\left( n \right)} = 0\), với \(n\ge 5\).
+
+            Bây giờ ta chứng minh \(a_{n - \left( {2k - 1} \right)}^{\left( n \right)} = 0\) với mọi \(k\ge 1\), \(n\ge 2k-1\) bằng quy nạp. 
+            Thật vậy, chỉ cần chứng minh bước quy nạp. Ta có
+            \[
+            a_{n - \left( {2k + 1} \right)}^{\left( n \right)} = 2a_{n - \left( {2k + 2} \right)}^{\left( {n - 1} \right)} - a_{n - \left( {2k + 1} \right)}^{\left( {n - 2} \right)}
+            \]
+            với \(n\ge 2k+2\), trong đó \(a_{n - \left( {2k + 1} \right)}^{\left( {n - 2} \right)} = a_{\left( {n - 2} \right) - \left( {2k - 1} \right)}^{\left( {n - 2} \right)} = 0\), và \(a_0^{\left( {2k + 1} \right)} = 0\). Do đó \(a_{n - \left( {2k + 1} \right)}^{\left( n \right)} = 0\), xong!
+        </li>
+        <li>
+            \(a_{n - 6}^{\left( n \right)} = 2a_{n - 7}^{\left( {n - 1} \right)} - a_{n - 6}^{\left( {n - 2} \right)} = 2a_{n - 7}^{\left( {n - 1} \right)} - {2^{n - 8}}\left( {n - 2} \right) \left( {n - 5} \right)\), với \(n\ge 7\), trong đó \(a_0^{\left( 6 \right)} = {\left( { - 1} \right)^3} = -1\). 
+            Với vai trò \(p_n, q_n\) mới, ta có
+            \begin{align}
+            a_{n - 6}^{\left( n \right)} & = {p_7}{p_8} \cdots {p_n}\left( {a_0^{\left( 6 \right)} + \frac{{{q_7}}}{{{p_7}}} + \frac{{{q_8}}}{{{p_7}{p_8}}} +  \cdots  + \frac{{{q_n}}}{{{p_7}{p_8} \cdots {p_n}}}} \right) \\
+            & = {2^{n - 8}}\left( {-1 + \frac{{-{2^{-1}\cdot 5\cdot 2}}}{2} + \frac{{-{2^0} \cdot 6\cdot 3}}{{{2^2}}} +  \cdots  + \frac{{-{2^{n - 8}}\left( {n - 2} \right) \left( {n - 5} \right) }}{{{2^{n - 6}}}}} \right) \\
+            & = -{2^{n - 8}}\left( 4\cdot 1 + 5\cdot 2 + \cdots + \left( n-2 \right) \left( n-5 \right) \right) 
+            = - {2^{n - 8}}\frac{{n\left( {n - 4} \right)\left( {n - 5} \right)}}{3}
+            \end{align}
+        </li>
+        <li>
+            \(a_{n - 8}^{\left( n \right)} = 2a_{n - 9}^{\left( {n - 1} \right)} - a_{n - 8}^{\left( {n - 2} \right)} = 2a_{n - 9}^{\left( {n - 1} \right)} + {2^{n - 10}}\dfrac{{\left( {n - 2} \right)\left( {n - 6} \right)\left( {n - 7} \right)}}{3}\), với \(n\ge 9\), trong đó \(a_0^{\left( 8 \right)} = {\left( { - 1} \right)^4} = 1\). 
+            Với vai trò \(p_n, q_n\) mới, ta có
+            \begin{align}
+            a_{n - 8}^{\left( n \right)} & = {p_9}{p_{10}} \cdots {p_n}\left( {a_0^{\left( 8 \right)} + \frac{{{q_9}}}{{{p_9}}} + \frac{{{q_{10}}}}{{{p_9}{p_{10}}}} +  \cdots  + \frac{{{q_n}}}{{{p_9}{p_{10}} \cdots {p_n}}}} \right) \\
+            & = {2^{n - 8}}\left( 1 + \frac{{{2^{ - 1}} \cdot 7 \cdot 3 \cdot 2}}{{3 \cdot 2}} + \frac{{{2^0} \cdot 8 \cdot 4 \cdot 3}}{{3 \cdot {2^2}}} +  \cdots  + \frac{{{2^{n - 10}}\left( {n - 2} \right)\left( {n - 6} \right)\left( {n - 7} \right)}}{{3 \cdot {2^{n - 8}}}} \right) \\
+            & = {2^{n - 10}}\frac{{6 \cdot 2 \cdot 1 + 7 \cdot 3 \cdot 2 +  \cdots  + \left( {n - 2} \right)\left( {n - 6} \right)\left( {n - 7} \right)}}{3} \\
+            & = {2^{n - 10}}\frac{{n\left( {n - 5} \right)\left( {n - 6} \right)\left( {n - 7} \right)}}{{3 \cdot 4}} = {2^{n - 12}}\frac{{n\left( {n - 5} \right)\left( {n - 6} \right)\left( {n - 7} \right)}}{3}
+            \end{align}
+
+            Có vẻ chúng ta sắp tìm ra quy luật. Hãy làm thêm một bước nữa.
+        </li>
+        <li>
+            \(a_{n - {10}}^{\left( n \right)} = 2a_{n - {11}}^{\left( {n - 1} \right)} - a_{n - {10}}^{\left( {n - 2} \right)} = 2a_{n - {11}}^{\left( {n - 1} \right)} - {2^{n - 14}}\dfrac{{\left( {n - 2} \right)\left( {n - 7} \right)\left( {n - 8} \right)\left( {n - 9} \right)}}{3}\), với \(n\ge 11\), trong đó \(a_0^{\left( 10 \right)} = {\left( { - 1} \right)^5} = -1\). 
+            Với vai trò \(p_n, q_n\) mới, ta có
+            \begin{align}
+            a_{n - 10}^{\left( n \right)} & = {p_{11}}{p_{12}} \cdots {p_n}\left( {a_0^{\left( 10 \right)} + \frac{{{q_{11}}}}{{{p_{11}}}} + \frac{{{q_{12}}}}{{{p_{11}}{p_{12}}}} +  \cdots  + \frac{{{q_n}}}{{{p_{11}}{p_{12}} \cdots {p_n}}}} \right) \\
+            & = 2^{n-10} \left( -1 + \frac{{ - {2^{ - 3}} \cdot 9 \cdot 4 \cdot 3 \cdot 2}}{{3 \cdot 2}} + \frac{{ - {2^{ - 2}} \cdot 10 \cdot 5 \cdot 4 \cdot 3}}{{3 \cdot {2^2}}} +  \cdots \right. \\
+            & \hspace{19mm} \left.  + \frac{{ - {2^{n - 14}}\left( {n - 2} \right)\left( {n - 7} \right)\left( {n - 8} \right)\left( {n - 9} \right)}}{{3 \cdot {2^{n - 10}}}} \right) \\
+            & = -2^{n-14} \dfrac{8\cdot 3 \cdot 2 \cdot 1 + 9 \cdot 4 \cdot 3 \cdot 2 + \cdots + \left( {n - 2} \right)\left( {n - 7} \right)\left( {n - 8} \right)\left( {n - 9} \right)}{3} \\
+            & =  - {2^{n - 14}}\frac{{n\left( {n - 6} \right)\left( {n - 7} \right)\left( {n - 8} \right)\left( {n - 9} \right)}}{{3 \cdot 5}}
+            \end{align}
+        </li>
+    </ul>
+
+
+    Ta tìm quy luật từ các biểu thức \(a_{n - 10}^{\left( n \right)}\), \(a_{n - 8}^{\left( n \right)}\), \(a_{n - 6}^{\left( n \right)}\), và \(a_{n - 2}^{\left( n \right)}\), chẳng hạn
+    \begin{align}
+    a_{n - 10}^{\left( n \right)} = a_{n - 2 \cdot 5}^{\left( n \right)} & =  - {2^{n - 11}}n\frac{{\left( {n - 6} \right)\left( {n - 7} \right)\left( {n - 8} \right)\left( {n - 9} \right)}}{{5!}} \\
+    & =  - {2^{n - 11}}n\frac{{\left( {n - 6} \right)\left( {n - 7} \right)\left( {n - 8} \right)\left( {n - 9} \right) \times \left( {n - 10} \right)!}}{{5!\,\left( {n - 10} \right)!}} \\
+    & = {\left( { - 1} \right)^5}{2^{n - 11}}n\frac{{\left( {n - 6} \right)!}}{{5!\,\left( {n - 10} \right)!}} = {\left( { - 1} \right)^5}{2^{n - 11}}\frac{n}{{n - 5}} \times \frac{{\left( {n - 5} \right)!}}{{5!\,\left( {n - 10} \right)!}} \\
+    & = {\left( { - 1} \right)^5}{2^{n - 11}}\frac{n}{{n - 5}}C_{n - 5}^5
+    \end{align}
+    và phát hiện rằng
+    \[
+    a_{n - 2k}^{\left( n \right)} = {\left( { - 1} \right)^k}{2^{n - \left( {2k + 1} \right)}}\frac{n}{{n - k}}C_{n - k}^k, \quad 2k \le n .
+    \]
+
+    Bây giờ, ta chứng minh nhận định trên bằng quy nạp.
+    Thật vậy
+    \[
+    a_{n - \left( {2k + 2} \right)}^{\left( n \right)} = 2a_{n - \left( {2k + 3} \right)}^{\left( {n - 1} \right)} - a_{n - \left( {2k + 2} \right)}^{\left( {n - 2} \right)},\quad n \ge 2k + 3
+    \]
+    trong đó
+    \begin{align}
+    a_{n - \left( {2k + 2} \right)}^{\left( {n - 2} \right)} = a_{\left( {n - 2} \right) - 2k}^{\left( {n - 2} \right)} & = {\left( { - 1} \right)^k}{2^{\left( {n - 2} \right) - \left( {2k + 1} \right)}}\frac{{n - 2}}{{\left( {n - 2} \right) - k}}C_{\left( {n - 2} \right) - k}^k \\
+    & = {\left( { - 1} \right)^k}{2^{n - 2k - 3}}\frac{{n - 2}}{{n - k - 2}}C_{n - k - 2}^k \\
+    a_0^{\left( {2k + 2} \right)} & = {\left( { - 1} \right)^{k + 1}}
+    \end{align}
+
+    Với \({x_n} = a_{n - \left( {2k + 2} \right)}^{\left( n \right)}\), \(p_n = 2\), và \(q_n = {q_n} =  - a_{n - \left( {2k + 2} \right)}^{\left( {n - 2} \right)} = {\left( { - 1} \right)^{k + 1}}{2^{n - 2k - 3}}\dfrac{{n - 2}}{{n - k - 2}}C_{n - k - 2}^k\), ta có \({x_n} = {p_n}{x_{n - 1}} + {q_n}\), với \(n\ge 2k+3\), trong đó \({x_{2k + 2}} = a_0^{\left( {2k + 2} \right)} = {\left( { - 1} \right)^{k + 1}}\), ta được
+    \[
+    {x_n} = {p_{2k + 3}}{p_{2k + 4}} \cdots {p_n}\left( {{x_{2k + 2}} + \frac{{{q_{2k + 3}}}}{{{p_{2k + 3}}}} + \frac{{{q_{2k + 4}}}}{{{p_{2k + 3}}{p_{2k + 4}}}} +  \cdots  + \frac{{{q_n}}}{{{p_{2k + 3}}{p_{2k + 4}} \cdots {p_n}}}} \right)
+    \]
+    hay
+    \begin{align}
+    a_{n - \left( {2k + 2} \right)}^{\left( n \right)} & = {2^{n - 2k - 2}}\left( {{\left( { - 1} \right)}^{k + 1}} + \frac{{{{\left( { - 1} \right)}^{k + 1}}{2^0}\left( {2k + 1} \right)C_{k + 1}^k}}{{2\left( {k + 1} \right)}} + \frac{{{{\left( { - 1} \right)}^{k + 1}}{2^1}\left( {2k + 2} \right)C_{k + 2}^k}}{{{2^2}\left( {k + 2} \right)}} +  \cdots \right. \\
+    & \hspace{28mm} \left. + \frac{{{{\left( { - 1} \right)}^{k + 1}}{2^{n - 2k - 3}}\left( {n - 2} \right)C_{n - k - 2}^k}}{{{2^{n - 2k - 2}}\left( {n - k - 2} \right)}} \right) \\
+    & = {\left( { - 1} \right)^{k + 1}}{2^{n - \left( {2k + 3} \right)}}\left( {2 + \frac{{2k + 1}}{{k + 1}}C_{k + 1}^k + \frac{{2k + 2}}{{k + 2}}C_{k + 2}^k +  \cdots  + \frac{{n - 2}}{{n - k - 2}}C_{n - k - 2}^k} \right) \\
+    &  = {\left( { - 1} \right)^{k + 1}}{2^{n - \left( {2k + 3} \right)}}\left( {\frac{{2k}}{k}C_k^k + \frac{{2k + 1}}{{k + 1}}C_{k + 1}^k + \frac{{2k + 2}}{{k + 2}}C_{k + 2}^k +  \cdots  + \frac{{n - 2}}{{n - k - 2}}C_{n - k - 2}^k} \right)
+    \end{align}
+
+    Để chỉ ra
+    \[
+    a_{n - \left( {2k + 2} \right)}^{\left( n \right)} = {\left( { - 1} \right)^{k + 1}}{2^{n - \left( {2k + 3} \right)}}\frac{n}{{n - k - 1}}C_{n - k - 1}^{k+1}
+    \]
+    ta chứng minh khẳng định sau
+    \[
+    \frac{{2k}}{k}C_k^k + \frac{{2k + 1}}{{k + 1}}C_{k + 1}^k + \frac{{2k + 2}}{{k + 2}}C_{k + 2}^k +  \cdots  + \frac{{n - 2}}{{n - k - 2}}C_{n - k - 2}^k
+    = \frac{n}{{n - k - 1}}C_{n - k - 1}^{k+1} .
+    \]
+
+    Sử dụng phương pháp quy nạp toán học, với \(n \ge 2k+2\).
+    <ul>
+        <li>
+            Với \(n = 2k+2\), khẳng định có dạng
+            \[
+            \frac{{2k}}{k}C_k^k = \frac{{2k + 2}}{{k + 1}}C_{k + 1}^{k + 1}\quad \Leftrightarrow \quad 2 = 2 \quad \text{(đúng)}
+            \]
+        </li>
+        <li>
+            Giả sử khẳng định đúng tới \(n\), tức là
+            \[
+            \sum\limits_{i = k}^{n - k - 2} {\frac{{k + i}}{i}C_i^k}  = \frac{n}{{n - k - 1}}C_{n - k - 1}^{k + 1}
+            \]
+
+            Khi đó
+            \begin{align}
+            \sum\limits_{i = k}^{\left( {n + 1} \right) - k - 2} {\frac{{k + i}}{i}C_i^k} & = \sum\limits_{i = k}^{n - k - 1} {\frac{{k + i}}{i}C_i^k}  = \sum\limits_{i = k}^{n - k - 2} {\frac{{k + i}}{i}C_i^k}  + \frac{{k + \left( {n - k - 1} \right)}}{{n - k - 1}}C_{n - k - 1}^k \\
+            & = \frac{n}{{n - k - 1}}C_{n - k - 1}^{k + 1} + \frac{{n - 1}}{{n - k - 1}}C_{n - k - 1}^k \\
+            & = \frac{n}{{n - k - 1}} \times \frac{{\left( {n - k - 1} \right)!}}{{\left( {k + 1} \right)!\,\left( {n - 2k - 2} \right)!}} + \frac{{n - 1}}{{n - k - 1}} \times \frac{{\left( {n - k - 1} \right)!}}{{k!\,\left( {n - 2k - 1} \right)!}} \\
+            & = \frac{{n\left( {n - k - 2} \right)!}}{{\left( {k + 1} \right)!\,\left( {n - 2k - 2} \right)!}} + \frac{{\left( {n - 1} \right)\left( {n - k - 2} \right)!}}{{k!\,\left( {n - 2k - 1} \right)!}} \\
+            & = \frac{{\left( {n - k - 2} \right)!}}{{\left( {k + 1} \right)!\,\left( {n - 2k - 1} \right)!}}\left[ {n\left( {n - 2k - 1} \right) + \left( {n - 1} \right)\left( {k + 1} \right)} \right] \\
+            & = \frac{{\left( {n - k - 2} \right)!}}{{\left( {k + 1} \right)!\,\left( {n - 2k - 1} \right)!}}\left( {{n^2} - nk - k - 1} \right) \\
+            & = \frac{{\left( {n - k - 2} \right)!}}{{\left( {k + 1} \right)!\,\left( {n - 2k - 1} \right)!}}\left( {n + 1} \right)\left( {n - k + 1} \right) \\
+            & = \frac{{\left( {n + 1} \right)\left( {n - k - 1} \right)!}}{{\left( {k + 1} \right)!\,\left( {n - 2k - 1} \right)!}} = \frac{{n + 1}}{{n - k}} \times \frac{{\left( {n - k} \right)!}}{{\left( {k + 1} \right)!\,\left( {n - 2k - 1} \right)!}} = \frac{{n + 1}}{{n - k}}C_{n - k}^{k + 1}
+            \end{align}
+            tức là khẳng định cũng đúng tới \(n+1\).
+            Theo nguyên lý quy nạp, ta có điều phải chứng minh.
+        </li>
+    </ul>
+
+    Kết luận
+    \[
+    \cos n\alpha  = \sum\limits_{k = 0}^n {a_k^{\left( n \right)}{{\cos }^k}\alpha }  = \sum\limits_{k = 0}^{\left\lfloor {\frac{n}{2}} \right\rfloor } {a_{n - 2k}^{\left( n \right)}{{\cos }^{n - 2k}}\alpha }  = \sum\limits_{k = 0}^{\left\lfloor {\frac{n}{2}} \right\rfloor } {{{\left( { - 1} \right)}^k}{2^{n - 2k - 1}}\frac{n}{{n - k}}C_{n - k}^k{{\cos }^{n - 2k}}\alpha } .
+    \]
+
+</body>
+</html>

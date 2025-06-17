@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 92</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 92:</i><br><br>
+    Xét định thức \(D = \begin{vmatrix}
+    a & b & c \\
+    d & e & f \\
+    g & h & k
+    \end{vmatrix} = aek + bfg + dhc - gec - dbk - hfa\). Giả sử các phần tử ở hàng~1 của định thức tăng \(\lambda\) lần, thì định thức mới là
+    \begin{align}
+    & \begin{vmatrix}
+    \lambda a & \lambda b & \lambda c \\
+    d & e & f \\
+    g & h & k
+    \end{vmatrix} \\
+    =\; & \left( {\lambda a} \right)\left( e \right)\left( k \right) + \left( {\lambda b} \right)\left( f \right)\left( g \right) + \left( d \right)\left( h \right)\left( {\lambda c} \right) - \left( g \right)\left( e \right)\left( {\lambda c} \right) - \left( d \right)\left( {\lambda b} \right)\left( k \right) - \left( h \right)\left( f \right)\left( {\lambda a} \right) \\
+    =\; & \lambda \left( aek + bfg + dhc - gec - dbk - hfa \right) = \lambda D
+    \end{align}
+    tức là định thức mới tăng \(\lambda\) lần.<br>
+
+    Trường hợp các phần tử ở hàng 2 (hoặc hàng 3) của định thức tăng \(\lambda\) lần, chứng minh tương tự.
+
+</body>

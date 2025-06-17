@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 264</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 264:</i><br><br>
+    
+    Trong định thức đã cho, biến đổi theo các ghi chú bên phải định thức, thì định thức không đổi:
+    \[
+    D = 
+    \left|\begin{array}{cccc}
+    3 & -5 & -2 & 2 \\
+    -4 & 7 & 4 & 4 \\
+    4 & -9 & -3 & 7 \\
+    2 & -6 & -3 & 2
+    \end{array}\right|
+    \begin{array}{l}
+    - h_4 \\
+    + 2h_4 \\
+    - 2h_4 \\
+    \\
+    \end{array}    
+    = 
+    \left|\begin{array}{cccc}
+    1 & 1 & 1 & 0 \\
+    0 & -5 & -2 & 8 \\
+    0 & 3 & 3 & 3 \\
+    2 & -6 & -3 & 2 
+    \end{array}\right|
+    \begin{array}{l}
+    \\
+    \\
+    \\
+    - 2h_1 \\
+    \end{array}
+    = 
+    \begin{vmatrix}
+    1 & 1 & 1 & 0 \\
+    0 & -5 & -2 & 8 \\
+    0 & 3 & 3 & 3 \\
+    0 & -8 & -5 & 2
+    \end{vmatrix}
+    \]
+
+    Khai triển định thức thu được theo cột 1:
+    \[
+    D = \left( 1 \right) \begin{vmatrix}
+    -5 & -2 & 8 \\
+    3 & 3 & 3 \\
+    -8 & -5 & 2
+    \end{vmatrix}
+    \]
+
+    Trong định thức mới, trừ cột 2, 3 cho cột 1, rồi khai triển định thức tiếp theo theo hàng 2:
+    \[
+    D = \begin{vmatrix}
+    -5 & 3 & 13 \\
+    3 & 0 & 0 \\
+    -8 & 3 & 10
+    \end{vmatrix}
+    = - \left( 3 \right) \begin{vmatrix}
+    3 & 13 \\
+    3 & 10
+    \end{vmatrix}
+    = -3 \left( 3\times 10 - 3\times 13 \right) = -3 \left( 30 - 39 \right) = 27 .
+    \]
+
+</body>

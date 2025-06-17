@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 296</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 296:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D_n\). Khai triển \(D_n\) theo cột cuối, lưu ý rằng \(D_n\) là định thức cấp \(n+1\), ta có
+    \[
+    D_n = \left( x_n \right)
+    \begin{vmatrix}
+    a_0 & a_1 & a_2 & \ldots & a_{n-1} \\
+    -y_1 & x_1 & 0 & \ldots & 0 \\
+    0 & -y_2 & x_2 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & x_{n-1}
+    \end{vmatrix}
+    + \left( -1 \right)^{\left( n+1 \right) + 1} \left( a_n \right) 
+    \begin{vmatrix}
+    -y_1 & x_1 & 0 & \ldots & 0 \\
+    0 & -y_2 & x_2 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & x_{n-1} \\
+    0 & 0 & 0 & \ldots & -y_n 
+    \end{vmatrix}
+    \]
+
+    Trong hai định thức xuất hiện ở vế phải, định thức thứ nhất chính là \(D_{n-1}\), còn định thức thứ hai có dạng tam giác trên, nên
+    \[
+    D_n = x_n D_{n-1} + \left( -1 \right)^n a_n \left( -y_1 \right) \left( -y_2 \right) \cdots \left( -y_n \right) 
+    = x_n D_{n-1} + a_n y_1 y_2\cdots y_n .
+    \]
+
+
+    Định thức trên có dạng tuyến tính không thuần nhất cấp một \(D_n = p_n D_{n-1} + q_n\), trong đó \(p_n = x_n\), và \(q_n = a_n y_1 y_2\cdots y_n\), với nghiệm có dạng
+    \begin{align}
+    D_n &  = \left( {{p_n}{p_{n - 1}} \cdots {p_2}{D_1}} \right) + \left[ {\left( {{p_n}{p_{n - 1}} \cdots {p_3}{q_2}} \right) +  \cdots  + \left( {{p_n}{p_{n - 1}}{p_{n - 2}}{q_{n - 3}}} \right)} \right. \\
+    & \hspace{41mm } \left. { + \left( {{p_n}{p_{n - 1}}{q_{n - 2}}} \right) + \left( {{p_n}{q_{n - 1}}} \right) + \left( {{q_n}} \right)} \right]
+    \end{align}
+
+    Thay vai trò \(p_n, q_n\), ta được
+    \begin{align}
+    {D_n} = \left( {{x_n}{x_{n - 1}} \cdots {x_1}{D_0}} \right) & + \left( {{x_n}{x_{n - 1}} \cdots {x_2} \cdot {a_1}{y_1}} \right) + \left( {{x_n}{x_{n - 1}} \cdots {x_3} \cdot {a_2}{y_1}{y_2}} \right) \\
+    & + \left( {{x_n}{x_{n - 1}} \cdots {x_4} \cdot {a_3}{y_1}{y_2}{y_3}} \right) +  \cdots  + \left( {{x_n}{x_{n - 1}} \cdot {a_{n - 2}}{y_1}{y_2} \cdots {y_{n - 2}}} \right) \\
+    & + \left( {{x_n} \cdot {a_{n - 1}}{y_1}{y_2} \cdots {y_{n - 1}}} \right) + \left( {{a_n}{y_1}{y_2} \cdots {y_n}} \right)
+    \end{align}
+
+    Vì \(D_0 = a_0\) nên
+    \begin{align}
+    {D_n} = \left( {{a_0}{x_1}{x_2} \cdots {x_n}} \right) & + \left( {{a_1}{y_1}{x_2}{x_3} \cdots {x_n}} \right) + \left( {{a_2}{y_1}{y_2}{x_3}{x_4} \cdots {x_n}} \right) \\
+    & + \left( {{a_3}{y_1}{y_2}{y_3}{x_4}{x_5} \cdots {x_n}} \right) +  \cdots  + \left( {{a_n}{y_1}{y_2} \cdots {y_n}} \right) .
+    \end{align}
+
+</body>

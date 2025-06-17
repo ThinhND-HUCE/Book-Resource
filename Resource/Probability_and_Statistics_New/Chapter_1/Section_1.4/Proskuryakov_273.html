@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 273</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 273:</i><br><br>
+    
+    Với định thức \(D\) đã cho, khai triển theo hàng 1:
+    \[
+    D = 27 \begin{vmatrix}
+    64 & 21 & 40 \\
+    -20 & -13 & 24 \\
+    45 & -55 & 84
+    \end{vmatrix}
+    - 44 \begin{vmatrix}
+    20 & 21 & 40 \\
+    13 & -13 & 24 \\
+    46 & -55 & 84
+    \end{vmatrix}
+    + 40 \begin{vmatrix}
+    20 & 64 & 40 \\
+    13 & -20 & 24 \\
+    46 & 45 & 84
+    \end{vmatrix} 
+    - 55 \begin{vmatrix}
+    20 & 64 & 21 \\
+    13 & -20 & -13 \\
+    46 & 45 & -55
+    \end{vmatrix}
+    \]
+
+    Ký hiệu \(D_1, D_2, D_3, D_4\) lần lượt là các định thức cấp 3 trong khai triển trên. Áp dụng công thức tam giác cho các định thức này ta có:
+    \begin{align}
+    D_1 & = \left( {64} \right)\left( { - 13} \right)\left( {84} \right) + \left( {21} \right)\left( {24} \right)\left( {45} \right) + \left( { - 20} \right)\left( { - 55} \right)\left( {40} \right) \\
+    & \hspace{1cm} - \left( {45} \right)\left( { - 13} \right)\left( {40} \right) - \left( { - 20} \right)\left( {21} \right)\left( {84} \right) - \left( { - 55} \right)\left( {24} \right)\left( {64} \right) \\
+    & = -69\,888 + 22\,680 + 44\,000 + 23\,400 + 35\,280 + 84\,480 = 139\,952 \\
+    D_2 & = \left( {20} \right)\left( { - 13} \right)\left( {84} \right) + \left( {13} \right)\left( { - 55} \right)\left( {40} \right) + \left( {21} \right)\left( {24} \right)\left( {46} \right) \\
+    & \hspace{1cm} - \left( {46} \right)\left( { - 13} \right)\left( {40} \right) - \left( {13} \right)\left( {21} \right)\left( {84} \right) - \left( { - 55} \right)\left( {24} \right)\left( {20} \right) \\
+    & = -21\,840 - 28\,600 + 23\,184 + 23\,920 - 22\,932 + 26\,400 = 132 \\
+    D_3 & = \left( {20} \right)\left( { - 20} \right)\left( {84} \right) + \left( {64} \right)\left( {24} \right)\left( {46} \right) + \left( {13} \right)\left( {45} \right)\left( {40} \right) \\
+    & \hspace{1cm} - \left( {46} \right)\left( { - 20} \right)\left( {40} \right) - \left( {13} \right)\left( {64} \right)\left( {84} \right) - \left( {45} \right)\left( {24} \right)\left( {20} \right) \\
+    & = -33\,600 + 70\,656 + 23\,400 + 36\,800 - 69\,888 - 21\,600 = 5\,768 \\
+    D_4 & = \left( {20} \right)\left( { - 20} \right)\left( { - 55} \right) + \left( {13} \right)\left( {45} \right)\left( {21} \right) + \left( {64} \right)\left( { - 13} \right)\left( {46} \right) \\
+    & \hspace{1cm} - \left( {46} \right)\left( { - 20} \right)\left( {21} \right) - \left( {13} \right)\left( {64} \right)\left( { - 55} \right) - \left( {45} \right)\left( { - 13} \right)\left( {20} \right) \\
+    & = 22000 + 12285 - 38272 + 19320 + 45760 + 11700 = 72793
+    \end{align}
+
+    Thay \(D_1, D_2, D_3, D_4\) vào \(D\) ta có:
+    \begin{align}
+    D & = 27D_1 - 44D_2 + 40D_3 - 55D_4 \\
+    & = 27\times 139\,952 - 44\times 132 + 40\times 5\,768 - 55\times 72\,793 = 1 .
+    \end{align}
+
+</body>

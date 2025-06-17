@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 322</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 322:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D_n\).
+    Khai triển \(D_n\) theo hàng cuối, và lưu ý \(D_n\) là định thức cấp \(n+1\), ta có
+    \[
+    D = \left( x \right)
+    \begin{vmatrix}
+    a_0 & -1 & 0 & 0 & \ldots & 0 \\
+    a_1 & x & -1 & 0 & \ldots & 0 \\
+    a_2 & 0 & x & -1 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_{n-1} & 0 & 0 & 0 & \ldots & x
+    \end{vmatrix}
+    + \left( a_n \right) \left( -1 \right)^{\left( n+1 \right) + 1} 
+    \begin{vmatrix}
+    -1 & 0 & 0 & \ldots & 0 & 0 \\
+    x & -1 & 0 & \ldots & 0 & 0 \\
+    0 & x & -1 & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & x & -1
+    \end{vmatrix}_n
+    \]
+
+    Định thức thứ nhất chính là \(D_{n-1}\); còn định thức thứ hai có dạng tam giác dưới cấp \(n\), bằng tích các phần tử trên đường chéo chính. Ta có
+    \[
+    D_n = x D_{n-1} + \left( a_n \right) \left( -1 \right)^{n+2} \left( -1 \right)^n = x D_{n-1} + a_n, \quad n \ge 1,
+    \]
+    trong đó \(D_0 = a_0\).
+
+    Ta thu được hệ thức truy hồi tuyến tính không thuần nhất cấp một, \(D_n = p_n D_{n-1} + q_n\), với \(p_n = x\), và \(q_n = a_n\), có nghiệm
+    \begin{align}
+    D_n & = p_1 p_2 \cdots p_n \left( D_0 + \frac{q_1}{p_1} + \frac{q_2}{p_1 p_2} + \cdots + \frac{q_n}{p_1 p_2 \cdots p_n}\right)
+    = x^n \left( a_0 + \frac{a_1}{x} + \frac{a_2}{x^2} + \cdots + \frac{a_n}{x^n} \right) \\
+    & = a_0 x^n + a_1 x^{n-1} + a_2 x^{n-2} + \cdots + a_n .
+    \end{align}
+</body>

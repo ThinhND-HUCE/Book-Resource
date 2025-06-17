@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 346</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 346:</i><br><br>
+    
+    Xét định thức Vandermonde
+    \[
+    D = \begin{vmatrix}
+    1 & x_0 & x_0^2 & x_0^{s-1} & x_0^s & x_0^{s+1} & \ldots & x_0^n \\
+    1 & x_1 & x_1^2 & x_1^{s-1} & x_1^s & x_1^{s+1} & \ldots & x_1^n \\
+    1 & x_2 & x_2^2 & x_2^{s-1} & x_2^s & x_2^{s+1} & \ldots & x_2^n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & x_n & x_n^2 & x_n^{s-1} & x_n^s & x_n^{s+1} & \ldots & x_n^n
+    \end{vmatrix}
+    \]
+
+    Xem \(D\) như là định thức theo biến \(x_0\).
+    Khai triển \(D\) theo hàng đầu, thì hệ số của \(x_0^s\) là \(\left( -1 \right)^{ 1 + \left( s+1 \right)} d\), trong đó \(d\) chính là định thức cần tìm.<br>
+
+    Mặt khác, áp dụng kết quả trong <a href="Proskuryakov_vd_4.html">Ví dụ 4</a>,
+    \[
+    D = \prod\limits_{n \ge i > j \ge 0} {\left( {{x_i} - {x_j}} \right)} .
+    \]
+
+    Tách riêng các thừa số \(x_i - x_j\) chứa \(x_0\), thì
+    \begin{align}
+    D & = \left( x_1 - x_0 \right) \left( x_2 - x_0 \right) \cdots \left( x_n - x_0 \right) \prod\limits_{n \ge i > j \ge 1} {\left( {{x_i} - {x_j}} \right)} \\
+    & = \left( -1 \right)^n \left( x_0 - x_1 \right) \left( x_0 - x_2 \right) \cdots \left( x_0 - x_n \right) \prod\limits_{n \ge i > j \ge 1} {\left( {{x_i} - {x_j}} \right)} .
+    \end{align}
+
+    Theo định lý Viet, hệ số của \(x_0^s\) trong \(\left( x_0 - x_1 \right) \left( x_0 - x_2 \right) \cdots \left( x_0 - x_n \right)\) là
+    \[
+    \left( -1 \right)^{n-s} \sum\limits_{1 \le {i_1} < {i_2} <  \ldots  < {i_{n - s}} \le n} {{x_{{i_1}}}{x_{{i_2}}} \cdots {x_{{i_{n - s}}}}} ,
+    \]
+    trong đó mỗi số hạng của tổng là tích của tổ hợp \(n-s\) phần tử trong các phần tử \(x_1, x_2,\ldots, x_n\). Do đó hệ số của \(x_0^s\) trong \(D\) là
+    \begin{align}
+    & {\left( { - 1} \right)^n} \times {\left( { - 1} \right)^{n - s}}\sum\limits_{1 \le {i_1} < {i_2} <  \ldots  < {i_{n - s}} \le n} {{x_{{i_1}}}{x_{{i_2}}} \cdots {x_{{i_{n - s}}}}} \prod\limits_{n \ge i > j \ge 1} {\left( {{x_i} - {x_j}} \right)} \\
+    =\; & {\left( { - 1} \right)^s}\sum\limits_{1 \le {i_1} < {i_2} <  \ldots  < {i_{n - s}} \le n} {{x_{{i_1}}}{x_{{i_2}}} \cdots {x_{{i_{n - s}}}}} \prod\limits_{n \ge i > j \ge 1} {\left( {{x_i} - {x_j}} \right)} .
+    \end{align}
+
+    Hai phương pháp tìm hệ số của \(x_0\) phải cho cùng kết quả, nên định thức cần tìm là
+    \[
+    d = \sum\limits_{1 \le {i_1} < {i_2} <  \ldots  < {i_{n - s}} \le n} {{x_{{i_1}}}{x_{{i_2}}} \cdots {x_{{i_{n - s}}}}} \prod\limits_{n \ge i > j \ge 1} {\left( {{x_i} - {x_j}} \right)} .
+    \]
+
+</body>

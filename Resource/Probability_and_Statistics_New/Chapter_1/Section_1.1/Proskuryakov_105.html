@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 105</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 105:</i><br><br>
+    Trừ cột 1 cho cột 2 ta được
+    \begin{align}
+    D & = \begin{vmatrix}
+    \left( a^x + a^{-x} \right)^2 & \left( a^x - a^{-x} \right)^2 & 1 \\
+    \left( a^y + a^{-y} \right)^2 & \left( a^y - a^{-y} \right)^2 & 1 \\
+    \left( a^z + a^{-z} \right)^2 & \left( a^z - a^{-z} \right)^2 & 1
+    \end{vmatrix} \\
+    & = \begin{vmatrix}
+    \left( a^{2x} + a^{-2x} + 2 \right) - \left( a^{2x} + a^{-2x} - 2 \right) & \left( a^x - a^{-x} \right)^2 & 1 \\
+    \left( a^{2y} + a^{-2y} + 2 \right) - \left( a^{2y} + a^{-2y} - 2 \right) & \left( a^y - a^{-y} \right)^2 & 1 \\
+    \left( a^{2z} + a^{-2z} + 2 \right) - \left( a^{2z} + a^{-2z} - 2 \right) & \left( a^z - a^{-z} \right)^2 & 1
+    \end{vmatrix} \\
+    & = \begin{vmatrix}
+    4 & \left( a^x - a^{-x} \right)^2 & 1 \\
+    4 & \left( a^y - a^{-y} \right)^2 & 1 \\
+    4 & \left( a^z - a^{-z} \right)^2 & 1
+    \end{vmatrix}
+    \end{align}
+
+    Định thức mới có cột 1 và 3 tỷ lệ thuận với nhau nên \(D = 0\).
+
+</body>

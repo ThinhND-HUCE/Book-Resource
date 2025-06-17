@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 317</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 317:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D\).
+    Cộng vào cột 1 tất cả các cột còn lại, lưu ý rằng \(D\) có cấp \(n\), ta có
+    \[
+    D = 
+    \begin{vmatrix}
+    2n-1 & 1 & 1 & \ldots & 1 \\
+    2n-1 & 0 & 1 & \ldots & 1 \\
+    2n-1 & 1 & 0 & \ldots & 1 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    2n-1 & 1 & 1 & \ldots & 0
+    \end{vmatrix}
+    \]
+
+    Trong định thức thu được, tại cột 1, ta đưa thừa số chung \(2n-1\) ra ngoài dấu định thức:
+    \[
+    D = \left( 2n-1 \right)
+    \begin{vmatrix}
+    1 & 1 & 1 & \ldots & 1 & 1 \\
+    1 & n & 1 & \ldots & 1 & 1\\
+    1 & 1 & n & \ldots & 1 & 1 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 1 & 1 & \ldots & n & 1 \\
+    1 & 1 & 1 & \ldots & 1 & n
+    \end{vmatrix}
+    \]
+
+    Trừ cột 1 vào các cột còn lại, định thức không đổi:
+    \[
+    D = \left( 2n-1 \right)
+    \begin{vmatrix}
+    1 & 0 & 0 & \ldots & 0 & 0 \\
+    1 & n-1 & 0 & \ldots & 0 & 0 \\
+    1 & 0 & n-1 & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & 0 & 0 & \ldots & n-1 & 0 \\
+    1 & 0 & 0 & \ldots & 0 & n-1
+    \end{vmatrix}
+    \]
+
+    Ta thu được định thức tam giác dưới cấp \(n\), có giá trị bằng tích các phần tử trên đường chéo chính. Vậy
+    \[
+    D = \left( 2n-1 \right) \left(n-1\right)^{n-1} .
+    \]
+</body>
