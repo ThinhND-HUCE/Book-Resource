@@ -95,7 +95,7 @@ export const Title = styled.h2`
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
-  color: rgba(0, 0, 0);
+  color: #000;
 `;
 
 export const Button = styled.button`

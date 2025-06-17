@@ -5,7 +5,7 @@ export interface ExerciseQuestion {
     k3: number;
     k4: number;
     content: string;
-    answers: string;
+    question_code: string;
 }
 
 //Thông tin người dùng nhập vào
@@ -13,6 +13,7 @@ export interface ExerciseAnswer {
     m: number;
     t: number;
     p: number;
+    question_code: string;
 }
 
 //Thông tin được trả về sau khi kiểm tra (kết quả)
@@ -47,31 +48,29 @@ const getAuthHeaders = () => {
 };
 
 export const fetchExerciseQuestion = async (): Promise<ExerciseQuestion> => {
-    const response = await fetch('http://localhost:8000/api/exercises/xstk/', {
+    const response = await fetch('http://localhost:8000/api/exercises/xstk/generate-question/', {
         headers: getAuthHeaders()
     });
     if (!response.ok) {
-        throw new Error('Failed to fetch exercise question');
+        throw new Error('Không thể lấy câu hỏi từ API');
     }
     const data = await response.json();
-    return data.question;
+    return data;
 };
 
 export const submitExerciseAnswer = async (
     answer: ExerciseAnswer,
-    question: ExerciseQuestion
 ): Promise<ExerciseResponse> => {
-    const response = await fetch('http://localhost:8000/api/exercises/xstk/', {
+    const response = await fetch('http://localhost:8000/api/exercises/xstk/submit-answer/', {
         method: 'POST',
         headers: getAuthHeaders(),
         body: JSON.stringify({
             ...answer,
-            ...question
         })
     });
 
     if (!response.ok) {
-        throw new Error('Failed to submit exercise answer');
+        throw new Error('Không thể đưa câu hỏi lên API');
     }
 
     return response.json();

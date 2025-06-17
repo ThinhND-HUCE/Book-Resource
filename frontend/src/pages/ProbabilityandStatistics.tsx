@@ -24,18 +24,18 @@ const ProbabilityandStatistics: React.FC = () => {
         return name.replace(/^(section|chapter)\s*/i, '').replace(/^:\s*/, '');
     };
 
+    //Hàm đóng mở chapter
     const toggleChapter = (chapterName: string) => {
         setOpenChapters(prev => {
-            const newSet = new Set(prev);
-            if (newSet.has(chapterName)) {
-                newSet.delete(chapterName);
-            } else {
+            const newSet = new Set<string>();
+            if (!prev.has(chapterName)) {
                 newSet.add(chapterName);
             }
             return newSet;
         });
     };
 
+    //Hàm đóng mở section
     const toggleSection = (sectionName: string) => {
         setOpenSections(prev => {
             const newSet = new Set(prev);
@@ -48,6 +48,7 @@ const ProbabilityandStatistics: React.FC = () => {
         });
     };
 
+    //Lấy dữ liệu từ API: Đổi theo tên course tương ứng
     useEffect(() => {
         fetch(`http://localhost:8000/api/courses/Probability_and_Statistics`)
             .then(res => res.json())
@@ -55,9 +56,10 @@ const ProbabilityandStatistics: React.FC = () => {
             .catch(err => console.error("Lỗi lấy dữ liệu khóa học:", err));
     }, []);
 
+    //Chỉ lấy số từ các file
     const extractNumber = (filename: string) => {
-        const match = filename.match(/Proskuryakov (\d+)\.html/);
-        return match ? match[1] : filename;
+        const match = filename.match(/\d+/);
+        return match ? match[0] : filename;
     };
 
     //2. Hàm xử lý khi nhấn vào nút
@@ -73,9 +75,10 @@ const ProbabilityandStatistics: React.FC = () => {
         });
     }
 
+    //Hàm đọc nội dung file theo từng file 1
     const fetchHtmlContent = async (filePath: string, files: FileItem[], index: number) => {
         try {
-            const response = await fetch(`http://localhost:8000/api/files/view?path=${encodeURIComponent(filePath)}`);
+            const response = await fetch(`http://localhost:8000/api/files/view/?path=${encodeURIComponent(filePath)}`);
             const text = await response.text();
             const body = text.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || text;
 
@@ -87,6 +90,7 @@ const ProbabilityandStatistics: React.FC = () => {
         }
     };
 
+    //Hàm render Latex từ file html và nút tiếp, quay lại
     const renderHtmlViewer = () => {
         const goNext = () => {
             if (currentFileIndex !== null && currentFileIndex < htmlFiles.length - 1) {
@@ -125,6 +129,7 @@ const ProbabilityandStatistics: React.FC = () => {
         );
     };
 
+    //Hàm render các section
     const renderSectionButtons = (folder: FolderItem) => {
         const filesOnly = folder.children.filter(c => c.type === "file") as FileItem[];
 
@@ -140,6 +145,8 @@ const ProbabilityandStatistics: React.FC = () => {
             </Button>
         ));
     };
+
+    //Hàm render các chapter
     const renderChapters = () => {
         return (
             <VerticalWrapper>
@@ -194,6 +201,7 @@ const ProbabilityandStatistics: React.FC = () => {
         );
     };
 
+    //Hàm hiển thị file dưới dạng lưới
     const renderSectionContent = () => {
         if (!course || !selectedChapter || !selectedSection) return null;
 

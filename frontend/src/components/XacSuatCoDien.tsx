@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestion } from '../api/xacSuatCoDienApi';
-import 'katex/dist/katex.min.css';
-import { InlineMath } from 'react-katex';
+import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestion } from '../constants/xacSuatCoDienService';
+import MathJaxRender from './MathJaxRender'; 
 
 const ExerciseContainer = styled.div`
     padding: 20px;
@@ -81,12 +80,41 @@ const ResultContainer = styled.div`
     color: #000;
 `;
 
-const AnswerDetail = styled.div`
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 4px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+const ResultTable = styled.table`
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: white;
+    font-size: 16px;
+`;
+
+const TableHeader = styled.th`
+    padding: 12px;
+    border: 1px solid #666;
+    background-color: #f5f5f5;
+    text-align: center;
+    font-weight: bold;
+`;
+
+const TableCell = styled.td`
+    padding: 12px;
+    border: 1px solid #666;
+    text-align: center;
+`;
+
+const ContentCell = styled(TableCell)`
+    text-align: left;
+`;
+
+const TableRow = styled.tr`
+    &:last-child {
+        background-color: #f5f5f5;
+        font-weight: bold;
+    }
+`;
+
+const TotalCell = styled(TableCell)`
+    text-align: right;
 `;
 
 const CorrectAnswer = styled.span`
@@ -179,6 +207,16 @@ const TimerDisplay = styled.div<{ isWarning?: boolean }>`
     transition: color 0.3s ease;
 `;
 
+const ScoreCell = styled(TableCell)<{ score?: number }>`
+    color: ${props => {
+        if (props.score === undefined) return 'inherit';
+        if (props.score < 4) return '#ff0000';
+        if (props.score <= 5.5) return '#ffa500';
+        return '#008000';
+    }};
+    font-weight: bold;
+`;
+
 interface ExerciseAnswer {
     m: string;
     t: string;
@@ -203,6 +241,7 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
         loadQuestion();
     }, []);
 
+    //Tự độngg điền đáp án khi hết thời gian
     useEffect(() => {
         if (timeLeft > 0 && !result) {
             const timer = setInterval(() => {
@@ -219,24 +258,26 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
             setShowTimeoutPopup(true);
         }
     }, [timeLeft, result]);
-
+    
+    //Cấu hình thời gian
     const formatTime = (seconds: number): string => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
         return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
     };
 
+    //Cấu hình khi làm mới
     const loadQuestion = async () => {
         try {
-            // Reset all states first
-            setAnswer({ m: '', t: '', p: '' });
-            setResult(null);
-            setLoading(false);
-            setHintVisible(false);
-            setTimeLeft(timeLimit);
-            setShowTimeoutPopup(false);
+            // Đặt lại giá trị cho tất cả biển
+            setAnswer({ m: '', t: '', p: '' }); // biến câu trả lời
+            setResult(null); // biến kết quả
+            setLoading(false); // biến loading
+            setHintVisible(false); // biến gợi ý
+            setTimeLeft(timeLimit); // biến thời gian
+            setShowTimeoutPopup(false); // thông báo hết thời gian
             
-            // Then load new question
+            // Gọi lại hàm để tạo câu hỏi mới
             setLoading(true);
             const newQuestion = await fetchExerciseQuestion();
             setQuestion(newQuestion);
@@ -247,6 +288,7 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
         }
     };
 
+    //Cấu hình để nhận giá trị 2/3 thành dạng float
     const convertFractionToDecimal = (value: string): number => {
         if (value.includes('/')) {
             const [numerator, denominator] = value.split('/').map(Number);
@@ -257,25 +299,28 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
         return parseFloat(value);
     };
 
+    //Hàm xử lý khi nhấn vào nút submit
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!question) return;
 
-        // Validate that all fields are filled
+        // Bắt buộc tất cả các input đều phải có giá tri
         if (answer.m === '' || answer.t === '' || answer.p === '') {
             alert('Vui lòng điền đầy đủ các giá trị');
             return;
         }
 
         setLoading(true);
+
+        // Hàm POST lên API
         try {
             const response = await submitExerciseAnswer(
                 {
                     m: convertFractionToDecimal(answer.m),
                     t: convertFractionToDecimal(answer.t),
-                    p: convertFractionToDecimal(answer.p)
-                },
-                question
+                    p: convertFractionToDecimal(answer.p),
+                    question_code: question.question_code
+                }
             );
             setResult(response);
         } catch (error) {
@@ -284,6 +329,7 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
         setLoading(false);
     };
 
+    //Hàm lấy giá trị từ ô input
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         if (value === '' || !isNaN(parseFloat(value)) || value.includes('/')) {
@@ -301,15 +347,19 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
     return (
         <ExerciseContainer>
             <BackButton onClick={onBack}>← Quay lại</BackButton>
+            {/* Khung hiển thị thời gian */}
             <TimerDisplay isWarning={timeLeft < 60}>
                 Thời gian còn lại: {formatTime(timeLeft)}
             </TimerDisplay>
+            {/* Khung câu hỏi */}
             <QuestionText>
                 {question.content}
                 <p><i>Lời giải:</i></p>
             </QuestionText>
 
+            {/* Khung lời giải */}
             <form onSubmit={handleSubmit}>
+                {/* Ý 1 */}
                 <InputGroup>
                     <Label>Phép thử: Rút ngẫu nhiên {question.k3} bi. Số trường hợp có thể của phép thử: </Label>
                     <Input
@@ -322,8 +372,10 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
                     />
                 </InputGroup>
 
+                {/* Ý 2 */}
                 <InputGroup>
-                    <Label>Biến cố <InlineMath math="A"></InlineMath> = {'{'}rút được {question.k4} bi đỏ {'('} và {question.k3 - question.k4} bi xanh{')'}{'}'}. <br />Áp dụng quy tắc nhân và quy tắc tổ hợp, số trường hợp thuận lợi cho <InlineMath math="A"></InlineMath> là:
+                    <Label>
+                        <MathJaxRender latex={`Biến cố \\(A\\) = {rút được ${question.k4} bi đỏ và ${question.k3 - question.k4} bi xanh}. Áp dụng quy tắc tổ hợp, số trường hợp thuận lợi cho \\(A\\) là:`}></MathJaxRender>
                     </Label>
                     <Input
                         type="text"
@@ -334,8 +386,12 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
                         autoComplete="off"
                     />
                 </InputGroup>
+
+                {/* Ý 3 */}
                 <InputGroup>
-                    <Label>Suy ra <InlineMath math="P\!\left(A\right)"></InlineMath> là:</Label>
+                    <Label>
+                        <MathJaxRender latex={`Suy ra xác suất \\(P(A)\\) là:`}></MathJaxRender>
+                    </Label>
                     <Input
                         type="text"
                         name="p"
@@ -350,6 +406,7 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
                     <Hint className={hintVisible ? 'hint' : ''}>(Làm tròn đến 4 chữ số có nghĩa)</Hint>
                 </InputGroup>
 
+                {/* Khung hiển thị nút kiểm tra và làm mới */}
                 <ButtonContainer>
                     <SubmitButton
                         type="submit"
@@ -365,64 +422,85 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
                 </ButtonContainer>
             </form>
 
+            {/* Khung hiển thị kết quả sau khi POST */}
             {result && (
                 <ResultContainer>
                     <h3>Kết quả:</h3>
-                    <p>Ý thứ 1: {result.scores.m_score}/{result.frame_scores.m_score}</p>
-                    <p>Ý thứ 2: {result.scores.t_score}/{result.frame_scores.t_score}</p>
-                    <p>Ý thứ 3: {result.scores.p_score}/{result.frame_scores.p_score}</p>
-                    <p>Tổng điểm: {result.scores.total_score}/{result.frame_scores_total}
-                        {result.frame_scores_total !== 10 && ` (${((result.scores.total_score / result.frame_scores_total) * 10).toFixed(1)}/10)`}
-                    </p>
+                    {/* Bảng */}
+                    <ResultTable>
+                        {/* Hàng 1 */}
+                        <thead>
+                            <tr>
+                                <TableHeader>Ý</TableHeader>
+                                <TableHeader>Nội dung</TableHeader>
+                                <TableHeader>Đúng/Sai</TableHeader>
+                                <TableHeader>Đáp án đúng</TableHeader>
+                                <TableHeader>Điểm</TableHeader>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* Hàng 2 */}
+                            <tr>
+                                <TableCell>Ý thứ 1</TableCell>
+                                <ContentCell>Tổng số cách chọn</ContentCell>
+                                <TableCell>
+                                    {result.scores.m_score === result.frame_scores.m_score ? 
+                                        <CorrectAnswer>✓</CorrectAnswer> : 
+                                        <WrongAnswer>✗</WrongAnswer>}
+                                </TableCell>
+                                <TableCell>{result.correct_answers.m}</TableCell>
+                                <TableCell>{result.scores.m_score} / {result.frame_scores.m_score}</TableCell>
+                            </tr>
 
-                    <AnswerDetail>
-                        <h4>Chi tiết đáp án:</h4>
-                        <p>
-                            Ý thứ 1 (Tổng số cách chọn):{' '}
-                            {result.scores.m_score === result.frame_scores.m_score ? (
-                                <CorrectAnswer>✓ {answer.m}</CorrectAnswer>
-                            ) : (
-                                <>
-                                    <WrongAnswer>✗ {answer.m}</WrongAnswer>
-                                    {' → '}
-                                    <CorrectAnswer>Đáp án đúng: {result.correct_answers.m}</CorrectAnswer>
-                                </>
-                            )}
-                        </p>
-                        <p>
-                            Ý thứ 2 (Số cách chọn thỏa mãn):{' '}
-                            {result.scores.t_score === result.frame_scores.t_score ? (
-                                <CorrectAnswer>✓ {answer.t}</CorrectAnswer>
-                            ) : (
-                                <>
-                                    <WrongAnswer>✗ {answer.t}</WrongAnswer>
-                                    {' → '}
-                                    <CorrectAnswer>Đáp án đúng: {result.correct_answers.t}</CorrectAnswer>
-                                </>
-                            )}
-                        </p>
-                        <p>
-                            Ý thứ 3 (Xác suất):{' '}
-                            {result.scores.p_score === result.frame_scores.p_score ? (
-                                <CorrectAnswer>✓ {answer.p}</CorrectAnswer>
-                            ) : (
-                                <>
-                                    <WrongAnswer>✗ {answer.p}</WrongAnswer>
-                                    {' → '}
-                                    <CorrectAnswer>Đáp án đúng: {result.correct_answers.p}</CorrectAnswer>
-                                </>
-                            )}
-                        </p>
-                    </AnswerDetail>
+                            {/* Hàng 3 */}
+                            <tr>
+                                <TableCell>Ý thứ 2</TableCell>
+                                <ContentCell>Số cách chọn thỏa mãn</ContentCell>
+                                <TableCell>
+                                    {result.scores.t_score === result.frame_scores.t_score ? 
+                                        <CorrectAnswer>✓</CorrectAnswer> : 
+                                        <WrongAnswer>✗</WrongAnswer>}
+                                </TableCell>
+                                <TableCell>{result.correct_answers.t}</TableCell>
+                                <TableCell>{result.scores.t_score} / {result.frame_scores.t_score}</TableCell>
+                            </tr>
 
+                            {/* Hàng 4*/}
+                            <tr>
+                                <TableCell>Ý thứ 3</TableCell>
+                                <ContentCell>Xác suất</ContentCell>
+                                <TableCell>
+                                    {result.scores.p_score === result.frame_scores.p_score ? 
+                                        <CorrectAnswer>✓</CorrectAnswer> : 
+                                        <WrongAnswer>✗</WrongAnswer>}
+                                </TableCell>
+                                <TableCell>{result.correct_answers.p}</TableCell>
+                                <TableCell>{result.scores.p_score} / {result.frame_scores.p_score}</TableCell>
+                            </tr>
+
+                            {/* Hàng cuối*/}
+                            <TableRow>
+                                <TotalCell colSpan={4}>Tổng điểm:</TotalCell>
+                                <ScoreCell score={result.frame_scores_total !== 10 ? 
+                                    Number(((result.scores.total_score / result.frame_scores_total) * 10).toFixed(1)) : 
+                                    undefined
+                                }>
+                                    {`${result.scores.total_score} / ${result.frame_scores_total}${result.frame_scores_total !== 10 ? ` (${((result.scores.total_score / result.frame_scores_total) * 10).toFixed(1)} / 10)` : ''}`}
+                                </ScoreCell>
+                            </TableRow>
+                        </tbody>
+                    </ResultTable>
+
+                    {/* Thông báo hoàn thành bài làm */}
                     {result.success ? (
-                        <p style={{ color: 'green', fontWeight: 'bold' }}>Chúc mừng! Bạn đã hoàn thành bài tập.</p>
+                        <p style={{ color: 'green', fontWeight: 'bold', marginTop: '20px' }}>Chúc mừng! Bạn đã hoàn thành bài tập.</p>
                     ) : (
-                        <p style={{ color: 'red', fontWeight: 'bold' }}>Hãy thử lại!</p>
+                        <p style={{ color: 'red', fontWeight: 'bold', marginTop: '20px' }}>Hãy thử lại!</p>
                     )}
                 </ResultContainer>
             )}
 
+            {/* Pop up hiển thị sau khi hết thời gian */}
             {showTimeoutPopup && (
                 <PopupOverlay>
                     <PopupContent>
@@ -432,14 +510,15 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
                             onClick={async () => {
                                 if (!question) return;
                                 setLoading(true);
+                                // Hàm POST lên API
                                 try {
                                     const response = await submitExerciseAnswer(
                                         {
                                             m: convertFractionToDecimal(answer.m),
                                             t: convertFractionToDecimal(answer.t),
-                                            p: convertFractionToDecimal(answer.p)
-                                        },
-                                        question
+                                            p: convertFractionToDecimal(answer.p),
+                                            question_code: question.question_code
+                                        }
                                     );
                                     setResult(response);
                                     setShowTimeoutPopup(false);

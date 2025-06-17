@@ -54,11 +54,8 @@ def read_folder_structure(dir_path):
                 })
 
         def get_number(item):
-            match = re.search(r'(\d+\.?\d*)', item["sort_key"])
-            if match:
-                # Chuyển đổi số thành float để sắp xếp đúng thứ tự (1.1, 1.2, 1.10, 1.11)
-                return float(match.group(1))
-            return 0
+            matches = re.findall(r'\d+', item["sort_key"])
+            return tuple(map(int, matches)) if matches else (0,)
 
         results.sort(key=get_number)
     except Exception as e:
