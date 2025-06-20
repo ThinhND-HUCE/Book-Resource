@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 326</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 326:</i><br><br>
+    
+    Ký hiệu \(D_n\) là định thức đã cho.
+    Khai triển \(D_n\) theo cột cuối, là cột thứ \(n+1\), ta có
+    \[
+    D_n = \left( C_n^n \right) \left( -1 \right)^{\left( n+1 \right) + 1} 
+    \begin{vmatrix}
+    1 & C_{n-1}^1 & C_{n-1}^2 & \ldots & C_{n-1}^{n-1} \\
+    1 & C_{n-2}^1 & C_{n-2}^2 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & C_2^1 & C_2^2 & \ldots & 0 \\
+    1 & C_1^1 & 0 & \ldots & 0 \\
+    a_0 & a_1 & a_2 & \ldots & a_{n-1} 
+    \end{vmatrix}
+    + \left( a_n \right)
+    \begin{vmatrix}
+    1 & C_n^1 & C_n^2 & \ldots & C_n^{n-1} \\
+    1 & C_{n-1}^1 & C_{n-1}^2 & \ldots & C_{n-1}^{n-1} \\
+    1 & C_{n-2}^1 & C_{n-2}^2 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & C_2^1 & C_2^2 & \ldots & 0 \\
+    1 & C_1^1 & 0 & \ldots & 0 
+    \end{vmatrix}
+    \]
+
+    Định thức thứ nhất chính là \(D_{n-1}\). 
+    Ta tính định thức thứ hai, ký hiệu là là \(d_n\).
+    Từ hàng đầu đến hàng gần cuối, trừ mỗi hàng cho hàng dưới, áp dụng công thức Pascal
+    \(C_n^k = C_{n-1}^k + C_{n-1}^{k-1}\), với \(n > k \ge 1\), và lưu ý \(C_k^0 = C_{k}^k = 1\), ta đươc
+    \[
+    d_n = 
+    \begin{vmatrix}
+    0 & C_{n-1}^0 & C_{n-1}^1 & \ldots & C_{n-1}^{n-2} \\
+    0 & C_{n-2}^0 & C_{n-2}^1 & \ldots & C_{n-2}^{n-2} \\
+    0 & C_{n-3}^0 & C_{n-3}^1 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & C_1^0 & C_1^1 & \ldots & 0 \\
+    1 & 1 & 0 & \ldots & 0 
+    \end{vmatrix}
+    \]
+
+    Khai triển định thức này theo cột đầu:
+    \[
+    d_n = \left( 1 \right) \left( -1 \right)^{n+1}
+    \begin{vmatrix}
+    1 & C_{n-1}^1 & \ldots & C_{n-1}^{n-2} \\
+    1 & C_{n-2}^1 & \ldots & C_{n-2}^{n-2} \\
+    1 & C_{n-3}^1 & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots \\
+    1 & C_1^1 & \ldots & 0
+    \end{vmatrix}
+    \]
+
+    ta lại thấy xuất hiện \(d_{n-1}\). Như vậy \(d_n = \left( -1 \right)^{n-1} d_{n-1}\) với \(n\ge 3\), trong đó 
+    \[
+    d_2 = \begin{vmatrix}
+    1 & C_2^1 \\
+    1 & C_1^1
+    \end{vmatrix}
+    = \begin{vmatrix}
+    1 & 2 \\
+    1 & 1
+    \end{vmatrix} = \left( 1 \right) \left( 1 \right) - \left( -1 \right) \left( 2 \right) = -1 .
+    \]
+
+    Cho \(n = 3, 4,\ldots\)
+    \begin{align}
+    d_3 & = \left( -1 \right)^2 d_2 \\
+    d_4 & = \left( -1 \right)^3 d_3 \\
+    & \ldots \\
+    d_n & = \left( -1 \right)^{n-1} d_{n-1}
+    \end{align}
+    suy ra
+    \[
+    d_n = \left( -1 \right)^{2 + 3 + \cdots + \left( n-1 \right)} d_2 = \left( -1 \right)^{2 + 3 + \cdots + \left( n-1 \right)} \left( -1 \right) 
+    = \left( -1 \right)^{1 + 2 + \cdots + \left( n-1 \right)} = \left( -1 \right)^{\frac{n\left( n-1 \right)}{2}} .
+    \]
+
+    Ta trở lại với \(D_n\):
+    \[
+    D_n = \left( -1 \right)^n D_{n-1} + \left( -1 \right)^{\frac{n\left( n-1 \right)}{2}} a_n, \quad n\ge 2 .
+    \]
+    trong đó 
+    \[
+    D_1 = \begin{vmatrix}
+    1 & C_1^1 \\
+    a_0 & a_1
+    \end{vmatrix} = \left( 1 \right) \left( a_1 \right) - \left( a_0 \right) \left( 1 \right) = a_1 - a_0 = \left( - 1\right)^1 a_0 + \left( -1 \right)^{\frac{1\cdot 0}{2}} a_1 = \left( - 1\right)^1 D_0 + \left( -1 \right)^{\frac{1\cdot 0}{2}} a_1,
+    \]
+    tức là hệ thức truy hồi trên cũng đúng với \(n = 1\).
+    Hệ thức dạng \(D_n = p_n D_{n-1} + q_n\) có nghiệm
+    \begin{align}
+    D_n & = p_1 p_2 \cdots p_n \left( D_0 + \frac{q_1}{p_1} + \frac{q_2}{p_1 p_2} + \cdots + \frac{q_n}{p_1 p_2 \cdots p_n}\right) \\
+    & = \left( - 1\right)^{1 + 2 + \cdots + n} \left[ a_0 + \frac{\left( -1 \right)^{\frac{1\cdot 0}{2}} a_1}{\left( - 1 \right)^1} + 
+    \frac{\left( -1 \right)^{\frac{2\cdot 1}{2}} a_2}{\left( - 1 \right)^{1 + 2}} + \cdots +
+    \frac{\left( -1 \right)^{\frac{n\left( n-1 \right)}{2}} a_n}{\left( - 1 \right)^{1 + 2 + \cdots + n}} \right] \\
+    & = \left( -1 \right)^{\frac{n\left( n+1 \right)}{2}} 
+    \left[ a_0 + \frac{a_1}{\left( -1 \right)^1} + \frac{a_2}{\left( -1 \right)^2} + \cdots + \frac{a_n}{\left( -1 \right)^n}\right] \\
+    & = \left( -1 \right)^{\frac{n\left( n+1 \right)}{2}}  \left[ a_0 - a_1 + a_2 + \cdots + \left( -1 \right)^n a_n \right].
+    \end{align}
+
+</body>

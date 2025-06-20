@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 380</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 380:</i><br><br>
+
+    Áp dụng phương pháp tương tự trong <a href="Proskuryakov_379.html">Bài tập 379</a>.
+    Ký hiệu định thức đã cho là \(D_n\).
+    Trừ mỗi cột cho cột trước nó, sử dụng công thức Pascal
+    \[
+    \binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1} \quad\Rightarrow\quad
+    \binom{n}{k} - \binom{n-1}{k} = \binom{n-1}{k-1},
+    \]
+    ta có
+    \[
+    D_n = 
+    \begin{vmatrix}
+    1 & 0 & 0 & \ldots & 0 \\
+    \binom{m}{1} & \binom{m}{0} & \binom{m+1}{0} & \ldots & \binom{m+n-1}{0} \\
+    \binom{m+1}{2} & \binom{m+1}{1} & \binom{m+2}{1} & \ldots & \binom{m+n}{1} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{m+n-1}{n} & \binom{m+n-1}{n-1} & \binom{m+n}{n-1} & \ldots & \binom{m+2n-2}{n-1} 
+    \end{vmatrix}
+    \]
+    
+    Khai triển định thức theo hàng đầu:
+    \[
+    D_n = \left( 1 \right)
+    \begin{vmatrix}
+    \binom{m}{0} & \binom{m+1}{0} & \binom{m+2}{0} & \ldots & \binom{m+n-1}{0} \\
+    \binom{m+1}{1} & \binom{m+2}{1} & \binom{m+3}{1} & \ldots & \binom{m+n}{1} \\
+    \binom{m+2}{2} & \binom{m+3}{2} & \binom{m+4}{2} & \ldots & \binom{m+n+1}{2} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{m+n-1}{n-1} & \binom{m+n}{n-1} & \binom{m+n+1}{n-1} & \ldots & \binom{m+2n-2}{n-1} 
+    \end{vmatrix}
+    \]
+    
+    Trừ mỗi hàng cho hàng trước nó, vẫn áp dụng công thức Pascal \(\displaystyle \binom{n}{k} - \binom{n-1}{k-1} = \binom{n-1}{k}\),
+    \begin{align}
+    D_n & =
+    \begin{vmatrix}
+    \binom{m}{0} & \binom{m+1}{0} & \binom{m+2}{0} & \ldots & \binom{m+n-1}{0} \\
+    \binom{m}{1} & \binom{m+1}{1} & \binom{m+1}{1} & \ldots & \binom{m+n-1}{1} \\
+    \binom{m+1}{2} & \binom{m+2}{2} & \binom{m+3}{2} & \ldots & \binom{m+n}{2} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{m+n-2}{n-1} & \binom{m+n-1}{n-1} & \binom{m+n}{n-1} & \ldots & \binom{m+2n-3}{n-1} 
+    \end{vmatrix} \\
+    & =
+    \begin{vmatrix}
+    1 & 1 & 1 & \ldots & 1 \\
+    \binom{m}{1} & \binom{m+1}{1} & \binom{m+1}{1} & \ldots & \binom{m+n-1}{1} \\
+    \binom{m+1}{2} & \binom{m+2}{2} & \binom{m+3}{2} & \ldots & \binom{m+n}{2} \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \binom{m+n-2}{n-1} & \binom{m+n-1}{n-1} & \binom{m+n}{n-1} & \ldots & \binom{m+2n-3}{n-1} 
+    \end{vmatrix} \\
+    & = D_{n-1}
+    \end{align}
+    với \(n\ge 1\), trong đó \(D_1 = 1\).
+    Vậy \(D_n = 1\) với mọi \(n\).    
+
+</body>
+</html>

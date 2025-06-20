@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CourseList from "../components/CourseList";
+import CourseList from "../components/GradeList";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";

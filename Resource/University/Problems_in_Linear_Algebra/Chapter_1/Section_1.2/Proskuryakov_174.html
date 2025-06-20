@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 174</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 174:</i><br><br>
+    
+    <ul>
+        <li>
+            Xét xích \(\sigma = \left( a_1, a_2,\ldots, a_k \right)\) độ dài \(k\), ta có
+            \[
+            \sigma\left( a_1 \right) = a_2,\; \sigma\left( a_2 \right) = a_3,\ldots,\; \sigma\left( a_{k-1} \right) = a_k,\; \sigma\left( a_k \right) = a_1
+            \]
+
+            Suy ra
+            \begin{align}
+            & \sigma^2\left( a_1 \right) = a_3,\; \sigma^2\left( a_2 \right) = a_4,\ldots,\; \sigma^2\left( a_{k-2} \right) = a_k,\;
+            \sigma^2\left( a_{k-1} \right) = a_1,\; \sigma^2\left( a_k \right) = a_2 \\
+            & \sigma^3\left( a_1 \right) = a_4,\; \sigma^3\left( a_2 \right) = a_5,\ldots,\; \sigma^3\left( a_{k-2} \right) = a_1,\;
+            \sigma^3\left( a_{k-1} \right) = a_2,\; \sigma^3\left( a_k \right) = a_3
+            \end{align}
+            cứ tiếp tục như vậy ta có
+            \[
+            \sigma^i\left( a_1 \right) = a_{1 + i},\; \sigma^i\left( a_2 \right) = a_{2 + i},\ldots,\; \sigma^i\left( a_{k-2} \right) = a_{k-2 + i},\;
+            \sigma^i\left( a_{k-1} \right) = a_{k-1 + i},\; \sigma^i\left( a_k \right) = a_{k + i}
+            \]
+            trong đó \(1 \le i\le k\), và quy ước nếu \(j > k\) thì \(a_j = a_{j - k}\).<br>
+
+            Dễ thấy với \(1\le i < k\) thì \(\sigma^i\left( a_1 \right) = a_{1 + i}\ne a_1\) nên \(\sigma^i\) không phải là phép thế đơn vị. Mặt khác
+            \[
+            \sigma^k \left( a_j \right) = a_{j+k} = a_j
+            \]
+            với mọi \(1\le j\le k\). Do đó \(\sigma^k\) là phép thế đơn vị. Vậy \(k\) là số mũ nhỏ nhất để \(\sigma^k\) là phép thế đơn vị.
+        </li>
+        <li>
+            Giả sử \(m\) là số nguyên dương sao cho \(\sigma^m\) là phép thế đơn vị. Ta phải chứng minh \(m\) chia hết cho \(k\). Thật vậy, xét phép chia \(m\) cho \(k\):
+            \[
+            m = kq + r \quad\text{với}\quad 0\le r < k
+            \]
+
+            Khi đó
+            \[
+            \sigma^m = \sigma^{kq + r} = \left( \sigma^k \right)^q \sigma^r
+            \]
+
+            Vì \(\sigma^k\) là phép thế đơn vị, nên \(\left( \sigma^k \right)^q\) cũng là phép thế đơn vị. Hơn nữa \(\sigma^m\) là phép thế đơn vị, nên \(\sigma^r\) cũng là phép thế đơn vị. Mặt khác \(0\le r\le k\), và \(k\) là số nguyên dương nhỏ nhất để \(\sigma^k\) là phép thế đơn vị, nên \(r = 0\). Ta có điều phải chứng minh.
+        </li>
+    </ul>
+</body>

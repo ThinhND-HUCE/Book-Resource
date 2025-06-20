@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 87</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 87:</i><br><br>
+    Định thức của hệ:
+    \begin{align}
+    \Delta & = \begin{vmatrix}
+    a & -3 & 5 \\
+    1 & -a & 3 \\
+    9 & -7 & 8a
+    \end{vmatrix} \\
+    & = \left( a \right)\left( { - a} \right)\left( {8a} \right) + \left( { - 3} \right)\left( 3 \right)\left( 9 \right) + \left( 1 \right)\left( { - 7} \right)\left( 5 \right) - \left( 9 \right)\left( { - a} \right)\left( 5 \right) - \left( 1 \right)\left( { - 3} \right)\left( {8a} \right) - \left( { - 7} \right)\left( 3 \right)\left( a \right) \\
+    & = - 8{a^3} - 81 - 35 + 45a + 24a + 21a =  - 8{a^3} + 90a - 116 =  - 2\left( {4{a^3} - 45a + 58} \right)
+    \end{align}
+
+    <ul>
+        <li>
+            Xét \(\Delta = 0 \Leftrightarrow 4{a^3} - 45a + 58 = 0 \Leftrightarrow a = 2\) hoặc \(a = \dfrac{{ - 2 \pm \sqrt {33} }}{2}\)
+            <ul>
+                <li>
+                    Nếu \(a = 2\). Ma trận mở rộng của hệ
+                    \begin{align}
+                    \overline{A} & = 
+                    \left[\begin{array}{rrr|r}
+                    2 & -3 & 5  & 4 \\
+                    \framebox{1} & -2 & 3  & 2 \\
+                    9 & -7 & 16 & 0 
+                    \end{array}\right]
+                    \begin{array}{l}
+                    -2h_2 \\
+                    \\
+                    -9h_2 \\
+                    \end{array}
+                    \sim
+                    \left[\begin{array}{rrr|r}
+                    0 & \framebox{1} & -1  & 0 \\
+                    \mathbf{1} & -2 & 3  & 2 \\
+                    0 & 11 & -11 & -18 
+                    \end{array}\right]
+                    \begin{array}{l}
+                    \\
+                    +2h_1 \\
+                    -11h_1 \\
+                    \end{array} \\
+                    & \sim
+                    \left[\begin{array}{rrr|r}
+                    0 & \mathbf{1} & -1  & 0 \\
+                    \mathbf{1} & 0 & 1  & 2 \\
+                    0 & 0 & 0 & -18
+                    \end{array}\right]
+                    \end{align}
+
+                    \(r\left( A \right) = 2\), \(r\left( {\overline A } \right) = 3\Rightarrow r\left( A \right) < r\left( {\overline A } \right) \Rightarrow \) hệ vô nghiệm.
+                </li>
+                <li>
+                    Nếu \(a = \dfrac{{ - 2 + \sqrt {33} }}{2}\). Ma trận mở rộng của hệ
+                    \begin{align}
+                    \overline{A} & = 
+                    \left[\begin{array}{rrr|r}
+                    - 1 + \frac{1}{2}\sqrt {33}  & -3 & 5  & 4 \\
+                    \framebox{1} & 1 - \frac{1}{2}\sqrt {33}  & 3  & 2 \\
+                    9 & -7 & -8 + 4\sqrt {33}  & 0 
+                    \end{array}\right]
+                    \begin{array}{l}
+                    - \left( { - 1 + \frac{1}{2}\sqrt {33} } \right){h_2} \\
+                    \\
+                    -9h_2 \\
+                    \end{array} \\
+                    & \sim
+                    \left[\begin{array}{rrr|r}
+                    0 & \framebox{\(\frac{{25}}{4} - \sqrt {33}\)}  & 8 - \frac{3}{2}\sqrt {33}  & 6 - \sqrt {33}  \\
+                    \mathbf{1} & 1 - \frac{1}{2}\sqrt {33}  & 3  & 2 \\
+                    0 &  - 16 + \frac{9}{2}\sqrt {33}  &  - 35 + 4\sqrt {33} & -18
+                    \end{array}\right]
+                    \begin{array}{l}
+                    \\
+                    \times \left( {\frac{{25}}{4} - \sqrt {33} } \right) - \left( {1 - \frac{1}{2}\sqrt {33} } \right){h_1} \\
+                    \times \left( {\frac{{25}}{4} - \sqrt {33} } \right) - \left( { - 16 + \frac{9}{2}\sqrt {33} } \right){h_1} \\
+                    \end{array} \\
+                    & \sim
+                    \left[\begin{array}{rrr|r}
+                    0 & \mathbf{\frac{{25}}{4} - \sqrt {33}}  & 8 - \frac{3}{2}\sqrt {33}  & 6 - \sqrt {33}  \\
+                    \mathbf{\frac{{25}}{4} - \sqrt {33}} & 0 &  - 14 + \frac{5}{2}\sqrt {33} &  - 10 + 2\sqrt {33} \\
+                    0 & 0 & 0 & 132 - 25\sqrt {33} 
+                    \end{array}\right]
+                    \end{align}
+
+                    \(r\left( A \right) = 2\), \(r\left( {\overline A } \right) = 3\Rightarrow r\left( A \right) < r\left( {\overline A } \right) \Rightarrow \) hệ vô nghiệm.
+                </li>
+                <li>
+                    Nếu \(a = \dfrac{{ - 2 - \sqrt {33} }}{2}\). Ma trận mở rộng của hệ
+                    \begin{align}
+                    \overline{A} & = 
+                    \left[\begin{array}{rrr|r}
+                    - 1 - \frac{1}{2}\sqrt {33}  & -3 & 5  & 4 \\
+                    \framebox{1} & 1 + \frac{1}{2}\sqrt {33}  & 3  & 2 \\
+                    9 & -7 & -8 - 4\sqrt {33}  & 0
+                    \end{array}\right]
+                    \begin{array}{l}
+                    - \left( { - 1 - \frac{1}{2}\sqrt {33} } \right){h_2} \\
+                    \\
+                    -9h_2 \\
+                    \end{array} \\
+                    & \sim
+                    \left[\begin{array}{rrr|r}
+                    0 & \framebox{\(\frac{{25}}{4} + \sqrt {33}\)}  & 8 + \frac{3}{2}\sqrt {33}  & 6 + \sqrt {33}  \\
+                    \mathbf{1} & 1 + \frac{1}{2}\sqrt {33}  & 3  & 2 \\
+                    0 &  - 16 - \frac{9}{2}\sqrt {33}  &  - 35 - 4\sqrt {33} & -18 
+                    \end{array}\right]
+                    \begin{array}{l}
+                    \\
+                    \times \left( {\frac{{25}}{4} + \sqrt {33} } \right) - \left( {1 + \frac{1}{2}\sqrt {33} } \right){h_1} \\
+                    \times \left( {\frac{{25}}{4} + \sqrt {33} } \right) - \left( { - 16 - \frac{9}{2}\sqrt {33} } \right){h_1} \\
+                    \end{array} \\
+                    & \sim
+                    \left[\begin{array}{rrr|r}
+                    0 & \mathbf{\frac{{25}}{4} + \sqrt {33}}  & 8 + \frac{3}{2}\sqrt {33}  & 6 + \sqrt {33}  \\
+                    \mathbf{\frac{{25}}{4} + \sqrt {33}} & 0 &  - 14 - \frac{5}{2}\sqrt {33} &  - 10 - 2\sqrt {33} \\
+                    0 & 0 & 0 & 132 + 25\sqrt {33} 
+                    \end{array}\right]
+                    \end{align}
+
+                    \(r\left( A \right) = 2\), \(r\left( {\overline A } \right) = 3\Rightarrow r\left( A \right) < r\left( {\overline A } \right) \Rightarrow \) hệ vô nghiệm.
+                </li>
+            </ul>
+        </li>
+        <li>
+            Nếu \(a\ne 2\) và \(\dfrac{{ - 2 \pm \sqrt {33} }}{2}\) thì hệ Cramer có nghiệm duy nhất.
+        </li>
+    </ul>
+
+    <i>Nhận xét:</i> 
+    Việc biến đổi ma trận mở rộng \(\overline{A}\) khá phức tạp khi các phần tử có chứa căn thức. Thay vì xét từng trường hợp \(a = 2\) hoặc \(a = \dfrac{{ - 2 \pm \sqrt {33} }}{2}\), ta xét điều kiện chung \(4{a^3} - 45a + 58 = 0\):
+    \begin{align}
+    \overline{A} & = 
+    \left[\begin{array}{rrr|r}
+    a & -3 & 5  & 4 \\
+    \framebox{1} & -a & 3  & 2 \\
+    9 & -7 & 8a & 0 
+    \end{array}\right]
+    \begin{array}{l}
+    - a\times h_2 \\
+    \\
+    - 9h_2 \\
+    \end{array} \\
+    & \sim
+    \left[\begin{array}{rrr|r}
+    0 & a^2-3 & \framebox{\(5-3a\)}  & 4-2a \\
+    \mathbf{1} & -a & 3  & 2 \\
+    0 & 9a-7 & 8a-27 & -18 
+    \end{array}\right]
+    \begin{array}{l}
+    \\
+    \times \left( {5 - 3a} \right) - 3{h_1} \\
+    \times \left( {5 - 3a} \right) - \left( {8a - 27} \right){h_1} \\
+    \end{array}\quad (\text{vì } 5-3a\ne 0) \\
+    & \sim
+    \left[\begin{array}{rrr|r}
+    0 & a^2-3 & \mathbf{5-3a}  & 4-2a \\
+    \mathbf{5-3a} & 9-5a & 0  & -2 \\
+    0 & -8a^3 + 90a -116  & 0 & 16a^2 - 32a + 18
+    \end{array}\right]
+    \end{align}
+
+    Lưu ý ở đây \(-8a^3 + 90a -116 = 0\), và \(16a^2 - 32a + 18 \ne 0\)\footnote{
+    Nếu khó xác định nghiệm của phương trình \(-8a^3 + 90a -116 = 0\), mà vẫn cần xét \(16a^2 - 32a + 18\) có bằng~0 hay không, ta thực hiện phép chia \( - 8{a^3} + 90a - 116 = \left( {16{a^2} - 32a + 18} \right)\left( { - \dfrac{a}{2} - 1} \right) + \left( {67a - 98} \right)\). Ở đây \(16a^2 - 32a + 18 \ne 0\), vì nếu ngược lại, với \(-8a^3 + 90a -116 = 0\) ta có \(67a - 98 = 0\) hay \(a = \dfrac{98}{67}\). Thay \(a = \dfrac{98}{67}\) thấy \(-8a^3 + 90a -116\ne 0\), mâu thuẫn!
+    }.
+    Do đó \(r\left( A \right) = 2\), \(r\left( {\overline A } \right) = 3\Rightarrow r\left( A \right) < r\left( {\overline A } \right) \Rightarrow \) hệ vô nghiệm.
+
+</body>

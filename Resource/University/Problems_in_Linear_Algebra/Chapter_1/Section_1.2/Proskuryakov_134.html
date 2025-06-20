@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 134</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 134:</i><br><br>
+    
+    Xét nghịch thế \(\left( i, j \right)\) của hoán vị \(1, 5, 9,\ldots, 4n-3\), 
+    \(3, 7, 11,\ldots, 4n-1, 
+    2, 6, 10,\ldots, 4n-2, 
+    4, 8, 12,\ldots, 4n\), tức là \(i, j\) là hai phần tử của hoán vị, \(i\) đứng trước \(j\), và \(i > j\).<br>
+
+    Nếu \(i = 4k-3\), \(1\le k\le n\), thì \(j\) có thể là \(3, 7, 11, \ldots, 4k-5\), hoặc \(2, 6, 10,\ldots, 4k-6\), hoặc \(4, 8, 12,\ldots, 4k-4\) tức là trường hợp này có số nghịch thế là \(\left( k - 1 \right) + \left( k - 1 \right) + \left( k - 1 \right) = 3\left( k - 1 \right)\).<br>
+
+    Nếu \(i = 4k-1\), \(1\le k\le n\), thì \(j\) có thể là \(2, 6, 10,\ldots, 4k-2\), hoặc \(4, 8, 12,\ldots, 4k-4\) tức là trường hợp này có số nghịch thế là \(k + \left( k - 1 \right) = 2k - 1\).<br>
+
+    Nếu \(i = 4k-2\), \(1\le k\le n\), thì \(j\) có thể là \(4, 8, 12,\ldots, 4k-4\), tức là trường hợp này có \(k-1\) nghịch thế.<br>
+
+    Ngoài ra, nếu \(i = 4k\), \(1\le k\le n\), thì không có nghịch thế nào. Do đó số nghịch thế của hoán vị là
+    \begin{align}
+    & \sum\limits_{k = 1}^n {3\left( {k - 1} \right)}  + \sum\limits_{k = 1}^n {\left( {2k - 1} \right)}  + \sum\limits_{n = 1}^n {\left( {k - 1} \right)}  = \sum\limits_{k = 1}^n {\left[ {3\left( {k - 1} \right) + \left( {2k - 1} \right) + \left( {k - 1} \right)} \right]} \\
+    =\; & \sum\limits_{k = 1}^n {\left( {6k - 5} \right)}  = 6\sum\limits_{k = 1}^n k  - \sum\limits_{k = 1}^n 5  = 6\left( {1 + 2 + 3 +  \cdots  + n} \right) - 5n = 6 \times \frac{{n\left( {n + 1} \right)}}{2} - 5n \\
+    =\; & 3n\left( {n + 1} \right) - 5n = n\left[ {3\left( {n + 1} \right) - 5} \right] = n\left( {3n - 2} \right)
+    \end{align}
+
+    Để xét tính chẵn lẻ của biểu thức này, ta viết \(n\left( {3n - 2} \right) = 3n^2 - 2n\). Vì \(2n\) chẵn nên \(n^2 - 2n\) cùng tính chẵn lẻ với \(3n^2\). Mặt khác, 3 là số lẻ nên \(3n^2\) cùng tính chẵn lẻ với \(n^2\), hay cùng tính chẵn lẻ với \(n\). Vậy \(n^2 - 2n\) cùng tính chẵn lẻ với \(n\), tức là nếu \(n\) chẵn thì hoán vị chẵn, và ngược lại nếu \(n\) lẻ thì hoán vị lẻ.
+
+</body>

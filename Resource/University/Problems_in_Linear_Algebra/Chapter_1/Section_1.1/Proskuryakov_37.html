@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 37</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 37:</i><br><br>
+    Ma trận mở rộng của hệ:
+    \[
+    \overline{A} = 
+    \begin{array}{ll}
+    \left[\begin{array}{ccc}
+    a & \framebox{\(-9\)} & 6 \\
+    10 & -b & 10
+    \end{array}
+    \right]
+    \begin{array}{l}
+    \\
+    \times 9 - b\times h_1
+    \end{array}
+    \end{array}
+    \sim \left[\begin{array}{cc|c}
+    a & \mathbf{-9} & 6 \\
+    90 - ab & 0 & 90 - 6b
+    \end{array}\right]
+    \]
+
+    <ul>
+        <li>Xét \(90 - ab = 0\) hay \(ab = 90\)
+            <ul>
+                <li>Nếu \(90 - 6b = 0\), hay \(b = 15\) và từ đó \(a = 6\), thì \(\overline{A} \sim
+                    \left[\begin{array}{cc|c}
+                    6 & \mathbf{-9} & 6 \\
+                    0 & 0 & 0
+                    \end{array}\right] \Rightarrow r\left( A \right) = r\left( {\overline A } \right) = 1 < 2 = \) số ẩn \(\Rightarrow\) hệ có vô số nghiệm
+                </li>
+                <li>Nếu \(b\ne 15\) thì \(\overline{A} \sim
+                    \left[\begin{array}{[cc|c]}
+                    a & \mathbf{-9} & 6 \\
+                    0 & 0 & 90 - 6b
+                    \end{array}\right] \Rightarrow r\left( A \right) = 1 < r\left( {\overline A } \right) = 2 \Rightarrow \) hệ vô nghiệm</li>
+            </ul>
+        </li>
+        <li>Nếu \(ab \ne 90\) thì hệ có nghiệm duy nhất</li>
+    </ul>
+</body>

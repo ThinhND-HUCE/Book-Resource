@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 356</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 356:</i><br><br>
+
+    Ký hiệu đa thức bậc không vượt quá \(n-2\),
+    \[
+    {f_i}\left( x \right) = \sum\limits_{k = 0}^{n - 2} {{c_{ik}}{x^k}}  = {c_{i,n - 2}}{x^{n - 2}} + {c_{i,n - 3}}{x^{n - 3}} +  \cdots  + {c_{i1}}x + {c_{i0}} .
+    \]
+    và viết lại định thức \(D\) đã cho cụ thể tại hàng đầu:
+    \[
+    D = 
+    \begin{vmatrix}
+    \sum\limits_{k = 0}^{n - 2} {{c_{1k}}a_1^k}  & \sum\limits_{k = 0}^{n - 2} {{c_{1k}}a_2^k}  & \ldots & \sum\limits_{k = 0}^{n - 2} {{c_{1k}}a_n^k}  \\
+    f_2\left( a_1 \right) & f_2\left( a_2 \right) & \ldots & f_2\left( a_n \right) \\
+    \ldots & \ldots & \ldots & \ldots \\
+    f_n\left( a_1 \right) & f_n\left( a_2 \right) & \ldots & f_n\left( a_n \right) 
+    \end{vmatrix}
+    \]
+
+    Áp dụng tính cộng tính và tính thuần nhất cho định thức tại hàng đầu cho định thức, thì
+    \[
+    D = 
+    \sum\limits_{k = 0}^{n - 2} {{c_{1k}}} 
+    \begin{vmatrix}
+    a_1^k  & a_2^k  & \ldots & a_n^k  \\
+    f_2\left( a_1 \right) & f_2\left( a_2 \right) & \ldots & f_2\left( a_n \right) \\
+    \ldots & \ldots & \ldots & \ldots \\
+    f_n\left( a_1 \right) & f_n\left( a_2 \right) & \ldots & f_n\left( a_n \right) 
+    \end{vmatrix}
+    \]
+
+    Tiếp theo, ta viết lại cụ thể hàng thứ hai của định thức, và, để phù hợp, đổi ký hiệu biến chạy, rồi lại áp dụng tính cộng tính và tính thuần nhất cho định thức tại hàng thứ hai cho định thức, ta có
+    \begin{align}
+    D & = \sum\limits_{k_1 = 0}^{n - 2} {{c_{1k_1}}} 
+    \begin{vmatrix}
+    a_1^{k_1}  & a_2^{k_1}  & \ldots & a_n^{k_1}  \\
+    \sum\limits_{{k_2} = 0}^{n - 2} {{c_{2{k_2}}}a_1^{{k_2}}}  & \sum\limits_{{k_2} = 0}^{n - 2} {{c_{2{k_2}}}a_2^{{k_2}}}  & \ldots & \sum\limits_{{k_2} = 0}^{n - 2} {{c_{2{k_2}}}a_n^{{k_2}}}  \\
+    f_3\left( a_1 \right) & f_3\left( a_2 \right) & \ldots & f_3\left( a_n \right) \\
+    \ldots & \ldots & \ldots & \ldots \\
+    f_n\left( a_1 \right) & f_n\left( a_2 \right) & \ldots & f_n\left( a_n \right) 
+    \end{vmatrix} \\
+    & = \sum\limits_{{k_1} = 0}^{n - 2} {{c_{1{k_1}}}\sum\limits_{{k_2} = 0}^{n - 2} {{c_{2{k_2}}} 
+    \begin{vmatrix}
+    a_1^{k_1}  & a_2^{k_1}  & \ldots & a_n^{k_1}  \\
+    a_1^{{k_2}}  & a_2^{{k_2}}  & \ldots & a_n^{{k_2}}  \\
+    f_3\left( a_1 \right) & f_3\left( a_2 \right) & \ldots & f_3\left( a_n \right) \\
+    \ldots & \ldots & \ldots & \ldots \\
+    f_n\left( a_1 \right) & f_n\left( a_2 \right) & \ldots & f_n\left( a_n \right) 
+    \end{vmatrix}
+    } } \\
+    & = \sum\limits_{0 \le {k_1},{k_2} \le n - 2} {{c_{1{k_1}}}{c_{2{k_2}}} 
+    \begin{vmatrix}
+    a_1^{k_1}  & a_2^{k_1}  & \ldots & a_n^{k_1}  \\
+    a_1^{{k_2}}  & a_2^{{k_2}}  & \ldots & a_n^{{k_2}}  \\
+    f_3\left( a_1 \right) & f_3\left( a_2 \right) & \ldots & f_3\left( a_n \right) \\
+    \ldots & \ldots & \ldots & \ldots \\
+    f_n\left( a_1 \right) & f_n\left( a_2 \right) & \ldots & f_n\left( a_n \right) 
+    \end{vmatrix}
+    } 
+    \end{align}
+
+    Thực hiện tương tự tại mỗi hàng tiếp theo, cuối cùng ta được
+    \[
+    D = \sum\limits_{0 \le {k_1},{k_2}, \ldots ,{k_n} \le n - 2} {{c_{1{k_1}}}{c_{2{k_2}}} \cdots {c_{n{k_n}}} 
+    \begin{vmatrix}
+    a_1^{k_1}  & a_2^{k_1}  & \ldots & a_n^{k_1}  \\
+    a_1^{{k_2}}  & a_2^{{k_2}}  & \ldots & a_n^{{k_2}}  \\
+    \ldots & \ldots & \ldots & \ldots \\
+    a_1^{{k_n}}  & a_2^{{k_n}}  & \ldots & a_n^{{k_n}} 
+    \end{vmatrix}
+    } 
+    \]
+
+    Trong mỗi số hạng ở trên, xuất hiện các định thức cấp \(n\), mỗi hàng chứa các số \(k_1, k_2,\ldots, k_n\) tương ứng. 
+    Vì các số này chỉ nhận giá trị trong \(n-1\) số (từ 0 tới \(n-2\)), nên theo nguyên lý Dirichlet, tồn tại hai số bằng nhau, \(k_i\) và \(k_j\). 
+    Khi đó hàng \(i\) và \(j\) của định thức này giống nhau, nên định thức đó bằng 0. Vì mọi số hạng ở tổng trên bằng 0, nên \(D = 0\).<br>
+
+    <i>Chú ý:</i>
+    Lời giải trên được thực hiện khi \(n \ge 2\). Với \(n = 1\), thì theo quy ước, một đa thức bậc âm, ở đây là bậc \(-1\), phải là đa thức không, khi đó định thức cấp một tương ứng cũng bằng 0.
+    
+</body>

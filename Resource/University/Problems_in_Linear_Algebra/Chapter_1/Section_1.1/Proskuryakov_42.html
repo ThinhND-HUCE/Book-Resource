@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 42</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 42:</i><br><br>
+    <i>Điều kiện cần:</i>
+    Giả sử \(\dfrac{ax + b}{cx + d} = q\) với mọi \(x\). Khi đó \(ax + b = q \left( cx + d \right) = \left( qc \right) x + \left( qd \right) \).
+    Đồng nhất các hệ số ta được \(a = qc\) và \(b = qd\). Suy ra 
+    \[
+    \begin{vmatrix}
+    a & b \\
+    c & d
+    \end{vmatrix} = ad - bc = \left( qc \right) d - \left( qd \right) c = 0
+    \]
+
+    <i>Điều kiện đủ:</i>
+    Giả sử \(\begin{vmatrix}
+    a & b \\
+    c & d 
+    \end{vmatrix} = ad - bc = 0\)
+    
+    <ul>
+        <li>Nếu \(c\ne 0\) thì \(b = \dfrac{a}{c}d\). Đặt \(q = \dfrac{a}{c}\), ta có \(a = qc\) và \(b = qd\). Khi đó với mọi \(x\):
+            \[
+            \frac{ax + b}{cx + d} = \dfrac{qcx + qd}{cx + d} = q
+            \]
+        </li>
+        <li>Nếu \(d\ne 0\) thì \(a = \dfrac{b}{d}c\). Đặt \(q = \dfrac{b}{d}\), cũng như trên ta có \(b = qd\), \(a = qc\), và \(\dfrac{ax + b}{cx + d} = q\) với mọi \(x\). Ta có điều phải chứng minh.</li>
+    </ul>
+
+</body>

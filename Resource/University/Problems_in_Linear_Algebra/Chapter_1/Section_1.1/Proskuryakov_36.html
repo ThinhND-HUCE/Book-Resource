@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 36</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 36:</i><br><br>
+    Ma trận mở rộng của hệ: \(\overline{A} = 
+    \begin{array}{ll}
+    \left[\begin{array}{cc|c}
+    a & \framebox{4} & 2 \\
+    9 & a & 3
+    \end{array}\right]
+    \begin{array}{l}
+    \\
+    \times 4 - a\times h_1
+    \end{array}
+    \end{array}
+    \sim \left[\begin{array}{cc|c}
+    a & \mathbf{4} & 2 \\
+    36 - a^2 & 0 & 12 - 2a
+    \end{array}\right] \)
+
+    <ul>
+        <li>Xét \(36 - a^2 = 0\), hay \(a = \pm 6\)
+            <ul>
+                <li>Nếu \(a = 6\) thì \(\overline{A} \sim \left[\begin{array}{cc|c}
+                    6 & \mathbf{4} & 2 \\
+                    0 & 0 & 0
+                    \end{array}\right]  \Rightarrow r\left( A \right) = r\left( {\overline A } \right) = 1 < 2 = \) số ẩn \(\Rightarrow\) hệ có vô số nghiệm</li>
+                <li>Nếu \(a = -6\) thì \(\overline{A} \sim \left[\begin{array}{[cc|c]}
+                    6 & \mathbf{4} & 2 \\
+                    0 & 0 & 24
+                    \end{array}\right]  \Rightarrow r\left( A \right) = 1 < 2 = r\left( {\overline A } \right) \Rightarrow\) hệ vô nghiệm</li>
+            </ul>
+        </li>
+        <li>Nếu \(a\ne \pm 6\) thì \(r\left( A \right) = r\left( {\overline A } \right) = 2 = \) số ẩn \(\Rightarrow\) hệ có nghiệm duy nhất</li>
+    </ul>
+</body>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 350</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 350:</i><br><br>
+
+    Tương tự <a href="Proskuryakov_349.html">Bài tập 349</a>, ta chứng minh với số nguyên dương \(n\) bất kỳ, có thể biểu diễn \(\sin n\varphi\) bởi tích của \(\sin\varphi\) với một đa thức bậc \(n-1\) theo \(\cos\varphi\), mà hệ số cao nhất của đa thức đó (hệ số của \(\cos^{n-1}\varphi\)) là \(2^{n-1}\). Xét công thức Moivre
+    \begin{align}
+    \cos n\varphi  + i\sin n\varphi & = {\left( {\cos \varphi  + i\sin \varphi } \right)^n} = \sum\limits_{k = 0}^n {C_n^k\left( {{{\cos }^{n - k}}\varphi } \right){{\left( {i\sin \varphi } \right)}^k}}, \quad\text{và} \\
+    \cos n\varphi  - i\sin n\varphi & = {\left( {\cos \varphi  - i\sin \varphi } \right)^n} = \sum\limits_{k = 0}^n {C_n^k\left( {{{\cos }^{n - k}}\varphi } \right){{\left( { - i\sin \varphi } \right)}^k}} .
+    \end{align}
+
+    Trừ theo vế của hai đẳng thức trên, ta được
+    \[
+    2i\sin n\varphi  = \sum\limits_{k = 0}^n {C_n^k\left( {{{\cos }^{n - k}}\varphi } \right)\left[ {{{\left( { i\sin \varphi } \right)}^k} - {{\left( { - i\sin \varphi } \right)}^k}} \right]} .
+    \]
+
+    Trong tổng trên, nếu \(k\) chẵn thì số hạng bằng 0, nên ta chỉ cần xét các chỉ số chẵn (thay chỉ số chạy \(k\) bởi \(2k+1\)):
+    \begin{align}
+    i\sin n\varphi & = \sum\limits_{k = 0}^{\left\lfloor {\frac{{n - 1}}{2}} \right\rfloor } {C_n^{2k + 1}\left( {{{\cos }^{n - 2k - 1}}\varphi } \right){{\left( {i\sin \varphi } \right)}^{2k + 1}}} \\
+    & = \sum\limits_{k = 0}^{\left\lfloor {\frac{{n - 1}}{2}} \right\rfloor } {C_n^{2k + 1}\left( {{{\cos }^{n - 2k - 1}}\varphi } \right)\left( i \right){{\left( {{i^2}} \right)}^k}\left( {\sin \varphi } \right){{\left( {{{\sin }^2}\varphi } \right)}^k}} \\
+    & = i\sin \varphi \sum\limits_{k = 0}^{\left\lfloor {\frac{{n - 1}}{2}} \right\rfloor } {C_n^{2k + 1}\left( {{{\cos }^{n - 2k - 1}}\varphi } \right){{\left( { - 1} \right)}^k}{{\left( {1 - {{\cos }^2}\varphi } \right)}^k}} \\
+    & = i\sin \varphi \sum\limits_{k = 0}^{\left\lfloor {\frac{{n - 1}}{2}} \right\rfloor } {C_n^{2k + 1}\left( {{{\cos }^{n - 2k - 1}}\varphi } \right){{\left( {{{\cos }^2}\varphi  - 1} \right)}^k}} .
+    \end{align}
+
+    Như vậy
+    \[
+    i\sin n\varphi =
+    \sin \varphi \sum\limits_{k = 0}^{\left\lfloor {\frac{{n - 1}}{2}} \right\rfloor } {C_n^{2k + 1}\left( {{{\cos }^{n - 2k - 1}}\varphi } \right){{\left( {{{\cos }^2}\varphi  - 1} \right)}^k}}
+    \]
+    là tích của \(\sin\varphi\) với một đa thức bậc \(n-1\) theo \(\cos\varphi\), mà hệ số cao nhất (hệ số của \({\cos ^{n - 1}}\varphi \)) là
+    \[
+    \sum\limits_{k = 0}^{\left\lfloor {\frac{{n - 1}}{2}} \right\rfloor } {C_n^{2k + 1}}  = C_n^1 + C_n^3 + C_n^5 +  \cdots 
+    \]
+
+    Bây giờ ta sẽ chứng minh tổng này bằng \(2^{n-1}\). Thật vậy, xét khai triển nhị thức
+    \[
+    {\left( {x + y} \right)^n} = \sum\limits_{k = 0}^n {C_n^k{x^{n - k}}{y^k}}  = C_n^0{x^n} + C_n^1{x^{n - 1}}y + C_n^2{x^{n - 2}}{y^2} +  \cdots  + C_n^n{y^n} .
+    \]
+
+    Trong khai triển trên, cho \(x = y = 1\), thì
+    \[
+    C_n^0 + C_n^1 + C_n^2 + \cdots + C_n^n = 2^n,
+    \]
+    và cho \(x = 1, y = -1\), thì
+    \[
+    C_n^0 - C_n^1 + C_n^2 + \cdots + \left( -1 \right)^n C_n^n = 0,
+    \]
+
+    Trừ hai vế của hai đẳng thức trên, ta sẽ được \(2\left( C_n^1 + C_n^3 + \cdots \right) = 2^n\), và suy ra \(C_n^1 + C_n^3 + \cdots = 2^{n-1}\).
+
+    Bây giờ ta có thể viết
+    \[
+    \sin n\varphi = \sin \varphi f_{n-1}\left( \cos \varphi \right),
+    \]
+    trong đó \(f_{n-1}\left( \cos \varphi \right)\) là đa thức bậc \(n-1\) theo \(\cos\varphi\), có hệ số đầu bằng \(2^{n-1}\):
+    \[
+    f_{n-1}\left( x \right) = 2^{n-1} x^{n-1} + \left( * \right) x^{n-2} + \cdots + \left( * \right),
+    \]
+    trong đó các hệ số \(*\) trong dấu ngoặc, như lập luận sau này, không ảnh hưởng đến kết quả của định thức \(D\) đã cho.
+    Ta có
+    \[
+    D = \begin{vmatrix}
+    \sin {\varphi _1} & \sin {\varphi _1}{f_1}\left( {\cos {\varphi _1}} \right) & \sin {\varphi _1}{f_2}\left( {\cos {\varphi _1}} \right) & \ldots & \sin {\varphi _1}{f_{n-1}}\left( { \cos {\varphi _1}} \right) \\
+    \sin {\varphi _2} & \sin {\varphi _2}{f_1}\left( {\cos {\varphi _2}} \right) & \sin {\varphi _2}{f_2}\left( {\cos {\varphi _2}} \right) & \ldots & \sin {\varphi _2}{f_{n-1}}\left( { \cos {\varphi _2}} \right) \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    \sin {\varphi _n} & \sin {\varphi _n}{f_1}\left( {\cos {\varphi _n}} \right) & \sin {\varphi _n}{f_2}\left( {\cos {\varphi _n}} \right) & \ldots & \sin {\varphi _n}{f_{n-1}}\left( { \cos {\varphi _n}} \right) 
+    \end{vmatrix}
+    \]
+
+    Đưa thừa số chung \(\sin\varphi_i\) ở hàng \(i\), với \(i = 1,\ldots, n\), ra ngoài dấu định thức:
+    \[
+    D = \left( {\sin {\varphi _1}\sin {\varphi _2} \cdots \sin {\varphi _n}} \right)
+    \begin{vmatrix} 
+    1 & {f_1}\left( {\cos {\varphi _1}} \right) & {f_2}\left( {\cos {\varphi _1}} \right) & \ldots & {f_{n-1}}\left( { \cos {\varphi _1}} \right) \\
+    1 & {f_1}\left( {\cos {\varphi _2}} \right) & {f_2}\left( {\cos {\varphi _2}} \right) & \ldots & {f_{n-1}}\left( { \cos {\varphi _2}} \right) \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    1 & {f_1}\left( {\cos {\varphi _n}} \right) & {f_2}\left( {\cos {\varphi _n}} \right) & \ldots & {f_{n-1}}\left( { \cos {\varphi _n}} \right) 
+    \end{vmatrix}
+    \]
+
+    Áp dụng kết quả trong <a href="Proskuryakov_335.html">Bài tập 335</a>, ta có
+    \begin{align}
+    D & = \left( {\sin {\varphi _1}\sin {\varphi _2} \cdots \sin {\varphi _n}} \right) {2^{1 + 2 +  \cdots  + \left( {n - 1} \right)}} \prod\limits_{i > j} {\left( {{\cos\varphi_i} - {\cos\varphi_j}} \right)} \\
+    & = {2^{\frac{{n\left( {n - 1} \right)}}{2}}} {\sin {\varphi _1}\sin {\varphi _2} \cdots \sin {\varphi _n}} \prod\limits_{i > j} {\left( {{\cos\varphi_i} - {\cos\varphi_j}} \right)} .
+    \end{align}
+    
+</body>

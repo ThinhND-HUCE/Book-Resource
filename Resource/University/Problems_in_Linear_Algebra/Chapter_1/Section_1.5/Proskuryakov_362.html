@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 362</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 362:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D\).
+    Khai triển \(D\) theo hàng đầu đầu ta có:
+    \begin{align}
+    D & = \left( a_1 \right)
+    \begin{vmatrix}
+    a_2 & 0 & \ldots & 0 & b_2 & 0 \\
+    0 & a_3 & \ldots & b_3 & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & b_{2n-2} & \ldots & a_{2n-2} & 0 & 0 \\
+    b_{2n-1} & 0 & \ldots & 0 & a_{2n-1} & 0 \\
+    0 & 0 & \ldots & 0 & 0 & a_{2n}
+    \end{vmatrix} \\
+    & + \left( b_1 \right) \left( -1 \right)^{2n+1}
+    \begin{vmatrix}
+    0 & a_2 & 0 & \ldots & 0 & b_2 \\
+    0 & 0 & a_3 & \ldots & b_3 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & b_{2n-2} & \ldots & a_{2n-2} & 0 \\
+    0 & b_{2n-1} & 0 & \ldots & 0 & a_{2n-1} \\
+    b_{2n} & 0 & 0 & \ldots & 0 & 0 
+    \end{vmatrix}
+    \end{align}
+
+    Khai triển hai định thức theo hàng cuối, và lại nhớ rằng cả hai đều là định thức cấp \(2n-1\), ta được:
+    \begin{align}
+    D & =
+    \left( a_1 \right) \left( a_{2n} \right)
+    \begin{vmatrix}
+    a_2 & 0 & \ldots & 0 & b_2 \\
+    0 & a_3 & \ldots & b_3 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & b_{2n-2} & \ldots & a_{2n-2} & 0 \\
+    b_{2n-1} & 0 & \ldots & 0 & a_{2n-1} 
+    \end{vmatrix} \\
+    & - \left( b_1 \right) \left( b_{2n} \right) \left( -1 \right)^{\left( 2n-1 \right) + 1} 
+    \begin{vmatrix}
+    a_2 & 0 & \ldots & 0 & b_2 \\
+    0 & a_3 & \ldots & b_3 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & b_{2n-2} & \ldots & a_{2n-2} & 0 \\
+    b_{2n-1} & 0 & \ldots & 0 & a_{2n-1} 
+    \end{vmatrix}
+    \end{align}
+
+    Nếu đặt \(D_1 = D\), và
+    \(D_2 = \begin{vmatrix}
+    a_2 & 0 & \ldots & 0 & b_2 \\
+    0 & a_3 & \ldots & b_3 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & b_{2n-2} & \ldots & a_{2n-2} & 0 \\
+    b_{2n-1} & 0 & \ldots & 0 & a_{2n-1} 
+    \end{vmatrix}\), thì
+    \[
+    D_1 = \left( a_1 a_{2n} - b_1b_{2n} \right) D_2 .
+    \]
+
+    Tương tự
+    \[
+    D_2 = \left( a_2 a_{2n-1} - b_2b_{2n-1} \right) D_3,\quad
+    D_3 = \left( a_3 a_{2n-2} - b_3b_{2n-2} \right) D_4,\ldots
+    \]
+    trong đó 
+    \(D_3 = \begin{vmatrix}
+    a_3 & 0 & \ldots & 0 & b_3 \\
+    0 & a_4 & \ldots & b_4 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & b_{2n-3} & \ldots & a_{2n-3} & 0 \\
+    b_{2n-2} & 0 & \ldots & 0 & a_{2n-2} 
+    \end{vmatrix}, \quad
+    D_4 = \begin{vmatrix}
+    a_4 & 0 & \ldots & 0 & b_4 \\
+    0 & a_5 & \ldots & b_5 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & b_{2n-4} & \ldots & a_{2n-4} & 0 \\
+    b_{2n-3} & 0 & \ldots & 0 & a_{2n-3} 
+    \end{vmatrix},\ldots
+    \)
+
+    Biểu diễn liên tiếp \(D_1\) theo \(D_2, D_3,\ldots, D_n\), ta được
+    \[
+    D_1 = \left( a_1 a_{2n} - b_1b_{2n} \right) \left( a_2 a_{2n-1} - b_2b_{2n-1} \right) \cdots \left( a_{n-1} a_{n+2} - b_{n-1}b_{n+2} \right)
+    D_n,
+    \]
+    trong đó
+    \[
+    D_n = \begin{vmatrix}
+    a_n & b_n \\
+    b_{n+1} & a_{n+1}
+    \end{vmatrix}
+    = a_n a_{n+1} - b_n b_{n+1} .
+    \]
+
+    Do đó
+    \[
+    D = \left( a_1 a_{2n} - b_1b_{2n} \right) \left( a_2 a_{2n-1} - b_2b_{2n-1} \right) \cdots \left( a_n a_{n+1} - b_n b_{n+1} \right) .
+    \]
+
+</body>
+</html>

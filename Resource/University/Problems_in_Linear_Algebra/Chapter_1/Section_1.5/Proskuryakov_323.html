@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 323</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 323:</i><br><br>
+    
+    Ký hiệu định thức đã cho là \(D_n\).
+    Khai triển \(D_n\) theo cột cuối:
+    \[
+    D_n = \left( x \right)
+    \begin{vmatrix}
+    1 & 2 & 3 & \ldots & n-1 \\
+    -1 & x & 0 & \ldots & 0 \\
+    0 & -1 & x & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & x
+    \end{vmatrix}
+    + \left( n \right) \left( -1 \right)^{n+1}
+    \begin{vmatrix}
+    -1 & x & 0 & \ldots & 0 \\
+    0 & -1 & x & \ldots & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & x \\
+    0 & 0 & 0 & \ldots & -1
+    \end{vmatrix}_{n-1}
+    \]
+
+    Định thức thứ nhất chính là \(D_{n-1}\); còn định thức thứ hai có dạng tam giác trên, bằng tích các phần tử trên đường chéo chính. Ta có
+    \[
+    D_n = x D_{n-1} + \left( n \right) \left( -1 \right)^{n+1} \left( -1 \right)^{n-1} 
+    = x D_{n-1} + n, \quad n\ge 2,
+    \]
+    trong đó \(D_1 = 1\). 
+    Đây là hệ thức truy hồi tuyến tính không thuần nhất cấp một hệ số hằng, \(D_n = p D_{n-1} + q_n\), với \(p = x\), và \(q_n = n\). 
+    Để giải \(D_n\), trước hết ta tìm nghiệm \(\overline D_n\) của hệ thức truy hồi tuyến tính thuần nhất tương ứng \(D_n = x D_{n-1}\), và được
+    \[
+    \overline D_n = C x^n .
+    \]
+
+    Tiếp theo ta xác định nghiệm \(D_n^*\) thỏa mãn \(D_n = x D_{n-1} + n\).
+    Ta viết hạng tử gây nên tính không thuần nhất, \(n\), dưới dạng tích của hàm mũ với đa thức
+    \[
+    n = \left( 1^n \right) \left( n \right),
+    \]
+    
+    từ đó xác định được công thức của \(D_n^*\) trong hai trường hợp:
+    <ul>
+        <li>
+            Trường hợp \(x = 1\), khi đó \(D_n^* = \left( 1^n \right) \left( n \right) \left( a n + b \right) = an^2 + bn\). 
+            Vì \(D_n^*\) thỏa mãn \(D_n = D_{n-1} + n\), nên
+            \[
+            an^2 + bn = a\left( n-1 \right)^2 + b\left( n-1 \right) + n
+            \]
+            Cân bằng hệ số ở 2 vế, từ hệ số của \(n^2\) đến hệ số tự do:
+            \[
+            \begin{cases}
+            a = a \\
+            b = -2a + b + 1 \\
+            0 = a - b
+            \end{cases}
+            \]
+            ta được
+            \[
+            a = \frac{1}{2},\quad b = \frac{1}{2} .
+            \]
+
+            Như vậy \(D_n^* = n\left( \dfrac{1}{2}n + \dfrac{1}{2} \right) = \dfrac{n\left( n+1 \right)}{2}\), và ta được 
+            \[
+            D_n = \overline D_n + D_n^* = C + \dfrac{n\left( n+1 \right)}{2} .
+            \]
+
+            Từ điều kiện ban đầu \(D_1 = 1\), ta suy ra \(C + 1 = 1\) và tính được \(C = 0\). Do đó 
+            \[
+            D_n = \dfrac{n\left( n+1 \right)}{2} .
+            \]
+        </li>
+        <li>
+            Trường hợp \(x\ne 1\), khi đó \(D_n^* = \left( 1^n \right) \left( a n + b \right) = an + b\).
+            Vì \(D_n^*\) thỏa mãn \(D_n = x D_{n-1} + n\), nên
+            \[
+            an + b = x \left[ a\left( n-1 \right) + b \right] + n .
+            \]
+
+            Cân bằng hệ số ở hai vế
+            \[
+            \begin{cases}
+            a = xa + 1 \\
+            b = -xa + xb
+            \end{cases}
+            \]
+
+            Biến đổi phương trình thứ nhất (ẩn \(a\)), được \(\left( x-1 \right) a = -1\), suy ra
+            \[
+            a = -\frac{1}{x-1} .
+            \]
+
+            Biến đổi phương trình thứ hai (ẩn \(b\)), sau đó thay \(a\) đã giải được, ta có
+            \[
+            \left( x-1 \right)b = xa = -\frac{x}{x-1} \quad \Rightarrow \quad b = - \frac{x}{\left( x-1 \right)^2} .
+            \]
+
+            Như vậy \(D_n^* = -\dfrac{1}{x-1} n - \dfrac{x}{\left( x-1 \right)^2}\), và ta được
+            \[
+            D_n = \overline D_n + D_n^* = C x^n -\dfrac{1}{x-1} n - \dfrac{x}{\left( x-1 \right)^2} . 
+            \]
+
+            Áp dụng điều kiện ban đầu \(D_1 = 1\) để tìm \(C\):
+            \begin{align}
+            & C x - \frac{1}{x-1} - \frac{x}{\left( x-1 \right)^2} = 1 \\
+            \Rightarrow\; & C x = 1 + \dfrac{1}{x-1} + \frac{x}{\left( x-1 \right)^2} = \dfrac{x}{x-1} + \frac{x}{\left( x-1 \right)^2} = \frac{x^2}{\left( x-1 \right)^2} .
+            \end{align}
+
+            Lúc này, ta xét hai khả năng:
+            <ul>
+                <li>
+                    Nếu \(x = 0\), thì thay vào công thức của \(D_n\), ta có \(D_n = n\).
+                </li>
+                <li>
+                    Nếu \(x\ne 0\), thì \(C = \dfrac{x}{\left( x - 1 \right)^2}\). Do đó
+                    \[
+                    D_n = \frac{x}{\left( x - 1 \right)^2} x^n - \frac{n}{x-1} - \frac{x}{\left( x - 1 \right)^2} = \frac{x \left( x^n - 1 \right)}{\left( x - 1 \right)^2} - \frac{n}{x-1} .
+                    \]
+                </li>
+            </ul>
+            Tổng hợp hai khả năng này cho ta \(D_n = \dfrac{x \left( x^n - 1 \right)}{\left( x - 1 \right)^2} - \dfrac{n}{x-1}\) với mọi \(x\ne 1\).
+        </li>
+    </ul>
+    Kết luận
+    \[
+    D_n = \begin{cases}
+    \dfrac{n\left( n+1 \right)}{2}, & \text{nếu } x = 1, \\
+    \dfrac{x \left( x^n - 1 \right)}{\left( x - 1 \right)^2} - \dfrac{n}{x-1}, & \text{nếu } x \ne 1.
+    \end{cases}
+    \]
+
+    <i>Nhận xét:</i>
+    Nếu sử dụng dạng truy hồi của \(D_n\) là \(D_n = p_n D_{n-1} + q_n\), ta có
+    \begin{align}
+    D_n & = p_2 p_3 \cdots p_n \left( D_1 + \frac{q_2}{p_2} + \frac{q_3}{p_2 p_3} + \frac{q_n}{p_2 p_3 \cdots p_n} \right) \\
+    & = x^{n-1} \left( 1 + \frac{2}{x} + \frac{3}{x^2} + \cdots + \frac{n}{x^{n-1}} \right) .
+    \end{align}
+
+    Để tính \(D_n\), trước hết ta tính biểu thức \(1 + \dfrac{2}{x} + \dfrac{3}{x^2} + \cdots + \dfrac{n}{x^{n-1}}\). 
+    Đặt \(t = \dfrac{1}{x}\), ta đưa về \(1 + 2t + 3t^2 + \cdots + n t^{n-1}\).
+    Tới đây, có phần ``may mắn'', ta có thể đặt sử dụng công cụ đạo hàm (theo biến \(t\ne 1\), tức là ứng với \(x\ne 1\)) để tính tổng này
+    \begin{align}
+    & 1 + 2t + 3{t^2} +  \cdots  + n{t^{n - 1}} = \left( {t + {t^2} +  \cdots  + {t^n}} \right)' 
+    = \left( {t\frac{{{t^n} - 1}}{{t - 1}}} \right)' = \left( {\frac{{{t^{n + 1}} - t}}{{t - 1}}} \right)' \\ 
+    =\; & \frac{{\left[ {\left( {n + 1} \right){t^n} - 1} \right]\left( {t - 1} \right) - \left( {{t^{n + 1}} - t} \right)}}{{{{\left( {t - 1} \right)}^2}}}
+    = \frac{{n{t^{n + 1}} - \left( {n + 1} \right){t^n} + 1}}{{{{\left( {t - 1} \right)}^2}}} .
+    \end{align}
+
+    Do đó, với \(x\ne 1\),
+    \[
+    D_n = x^{n-1} \frac{n \dfrac{1}{x^{n+1}} - \left( n+1 \right) \dfrac{1}{x^n} + 1}{\left( \dfrac{1}{x} -1 \right)^2} 
+    = \frac{x^{n+1} - \left( n+1 \right) x + n}{\left( x-1 \right)^2} ,
+    \]
+    với một chút biến đổi sẽ giống với kết quả đã tính ở cách trên.
+    Còn với \(x = 1\), dễ dàng có \(D_n = 1 + 2 + \cdots + n = \dfrac{n\left(n+1\right)}{2}\).
+
+</body>

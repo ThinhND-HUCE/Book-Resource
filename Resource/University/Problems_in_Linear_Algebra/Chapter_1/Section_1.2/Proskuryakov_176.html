@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 176</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 176:</i><br><br>
+    
+    Phân tích \(A\) thành tích các xích rời nhau:
+    \[
+    A = \left( 1,\; 3,\; 4 \right) \left( 2,\; 5,\; 7 \right) \left( 6,\; 10,\; 8 \right) \left( 9 \right)
+    \]
+
+    Độ dài các xích lần lượt là 3, 3, và 3 (không cần xét xích độ dài 1), có bội chung nhỏ nhất là 3. 
+    Theo <a href="Proskuryakov_175.html">Bài tập 175</a>, \(A^3 = E\) là phép thế đồng nhất. 
+    Thực hiện phép chia 100 cho 3, ta có \(100 = 3\times 33 + 1\), suy ra
+    \[
+    A^{100} = A^{3\times 33 + 1} = \left(A^3\right)^{33} A = E^{33} A = EA = A .
+    \]
+</body>

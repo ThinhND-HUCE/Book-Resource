@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 148</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 148:</i><br><br>
+    
+    Xét chuỗi các hoán vị, bắt đầu với hoán vị \(1, 2, \ldots , n\) được tạo ra bằng chuỗi các phép hoán vị sau: đầu tiên, đưa số 1 đến vị trí cuối cùng bằng cách lần lượt đổi chỗ nó với mỗi số ở bên phải nó, sau đó, theo cách tương tự, chuyển số 2 đến vị trí gần cuối, và cứ tiếp tục như vậy cho đến khi đạt được hoán vị \(n, n-1, \ldots , 2, 1\).<br>
+
+    Ta thấy mỗi phép đổi chỗ mô tả ở trên là một phép chuyển vị kề mà phần tử bên trái nhỏ hơn phần tử bên phải nó. 
+    Theo nhận xét trong chứng minh bài~\ref{proskuryakov-147}, mỗi phép chuyển vị kề này làm tăng số nghịch thế lên~1 đơn vị.
+    Mặt khác hoán vị đầu tiên (sắp xếp ban đầu) không có nghịch thế, còn hoán vị cuối cùng có số nghịch thế là
+    \[
+    \left( {n - 1} \right) + \left( {n - 2} \right) +  \cdots  + 2 + 1 = \frac{{n\left( {n - 1} \right)}}{2} = \binom{n}{2}
+    \]
+
+    Ta có điều phải chứng minh.<br>
+
+    <i>Nhận xét:</i>
+    Cũng chứng minh khẳng định này bằng phương pháp quy nạp theo số \(k\).
+
+</body>

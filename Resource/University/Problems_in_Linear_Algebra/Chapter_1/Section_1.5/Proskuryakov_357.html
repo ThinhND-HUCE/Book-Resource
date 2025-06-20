@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 357</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 357:</i><br><br>
+    
+    \(\star\quad\) 
+    <i>Cách 1:</i>\(\quad\)
+    Ký hiệu định thức đã cho là \(D\).
+    Các phần tử ở cột \(i\) có thể tách dưới dạng
+    \[
+    \begin{bmatrix}
+    a_1 + b_i \\
+    \ldots \\
+    a_{i-1} + b_i \\
+    1 + a_i + b_i \\
+    a_{i+1} + b_i \\
+    \ldots \\
+    a_n + b_i
+    \end{bmatrix}
+    = \begin{bmatrix}
+    \left( 0 \right) + \left( a_1 + b_i \right) \\
+    \ldots \\
+    \left( 0 \right) + \left( a_{i-1} + b_i \right) \\
+    \left( 1 \right) + \left( a_i + b_i \right) \\
+    \left( 0 \right) + \left( a_{i+1} + b_i \right) \\
+    \ldots \\
+    \left( 0 \right) + \left( a_n + b_i \right)
+    \end{bmatrix}
+    \]
+    gợi ý rằng ta sử dụng tính chất cộng tính trên mỗi cột này theo cách tách trên. 
+    Ở đây ta lưu ý rằng vị trí chứa số hạng 1 nằm trên đường chéo chính.
+    Ký hiệu \(D_{i_1i_2\ldots i_k}\), \(1\le i_1 < \ldots < i_k \le n\), là một trong các định thức sau khi áp dụng tính chất cộng tính trên tất cả các cột theo cách tách trên, trong đó các cột \(i_{\ell}\), \(1\le \ell \le k\), có dạng
+    \begin{equation}\label{proskuryakov-357-eq1}\tag{\(*\)}
+    \begin{bmatrix}
+    a_1 + b_{i_{\ell}} \\
+    a_2 + b_{i_{\ell}} \\
+    \ldots \\
+    a_n + b_{i_{\ell}}
+    \end{bmatrix}
+    \end{equation}
+    và các cột còn lại \(i'_{\ell}\), \(1\le \ell \le n-k\), có các phần tử \(\left[ 0,\ldots, 0, 1, 0,\ldots, 0 \right]\) gồm hầu hết các vị trí bằng 0, ngoại trừ vị trí thứ \(i'_{\ell}\) nằm trên đường chéo chính.
+    Khi đó, nếu khai triển \(D_{i_1i_2\ldots i_k}\) lần lượt theo từng cột \(i'_{\ell}\) (thứ tự các cột này sẽ thay đổi sau mỗi lần khai triển theo cột ở bước trước, nên ở đây ta ngụ ý thứ tự được đánh dấu theo thứ tự ban đầu), thì
+    \[
+    D_{i_1i_2\ldots i_k} = 
+    \begin{vmatrix}
+    a_{i_1} + b_{i_1} & a_{i_1} + b_{i_2} & \ldots & a_{i_1} + b_{i_k} \\
+    a_{i_2} + b_{i_1} & a_{i_2} + b_{i_2} & \ldots & a_{i_2} + b_{i_k} \\
+    \ldots & \ldots & \ldots & \ldots \\
+    a_{i_k} + b_{i_1} & a_{i_k} + b_{i_2} & \ldots & a_{i_k} + b_{i_k}
+    \end{vmatrix}
+    \]
+
+    Theo <a href="Proskuryakov_354.html">Bài tập 354</a> (với vai trò \(b_i\) thay bởi \(-b_i\)), trong \(D_{i_1i_2\ldots i_k}\), nếu số cột \(k \ge 3\) thì \(D_{i_1i_2\ldots i_k} = 0\). 
+    Do đó ta chỉ cần xét ba trường hợp
+    <ul>
+        <li>
+            \(k = 0\), định thức lúc này có thể ký hiệu là \(D_{\varnothing}\), không có cột nào có dạng \eqref{proskuryakov-357-eq1}, có dạng đường chéo, mà mọi phần tử trên đường chéo đều là 1, nên \(D_{\varnothing} = 1\).
+        </li>
+        <li>
+            \(k = 1\), định thức có thể ký hiệu là \(D_{i}\), \(1\le i\le n\), có cột \(i\) có dạng \eqref{proskuryakov-357-eq1}, ta có
+            \[
+            D_i = a_i + b_i .
+            \]
+        </li>
+        <li>
+            \(k = 2\), định thức có thể ký hiệu là \(D_{ij}\), \(1\le i < j \le n\), có hai cột \(i, j\) có dạng \eqref{proskuryakov-357-eq1}, ta có
+            \[
+            D_{ij} =  - \left( a_i - a_j \right) \left( b_i - b_j \right) .
+            \]
+        </li>
+    </ul>
+
+    Vậy
+    \[
+    D = \sum\limits_{1 \le {i_1} <  \ldots  < {i_k} \le n} {{D_{{i_1}{i_2} \ldots {i_k}}}}  = 1 + \sum\limits_{i = 1}^n {\left( {{a_i} + {b_i}} \right)}  - \sum\limits_{i < j} {\left( {{a_i} - {a_j}} \right)\left( {{b_i} - {b_j}} \right)} .
+    \]
+
+
+
+    \(\star\quad\) 
+    <i>Cách 2:</i>\(\quad\)
+    Ký hiệu định thức đã cho là \(D_n\).
+    Áp dụng tính cộng tính của định thức tại cột cuối của \(D_n\), ta tách \(D_n\) thành tổng của ba định thức:
+    \begin{align}
+    D_n & = 
+    \begin{vmatrix}
+    1 + a_1 + b_1 & a_1 + b_2 & \ldots & a_1 + b_{n-1} & 0 \\
+    a_2 + b_1 & 1 + a_2 + b_2 & \ldots & a_2 + b_{n-1} & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_{n-1} + b_1 & a_{n-1} + b_2 & \ldots & 1 + a_{n-1} + b_{n-1} & 0 \\
+    a_n + b_1 & a_n + b_2 & \ldots & a_n + b_{n-1} & 1
+    \end{vmatrix} \\
+    & +
+    \begin{vmatrix}
+    1 + a_1 + b_1 & a_1 + b_2 & \ldots & a_1 + b_{n-1} & a_1 \\
+    a_2 + b_1 & 1 + a_2 + b_2 & \ldots & a_2 + b_{n-1} & a_2 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_n + b_1 & a_n + b_2 & \ldots & a_n + b_{n-1} & a_n
+    \end{vmatrix} \\
+    & +
+    \begin{vmatrix}
+    1 + a_1 + b_1 & a_1 + b_2 & \ldots & a_1 + b_{n-1} & b_n \\
+    a_2 + b_1 & 1 + a_2 + b_2 & \ldots & a_2 + b_{n-1} & b_n \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_n + b_1 & a_n + b_2 & \ldots & a_n + b_{n-1} & b_n
+    \end{vmatrix}
+    \end{align}
+
+    Với định thức thứ nhất, khai triển theo cột cuối, sẽ thu được \(D_{n-1}\); trong định thức thứ hai, trừ cột cuối vào các cột khác; và trong định thức thứ ba, ta đưa thừa số chung \(b_n\) ra ngoài dấu định thức, sau đó trừ cột thứ \(i\), \(i = 1,\ldots, n-1\), cho \(b_i\) lần cột cuối. Ta có
+    \begin{align}
+    D_n = D_{n-1} & +
+    \begin{vmatrix}
+    1 + b_1 & b_2 & \ldots & b_{n-1} & a_1 \\
+    b_1 & 1 + b_2 & \ldots & b_{n-1} & a_2 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    b_1 & b_2 & \ldots & 1 + b_{n-1} & a_{n-1} \\
+    b_1 & b_2 & \ldots & b_{n-1} & a_n
+    \end{vmatrix}
+    + \left( b_n \right)
+    \begin{vmatrix}
+    1 + a_1 & a_1 & \ldots & a_1 & 1 \\
+    a_2 & 1 + a_2 & \ldots & a_2 & 1 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots \\
+    a_{n-1} & a_{n-1} & \ldots & 1 + a_{n-1} & 1 \\
+    a_n & a_n & \ldots & a_n & 1
+    \end{vmatrix}
+    \end{align}
+
+    Ký hiệu hai định thức ở trên lần lượt là \(d_1\) và \(d_2\).
+    Trong \(d_1\), các hàng có rất nhiều phần tử giống nhau, nên ta có thể đưa về định thức thưa (nhiều vị trí bằng 0).
+    Trừ mỗi hàng cho hàng dưới nó, ta có
+    \[
+    d_1 = \begin{vmatrix}
+    1 & -1 & 0 & 0 & \ldots & 0 & 0 & a_1 - a_2 \\
+    0 & 1 & -1 & 0 & \ldots & 0 & 0 & a_2 - a_3 \\
+    0 & 0 & 1 & -1 & \ldots & 0 & 0 & a_3 - a_4 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & 0 & \ldots & 1 & -1 & a_{n-2} - a_{n-1} \\
+    0 & 0 & 0 & 0 & \ldots & 0 & 1 & a_{n-1} - a_n \\
+    b_1 & b_2 & b_3 & b_4 & \ldots & b_{n-2} & b_{n-1} & a_n
+    \end{vmatrix}
+    \]
+
+    Cộng cột 1 vào cột 2, rồi cộng cột 2 thu được vào cột 3, sau đó lại cộng cột 3 thu được vào cột 4,\(\ldots\), cứ tiếp tục như vậy, đến bước cuối, cộng cột thứ \(n-2\) thu được ở bước trước vào cột \(n-1\), ta có
+    \[
+    d_1 = \begin{vmatrix}
+    1 & 0 & 0 & \ldots & 0 & a_1 - a_2 \\
+    0 & 1 & 0 & \ldots & 0 & a_2 - a_3 \\
+    0 & 0 & 1 & \ldots & 0 & a_3 - a_4 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & 0 & a_{n-2} - a_{n-1} \\
+    0 & 0 & 0 & \ldots & 1 & a_{n-1} - a_n \\
+    b_1 & b_1 + b_2 & b_1 + b_2 + b_3 & \ldots & b_1 + \ldots + b_{n-1} & a_n
+    \end{vmatrix}
+    \]
+
+    Trừ hàng cuối cho \(b_1\) lần hàng 1, \(b_1 + b_2\) lần hàng 2,\(\ldots\), \(b_1 + \ldots + b_{n-1}\) lần hàng \(n-1\), được định thức tam giác trên, với các phần tử trên đường chéo chính gồm \(n-1\) số 1, ta có
+    \begin{align}
+    d_1 & = a_n - \left( a_1 - a_2 \right) \left( b_1 \right) - \left( a_2 - a_3 \right) \left( b_1 + b_2 \right) - \left( a_3 - a_4 \right) \left( b_1 + b_2 + b_3 \right) - \cdots \\
+    & \hspace{7mm} - \left( a_{n-1} - a_n \right) \left( b_1 + \cdots + b_{n-1} \right) \\
+    & = a_n - b_1 \left[ \left( a_1 - a_2 \right) + \left( a_2 - a_3 \right) + \cdots + \left( a_{n-1} - a_n \right) \right] \\
+    & \hspace{7mm} - b_2 \left[ \left( a_2 - a_3 \right) + \left( a_3 - a_4 \right) + \cdots + \left( a_{n-1} - a_n \right) \right] - \cdots - b_{n-1} \left( a_{n-1} - a_n \right) \\
+    & = a_n - b_1 \left( a_1 - a_n \right) - b_2 \left( a_2 - a_n \right) - \cdots - b_{n-1} \left( a_{n-1} - a_n \right).
+    \end{align}
+
+    Ta tiếp tục với \(d_2\).
+    Cũng tương tự, trừ cột \(i\), \(i = 1,\ldots, n-2\) cho cột sau nó, thì định thức không đổi:
+    \[
+    d_2 = 
+    \begin{vmatrix}
+    1 & 0 & 0 & 0 & \ldots & 0 & a_1 & 1 \\
+    -1 & 1 & 0 & 0 & \ldots & 0 & a_2 & 1 \\
+    0 & -1 & 1 & 0 & \ldots & 0 & a_3 & 1 \\
+    0 & 0 & -1 & 1 & \ldots & 0 & a_4 & 1 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & 0 & \ldots & 1 & a_{n-2} & 1 \\
+    0 & 0 & 0 & 0 & \ldots & -1 & 1 + a_{n-1} & 1 \\
+    0 & 0 & 0 & 0 & \ldots & 0 & a_n & 1
+    \end{vmatrix}
+    \]
+
+    Cộng hàng 1 vào hàng 2, rồi cộng hàng 2 thu được vào hàng 3, sau đó lại cộng hàng 3 thu được vào hàng 4,\(\ldots\), cứ tiếp tục như vậy, đến bước cuối, cộng hàng thứ \(n-2\) thu được ở bước trước vào hàng \(n-1\), ta có
+    \[
+    d_2 = 
+    \begin{vmatrix}
+    1 & 0 & 0 & 0 & \ldots & 0 & a_1 & 1 \\
+    0 & 1 & 0 & 0 & \ldots & 0 & a_1 + a_2 & 2 \\
+    0 & 0 & 1 & 0 & \ldots & 0 & a_1 + a_2 + a_3 & 3 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & 0 & \ldots & 1 & a_1 + \cdots + a_{n-2} & n-2 \\
+    0 & 0 & 0 & 0 & \ldots & 0 & 1 + a_1 + \cdots + a_{n-1} & n-1 \\
+    0 & 0 & 0 & 0 & \ldots & 0 & a_n & 1
+    \end{vmatrix}
+    \]
+
+    Trong định thức trên, tại \(n-2\) cột đầu tiên, chỉ có phần tử trên đường chéo chính là khác 0 (và bằng 1). Khai triển định thức liên tiếp theo cột đầu tiên (\(n-2\) lần, cấp định thức giảm dần), ta được
+    \begin{align}
+    d_2 = \begin{vmatrix}
+    1 + a_1 + \cdots + a_{n-1} & n-1 \\
+    a_n & 1
+    \end{vmatrix}
+    & = \left( 1 + a_1 + \cdots + a_{n-1} \right) \left( 1 \right) - \left( a_n \right) \left( n-1 \right) \\
+    & = 1 + a_1 + \cdots + a_{n-1} - \left( n-1 \right) a_n . 
+    \end{align}
+
+    Như vậy
+    \begin{align}
+    D_n & = D_{n-1} + d_1 + b_n d_2  \\
+    & = D_{n-1} + a_n - b_1 \left( a_1 - a_n \right) - b_2 \left( a_2 - a_n \right) - \cdots - b_{n-1} \left( a_{n-1} - a_n \right) \\
+    & \hspace{10.5mm} + b_n \left[ 1 + a_1 + \cdots + a_{n-1} - \left( n-1 \right) a_n \right] \\
+    & = D_{n-1} + a_n + b_n - b_1 \left( a_1 - a_n \right) - b_2 \left( a_2 - a_n \right) - \cdots - b_{n-1} \left( a_{n-1} - a_n \right) \\
+    & \hspace{24mm} + b_n \left[ \left( \left( a_1 - a_n \right) + \left( a_2 - a_n \right) + \cdots + \left( a_{n-1} - a_n \right) \right) \right] \\
+    & = D_{n-1} + a_n + b_n - \left( a_1 - a_n \right) \left( b_1 - b_n \right) - \left( a_2 - a_n \right) \left( b_2 - b_n \right) - \cdots - \left( a_{n-1} - a_n \right) \left( b_{n-1} - b_n \right) \\
+    & = D_{n-1} + a_n + b_n - \sum\limits_{i = 1}^{n - 1} {\left( {{a_i} - {a_n}} \right)\left( {{b_i} - {b_n}} \right)} .
+    \end{align}
+    trong đó \(D_1 = 1 + a_1 + b_1\). Thay vai trò \(n = 2, 3, \ldots\), tới chỉ số \(n\) tổng quát, rồi cộng tương ứng các vế, ta được
+    \begin{align}
+    D_n & = D_1 + \left[ a_2 + b_2 - \left( {{a_1} - {a_2}} \right)\left( {{b_1} - {b_2}} \right) \right]
+    + \left[ a_3 + b_3 - \sum\limits_{i = 1}^2 {\left( {{a_i} - {a_3}} \right)\left( {{b_i} - {b_3}} \right)} \right] + \cdots \\
+    & \hspace{51mm} + \left[ a_n + b_n - \sum\limits_{i = 1}^{n-1} {\left( {{a_i} - {a_n}} \right)\left( {{b_i} - {b_n}} \right)} \right] \\
+    & = 1 + \sum\limits_{i = 1}^n {\left( {{a_i} + {b_i}} \right)}  - \sum\limits_{i < j} {\left( {{a_i} - {a_j}} \right)\left( {{b_i} - {b_j}} \right)} .
+    \end{align}
+
+</body>

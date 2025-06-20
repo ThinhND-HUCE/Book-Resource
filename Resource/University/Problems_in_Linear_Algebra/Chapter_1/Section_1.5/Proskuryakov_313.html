@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 313</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 313:</i><br><br>
+    
+    Khai triển định thức cấp \(n\) đã cho, ký hiệu \(D_n\), theo cột 1:
+    \[
+    D_n = \left( x \right)
+    \begin{vmatrix}
+    x & y & 0 & \ldots & 0 & 0 \\
+    0 & x & y & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & x & y \\
+    0 & 0 & 0 & \ldots & 0 & x
+    \end{vmatrix}_{n-1}
+    + \left( y \right) \left( -1 \right)^{n+1}
+    \begin{vmatrix}
+    y & 0 & 0 & \ldots & 0 & 0 \\
+    x & y & 0 & \ldots & 0 & 0 \\
+    0 & x & y & \ldots & 0 & 0 \\
+    \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+    0 & 0 & 0 & \ldots & x & y
+    \end{vmatrix}_{n-1}
+    \]
+
+    Hai định thức đều có dạng tam giác, có giá trị bằng tích các phần tử trên đường chéo chính, nên
+    \[
+    D = \left( x \right) \left( x^{n-1} \right) + \left( -1 \right)^{n+1} \left( y \right) \left( y^{n-1} \right) 
+    = x^n + \left( -1 \right)^{n+1} y^n . 
+    \]
+
+</body>

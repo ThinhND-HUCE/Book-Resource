@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 331</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <i>Bài 331:</i><br><br>
+    
+    Đặt \(x_i = x + a_i\) với \(i = 1,\ldots, n+1\). Ta xét định thức tổng quát
+    \[
+    \begin{vmatrix}
+    x_1^n & x_1^{n-1} & \ldots & x_1 & 1 \\
+    x_2^n & x_2^{n-1} & \ldots & x_2 & 1 \\
+    \ldots & \ldots & \ldots & \ldots \\
+    x_{n+1}^n & x_{n+1}^{n-1} & \ldots & x_{n+1} & 1
+    \end{vmatrix}
+    \]
+
+    Đây là biến thể của định thức Vandermonde bằng cách thay đổi thứ tự các cột. 
+    Lập luận tương tự <a href="Proskuryakov_vd_4.html">Ví dụ 4</a>, ta cũng chỉ ra được
+    \[
+    D_n = \prod\limits_{i < j} {\left( {{x_i} - {x_j}} \right)}  = \prod\limits_{i < j} {\left[ {\left( {x + {a_i}} \right) - \left( {x + {a_j}} \right)} \right]}  = \prod\limits_{i < j} {\left( {{a_i} - {a_j}} \right)} .
+    \]
+
+</body>
