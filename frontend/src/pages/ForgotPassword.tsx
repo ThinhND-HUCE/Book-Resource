@@ -3,20 +3,26 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FiArrowLeft } from "react-icons/fi";
 import { sendOtp } from "../constants/apiService";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import backgroundImage from "../assets/images/HUCE.jpg";
+
 
 const ForgotPasswordWrapper = styled.div`
-  background-color: #f4f6f9;
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
-  margin: 0;
-  padding: 0;
 `;
+
 
 const ForgotPasswordCard = styled.div`
   background-color: white;
@@ -59,7 +65,7 @@ const Error = styled.div`
 const SendOtpButton = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: #4caf50;
+  background-color: #2196f3;
   color: white;
   font-size: 16px;
   border: none;
@@ -67,7 +73,7 @@ const SendOtpButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #45a049;
+    background-color: #007bff;
   }
 `;
 
@@ -89,27 +95,33 @@ const BackButton = styled.button`
   }
 `;
 
+
 export default function ForgotPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
-  const handleSendOtp = async () => {
-    setError(null);
-    try {
-      const response = await sendOtp(email);
-      if (response.success) {
-        alert("🎉 Một mã OTP đã được gửi đến email của bạn!");
-        navigate("/verify-otp");
-      } else {
-        setError("Có lỗi xảy ra. Vui lòng thử lại.");
-      }
-    } catch (err: any) {
-      setError("Không thể kết nối đến server.");
+const handleSendOtp = async () => {
+  setError(null); // vẫn giữ nếu muốn hiển thị dưới ô input
+  try {
+    const response = await sendOtp(email);
+    if (response.success) {
+      localStorage.setItem("forgot_email", email);
+      toast.success("🎉 Một mã OTP đã được gửi đến email của bạn!");
+      navigate("/verify-otp");
+    } else {
+      toast.error(response.message || "Có lỗi xảy ra. Vui lòng thử lại.");
+      setError(response.message); // nếu vẫn muốn hiển thị dưới input
     }
-  };
+  } catch (err: any) {
+    toast.error("Không thể kết nối đến máy chủ.");
+    setError("Không thể kết nối đến máy chủ.");
+  }
+};
+
 
   return (
+     
     <ForgotPasswordWrapper>
       <ForgotPasswordCard>
         <BackButton onClick={() => navigate("/login")}>
@@ -132,5 +144,6 @@ export default function ForgotPassword() {
         <SendOtpButton onClick={handleSendOtp}>Gửi mã OTP</SendOtpButton>
       </ForgotPasswordCard>
     </ForgotPasswordWrapper>
+    
   );
 }

@@ -76,6 +76,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
+    console.log()
     if (token) {
       try {
         const decoded = jwtDecode<MyJwtPayload>(token);

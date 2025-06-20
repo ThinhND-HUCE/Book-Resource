@@ -6,7 +6,9 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Dashboard from "./pages/Dashboard";
 import RegisterScreen from "./pages/RegisterScreen";
 import ProbabilityandStatistics from "./pages/ProbabilityandStatistics";
-
+import AdminDashboard from "./pages/AdminDashboard"
+import FirstLogin from "./pages/FirstLogin";
+import VerifyOtpAndChangePassword from "./pages/VerifyOtpAndChangePassword"
 const App = () => {
   return (
     <BrowserRouter>
@@ -17,7 +19,9 @@ const App = () => {
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/ProbabilityandStatistics" element={<ProbabilityandStatistics />} />
-        
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+         <Route path="/verify-otp" element={<VerifyOtpAndChangePassword />} />
+        <Route path="/FirstLogin" element={<FirstLogin />} />
         {/* Thêm các route khác tại đây */}
       </Routes>
       <ToastContainer position="top-right" autoClose={3000} />
