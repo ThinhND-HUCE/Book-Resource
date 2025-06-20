@@ -9,6 +9,11 @@ class User(models.Model):
     classname = models.CharField(max_length=10, null=True, blank=True, db_column="class")
     phone = models.CharField(max_length=15, unique=True, db_column="phone")
     email = models.EmailField(max_length=255, unique=True, db_column="email")
+    role = models.CharField(max_length=20,null=True, blank=True, db_column="role")
+    is_first_login = models.BooleanField(default=True, db_column="is_first_login")
+    otp_code = models.CharField(max_length=10, null=True, blank=True, db_column="otp_code")
+    otp_created_at = models.DateTimeField(null=True, blank=True, db_column="otp_created_at")
+
 
     class Meta:
         db_table = 'users'  # Để kết nối với bảng PostgreSQL hiện có

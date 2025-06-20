@@ -136,7 +136,7 @@ export const NextButton = styled(BackButton)`
 export const ChapterButton = styled(Button)`
     border: 1px solid #ddd;
     text-align: left;
-    width: 333px;
+    width: 99%;
     margin: 0;
     display: flex;
     align-items: center;
@@ -154,7 +154,7 @@ export const ChapterButton = styled(Button)`
 `;
 
 export const SectionButton = styled(ChapterButton)`
-    width: 325px;
+    width: 95%;
 `;
 
 export const SectionContainer = styled.div<{ isOpen: boolean }>`

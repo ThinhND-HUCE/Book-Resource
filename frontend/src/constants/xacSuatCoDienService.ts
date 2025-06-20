@@ -48,7 +48,7 @@ const getAuthHeaders = () => {
 };
 
 export const fetchExerciseQuestion = async (): Promise<ExerciseQuestion> => {
-    const response = await fetch('http://localhost:8000/api/exercises/xstk/generate-question/', {
+    const response = await fetch('http://localhost:8000/api/xac_suat_co_dien/', {
         headers: getAuthHeaders()
     });
     if (!response.ok) {
@@ -61,7 +61,7 @@ export const fetchExerciseQuestion = async (): Promise<ExerciseQuestion> => {
 export const submitExerciseAnswer = async (
     answer: ExerciseAnswer,
 ): Promise<ExerciseResponse> => {
-    const response = await fetch('http://localhost:8000/api/exercises/xstk/submit-answer/', {
+    const response = await fetch('http://localhost:8000/api/xac_suat_co_dien/submit/', {
         method: 'POST',
         headers: getAuthHeaders(),
         body: JSON.stringify({
