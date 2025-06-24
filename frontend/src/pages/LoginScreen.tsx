@@ -143,6 +143,7 @@ const Input = styled.input`
   background-color: #fff;
   margin-bottom: 20px;
   box-sizing: border-box;
+  color: #000;
 
   &:focus {
     border-color: #2196f3;
@@ -158,6 +159,7 @@ const PasswordWrapper = styled.div`
 
 const PasswordInput = styled(Input)`
   padding-right: 44px;
+  color: #000;
   margin-bottom: 0;
 `;
 
