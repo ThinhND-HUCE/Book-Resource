@@ -6,18 +6,34 @@ from django.conf import settings
 import os
 import json
 import re
+import urllib.parse
+import mimetypes
 
 COURSES_DIR = os.path.abspath(os.path.join(settings.BASE_DIR, '..', 'Resource'))
 
 def get_course_info(course_path):
     info_path = os.path.join(course_path, "info.json")
+    info = {}
+
+    # Đọc file info.json nếu có
     if os.path.exists(info_path):
         try:
             with open(info_path, "r", encoding="utf-8") as f:
-                return json.load(f)
+                info = json.load(f)
         except Exception as e:
             print(f"Lỗi khi đọc {info_path}:", e)
-    return None
+
+    # Tìm file ảnh đầu tiên trong thư mục làm ảnh đại diện
+    try:
+        for entry in os.listdir(course_path):
+            if entry.lower().endswith(('.webp', '.png', '.jpg', '.jpeg')):
+                image_path = os.path.join(course_path, entry)
+                info["thumbnail"] = f"/api/files/view/?path={urllib.parse.quote(image_path)}"
+                break
+    except Exception as e:
+        print(f"Lỗi khi tìm ảnh trong {course_path}:", e)
+
+    return info if info else None
 
 def read_folder_structure(dir_path):
     results = []
@@ -109,7 +125,8 @@ def list_courses_by_grade(request, grade_id):
                 info = get_course_info(folder_path)
                 courses.append({
                     "id": folder,
-                    "course_name": info.get("course_name") if info else folder.replace("_", " ")
+                    "course_name": info.get("course_name") if info else folder.replace("_", " "),
+                    "thumbnail": info.get("thumbnail") if info else None
                 })
         
         return Response(courses)
@@ -137,17 +154,14 @@ def course_detail(request, grade_id, course_id):
 
 @api_view(['GET'])
 def get_file_content(request):
-    # Lấy tham số "path" từ query string
     file_path = request.GET.get("path")
+
     if not file_path or not os.path.exists(file_path):
         return Response({"error": "File không tồn tại"}, status=status.HTTP_404_NOT_FOUND)
 
     try:
-        # Đọc nội dung file
-        with open(file_path, "r", encoding="utf-8") as f:
-            content = f.read()
-
-        # Trả về nội dung với content_type là "text/html" để đảm bảo trình duyệt render đúng
-        return HttpResponse(content, content_type="text/html")
+        mime_type, _ = mimetypes.guess_type(file_path)
+        with open(file_path, "rb") as f:
+            return HttpResponse(f.read(), content_type=mime_type or "application/octet-stream")
     except Exception as e:
         return Response({"error": "Không thể đọc file"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

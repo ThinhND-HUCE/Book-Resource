@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import XacSuatCoDien from '../../components/Probabilty_and_Statistics/XacSuatCoDien';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { BackButton, NextButton,Course,FileItem, Iframe, FolderItem, ContentItem, Button, VerticalWrapper, VerticalGroup, ChapterContainer, ChapterButton, SectionContainer, SectionButton, PracticeButton, Title, PracticeButtonsContainer, DashboardButton, Container, SelectionBar, DetailBar } from "./UseInterFace";
+import { BackButton, NextButton, Course, FileItem, Iframe, FolderItem, ContentItem, Button, VerticalWrapper, VerticalGroup, ChapterContainer, ChapterButton, SectionContainer, SectionButton, PracticeButton, Title, PracticeButtonsContainer, DashboardButton, Container, SelectionBar, DetailBar } from "./UseInterFace";
 
 const ProbabilityandStatistics: React.FC = () => {
     const [course, setCourse] = useState<Course | null>(null);
@@ -60,8 +60,8 @@ const ProbabilityandStatistics: React.FC = () => {
 
     //Chỉ lấy số từ các file
     const extractNumber = (filename: string) => {
-        const match = filename.match(/\d+/);
-        return match ? match[0] : filename;
+        const match = filename.match(/(?:\s|^)(\d+(?:\.\d+)*)(?!.*\d)/);
+        return match ? match[1] : filename;
     };
 
     //2. Hàm xử lý khi nhấn vào nút
@@ -136,8 +136,8 @@ const ProbabilityandStatistics: React.FC = () => {
         const filesOnly = folder.children.filter(c => c.type === "file") as FileItem[];
 
         return filesOnly.map((item, index) => (
-            <Button 
-                key={item.path} 
+            <Button
+                key={item.path}
                 onClick={() => {
                     setHtmlContent(null); // Clear current content
                     fetchHtmlContent(item.path, filesOnly, index);
@@ -193,7 +193,7 @@ const ProbabilityandStatistics: React.FC = () => {
                             </VerticalGroup>
                         );
                     })}
-                <PracticeButton 
+                <PracticeButton
                     style={{ margin: "20px 0" }}
                     onClick={() => console.log("Luyện tập tất cả chapter")}
                 >
@@ -228,26 +228,26 @@ const ProbabilityandStatistics: React.FC = () => {
         //3. Hiển thị giao diện
         if (showExercise) {
             return <XacSuatCoDien onBack={() => setShowExercise(false)} />;
-        } 
+        }
 
         return (
             <>
                 <Title>{formatName(section.name)}</Title>
                 {renderSectionButtons(section)}
                 <PracticeButtonsContainer>
-                    <PracticeButton 
+                    <PracticeButton
                         style={{ width: '200px' }}
                         onClick={() => showExerciseContent(1)}
                     >
                         Luyện tập dạng 1
                     </PracticeButton>
-                    <PracticeButton 
+                    <PracticeButton
                         style={{ width: '200px' }}
                         onClick={() => showExerciseContent(2)}
                     >
                         Luyện tập dạng 2
                     </PracticeButton>
-                    <PracticeButton 
+                    <PracticeButton
                         style={{ width: '200px' }}
                         onClick={() => showExerciseContent(3)}
                     >
