@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import XacSuatCoDien from '../components/XacSuatCoDien';
+import XacSuatCoDien from '../components/Probability_and_Statistics/XacSuatCoDien';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { BackButton, NextButton,Course,FileItem, Iframe, FolderItem, ContentItem, Button, VerticalWrapper, VerticalGroup, ChapterContainer, ChapterButton, SectionContainer, SectionButton, PracticeButton, Title, PracticeButtonsContainer, DashboardButton, Container, SelectionBar, DetailBar } from "../pages/UseInterFace";
