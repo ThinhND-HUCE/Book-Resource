@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.26</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.26\(\star\):</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 27-->
+    Một người hẹn chờ hai người bạn tại một địa điểm trong khoảng thời gian từ 0 giờ đến 1 giờ. Giả sử mỗi người trong số hai người bạn nói trên sẽ đến điểm hẹn độc lập với nhau vào một thời điểm bất kỳ trong khoảng thời gian đã hẹn.
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Tìm hàm phân bố xác suất của thời gian tối thiểu để người hẹn gặp được một trong những người bạn của mình.</li>
+        <li>Tính giá trị trung bình của thời gian đợi nói trên.</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            Gọi \(X, Y\) là thời điểm hai người bạn đến điểm hẹn. 
+            \(X, Y\) độc lập và có cùng phân bố \(U\left(0, 1\right)\), tức là, có hàm mật độ
+            \[
+            f\left(x\right) = \begin{cases}
+            1, & x\in \left[0,1\right] \\
+            0, & x\notin \left[0,1\right].
+            \end{cases}
+            \]
+
+            Thời gian tối thiểu để người hẹn gặp được một trong hai người bạn của mình
+            \[
+            Z = \min\{X, Y\},
+            \]
+            có hàm phân bố xác suất
+            \begin{align}
+            F\left(z\right) & = P\left(Z < z\right) = 1 - P\left(Z \ge z\right) = 1 - P\left(\min \{ X,Y\}  \ge z\right) \\ 
+            & = 1 - P\left(X \ge z,Y \ge z\right) = 1 - P\left(X \ge z\right) \cdot P\left(Y \ge z\right) \\
+            & = 1 - {\left[ {\int_z^\infty  {f\left( x \right)dx} } \right]^2} = 
+            \begin{cases}
+            1, & z\ge 1 \\
+            z\left(2-z\right), & 0 < z < 1 \\
+            0, & z\le 0.
+            \end{cases}
+            \end{align}
+        </li>
+        <li>
+            \(Z\) có hàm mật độ
+            \[
+            f_Z\left(z\right) = F'\left(z\right) = \begin{cases}
+            2\left(1-x\right), & x\in \left(0,1\right) \\
+            0, & x\notin \left(0,1\right).
+            \end{cases}
+            \]
+            
+            Thời gian đợi trung bình
+            \[
+            EZ = \int_{ - \infty }^\infty  {z{f_Z}\left(z\right)dz}  = \frac{1}{3} .
+            \]        
+        </li>
+    </ol>
+
+</body>
+</html>

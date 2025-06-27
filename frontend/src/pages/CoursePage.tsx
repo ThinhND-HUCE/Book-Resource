@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 interface Course {
   id: string;
   course_name: string;
+  thumbnail?: string;
 }
 
 const Container = styled.div`
@@ -34,10 +35,9 @@ const Grid = styled.div`
   gap: 20px;
 `;
 
-const Card = styled(motion.div)`
-  position: relative; 
+const Card = styled(motion.div)<{ $thumbnail?: string }>`
+  position: relative;
   height: 150px;
-  background: linear-gradient(135deg, #007bff, #250cc4);
   border-radius: 12px;
   cursor: pointer;
   display: flex;
@@ -48,11 +48,19 @@ const Card = styled(motion.div)`
   font-weight: bold;
   font-size: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  overflow: hidden; 
+  overflow: hidden;
   text-align: center;
+  background: ${({ $thumbnail }) =>
+    $thumbnail
+      ? `url(${$thumbnail}) center/cover no-repeat`
+      : 'linear-gradient(135deg, #007bff, #250cc4)'};
 
   &:hover {
-    background: linear-gradient(135deg, #1976d2, #1b098f);
+    background: ${({ $thumbnail }) =>
+      $thumbnail
+        ? `url(${$thumbnail}) center/cover no-repeat` 
+        : 'linear-gradient(135deg, #1976d2, #1b098f)'};
+    filter: brightness(0.95);
   }
 `;
 
@@ -124,6 +132,7 @@ const CoursePage: React.FC = () => {
         throw new Error('Không thể tải danh sách khóa học');
       }
       const data = await response.json();
+      console.log(data)
       setCourses(data);
     } catch (error) {
       console.error("Lỗi khi tải danh sách khóa học:", error);
@@ -169,6 +178,7 @@ const CoursePage: React.FC = () => {
             courses.map((course, i) => (
               <Card
                 key={course.id}
+                $thumbnail={course.thumbnail ? `http://localhost:8000${course.thumbnail}` : undefined}
                 onClick={() => handleCourseSelect(course.id)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -176,7 +186,13 @@ const CoursePage: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 whileHover={{ scale: 1.03 }}
               >
-                <Text>{course.course_name}</Text>
+                <Text style={{
+                  borderRadius: 8,
+                  padding: '8px 16px',
+                  color: '#fff',
+                  fontWeight: 700,
+                  zIndex: 2
+                }}>{course.course_name}</Text>
               </Card>
             ))
           )}

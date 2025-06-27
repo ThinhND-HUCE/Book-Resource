@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.14</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.14:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 14-->
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    Mẫu cỡ \(n=120\) từ \(X\) cho số liệu sau
+    <table>
+        <thead>
+            <tr>
+                <th>Khoảng của \(X\)</th><td>10 -- 11</td><td>11 -- 12</td><td>12 -- 14</td><td>14 -- 17</td><td>17 -- 19</td><td>19 -- 22</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>Số lần \(n_i\)</th><td>6</td><td>16</td><td>24</td><td>24</td><td>22</td><td>28</td>
+        </tr>
+    </table>
+
+    Hãy kiểm định ở mức ý nghĩa 3% giả thuyết cho rằng \(X\) có phân bố đều trên đoạn \(\left[10, 22\right]\).
+
+    <br><br>
+    <i>Đáp số:</i><br>
+
+    \(\chi _{qs}^2 = 7.5333\),
+    \(\chi _0^2 = 12.3746\).
+    \(\chi _{qs}^2 < \chi _0^2\Rightarrow \) chấp nhận \(X\in U\left[10, 22\right]\).
+
+</body>
+</html>

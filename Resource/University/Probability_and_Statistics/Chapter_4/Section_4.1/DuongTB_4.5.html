@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 4.5</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 4.5:</b><br><br>
+    <!--Thái Bình Dương, Chương 4, Bài ?--><style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    Một phân xưởng may có 185 máy hoạt động. 
+    Giả sử xác suất để trong ca mỗi máy bị hỏng là 0.05.
+    <ol type="a">
+        <li>Tính xác suất trong ca có 6 máy bị hỏng, số máy bị hỏng có khả năng nhất và xác suất trong trường hợp đó.</li>
+        <li>Tính xác suất để có từ 5 đến 20 máy hỏng trong ca.</li>
+    </ol>
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            \(n = 185, p = 0.05\).<br>
+
+            \(\star\quad P\left(m = 6\right) = C_n^6 p^6 \left(1-p\right)^{n-6} = 0.08250\). <br>
+
+            \(\star\quad \left(n+1\right)p = 9.3\notin \Bbb Z\Rightarrow \) số máy bị hỏng có khả năng nhất \(k_0 = \lfloor {9.3} \rfloor  = 9\).<br>
+
+            \(p_0 = C_n^9 p^9 \left(1-p\right)^{n-9} = 0.1346\).
+
+        </li>
+        <li>
+            \(P\left(5 \le m \le 20\right) = P\left[ { - 1.4337 \le \dfrac{{m - np}}{{\sqrt {np\left( {1 - p} \right)} }} \le 3.6264} \right] \approx P\left[ { - 1.4337 \le N\left( {0,1} \right) \le 3.6264} \right] = 0.9240 \).
+        </li>
+    </ol>    
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.2</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.2:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 1-->
+    Gieo đồng tiền 3 lần. 
+    Xác suất xuất hiện mặt sấp ở mỗi lần là 0.5. 
+    Gọi \(X\) là số lần xuất hiện mặt sấp trong 3 lần gieo.
+    
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+
+    <ol type="a">
+        <li>Lập bảng phân bố xác suất của \(X\).</li>
+        <li>Tìm hàm phân bố \(F\left( x \right)\).</li>
+        <li>Tìm kỳ vọng và phương sai của \(X\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+        
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+
+    <ol type="a">
+        <li>
+            <table>
+                <thead>
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>\(P\)</th>
+                        <td>\(\dfrac{1}{8}\)</td>
+                        <td>\(\dfrac{3}{8}\)</td>
+                        <td>\(\dfrac{3}{8}\)</td>
+                        <td>\(\dfrac{1}{8}\)</td>
+                    </tr>
+                </tbody>
+            </table>
+            hoặc
+            \(P\left( {X = k} \right) = C_3^k{0.5^3},\;k = \overline {0,3} \).
+        </li>
+
+        <li>
+            \(F(x) = \begin{cases}
+            0, & \text{nếu } x\le 0 \\
+            0.125 & \text{nếu } 0< x\le 1 \\
+            0.125 + 0.375 = 0.5 & \text{nếu } 1< x\le 2 \\
+            0.125 + 0.375 + 0.375 = 0.875 & \text{nếu } 2< x\le 3 \\
+            1 & \text{nếu } x>3
+            \end{cases}\)
+        </li>
+
+        <li>\(EX = \dfrac{3}{2}\), \(DX = \dfrac{3}{4}\).</li>
+    </ol>
+
+</body>
+</html>

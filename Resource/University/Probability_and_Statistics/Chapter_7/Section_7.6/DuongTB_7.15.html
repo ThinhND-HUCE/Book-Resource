@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.15</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.15:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 15-->
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    Theo dõi thời gian gia công của 200 chi tiết máy, ta thu được số liệu sau
+    <table>
+        <thead>
+            <tr>
+                <th>Thời gian gia công 1 chi tiết (phút)</th><td>10 -- 12</td><td>12 -- 14</td><td>14 -- 16</td><td>16 -- 18</td><td>18 -- 20</td><td>20 -- 22</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>Số chi tiết</th><td>16</td><td>35</td><td>49</td><td>50</td><td>30</td><td>20</td>
+        </tr>
+    </table>
+    
+
+    Với mức ý nghĩa 10%, hãy kiểm định xem giả thuyết cho rằng thời gian gia công một chi tiết máy có phân bố chuẩn \(N\left(16, 3^2\right)\) có đúng hay không.
+    
+    <br><br>
+    <i>Đáp số:</i><br>
+
+    Kiểm định thời gian gia công một chi tiết máy có phân bố chuẩn \(N\left(16, 3^2\right): \mu =16, \sigma = 3\), tức là có hàm mật độ
+    \[
+    f\left(x\right) = \frac{1}{{\sigma \sqrt {2\pi } }}{e^{ - \frac{{{{\left(x - \mu\right)}^2}}}{{2{\sigma ^2}}}}} .
+    \]
+
+    <table>
+        <thead>
+            <tr>
+                <th>\(S_i\)</th><th>\(n_i\)</th><th>\(p_{i0}\)</th><th>\(e_i\)</th><th>\(\dfrac{{{{\left( {{n_i} - {e_i}} \right)}^2}}}{{{e_i}}}\)</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>\(-\infty \to 12\)</td><td>16</td><td>0.09121</td><td>18.2422</td><td>0.2756</td>
+        </tr>
+        <tr>
+            <td>\(12\to 14\)</td><td>35</td><td>0.1613</td><td>32.2563</td><td>0.2334</td>
+        </tr>
+        <tr>
+            <td>\(14\to 16\)</td><td>49</td><td>0.2475</td><td>49.5015</td><td>0.005081</td>
+        </tr>
+        <tr>
+            <td>\(16\to 18\)</td><td>50</td><td>0.2475</td><td>49.5015</td><td>0.005020</td>
+        </tr>
+        <tr>
+            <td>\(18\to 20\)</td><td>30</td><td>0.1613</td><td>32.2563</td><td>0.1578</td>
+        </tr>
+        <tr>
+            <td>\(20\to \infty\)</td><td>20</td><td>0.09121</td><td>18.2422</td><td>0.1694</td>
+        </tr>
+        <tr style="border-top: 1px solid black;">
+            <th>\(\Sigma\)</th>
+            <td></td><td></td><td></td>
+            <td>0.8463</td>
+        </tr>
+    </table>
+    
+
+    \(\chi _{qs}^2 = 0.8463\),
+    \(\chi _0^2 = {\chi ^2}(\alpha ,h - 1) = {\chi ^2}(10\% ,6 - 1) = 9.2364\).<br>
+
+    \(\chi _{qs}^2 < \chi _0^2\Rightarrow \) chấp nhận thời gian gia công có phân bố \(N\left(16, 3^2\right)\).
+
+</body>
+</html>

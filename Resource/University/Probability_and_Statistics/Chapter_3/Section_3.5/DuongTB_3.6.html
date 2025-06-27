@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.6</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.6:</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 9-->
+    Vị trí của điểm ngẫu nhiên \(\left(X,Y\right)\) phân bố đều trong hình tròn bán kính \(R\), tâm trùng với gốc tọa độ.
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Xác định mật độ xác suất và hàm phân bố của mỗi tọa độ.</li>
+        <li>Tìm hàm mật độ có điều kiện \(\psi\left(y \mid x\right)\).</li>
+    </ol>
+    
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            \({f_1}\left(x\right) = \begin{cases}
+            \frac{{2\sqrt {{R^2} - {x^2}} }}{{\pi {R^2}}}, & |x| < R \\
+            0, & |x|\ge R.
+            \end{cases}\)
+        </li>
+        <li>Khi \(-R < x < R\),
+            \(\psi \left(y\mid x\right) = \begin{cases}
+            \dfrac{1}{{2\sqrt {{R^2} - {x^2}} }}, & |y| < \sqrt {{R^2} - {x^2}} \\
+            0, & |y| \ge \sqrt {{R^2} - {x^2}}.
+            \end{cases}\)
+        </li>
+    </ol>
+
+</body>
+</html>

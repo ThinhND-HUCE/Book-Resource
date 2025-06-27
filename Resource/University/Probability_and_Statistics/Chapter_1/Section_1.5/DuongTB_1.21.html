@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1.21</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 1.21:</b><br><br>
+    <!--Thái Bình Dương, Chương 1, Bài 28-->
+    Có \(n\) hộp kín, trong mỗi hộp có \(m\) quả cầu đỏ và \(k\) quả cầu xanh. 
+    Lấy ngẫu nhiên một quả từ hộp 1 bỏ vào hộp 2. 
+    Sau đó từ hộp 2 lấy ngẫu nhiên 1 quả và cho sang hộp 3. 
+    Cứ như thế, ở bước thứ \(n-1\), ta lấy 1 quả từ hộp thứ \(n-1\) cho sang hộp \(n\). 
+    Cuối cùng lấy một quả từ hộp thứ \(n\). Tính xác suất để quả cầu lấy ra cuối cùng có màu đỏ.
+    <br><br>
+
+    <i>Đáp số:</i><br>
+    Đặt \(D_i = \) {quả cầu lấy ở hộp \(i\) màu đỏ}, 
+    \(X_i = \) {quả cầu lấy ở hộp \(i\) màu xanh}. 
+    \(P\left(D_2\right)  = P\left(D_1\right) P\left(D_2 \mid D_1\right) + P\left(X_1\right) P\left(D_2 \mid X_1\right)\).<br> 
+    Chứng minh bằng quy nạp \(P\left({D_i}\right) = \dfrac{m}{{m + k}}\), \(P\left({X_i}\right) = \dfrac{k}{{m + k}},\; \forall i\). 
+    Từ đó \(P\left({D_n}\right) = \dfrac{m}{{m + k}}\).
+</body>
+</html>

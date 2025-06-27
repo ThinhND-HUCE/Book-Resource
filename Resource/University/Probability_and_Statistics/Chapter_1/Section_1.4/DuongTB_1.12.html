@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1.12</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 1.12:</b><br><br>
+    <!--Thái Bình Dương, Chương 1, Bài 10-->
+    Chứng minh rằng nếu \(A\) và \(B\) là hai sự kiện độc lập thì mỗi cặp sự kiện sau đều là các sự kiện độc lập:
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>\(\overline A\) và \(B\).</li>
+        <li>\(\overline  A\) và \(\overline B\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>\(B = \Omega B = \left(A + \overline A \right)B = AB + \overline A B\)<br>
+            \(\Rightarrow P\left(\overline A B\right) = P\left(B\right) - P\left(AB\right) = P\left(B\right) - P\left(A\right) P\left(B\right) = P\left(B\right)\left[ {1 - P\left(A\right)} \right] = P\left(\overline A \right) P\left(B\right)\).
+        </li>
+        <li>
+            \(\left(A + B\right) + \overline A \,\overline B  = \Omega\)<br>
+            \(\Rightarrow P\left(\overline A \,\overline B \right) = 1 - P\left(A + B\right) = 1 - P\left(A\right) - P\left(B\right) - P\left(AB\right) = 1 - P\left(A\right) - P\left(B\right) - P\left(A\right)P\left(B\right)
+            = \left[ {1 - P\left(A\right)} \right]\left[ {1 - P\left(B\right)} \right] = P\left(\overline A \right) P\left(\overline B \right)\).
+        </li>
+    </ol>
+
+</body>
+</html>

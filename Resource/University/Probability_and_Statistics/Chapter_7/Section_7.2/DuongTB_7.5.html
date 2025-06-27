@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.5</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.5:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 5-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    Giả sử khối lượng \(X\) của một viên gạch do một xí nghiệp sản xuất là đại lượng ngẫu nhiên có phân bố chuẩn. 
+    Cân 31 viên gạch ta được bảng số liệu
+    <table>
+        <thead>
+            <tr>
+                <th>Khối lượng (kg)</th><td>2.25 -- 2.3</td><td>2.3 -- 2.35</td><td>2.35 -- 2.4</td><td>2.4 -- 2.45</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>Số viên</th><td>4</td><td>11</td><td>13</td><td>3</td>
+        </tr>
+    </table>
+    
+    <ol type="a">
+        <li>Tìm ước lượng không chệch của \(EX\) và \(DX\).</li>
+        <li>Hãy cho một ước lượng khoảng của khối lượng trung bình của viên gạch với độ tin cậy 99%.</li>
+        <li>Kiểm định ở mức ý nghĩa 2%: \(H_0: EX = 2.4, H_1: EX < 2.4\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <table>
+        <thead>
+            <tr>
+                <th>\(X\)</th><td>2.275</td><td>2.325</td><td>2.375</td><td>2.425</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>\(n_i\)</th><td>4</td><td>11</td><td>13</td><td>3</td>
+        </tr>
+    </table>
+    <ol type="a">
+        <li>\(\overline x = 2.3492\), \(s'^2 = 0.001812\)</li>
+        <li>\(\left(\overline x  - {t_0}\dfrac{{s}}{{\sqrt {n-1} }}\;,\;\overline x  + {t_0}\dfrac{{s}}{{\sqrt {n-1} }}\right) = \left( 2.3282, 2.3702 \right)\)</li>
+        <li>
+            \({t_{qs}} = -6.6457\),
+            \(t_0 = 2.1470\).
+            \(t_{qs} < -t_0\Rightarrow \) bác bỏ \(H_0\).	
+        </li>
+    </ol>    
+
+</body>
+</html>

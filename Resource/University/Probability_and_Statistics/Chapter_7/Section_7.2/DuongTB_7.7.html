@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.7</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.7:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 10-->
+    Khối lượng các bao xi măng là đại lượng ngẫu nhiên có phân bố chuẩn \(N\left(50, 0.01\right)\). 
+    Có nhiều ý kiến khách hàng phản ánh là khối lượng bị thiếu. 
+    Để kiểm tra, người ta đã cân ngẫu nhiên 25 bao xi măng trong kho, kết quả như sau:
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th>Khối lượng bao</th><td>48 -- 48.5</td><td>48.5 -- 49</td><td>49 -- 49.5</td><td>49.5 -- 50</td><td>50 -- 50.5</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>Số bao</th><td>2</td><td>5</td><td>10</td><td>6</td><td>2</td>
+        </tr>
+    </table>
+
+    Hãy xem ý kiến khách hàng có đúng không bằng cách kiểm tra giả thuyết \(H_0: EX = 50, H_1: EX < 50\) ở mức ý nghĩa 0.05.
+    <br><br>
+    <i>Đáp số:</i><br>
+
+    \(z_{qs} = \dfrac{49.27 - 50}{0.1}\sqrt{25} = -36.5\),
+    \({z_0} = 1.6449\).<br>
+
+    \(z_{qs} < - z_0\Rightarrow\) bác bỏ \(H_0\), tức là phản ánh của khách hàng về việc khối lượng bao bị thiếu là có cơ sở.
+
+</body>
+</html>

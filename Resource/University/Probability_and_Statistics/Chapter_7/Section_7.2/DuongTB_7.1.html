@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.1</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.1:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 1-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+
+    Thời gian gia công của 30 sản phẩm (phút) cho ở bảng sau
+    <table>
+        <thead>
+            <tr>
+                <th>Thời gian gia công 1 sản phẩm</th><td>10 -- 12</td><td>12 -- 14</td><td>14 -- 16</td><td>16 -- 18</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>Số sản phẩm</th><td>3</td><td>12</td><td>11</td><td>4</td>
+        </tr>
+    </table>
+    
+    Giả sử thời gian gia công một sản phẩm là một đại lượng ngẫu nhiên có phân bố chuẩn với \(\sigma = 2\).
+    <ol type="a">
+        <li>Hãy ước lượng thời gian gia công trung bình một sản phẩm bằng khoảng tin cậy với độ tin cậy 98%.</li>
+        <li>
+            Định mức thời gian gia công một sản phẩm là 15 phút. 
+            Hãy kiểm định ở mức ý nghĩa 2% xem định mức thời gian trên có nhiều quá không?
+        </li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            \(\left(\overline x  - {z_0}\dfrac{\sigma }{{\sqrt n }}\;,\;\overline x  + {z_0}\dfrac{\sigma }{{\sqrt n }}\right) = \left( 13.2172, 14.9161 \right)\) phút.
+        </li>
+        <li>
+            \begin{align}
+                & \text{Định mức thời gian gia công một sản phẩm 15 phút là nhiều} \\
+                \Leftrightarrow\; & \text{thời gian gia công trung bình } < 15 \text{ phút}\\
+                \Leftrightarrow\; & EX < 15.
+            \end{align}
+        
+            Xét bài toán \(H_0: EX = 15, H_1: EX < 15, \alpha = 2\%\).<br>
+        
+            \({z_{qs}} = -2.5560\),	\({z_0} = 2.0537\).<br>
+        
+            \(z_{qs} < -z_0 \Rightarrow\) bác bỏ \(H_0\) (chấp nhận \(H_1\)), tức là định mức thời gian gia công một sản phẩm 15 phút là nhiều.
+        </li>
+    </ol>
+    
+</body>
+</html>

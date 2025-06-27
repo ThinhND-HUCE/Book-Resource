@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.11</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.11:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 12-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    Để so sánh cường độ chịu nén của gạch do hai nhà máy A và B sản xuất, người ta lấy hai mẫu cỡ 8 và 6 tương ứng từ tổng số gạch do nhà máy A và B, được số liệu sau
+    <table>
+        <thead>
+            <tr>
+                <th>Cường độ chịu nén của gạch nhà máy A (kg/cm\({}^2\))</th>
+                <th>Cường độ chịu nén của gạch nhà máy B (kg/cm\({}^2\))</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>70.25, 70.5, 71.75, 69.5, 70.25, 73, 72.5, 71.25</td>
+            <td>70.25, 68.25, 69.25, 70.25, 69.25, 69</td>
+        </tr>
+    </table>
+
+    Giả sử cường độ chịu nén của gạch do hai nhà máy A và B sản xuất là các đại lượng ngẫu nhiên có phân bố chuẩn với phương sai bằng nhau.
+    <ol type="a">
+        <li>Hãy tìm khoảng tin cậy của cường độ chịu nén trung bình của gạch của nhà máy A với độ tin cậy 95%.</li>
+        <li>Hãy kiểm định giả thuyết \(H_0\): ``cường độ chịu nén trung bình của gạch do hay nhà máy sản xuất là như nhau'', với đối thuyết \(H_1\): ``cường độ chịu nén trung bình của gạch nhà máy A cao hơn của gạch nhà máy B'' ở mức ý nghĩa \(\alpha = 0.01\).</li>
+    </ol>
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>\(\left(\overline x  - {t_0}\dfrac{{s}}{{\sqrt {n-1} }}\;,\;\overline x  + {t_0}\dfrac{{s}}{{\sqrt {n-1} }}\right) = \left( 0.1072, 72.1428 \right)\)</li>
+        <li>
+            \(H_0: EX = EY, H_1: EX > EY, \alpha = 0.01\).<br>
+
+            \({t_{qs}} = \dfrac{{\overline x  - \overline y }}{{\sqrt {ns_X^2 + ms_Y^2} }}\sqrt {\dfrac{{nm(n + m - 2)}}{{n + m}}} = 3.0729\),
+            \(t_0 = 2.6810\).<br>
+
+            \(t_{qs} > t_0\Rightarrow\) bác bỏ \(H_0\).
+        </li>
+    </ol>
+    
+
+</body>
+</html>

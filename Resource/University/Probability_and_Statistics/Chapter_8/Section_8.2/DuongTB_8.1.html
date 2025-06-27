@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 8.1</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 8.1:</b><br><br>
+    <!--Thái Bình Dương, Chương 8, Bài 1-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+
+    Với mẫu từ \(\left(X, Y\right)\):
+    <table>
+        <thead>
+            <tr>
+                <th>\(x_i\)</th><td>5</td><td>3</td><td>4</td><td>6</td><td>5</td><td>5.5</td><td>6</td><td>7</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>\(y_i\)</th><td>2.5</td><td>1.5</td><td>3</td><td>7</td><td>6.5</td><td>5.5</td><td>5</td><td>11</td>
+        </tr>
+    </table>
+    <ol type="a">
+        <li>Tính hệ số tương quan mẫu giữa \(X\) và \(Y\).</li>
+        <li>Tìm hồi quy bình phương trung bình tuyến tính thực nghiệm của \(Y\) theo \(X\). Ước lượng sai số.</li>
+        <li>Viết phương trình đường thẳng hồi quy bình phương trung bình thực nghiệm của \(Y\) đối với \(X\) và vẽ nó.</li>
+        <li>Dự báo \(Y\) khi \(X=3.5\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>\(r = 0.86\)</li>
+        <li>\(\overset{\sim}{\varphi} = 2.0855 X -5.5684\), \(s_Y^2 (1-r^2) = 2.0994\).</li>
+        <li>\(y = 2.0855 x -5.5684\)</li>
+        <li>Khi \(X = 3.5\), ta dự báo \(Y = 1.7308\).</li>
+    </ol>
+
+</body>
+</html>

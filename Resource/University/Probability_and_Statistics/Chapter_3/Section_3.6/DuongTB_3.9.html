@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.9</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.9\(\star\):</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 15-->
+    Cho \(X, Y\) là hai đại lượng ngẫu nhiên độc lập. 
+    Tìm luật phân bố, kỳ vọng của tổng \(Z=X+Y\) trong mỗi trường hợp sau:
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>\(X, Y\) tuân theo luật phân bố mũ với tham số \(\lambda_1, \lambda_2\).</li>
+        <li>\(X, Y\) tuân theo luật Poisson với tham số \(\lambda_1, \lambda_2\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            \(f_1\left(x\right) = \begin{cases}
+            \lambda_1 e^{-\lambda_1 x}, & x>0 \\
+            0, & x\le 0
+            \end{cases}\),
+            \(f\left(x,y\right) = {f_1}\left(x\right){f_2}\left(y\right)\).<br>
+            
+            \(\lambda_1 \ne \lambda_2\Rightarrow g\left(z\right) = \begin{cases}
+            - {\lambda _1}{\lambda _2} \frac{{{e^{ - {\lambda _1}z}} - {e^{ - {\lambda _2}z}}}}{{{\lambda _1} - {\lambda _2}}}, & z>0 \\
+            0, & z\le 0.
+            \end{cases}\)<br>
+    
+            \(\lambda_1 = \lambda_2 = \lambda\Rightarrow g\left(z\right) = \begin{cases}
+            {\lambda ^2}{e^{ - \lambda z}}\lambda , & z>0 \\
+            0, & z\le 0.
+            \end{cases}\)
+        </li>
+        <li>
+            \(P\left(X=k\right) = {e^{ - {\lambda _1}}}\dfrac{{\lambda _1^k}}{{k!}}\), \(P\left(Y=k\right) = {e^{ - {\lambda _2}}}\dfrac{{\lambda _2^k}}{{k!}},\; \forall k = 0, 1, 2\ldots\)<br>
+
+            \(\operatorname{Im} Z = \operatorname{Im} \left(X + Y\right) = \{ 0,1,2, \ldots \} \).
+            \begin{align}
+            P\left(Z = k\right) & = P\left(X + Y = k\right) = \sum\limits_{i = 0}^k {P\left(X = i,Y = k - i\right)} \\
+            & = \sum\limits_{i = 0}^k {P(X = i) \cdot P\left(Y = k - i\right)}  = {e^{ - \left({\lambda _1} + {\lambda _2}\right)}}\frac{{{{\left({\lambda _1} + {\lambda _2}\right)}^k}}}{{k!}}
+            \end{align}
+            tức là \(Z\in P_{\lambda_1 + \lambda_2}\).
+        </li>
+    </ol>    
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.7</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.7:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 22-->    
+    Trong một hộp kín có \(N\) tấm thẻ được đánh số từ 1 đến \(N\). 
+    Rút ngẫu nhiên \(n\) thẻ (\(1\le n < N\)). 
+    Gọi \(X\) là số nhỏ nhất trong các số có mặt trên những thẻ lấy ra. 
+    Tìm luật phân bố của \(X\) và tính \(EX\).	
+
+    <br><br>
+    <i>Đáp số:</i><br>
+    <ul>
+        <li>
+            \(X = k \Leftrightarrow \begin{cases}
+            \text{chọn thẻ } k \\
+            \text{chọn được } n-1 \text{ thẻ } > k \text{ trong } N-k \text{ thẻ } k+1, k+2,\ldots, N
+            \end{cases}\)<br>
+
+            \(P\left(X=k\right) = \dfrac{C_{N-k}^{n-1}}{C_N^n}\), \(k = \overline{1, N-n+1}\).
+        </li>
+        <li>\(EX = \dfrac{N+1}{n+1}\).</li>
+    </ul>
+
+</body>
+</html>

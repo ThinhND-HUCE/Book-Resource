@@ -1,0 +1,36 @@
+\documentclass[a4paper, 11pt, oneside]{extarticle}
+\input{C:/Users/ndthi/Documents/GitHub/Question_Preamble}
+
+\begin{ex}
+% Thịnh
+Xét phương trình \(\displaystyle x = \frac{e^{x}}{3} \) trên đoạn \(\displaystyle \left[ 0, 1 \right] \). Bằng phương pháp lặp điểm bất động, với xấp xỉ ban đầu \(\displaystyle x_0 = 0\), tìm nghiệm gần đúng và sai số tương ứng sau 5 bước lặp.
+
+
+\begin{sol}
+\begin{enumerate}[label=\alph*)]
+\item \(\displaystyle g\left( x \right) = \frac{e^{x}}{3}\);\quad \(\displaystyle 0\le 0.33333 \le g\left( x \right) \le 0.90609 \le 1\)
+\customdotfill \textbf{0.25đ}
+
+\(\displaystyle \left| g'\left( x \right) \right| \le 0.90609 = q < 1\; \forall x \in \left[ 0, 1 \right]\)
+\customdotfill \textbf{0.25}
+
+\(x_{n+1} = g\left( x_n \right)\), \(n = 0,1,\ldots\) \customdotfill \textbf{0.25}
+
+\(\left| x_n - x^* \right| \le \dfrac{q}{1-q} \left| x_n - x_{n-1} \right|\), \(n\ge 1\) \customdotfill \textbf{0.25đ}
+
+\item 
+Bảng giá trị trong đó \(x_1, \varepsilon_n\) được \textbf{0.5đ} \customdotfill \textbf{1đ}
+\begin{center}
+\begin{tabular}{c|c|c}
+\(n\) & \(x_n\) & \(\varepsilon_n\) \\ \hline
+1 & \(0.33333\) & \(3.2163\) \\
+2 & \(0.4652\) & \(1.2724\) \\
+3 & \(0.53078\) & \(0.63274\) \\
+4 & \(0.56675\) & \(0.3471\) \\
+5 & \(0.58751\) & \(0.2003\) \\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{sol}
+\end{ex}
+\end{document}

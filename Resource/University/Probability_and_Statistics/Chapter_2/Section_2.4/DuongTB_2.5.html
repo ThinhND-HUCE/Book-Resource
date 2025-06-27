@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.5</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.5:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 5-->
+    Một thiết bị gồm 3 bộ phận hoạt động độc lập với nhau. 
+    Xác suất trong khoảng thời gian \(t\), các bộ phận hỏng tương ứng bằng 0.2, 0.3, 0.25. 
+    Gọi \(X\) là số bộ phận hỏng trong khoảng thời gian \(t\).
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+
+    <ol type="a">
+        <li>Lập bảng phân bố xác suất của \(X\).</li>
+        <li>Tìm hàm phân bố của \(X\).</li>
+        <li>Tính \(EX, DX, \sigma\left( X \right)\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            <table>
+                <thead>
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>\(P\)</th>
+                        <td>0.42</td>
+                        <td>0.425</td>
+                        <td>0.14</td>
+                        <td>0.015</td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+        <li>\(F\left(x\right) = \begin{cases}
+            0, & \text{nếu } x\le 0 \\
+            42 & \text{nếu } 0< x\le 1 \\
+            0.42 + 0.425 = 0.845 & \text{nếu } 1< x\le 2 \\
+            0.42 + 0.425 + 0.14 = 0.985 & \text{nếu } 2< x\le 3 \\
+            1 & \text{nếu } x>3
+            \end{cases}\)
+        </li>
+        <li>\(EX = 0.75\), \(DX = 0.5575\), \(\sigma\left(X\right) = 0.7467\).</li>
+    </ol>
+
+</body>
+</html>

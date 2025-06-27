@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CourseList from "../components/GradeList";
+import GradeList from "../components/GradeList";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
@@ -120,7 +120,7 @@ export default function Dashboard() {
       </FlexRight>
 
       <MainContent>
-        <CourseList />
+        <GradeList />
       </MainContent>
     </Container>
   );

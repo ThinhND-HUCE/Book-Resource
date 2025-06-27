@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1.22</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 1.22:</b><br><br>
+    <!--Thái Bình Dương, Chương 1, Bài 16-->
+    Giả sử trong một chuyến bay của một máy bay, các động cơ có thể hỏng một cách độc lập với nhau. 
+    Xác suất để một động cơ nào đó hỏng là \(p\). 
+    Máy bay vẫn bay được nếu ít nhất một nửa số động cơ của nó không hỏng.
+    Với điều kiện nào của \(p\) thì bay với máy bay có 4 động cơ an toàn hơn bay với máy bay có 2 động cơ?
+
+    <br><br>
+
+    <i>Đáp số:</i><br>
+    Đặt \(A_i = \) {máy bay \(i\) động cơ bay được}. 
+    \(\displaystyle P\left( {{A_4}} \right) = \sum\limits_{k = 0}^2 {C_4^k{p^k}{{( {1 - p} )}^{4 - k}}}\), \(P\left( {{A_2}} \right) = \displaystyle \sum\limits_{k = 0}^1 {C_2^k{p^k}{{(1 - p)}^{2 - k}}}\). 
+    \(P\left( {{A_4}} \right) > P\left( {{A_2}} \right) \Leftrightarrow p < \dfrac{1}{3}\).
+
+</body>
+</html>

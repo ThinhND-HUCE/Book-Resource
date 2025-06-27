@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.15</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.15:</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 26-->
+    Cân nặng trung bình của một người là 58 kg với độ lệch chuẩn là 5 kg. 9 người, lấy ngẫu nhiên và độc lập, vào một thang máy. 
+    Thang máy đó bị ngừng hoạt động nếu như tổng khối lượng của 9 người vượt quá 550 kg. 
+    Tìm xác suất để thang máy ngừng hoạt động khi có 9 người ngẫu nhiên vào cùng lúc. 
+    Cho biết cân nặng của một người lấy ngẫu nhiên là đại lượng ngẫu nhiên có phân bố chuẩn.
+    <br><br>
+    <i>Đáp số:</i><br>
+    \(X_i = \) cân nặng của người \(i\), (\(i=\overline{1,9}\)). 
+    \(X_i\sim N\left(58, 5^2\right)\), và độc lập.<br>
+
+    Tổng khối lượng của 9 người
+    \[
+    Y = {X_1} + {X_2} +  \cdots  + {X_9} \sim N\left(\underbrace{58 + 58 +  \cdots  + 58}_9,\underbrace{{5^2} + {5^2} +  \cdots  + {5^2}}_9\right) = N\left(522, 225\right)
+    \]
+
+    \(P\left(Z>550\right) = 0.5530\).    
+
+</body>
+</html>
