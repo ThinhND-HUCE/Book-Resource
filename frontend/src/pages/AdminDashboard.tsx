@@ -1,82 +1,125 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { createStudent, getAllStudents } from "../constants/apiService";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FaPlus, FaListUl } from "react-icons/fa";
 
-// Styled Components
-const PageWrapper = styled.div`
-  max-width: 900px;
-  padding: 40px 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+const Wrapper = styled.div`
+  min-height: 100vh;
+  background: #f8fafc;
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
 `;
 
-const Title = styled.h1`
-  text-align: center;
-  font-size: 2.25rem;
-  font-weight: 800;
-  margin-bottom: 40px;
+const Page = styled.div`
+  background: white;
+  width: 100%;
+  max-width: 720px;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 24px;
+`;
+
+const Title = styled.h2`
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+`;
+
+const LogoutBtn = styled.button`
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c82333;
+  }
 `;
 
 const TabBar = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 24px;
 `;
 
-const TabButton = styled.button<{ active: boolean }>`
-  padding: 10px 20px;
-  border-radius: 8px;
+const Tab = styled.button<{ active: boolean }>`
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
   font-weight: 600;
-  background-color: ${({ active }) => (active ? "#007bff" : "#e2e8f0")};
-  color: ${({ active }) => (active ? "#fff" : "#333")};
+  background-color: ${({ active }) => (active ? "#0d6efd" : "#e2e8f0")};
+  color: ${({ active }) => (active ? "#fff" : "#1e293b")};
   border: none;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background-color 0.2s;
 
   &:hover {
-    background-color: ${({ active }) => (active ? "#0062cc" : "#cbd5e0")};
+    background-color: ${({ active }) => (active ? "#0b5ed7" : "#cbd5e1")};
   }
 `;
 
-const Section = styled.div`
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  padding: 30px;
-`;
-
-const Label = styled.label`
-  font-weight: 600;
-  margin-bottom: 8px;
-  display: block;
-`;
-
 const Input = styled.input`
-  width: 100%;
+  width: 96.5%;
+  display: block;
+  margin: 5px 0 12px 0;
   padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
 
   &:focus {
-    border-color: #007bff;
     outline: none;
+    border-color: #0d6efd;
+  }
+`;
+
+const Select = styled.select`
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+
+  &:focus {
+    outline: none;
+    border-color: #0d6efd;
   }
 `;
 
 const StyledButton = styled.button`
-  background-color: #007bff;
+  background-color: #0d6efd;
   color: white;
-  padding: 10px 16px;
+  padding: 10px 20px;
   font-weight: 600;
+  font-size: 0.95rem;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: 0.2s;
+  float: right;
+  margin-top: 12px;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #0b5ed7;
   }
 `;
 
@@ -87,164 +130,230 @@ const Table = styled.table`
 `;
 
 const Th = styled.th`
-  background-color: #f8f9fa;
+  background-color: #f1f5f9;
   padding: 12px;
   text-align: left;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #dee2e6;
   border-bottom: 1px solid #dee2e6;
 `;
 
 const Td = styled.td`
   padding: 12px;
-  border-bottom: 1px solid #e9ecef;
+  border: 1px solid #dee2e6;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: center;
 `;
 
-const ActionButtons = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-`;
-
-const Action = styled.button`
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #007bff;
-  background: none;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  &.delete {
-    color: #dc3545;
-  }
-`;
-
-// Component Logic
 const UserManagement = () => {
-  const [activeTab, setActiveTab] = useState<"create" | "list">("create");
-
-  const [formData, setFormData] = useState({
-    username: "",
+  const navigate = useNavigate();
+  const [tab, setTab] = useState<"create" | "list">("create");
+  const [form, setForm] = useState({
+    mssv: "",
     email: "",
     password: "",
+    role: "student",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    studentClass: "",
+    is_first_login: true
   });
+  const [users, setUsers] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const [users, setUsers] = useState([
-    { id: 1, username: "admin", email: "admin@example.com", role: "admin" },
-    { id: 2, username: "hung123", email: "hung@gmail.com", role: "student" },
-  ]);
+  useEffect(() => {
+    if (tab === "list") {
+      fetchUsers(1); // 👈 load trang đầu
+    }
+  }, [tab]);
 
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const fetchUsers = async (page: number) => {
+    try {
+      const res = await getAllStudents(page);
+      setUsers(res.results);                    // ✅ Cập nhật danh sách users
+      setTotalPages(Math.ceil(res.count / 20)); // ✅ Cập nhật số trang
+      setCurrentPage(page);                     // ✅ Cập nhật trang hiện tại
+    } catch (err) {
+      toast.error("🚫 Không thể tải danh sách người dùng", { autoClose: 3000 });
+    }
   };
 
-  const handleCreateUser = (e: React.FormEvent) => {
+  const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newUser = {
-      id: users.length + 1,
-      username: formData.username,
-      email: formData.email,
-      role: "student",
-    };
-    setUsers([...users, newUser]);
-    setFormData({ username: "", email: "", password: "" });
-    alert("✅ Tạo tài khoản thành công!");
+    try {
+      const res = await createStudent({
+        student_id: form.mssv,
+        username: form.mssv,
+        email: form.email,
+        password: form.password,
+        role: form.role,
+        first_name: form.firstName,
+        last_name: form.lastName,
+        phone: form.phone,
+        classname: form.studentClass,
+        is_first_login: true,
+      });
+
+      if (res.success) {
+        toast.success("✅ Tạo tài khoản thành công!");
+        setForm({
+          mssv: "",
+          email: "",
+          password: "",
+          role: "student",
+          firstName: "",
+          lastName: "",
+          phone: "",
+          studentClass: "",
+          is_first_login: true
+        });
+      } else {
+        toast.error("❌ " + res.data.message);
+      }
+    } catch (err) {
+      toast.error("🚫 Lỗi khi gọi API");
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    navigate("/login");
   };
 
   return (
-    <PageWrapper>
-      <Title>Quản lý người dùng</Title>
+    <Wrapper>
+      <Page>
+        <Header>
+          <Title>Quản lý người dùng</Title>
+          <LogoutBtn onClick={handleLogout}>Đăng xuất</LogoutBtn>
+        </Header>
 
-      <TabBar>
-        <TabButton
-          active={activeTab === "create"}
-          onClick={() => setActiveTab("create")}
-        >
-          🧑‍🎓 Tạo tài khoản sinh viên
-        </TabButton>
-        <TabButton
-          active={activeTab === "list"}
-          onClick={() => setActiveTab("list")}
-        >
-          🛠️ Quản lý người dùng
-        </TabButton>
-      </TabBar>
+        <TabBar>
+          <Tab active={tab === "create"} onClick={() => setTab("create")}><FaPlus /> Tạo tài khoản </Tab>
+          <Tab active={tab === "list"} onClick={() => setTab("list")}><FaListUl /> Danh sách người dùng</Tab>
+        </TabBar>
 
-      <Section>
-        {activeTab === "create" && (
-          <form onSubmit={handleCreateUser}>
-            <Label>Tên đăng nhập</Label>
+        {tab === "create" && (
+          <form onSubmit={handleCreate}>
+            <label>Mã số sinh viên hoặc Tên tài khoản</label>
             <Input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleFormChange}
-              placeholder="student123"
+              name="mssv"
+              value={form.mssv}
+              onChange={(e) => setForm({ ...form, mssv: e.target.value })}
               required
             />
-
-            <Label>Email</Label>
+            <label>Email</label>
             <Input
               type="email"
               name="email"
-              value={formData.email}
-              onChange={handleFormChange}
-              placeholder="student@example.com"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
             />
-
-            <Label>Mật khẩu</Label> 
+            <label>Mật khẩu</label>
             <Input
               type="password"
               name="password"
-              value={formData.password}
-              onChange={handleFormChange}
-              placeholder="••••••••"
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
               required
             />
-
-            <div style={{ textAlign: "right", marginTop: "20px" }}>
+            <label>Họ</label>
+            <Input
+              name="lastName"
+              value={form.lastName}
+              onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+            />
+            <label>Tên</label>
+            <Input
+              name="firstName"
+              value={form.firstName}
+              onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+            />
+            <label>Số điện thoại</label>
+            <Input
+              name="phone"
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            />
+            <label>Lớp</label>
+            <Input
+              name="studentClass"
+              value={form.studentClass}
+              onChange={(e) => setForm({ ...form, studentClass: e.target.value })}
+            />
+            <label>Vai trò</label>
+            <Select
+              name="role"
+              value={form.role}
+              onChange={(e) => setForm({ ...form, role: e.target.value })}
+            >
+              <option value="student">Student</option>
+              <option value="admin">Admin</option>
+              <option value="customer">Customer</option>
+              <option value="teacher">Teacher</option>
+            </Select>
+            <div style={{ textAlign: "right" }}>
               <StyledButton type="submit">Tạo tài khoản</StyledButton>
             </div>
           </form>
         )}
 
-        {activeTab === "list" && (
-          <Table>
-            <thead>
-              <tr>
-                <Th>ID</Th>
-                <Th>Username</Th>
-                <Th>Email</Th>
-                <Th>Role</Th>
-                <Th style={{ textAlign: "right" }}>Actions</Th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user.id}>
-                  <Td>{user.id}</Td>
-                  <Td>{user.username}</Td>
-                  <Td>{user.email}</Td>
-                  <Td>{user.role}</Td>
-                  <Td>
-                    <ActionButtons>
-                      <Action>Sửa</Action>
-                      <Action className="delete">Xoá</Action>
-                    </ActionButtons>
-                  </Td>
+        {tab === "list" && (
+          <>
+            <Table>
+              <thead>
+                <tr>
+                  <Th>ID</Th>
+                  <Th>Tên tài khoản</Th>
+                  <Th>Email</Th>
+                  <Th>Số điện thoại</Th>
+                  <Th>Lớp</Th>
+                  <Th>Vai trò</Th>
+                  <Th>Lần đầu đăng nhập</Th>
                 </tr>
+              </thead>
+              <tbody>
+                {users.map((u) => (
+                  <tr key={u.id}>
+                    <Td>{u.id}</Td>
+                    <Td>{u.username}</Td>
+                    <Td>{u.email}</Td>
+                    <Td>{u.phone}</Td>
+                    <Td>{u.classname ? u.classname : "null"}</Td>
+                    <Td>{u.role }</Td>
+                    <Td>{u.is_first_login ? "✅" : "❌"}</Td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+
+            {/* Pagination controls */}
+            <div style={{ marginTop: "20px", textAlign: "center"}}>
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i + 1}
+                  onClick={() => fetchUsers(i + 1)}
+                  style={{
+                    margin: "0 4px",
+                    padding: "6px 12px",
+                    borderRadius: "6px",
+                    border: "1px solid #ccc",
+                    background: currentPage === i + 1 ? "#0d6efd" : "#fff",
+                    color: currentPage === i + 1 ? "#fff" : "#000",
+                    cursor: "pointer",
+                  }}
+                >
+                  {i + 1}
+                </button>
               ))}
-            </tbody>
-          </Table>
+            </div>
+          </>
         )}
-      </Section>
-    </PageWrapper>
+      </Page>
+    </Wrapper>
   );
 };
 

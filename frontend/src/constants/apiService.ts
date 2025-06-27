@@ -112,3 +112,44 @@ export const verifyOtpAndResetPassword = async (email: string, otp: string, newP
 
   return await res.json();
 };
+
+type CreateStudentPayload = {
+  student_id: string;
+  username: string;
+  email: string;
+  password: string;
+  role: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
+  classname: string;
+  is_first_login: boolean;
+};
+
+export const createStudent = async (data: CreateStudentPayload) => {
+  const res = await fetch(API_ENDPOINTS.CREATE_STUDENT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+    body: JSON.stringify(data),
+  });
+
+  return await res.json();
+};
+
+export const getAllStudents = async (page: number = 1) => {
+  const res = await fetch(`${API_ENDPOINTS.GET_ALL_USER}?page=${page}`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("Lỗi khi lấy danh sách người dùng");
+  }
+
+  return await res.json(); // Kết quả sẽ gồm: count, results, next, previous
+};

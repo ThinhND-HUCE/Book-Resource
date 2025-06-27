@@ -20,6 +20,7 @@ from django.utils.timezone import is_naive, make_aware, now
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
+from bookapp.utils.page_number_pagination import CustomPagination
 
 @api_view(['POST'])
 def register_user(request):
@@ -45,9 +46,36 @@ def register_user(request):
 
         return Response({
             'message': 'User created successfully',
+            'user': UserSerializer(user).data,
+        }, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def register_student(request):
+    # Sử dụng UserSerializer để ánh xạ dữ liệu
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        # Mã hóa mật khẩu trước khi lưu
+        user = serializer.save()
+
+        return Response({
+            'success': True,
+            'message': 'User created successfully',
             'user': UserSerializer(user).data
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticatedWithJWT])
+def get_all_users(request):
+    try:
+        users = User.objects.all().order_by("id")
+        paginator = CustomPagination()
+        result_page = paginator.paginate_queryset(users, request)
+        serializer = UserSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
+    except Exception as e:
+        return Response({"succes": False, "message": f"Lỗi: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["POST"])
 def send_otp_forgot_password(request):
@@ -68,7 +96,6 @@ def send_otp_forgot_password(request):
     send_otp_email_forgot(user.email, otp)
 
     return Response({"success": True, "message": "OTP đã được gửi đến email."})
-
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticatedWithJWT])
@@ -154,9 +181,6 @@ def verify_otp(request):
 
     except Exception as e:
         return Response({"error": f"Lỗi xử lý: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticatedWithJWT])

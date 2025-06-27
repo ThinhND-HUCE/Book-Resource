@@ -10,5 +10,6 @@ export const API_ENDPOINTS = {
   CHANGE_PASSWORD: `${API_URL}/api/auth/change-password/`,
   UPLOAD_AVATAR: `${API_URL}/upload-avatar`,
   VERIFY_OTP: `${API_URL}/api/auth/verify-otp/`,
-  
+  CREATE_STUDENT: `${API_URL}/api/auth/register-student/`,
+  GET_ALL_USER: `${API_URL}/api/auth/get-all-user/`
 };

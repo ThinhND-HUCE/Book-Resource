@@ -29,7 +29,7 @@ const FirstLogin = () => {
     }
 
     try {
-      await sendFirstLoginOtp(); // bên trong đã sử dụng token
+      await sendFirstLoginOtp(); 
       toast.success(" OTP đã được gửi");
       setStep("verify-otp");
     } catch (err: any) {

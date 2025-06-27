@@ -7,7 +7,10 @@ from .views.Probability_and_Statistics.xac_suat_co_dien import *
 from .views.Probability_and_Statistics.bayes import *
 
 urlpatterns = [
+    # API for user
     path('auth/register/', authentication.register_user, name='register'),
+    path('auth/register-student/', authentication.register_student, name='register-student'),
+    path('auth/get-all-user/', authentication.get_all_users, name='get-all-user'),
     path('auth/login/', authentication.login_user, name='login'),
     path('auth/verify-book-code/', authentication.verify_book_code, name='verify_book_code'),
     path('auth/send-otp/', authentication.send_otp, name = 'send_otp'),
@@ -15,7 +18,7 @@ urlpatterns = [
     path('auth/change-password/', authentication.change_password, name='change-password'),
     path("auth/verify-otp-reset-password/", authentication.verify_otp_reset_password, name='verify_otp_reset_password'),
     path("auth/send-email-to-take-otp/", authentication.send_otp_forgot_password, name='send_otp_forgot_password'),
-    path('auth/logout/', authentication.logout_user, name='logout'),
+    # API for render file
     path('grades/', renderfile.list_grades, name='list_grades'),
     path('grades/<str:grade_id>/courses/', renderfile.list_courses_by_grade, name='list_courses_by_grade'),
     path('grades/<str:grade_id>/courses/<str:course_id>/', renderfile.course_detail, name='course_detail'),

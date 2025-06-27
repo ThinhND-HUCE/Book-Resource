@@ -1,39 +1,33 @@
-// components/Sidebar.tsx
-import React from "react";
-import { LogOut, Users } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+// import "mathlive";
+// import { useEffect, useRef, useState } from "react";
 
-const Sidebar = () => {
-  const navigate = useNavigate();
+// export default function MathEditor() {
+//   const mathFieldRef = useRef<HTMLElement>(null);
+//   const [latex, setLatex] = useState("\\frac{1}{2}");
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
+//   useEffect(() => {
+//     if (mathFieldRef.current) {
+//       (mathFieldRef.current as any).setOptions?.({
+//         virtualKeyboardMode: "onfocus",
+//         smartFence: true,
+//       });
+//     }
+//   }, []);
 
-  return (
-    <aside className="fixed top-0 left-0 h-screen w-64 bg-white shadow-lg p-6 flex flex-col justify-between z-10">
-      <div>
-        <h2 className="text-2xl font-bold text-blue-600 mb-10">Admin Panel</h2>
-        <nav className="space-y-3">
-          <button
-            onClick={() => navigate("/admin/users")}
-            className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition px-3 py-2 rounded-md hover:bg-blue-50 w-full text-left"
-          >
-            <Users size={20} />
-            <span className="text-sm font-medium">Quản lý người dùng</span>
-          </button>
-        </nav>
-      </div>
-      <button
-        onClick={handleLogout}
-        className="flex items-center gap-2 text-red-500 hover:text-red-700 transition px-3 py-2 rounded-md hover:bg-red-50"
-      >
-        <LogOut size={18} />
-        <span className="text-sm">Đăng xuất</span>
-      </button>
-    </aside>
-  );
-};
+//   return (
+//     <div>
+//       <math-field
+//         ref={mathFieldRef}
+//         value={latex}
+//         style={{ width: "100%", fontSize: "20px" }}
+//         onInput={(e: Event) =>
+//           setLatex((e.target as any).value)
+//         }
+//       ></math-field>
 
-export default Sidebar;
+//       <p style={{ marginTop: "20px" }}>
+//         👉 LaTeX: <code>{latex}</code>
+//       </p>
+//     </div>
+//   );
+// }

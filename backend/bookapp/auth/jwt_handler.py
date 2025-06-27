@@ -13,8 +13,8 @@ class JWTHandler:
     def generate_access_token(self, user):
         payload = {
             'username': user.username,
-            'lastName': user.lastName,
-            'firstName': user.firstName,
+            'lastName': user.last_name,
+            'firstName': user.first_name,
             'email': user.email,
         }
         return jwt.encode(payload, self.secret, algorithm=self.algorithm)  # Đảm bảo dùng PyJWT

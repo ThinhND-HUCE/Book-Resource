@@ -5,8 +5,9 @@ from django.contrib.auth.hashers import make_password
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('lastName', 'firstName', 'username', 'password', 'classname', 'phone', 'email')  # Không bao gồm id
+        fields = ('id', 'student_id', 'last_name', 'first_name', 'username', 'password', 'classname', 'role', 'phone', 'email', 'is_first_login')  # Không bao gồm id
         extra_kwargs = {
+            'id': {'read_only': True},
             'password': {'write_only': True},
             'email': {'required': True},
             'username': {'required': True}
