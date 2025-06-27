@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { createStudent, getAllStudents } from "../constants/apiService";
+import { createStudent, getAllStudents, importStudentsFromExcel } from "../constants/apiService";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaPlus, FaListUl } from "react-icons/fa";
@@ -13,6 +13,48 @@ const Wrapper = styled.div`
   justify-content: center;
   padding: 40px 16px;
 `;
+
+const CardSection = styled.div`
+  background: #f1f5f9;
+  padding: 20px 24px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+`;
+
+const FileInputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+`;
+
+const HiddenFileInput = styled.input`
+  display: none;
+`;
+
+const FileLabel = styled.label`
+  background-color: #e2e8f0;
+  color: #1e293b;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: 1px solid #cbd5e1;
+
+  &:hover {
+    background-color: #cbd5e1;
+  }
+`;
+
+const FileName = styled.span`
+  font-size: 0.9rem;
+  color: #334155;
+  font-style: italic;
+`;
+
+
 
 const Page = styled.div`
   background: white;
@@ -115,13 +157,14 @@ const StyledButton = styled.button`
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  float: right;
   margin-top: 12px;
 
   &:hover {
     background-color: #0b5ed7;
   }
 `;
+
+
 
 const Table = styled.table`
   width: 100%;
@@ -160,6 +203,7 @@ const UserManagement = () => {
     is_first_login: true
   });
   const [users, setUsers] = useState<any[]>([]);
+  const [excelFile, setExcelFile] = useState<File | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -179,6 +223,27 @@ const UserManagement = () => {
       toast.error("🚫 Không thể tải danh sách người dùng", { autoClose: 3000 });
     }
   };
+
+  const handleFileUpload = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!excelFile) return;
+
+    const formData = new FormData();
+    formData.append("file", excelFile);
+
+    try {
+      const res = await importStudentsFromExcel(formData); // gọi từ service
+      if (res.success) {
+        toast.success(`✅ Import thành công: ${res.users?.length || 0} tài khoản`);
+      } else {
+        toast.error("❌ " + res.message || "Lỗi không xác định");
+      }
+    } catch (error) {
+      toast.error("🚫 Lỗi khi import Excel");
+      console.error(error);
+    }
+  };
+
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -233,73 +298,117 @@ const UserManagement = () => {
         <TabBar>
           <Tab active={tab === "create"} onClick={() => setTab("create")}><FaPlus /> Tạo tài khoản </Tab>
           <Tab active={tab === "list"} onClick={() => setTab("list")}><FaListUl /> Danh sách người dùng</Tab>
+          {/* <Tab active={tab === "import"} onClick={() => setTab("import")}></Tab> */}
         </TabBar>
 
         {tab === "create" && (
-          <form onSubmit={handleCreate}>
-            <label>Mã số sinh viên hoặc Tên tài khoản</label>
-            <Input
-              name="mssv"
-              value={form.mssv}
-              onChange={(e) => setForm({ ...form, mssv: e.target.value })}
-              required
+  <div>
+    {/* PHẦN IMPORT EXCEL */}
+    <CardSection>
+      <h4 style={{ marginBottom: "16px" }}>📥 Import tài khoản từ Excel</h4>
+      <form onSubmit={handleFileUpload}>
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "12px"
+        }}>
+          <FileInputWrapper style={{ flexGrow: 1 }}>
+            <FileLabel htmlFor="excel-upload">📁 Chọn file Excel</FileLabel>
+            <HiddenFileInput
+              id="excel-upload"
+              type="file"
+              accept=".xlsx"
+              onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
             />
-            <label>Email</label>
-            <Input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-            />
-            <label>Mật khẩu</label>
-            <Input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-              required
-            />
-            <label>Họ</label>
-            <Input
-              name="lastName"
-              value={form.lastName}
-              onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-            />
-            <label>Tên</label>
-            <Input
-              name="firstName"
-              value={form.firstName}
-              onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-            />
-            <label>Số điện thoại</label>
-            <Input
-              name="phone"
-              value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
-            />
-            <label>Lớp</label>
-            <Input
-              name="studentClass"
-              value={form.studentClass}
-              onChange={(e) => setForm({ ...form, studentClass: e.target.value })}
-            />
-            <label>Vai trò</label>
-            <Select
-              name="role"
-              value={form.role}
-              onChange={(e) => setForm({ ...form, role: e.target.value })}
-            >
-              <option value="student">Student</option>
-              <option value="admin">Admin</option>
-              <option value="customer">Customer</option>
-              <option value="teacher">Teacher</option>
-            </Select>
-            <div style={{ textAlign: "right" }}>
-              <StyledButton type="submit">Tạo tài khoản</StyledButton>
-            </div>
-          </form>
-        )}
+            <FileName>
+              {excelFile ? excelFile.name : "Chưa chọn file nào"}
+            </FileName>
+          </FileInputWrapper>
+
+          <div style={{ textAlign: "right", marginTop: "10px" }}>
+            <StyledButton type="submit">
+            Import từ Excel
+          </StyledButton>
+          </div>
+
+        </div>
+      </form>
+    </CardSection>
+
+    {/* PHẦN TẠO TÀI KHOẢN */}
+    <CardSection>
+      <form onSubmit={handleCreate}>
+        <label>Mã số sinh viên</label>
+        <Input
+          name="mssv"
+          value={form.mssv}
+          onChange={(e) => setForm({ ...form, mssv: e.target.value })}
+          required
+        />
+        <label>Email</label>
+        <Input
+          type="email"
+          name="email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          required
+        />
+        <label>Mật khẩu</label>
+        <Input
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+          required
+        />
+        <label>Họ</label>
+        <Input
+          name="lastName"
+          value={form.lastName}
+          onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+        />
+        <label>Tên</label>
+        <Input
+          name="firstName"
+          value={form.firstName}
+          onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+        />
+        <label>Số điện thoại</label>
+        <Input
+          name="phone"
+          value={form.phone}
+          onChange={(e) => setForm({ ...form, phone: e.target.value })}
+        />
+        <label>Lớp</label>
+        <Input
+          name="studentClass"
+          value={form.studentClass}
+          onChange={(e) => setForm({ ...form, studentClass: e.target.value })}
+        />
+        <label>Vai trò</label>
+        <Select
+          name="role"
+          value={form.role}
+          onChange={(e) => setForm({ ...form, role: e.target.value })}
+        >
+          <option value="student">Student</option>
+          <option value="admin">Admin</option>
+          <option value="customer">Customer</option>
+          <option value="teacher">Teacher</option>
+        </Select>
+
+        {/* ✅ Nút tạo tài khoản nằm gọn trong form */}
+        <div style={{ textAlign: "right", marginTop: "16px" }}>
+          <StyledButton type="submit">Tạo tài khoản</StyledButton>
+        </div>
+      </form>
+    </CardSection>
+  </div>
+)}
+
+
 
         {tab === "list" && (
           <>
@@ -323,7 +432,7 @@ const UserManagement = () => {
                     <Td>{u.email}</Td>
                     <Td>{u.phone}</Td>
                     <Td>{u.classname ? u.classname : "null"}</Td>
-                    <Td>{u.role }</Td>
+                    <Td>{u.role}</Td>
                     <Td>{u.is_first_login ? "✅" : "❌"}</Td>
                   </tr>
                 ))}
@@ -331,7 +440,7 @@ const UserManagement = () => {
             </Table>
 
             {/* Pagination controls */}
-            <div style={{ marginTop: "20px", textAlign: "center"}}>
+            <div style={{ marginTop: "20px", textAlign: "center" }}>
               {Array.from({ length: totalPages }, (_, i) => (
                 <button
                   key={i + 1}

@@ -153,3 +153,16 @@ export const getAllStudents = async (page: number = 1) => {
 
   return await res.json(); // Kết quả sẽ gồm: count, results, next, previous
 };
+
+export const importStudentsFromExcel = async (formData: FormData) => {
+  const res = await fetch(API_ENDPOINTS.SEND_EXCEL, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+  });
+  const data = await res.json();
+  return data;
+};
+
