@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
-import Dashboard from '../Dashboard';
 
 export interface FileItem {
     type: "file";
@@ -30,10 +29,11 @@ export const Container = styled.div`
     height: 80vh;
     width: 100vw;
     position: fixed;
-    top: 70px; // Modified from 20px to 70px to make room for the dashboard button
+    top: 70px; 
     left: 20px;
     right: 20px;
     bottom: 20px;
+    background-color: #ffffff;
     box-sizing: border-box;
 `;
 
@@ -138,7 +138,7 @@ export const NextButton = styled(BackButton)`
 export const ChapterButton = styled(Button)`
     border: 1px solid #ddd;
     text-align: left;
-    width: 99%;
+    width: 99.5%;
     margin: 0;
     display: flex;
     align-items: center;
@@ -157,14 +157,17 @@ export const ChapterButton = styled(Button)`
 `;
 
 export const SectionButton = styled(ChapterButton)`
-    width: 95%;
+    width: 96%;
 `;
 
-export const SectionContainer = styled.div<{ isOpen: boolean }>`
+export const SectionContainer = styled.div.withConfig({
+    shouldForwardProp: (prop) => prop !== 'isOpen'
+}) <{ isOpen: boolean }>`
     max-height: ${props => props.isOpen ? '1000px' : '0'};
     overflow: hidden;
     transition: max-height 0.3s ease;
 `;
+
 
 export const DashboardWrapper = styled.div`
     display: flex, 

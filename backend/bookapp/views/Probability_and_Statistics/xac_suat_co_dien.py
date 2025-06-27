@@ -44,6 +44,10 @@ def generate_question_view_xac_suat_co_dien(request):
 
     return Response({
         "content": content,
+        "k1": k1,
+        "k2": k2,
+        "k3": k3,
+        "k4": k4,
         "question_code": question_code
     })
 # ====== POST API ======

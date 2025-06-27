@@ -1,3 +1,4 @@
+import { API_URL } from "./apiConfig";
 //Câu hỏi
 export interface ExerciseQuestion {
     k1: number;
@@ -48,7 +49,7 @@ const getAuthHeaders = () => {
 };
 
 export const fetchExerciseQuestion = async (): Promise<ExerciseQuestion> => {
-    const response = await fetch('http://localhost:8000/api/xac_suat_co_dien/', {
+    const response = await fetch(`${API_URL}/api/xac_suat_co_dien/`, {
         headers: getAuthHeaders()
     });
     if (!response.ok) {
@@ -61,7 +62,7 @@ export const fetchExerciseQuestion = async (): Promise<ExerciseQuestion> => {
 export const submitExerciseAnswer = async (
     answer: ExerciseAnswer,
 ): Promise<ExerciseResponse> => {
-    const response = await fetch('http://localhost:8000/api/xac_suat_co_dien/submit/', {
+    const response = await fetch(`${API_URL}/api/xac_suat_co_dien/submit/`, {
         method: 'POST',
         headers: getAuthHeaders(),
         body: JSON.stringify({

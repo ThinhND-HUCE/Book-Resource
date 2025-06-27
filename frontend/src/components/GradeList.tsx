@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
+import { API_URL } from "../constants/apiConfig";
 interface Grade {
   id: string;
   grade_name: string;
@@ -77,7 +77,11 @@ const GradeList: React.FC = () => {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("http://localhost:8000/api/grades/");
+      const response = await fetch(`${API_URL}/api/grades/`, {
+        headers: {
+          Authorization: `Bearer ` + localStorage.getItem("access_token")
+        }
+      });
       if (!response.ok) {
         throw new Error('Không thể tải danh sách lớp');
       }

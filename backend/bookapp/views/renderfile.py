@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import HttpResponse
 from django.conf import settings
+from bookapp.permissions import IsAuthenticatedWithJWT
+from rest_framework.decorators import permission_classes
 import os
 import json
 import re
@@ -109,6 +111,7 @@ def list_grades(request):
         return Response({"error": "Không thể đọc danh sách lớp"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticatedWithJWT])
 def list_courses_by_grade(request, grade_id):
     """API để lấy danh sách khóa học theo lớp"""
     try:
@@ -134,6 +137,7 @@ def list_courses_by_grade(request, grade_id):
         return Response({"error": "Không thể đọc danh sách khóa học"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticatedWithJWT])
 def course_detail(request, grade_id, course_id):
     course_path = os.path.join(COURSES_DIR, grade_id, course_id)
     print(f"[DEBUG] Đường dẫn tới khóa học: {course_path}")  # Debug
@@ -151,7 +155,6 @@ def course_detail(request, grade_id, course_id):
         "content": content
     })
 
-
 @api_view(['GET'])
 def get_file_content(request):
     file_path = request.GET.get("path")
@@ -159,9 +162,74 @@ def get_file_content(request):
     if not file_path or not os.path.exists(file_path):
         return Response({"error": "File không tồn tại"}, status=status.HTTP_404_NOT_FOUND)
 
+    # Xác định loại file
+    is_image = file_path.lower().endswith(('.jpg', '.jpeg', '.png', '.webp'))
+
+    # Nếu không phải ảnh → kiểm tra permission
+    if not is_image:
+        # Manual check token (vì không dùng decorator ở đây)
+        checker = IsAuthenticatedWithJWT()
+        if not checker.has_permission(request, None):
+            return Response({"error": "Không có quyền truy cập"}, status=status.HTTP_403_FORBIDDEN)
+
     try:
         mime_type, _ = mimetypes.guess_type(file_path)
         with open(file_path, "rb") as f:
             return HttpResponse(f.read(), content_type=mime_type or "application/octet-stream")
     except Exception as e:
         return Response({"error": "Không thể đọc file"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticatedWithJWT])
+def generate_pages_from_template(request):
+    """
+    Tạo các file pages .tsx còn thiếu bằng cách sao chép nội dung từ file mẫu
+    và thay thế đường dẫn course_id tương ứng
+    """
+    try:
+        # Đường dẫn đến file mẫu và thư mục pages
+        template_filename = "ProbabilityandStatistics.tsx"
+        template_path = os.path.join(settings.BASE_DIR, '..', 'frontend', 'src', 'pages', template_filename)
+        pages_dir = os.path.join(settings.BASE_DIR, '..', 'frontend', 'src', 'pages')
+
+        if not os.path.exists(template_path):
+            return Response({"error": "Không tìm thấy file mẫu"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        with open(template_path, "r", encoding="utf-8") as f:
+            template_content = f.read()
+
+        created_pages = []
+
+        for grade_folder in os.listdir(COURSES_DIR):
+            grade_path = os.path.join(COURSES_DIR, grade_folder)
+            if not os.path.isdir(grade_path):
+                continue
+
+            for course_folder in os.listdir(grade_path):
+                course_path = os.path.join(grade_path, course_folder)
+                if not os.path.isdir(course_path):
+                    continue
+
+                # Tên component dạng PascalCase
+                component_name = ''.join(word.capitalize() for word in course_folder.split('_'))
+                page_filename = f"{component_name}.tsx"
+                page_path = os.path.join(pages_dir, page_filename)
+
+                if os.path.exists(page_path):
+                    continue  # Bỏ qua nếu đã tồn tại
+
+                # Thay thế URL và ComponentName trong nội dung mẫu
+                new_content = template_content
+                new_content = new_content.replace("/course/Probability_and_Statistics", f"/course/{course_folder}")
+                new_content = new_content.replace("ProbabilityandStatistics", component_name)
+
+                # Ghi file mới
+                with open(page_path, "w", encoding="utf-8") as f:
+                    f.write(new_content)
+
+                created_pages.append(page_filename)
+
+        return Response({"created": created_pages}, status=status.HTTP_201_CREATED)
+
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

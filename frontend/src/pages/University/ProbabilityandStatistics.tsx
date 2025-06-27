@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import XacSuatCoDien from '../../components/Probabilty_and_Statistics/XacSuatCoDien';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { BackButton, NextButton, Course, FileItem, Iframe, FolderItem, ContentItem, Button, VerticalWrapper, VerticalGroup, ChapterContainer, ChapterButton, SectionContainer, SectionButton, PracticeButton, Title, PracticeButtonsContainer, DashboardButton, Container, SelectionBar, DetailBar, DashboardTitle, DashboardWrapper } from "./CourseInterfaceCSS";
+import { API_URL } from "../../constants/apiConfig";
+import { getExerciseLoadersWithDescription } from '../../constants/demFileTrongComponent';
+import { JSX } from "react";
 
 const ProbabilityandStatistics: React.FC = () => {
     const [course, setCourse] = useState<Course | null>(null);
@@ -13,7 +15,9 @@ const ProbabilityandStatistics: React.FC = () => {
     const [htmlFiles, setHtmlFiles] = useState<FileItem[]>([]);
     const [currentFileIndex, setCurrentFileIndex] = useState<number | null>(null);
     const [openChapters, setOpenChapters] = useState<Set<string>>(new Set());
-    const [openSections, setOpenSections] = useState<Set<string>>(new Set());
+    const [, setOpenSections] = useState<Set<string>>(new Set());
+    const [exerciseList, setExerciseList] = useState<{ label: string, componentLoader: () => Promise<any> }[]>([]);
+    const [exerciseComponent, setExerciseComponent] = useState<JSX.Element | null>(null);
     //1. Điều kiện hiển thị cái Exercise
     const [showExercise, setShowExercise] = useState(false);
     const navigate = useNavigate();
@@ -52,11 +56,42 @@ const ProbabilityandStatistics: React.FC = () => {
 
     //Lấy dữ liệu từ API: Đổi theo tên course tương ứng
     useEffect(() => {
-        fetch(`http://localhost:8000/api/grades/University/courses/Probability_and_Statistics/`)
+        fetch(`${API_URL}/api/grades/University/courses/Probability_and_Statistics/`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`
+            }
+        })
             .then(res => res.json())
             .then((data: Course) => setCourse(data))
             .catch(err => console.error("Lỗi lấy dữ liệu khóa học:", err));
     }, []);
+
+    useEffect(() => {
+        if (!course || !selectedChapter || !selectedSection) return;
+
+        const findSectionFolder = (items: ContentItem[]): FolderItem | null => {
+            for (const item of items) {
+                if (item.type === "folder" && item.name === selectedSection) return item;
+                if (item.type === "folder") {
+                    const found = findSectionFolder(item.children);
+                    if (found) return found;
+                }
+            }
+            return null;
+        };
+
+        const chapter = course.content.find(
+            item => item.type === "folder" && item.name === selectedChapter
+        ) as FolderItem | undefined;
+
+        const section = chapter ? findSectionFolder(chapter.children) : null;
+
+        if (section) {
+            console.log("Path", section.path)
+            getExerciseLoadersWithDescription(section.path).then(setExerciseList);
+        }
+    }, [course, selectedChapter, selectedSection]);
+
 
     //Chỉ lấy số từ các file
     const extractNumber = (filename: string) => {
@@ -64,27 +99,39 @@ const ProbabilityandStatistics: React.FC = () => {
         return match ? match[1] : filename;
     };
 
-    //2. Hàm xử lý khi nhấn vào nút
-    const showExerciseContent = async (type: number) => {
-        setShowExercise(true);
-        toast.success(`Bắt đầu luyện tập dạng ${type}!`, {
-            autoClose: 2000,
-            position: "top-right",
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-        });
-    }
-
     //Hàm đọc nội dung file theo từng file 1
     const fetchHtmlContent = async (filePath: string, files: FileItem[], index: number) => {
         try {
-            const response = await fetch(`http://localhost:8000/api/files/view/?path=${encodeURIComponent(filePath)}`);
+            const response = await fetch(`${API_URL}/api/files/view/?path=${encodeURIComponent(filePath)}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+                }
+            });
+
             const text = await response.text();
             const body = text.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || text;
+            console.log("File path:", filePath)
+            // 👉 Xử lý ảnh: ảnh nằm cùng thư mục với filePath
+            const normalizedPath = filePath.replace(/\\/g, "/"); // 👉 đổi \ thành /
 
-            setHtmlContent(body.trim());
+            const folderPath = normalizedPath.substring(0, normalizedPath.lastIndexOf("/"));
+            console.log("Folder path:", folderPath)
+
+            const adjustedBody = body.replace(/<img\s+[^>]*src=["']([^"']+)["']/gi, (match, src) => {
+                // Nếu src có khoảng trắng, có thể là do backend đổi tên hiển thị → ta đảo lại thành dấu "_"
+                const normalizedSrc = src.replace(/ /g, "_");
+
+                // Nếu ảnh là đường dẫn tương đối thì xử lý
+                if (!normalizedSrc.startsWith("http") && !normalizedSrc.startsWith("/")) {
+                    const fullPath = `${folderPath}/${normalizedSrc}`;
+                    const encoded = encodeURIComponent(fullPath);
+                    return match.replace(src, `${API_URL}/api/files/view/?path=${encoded}`);
+                }
+
+                return match;
+            });
+
+            setHtmlContent(adjustedBody.trim());
             setHtmlFiles(files);
             setCurrentFileIndex(index);
         } catch (error) {
@@ -131,23 +178,6 @@ const ProbabilityandStatistics: React.FC = () => {
         );
     };
 
-    //Hàm render các section
-    const renderSectionButtons = (folder: FolderItem) => {
-        const filesOnly = folder.children.filter(c => c.type === "file") as FileItem[];
-
-        return filesOnly.map((item, index) => (
-            <Button
-                key={item.path}
-                onClick={() => {
-                    setHtmlContent(null); // Clear current content
-                    fetchHtmlContent(item.path, filesOnly, index);
-                }}
-            >
-                {extractNumber(item.name)}
-            </Button>
-        ));
-    };
-
     //Hàm render các chapter
     const renderChapters = () => {
         return (
@@ -182,6 +212,7 @@ const ProbabilityandStatistics: React.FC = () => {
                                                     onClick={() => {
                                                         setSelectedSection(section.name);
                                                         toggleSection(section.name);
+                                                        setHtmlContent(null);
                                                     }}
                                                 >
                                                     <span>{formatName(section.name)}</span>
@@ -194,10 +225,10 @@ const ProbabilityandStatistics: React.FC = () => {
                         );
                     })}
                 <PracticeButton
-                    style={{ margin: "20px 0" }}
+                    style={{ margin: "20px 0", backgroundColor: "#62aeff" }}
                     onClick={() => console.log("Luyện tập tất cả chapter")}
                 >
-                    Luyện tập tất cả chapter
+                    Bài tập tổng hợp
                 </PracticeButton>
             </VerticalWrapper>
         );
@@ -225,35 +256,53 @@ const ProbabilityandStatistics: React.FC = () => {
         const section = chapter ? findSection(chapter.children) : null;
         if (!section) return <span>Không tìm thấy section</span>;
 
-        //3. Hiển thị giao diện
-        if (showExercise) {
-            return <XacSuatCoDien onBack={() => setShowExercise(false)} />;
+        // Nếu đang hiển thị 1 bài luyện tập cụ thể (component JSX)
+        if (showExercise && exerciseComponent) {
+            return exerciseComponent;
         }
+
+        // Nếu đang hiển thị giao diện nội dung section (bình thường)
+        const filesOnly = section.children.filter(c => c.type === "file") as FileItem[];
 
         return (
             <>
                 <Title>{formatName(section.name)}</Title>
-                {renderSectionButtons(section)}
-                <PracticeButtonsContainer>
-                    <PracticeButton
-                        style={{ width: '200px' }}
-                        onClick={() => showExerciseContent(1)}
+
+                {/* Nút bấm để hiển thị các file HTML */}
+                {filesOnly.map((item, index) => (
+                    <Button
+                        key={item.path}
+                        onClick={() => {
+                            setHtmlContent(null);
+                            fetchHtmlContent(item.path, filesOnly, index);
+                        }}
                     >
-                        Luyện tập dạng 1
-                    </PracticeButton>
-                    <PracticeButton
-                        style={{ width: '200px' }}
-                        onClick={() => showExerciseContent(2)}
-                    >
-                        Luyện tập dạng 2
-                    </PracticeButton>
-                    <PracticeButton
-                        style={{ width: '200px' }}
-                        onClick={() => showExerciseContent(3)}
-                    >
-                        Luyện tập dạng 3
-                    </PracticeButton>
-                </PracticeButtonsContainer>
+                        {extractNumber(item.name)}
+                    </Button>
+                ))}
+
+                {/* Các nút luyện tập được generate động từ các file tsx */}
+                {exerciseList.length > 0 && (
+                    <PracticeButtonsContainer>
+                        {exerciseList.map((ex, index) => (
+                            <PracticeButton
+                                key={index}
+                                style={{ width: '220px' }}
+                                onClick={async () => {
+                                    const Comp = await ex.componentLoader();
+                                    toast.success(`Bắt đầu luyện tập: ${ex.label}`, { autoClose: 2000 });
+                                    setShowExercise(true);
+                                    setExerciseComponent(<Comp onBack={() => {
+                                        setShowExercise(false);
+                                        setExerciseComponent(null);
+                                    }} />);
+                                }}
+                            >
+                                {ex.label}
+                            </PracticeButton>
+                        ))}
+                    </PracticeButtonsContainer>
+                )}
             </>
         );
     };

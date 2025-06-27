@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { API_URL } from "../constants/apiConfig";
 
 interface Course {
   id: string;
@@ -18,6 +19,7 @@ const Container = styled.div`
   overflow: auto;
   display: flex;
   flex-direction: column;
+  background-color: #fafcff;
 `;
 
 const MainContent = styled.div`
@@ -35,7 +37,7 @@ const Grid = styled.div`
   gap: 20px;
 `;
 
-const Card = styled(motion.div)<{ $thumbnail?: string }>`
+const Card = styled(motion.div) <{ $thumbnail?: string }>`
   position: relative;
   height: 150px;
   border-radius: 12px;
@@ -57,9 +59,9 @@ const Card = styled(motion.div)<{ $thumbnail?: string }>`
 
   &:hover {
     background: ${({ $thumbnail }) =>
-      $thumbnail
-        ? `url(${$thumbnail}) center/cover no-repeat` 
-        : 'linear-gradient(135deg, #1976d2, #1b098f)'};
+    $thumbnail
+      ? `url(${$thumbnail}) center/cover no-repeat`
+      : 'linear-gradient(135deg, #1976d2, #1b098f)'};
     filter: brightness(0.95);
   }
 `;
@@ -127,7 +129,11 @@ const CoursePage: React.FC = () => {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(`http://localhost:8000/api/grades/${gradeId}/courses/`);
+      const response = await fetch(`${API_URL}/api/grades/${gradeId}/courses/`, {
+        headers: {
+          Authorization: `Bearer ` + localStorage.getItem("access_token")
+        }
+      });
       if (!response.ok) {
         throw new Error('Không thể tải danh sách khóa học');
       }
@@ -144,7 +150,11 @@ const CoursePage: React.FC = () => {
 
   const fetchGradeName = async (gradeId: string) => {
     try {
-      const response = await fetch("http://localhost:8000/api/grades/");
+      const response = await fetch(`${API_URL}/api/grades/`, {
+        headers: {
+          Authorization: `Bearer ` + localStorage.getItem("access_token")
+        }
+      });
       if (!response.ok) return;
       const data = await response.json();
       const found = data.find((g: any) => g.id === gradeId);
@@ -164,6 +174,7 @@ const CoursePage: React.FC = () => {
     navigate(`/${routeName}`);
   };
 
+  
   return (
     <Container>
       <BackButton onClick={() => navigate("/Dashboard")}>← Quay lại chọn lớp</BackButton>
@@ -178,7 +189,7 @@ const CoursePage: React.FC = () => {
             courses.map((course, i) => (
               <Card
                 key={course.id}
-                $thumbnail={course.thumbnail ? `http://localhost:8000${course.thumbnail}` : undefined}
+                $thumbnail={course.thumbnail ? `${API_URL}${course.thumbnail}` : undefined}
                 onClick={() => handleCourseSelect(course.id)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

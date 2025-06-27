@@ -24,11 +24,12 @@ const Container = styled.div`
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+  background-color: #fafcff;
 `;
 
 const FlexRight = styled.div`
   position: fixed;
-  top: 20px;
+  margin-top: 20px;
   right: 20px;
   display: flex;
   gap: 10px;

@@ -1,7 +1,11 @@
+export const exerciseMeta = {
+  label: "Xác suất cổ điển dạng 1"
+};
+
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestion } from '../../constants/xacSuatCoDienService';
-import MathJaxRender from '../MathJaxRender'; 
+import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestion } from '../../../../../constants/xacSuatCoDienService';
+import MathJaxRender from '../../../../MathJaxRender'; 
 
 const ExerciseContainer = styled.div`
     padding: 20px;
@@ -375,7 +379,7 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
                 {/* Ý 2 */}
                 <InputGroup>
                     <Label>
-                        <MathJaxRender latex={`Biến cố \\(A\\) = {rút được ${question.k4} bi đỏ và ${question.k3 - question.k4} bi xanh}. Áp dụng quy tắc tổ hợp, số trường hợp thuận lợi cho \\(A\\) là:`}></MathJaxRender>
+                        <MathJaxRender latex={`Biến cố \\(A\\) = {rút được ${question.k4} bi đỏ (và ${question.k3 - question.k4} bi xanh)}. Áp dụng quy tắc tổ hợp, số trường hợp thuận lợi cho \\(A\\) là:`}></MathJaxRender>
                     </Label>
                     <Input
                         type="text"
@@ -390,7 +394,7 @@ const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => 
                 {/* Ý 3 */}
                 <InputGroup>
                     <Label>
-                        <MathJaxRender latex={`Suy ra xác suất \\(P(A)\\) là:`}></MathJaxRender>
+                        <MathJaxRender latex={`\\(\\Rightarrow P(A) = \\)`}></MathJaxRender>
                     </Label>
                     <Input
                         type="text"

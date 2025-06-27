@@ -23,6 +23,8 @@ urlpatterns = [
     path('grades/<str:grade_id>/courses/', renderfile.list_courses_by_grade, name='list_courses_by_grade'),
     path('grades/<str:grade_id>/courses/<str:course_id>/', renderfile.course_detail, name='course_detail'),
     path('files/view/', renderfile.get_file_content, name='get_file_content'),
+    # API tạo trang mới
+    path("generate-pages-from-template/", renderfile.generate_pages_from_template, name='generate-pages-from-template'),
     # API for Xác suất Cổ điển
     path('xac_suat_co_dien/', generate_question_view_xac_suat_co_dien, name='generate_question_xac_suat_co_dien'),
     path('xac_suat_co_dien/submit/', submit_answer_view_xac_suat_co_dien, name='submit_answer_xac_suat_co_dien'),
