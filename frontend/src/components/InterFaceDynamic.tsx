@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { View, Text, StyleSheet } from 'react-native';
 
 export const ExerciseContainer = styled.div`
     padding: 20px;
@@ -214,37 +213,3 @@ export const ScoreCell = styled(TableCell)<{ score?: number }>`
     }};
     font-weight: bold;
 `;
-const UnorderedListExample = () => {
-  const items = ['a', 'b', 'c'];
-
-  return (
-    <View style={styles.container}>
-      {items.map((item, index) => (
-        <View key={index} style={styles.listItem}>
-          <Text style={styles.bullet}>{'\u2022'}</Text>
-          <Text style={styles.itemText}>{item}</Text>
-        </View>
-      ))}
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
-  listItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 4,
-  },
-  bullet: {
-    fontSize: 20,
-    marginRight: 8,
-  },
-  itemText: {
-    fontSize: 16,
-  },
-});
-
-export default UnorderedListExample;
