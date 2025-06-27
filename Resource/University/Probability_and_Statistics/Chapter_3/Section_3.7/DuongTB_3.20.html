@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.20</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.20:</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 13-->
+    Cho véctơ ngẫu nhiên \(\left(X, Y\right)\) có hàm mật độ
+    \[
+    f\left(x, y\right) = \begin{cases}
+    cxy, & \left(x,y\right)\in D = \left(0,4\right)\times \left(1,5\right) \\
+    0, & \left(x,y\right)\notin D.
+    \end{cases}
+    \]
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Xác định hằng số \(c\).</li>
+        <li>Tính \(P\left(1 < X < 2, 1 < Y < 2\right)\).</li>
+        <li>Tìm luật phân bố của \(X, Y\).</li>
+        <li>Tính \(P\left(X+Y<3\right)\) và tính \(E\left(X+Y\right)\).</li>
+        <li>Tìm luật phân bố của tổng \(X+Y\).</li>
+    </ol>
+    
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>\(\dfrac{1}{96}\)</li>
+        <li>\(\dfrac{3}{128}\)</li>
+        <li>
+            \({f_1}\left(x\right) = 
+            \begin{cases}
+            \dfrac{x}{8}, & x\in \left(0,4\right) \\
+            0, & x\notin \left(0,4\right)
+            \end{cases}\)
+        </li>
+        <li>\(\dfrac{1}{48}\), \(\dfrac{55}{9}\)</li>
+        <li>
+            \(g\left(z\right) = 
+            \begin{cases}
+            \dfrac{1}{{576}}( - 378 + 123z - {z^3}), & 5 < z < 9 \\
+            \dfrac{1}{{576}}(2 - 3z + {z^3}), & 1 < z\le 5 \\
+            0, & z\notin \left(1,9\right).
+            \end{cases}\)
+        </li>
+    </ol>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.6</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.6:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 21-->
+    Trong một hộp kín có \(N\) quả cầu, trong đó có \(Np\) quả đỏ (xác suất lấy được quả đỏ bằng \(p\)). 
+    Lấy lần lượt từng quả, có hoàn lại, đến khi được \(M\) lần quả đỏ. 
+    Gọi \(X\) là số lần lấy quả cầu.
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Tìm luật phân bố của \(X\).</li>
+        <li>Tìm \(EX\) trong trường hợp \(M=2\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            \(X = k\Leftrightarrow \begin{cases}
+            \text{lần } k \text{ lấy được quả đỏ} \\
+            k-1 \text{ lần đầu có } M-1 \text{ lần lấy được quả đỏ}
+            \end{cases}\)<br>
+
+            \(P\left(X = k\right) = C_{k - 1}^{M - 1}{p^M}{\left(1 - p\right)^{k - M}}\), \(k = M, M+1,\ldots\)
+        </li>
+        <li>\(EX = \dfrac{M}{p}\).</li>
+    </ol>
+
+</body>
+</html>

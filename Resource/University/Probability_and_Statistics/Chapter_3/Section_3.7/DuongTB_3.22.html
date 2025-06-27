@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.22</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.22:</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 16-->
+    Cho véctơ ngẫu nhiên \(\left(X, Y\right)\) có hàm mật độ
+    \[
+    f\left(x, y\right) = \begin{cases}
+    \dfrac{3}{2}\left(x^2+y^2\right), & \left(x,y\right)\in \left(0,1\right)\times \left(0,1\right) \\
+    0, & \left(x,y\right)\notin \left(0,1\right)\times \left(0,1\right).
+    \end{cases}
+    \]
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Tính \(P\left( X<\dfrac{1}{2}, Y>\dfrac{1}{2} \right)\).</li>
+        <li>Tìm luật phân bố của \(X, Y, X+Y\) và tính \(E\left(X+Y\right)\).</li>
+        <li>Tính hệ số tương quan giữa \(X\) và \(Y\).</li>
+    </ol>
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>\(\dfrac{1}{4}\)	</li>
+        <li>
+            \({f_1}\left(x\right) = 
+            \begin{cases}
+            \dfrac{{3{x^2} + 1}}{2}, & x\in \left(0,1\right) \\
+            0, & x\notin \left(0,1\right)
+            \end{cases}\),
+            \(g\left( z \right) = 
+            \begin{cases}
+            z^3, & 0 < z\le 1 \\
+            2 - 3z + 3{z^2} - {z^3}, & 1 < z < 2 \\
+            0, & z\notin \left(0,2\right)
+            \end{cases}\),<br>
+            \(E\left( {X + Y} \right) = \dfrac{5}{4}\).
+        </li>
+        <li>
+            \(E\left( {XY} \right) = \dfrac{3}{8},EX = \dfrac{5}{8},{\mathop{\rm cov}} \left( {X,Y} \right) =  - \dfrac{1}{{64}}\).
+        </li>
+    </ol>
+    
+
+</body>
+</html>

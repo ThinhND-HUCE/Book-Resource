@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.4</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.4:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 4-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    Giả sử \(X\), lượng điện mà các gia đình ở quận A sử dụng trong 1 tháng, là một đại lượng ngẫu nhiên có phân bố chuẩn. 
+    Xem xét lượng điện sử dụng của 30 gia đình trong 1 tháng ta có số liệu
+    <table>
+        <thead>
+            <tr>
+                <th>Lượng điện sử dụng (kWh)</th><td>150 -- 160</td><td>160 -- 170</td><td>170 -- 180</td><td>180 -- 190</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>Số gia đình</th><td>5</td><td>11</td><td>10</td><td>4</td>
+        </tr>
+    </table>
+    
+    <ol type="a">
+        <li>Hãy tìm các ước lượng không chệch của \(EX\) và \(DX\).</li>
+        <li>Tìm khoảng tin cậy của \(DX\) với độ tin cậy 97%.</li>
+        <li>Kiểm định ở mức ý nghĩa 2% xem có phải lượng điện trung bình mà các hộ dân sử dụng trong 1 tháng ở quận A vượt quá 167 kWh không.</li>
+    </ol>
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            \(\overline x = 169.3333\),
+            \(s'^2 = 87.4713\)        
+        </li>
+        <li>
+            \(\left(\dfrac{{n{s^2}}}{{{\chi ^2}( {\frac{{1 - \gamma }}{2},n - 1} )}}\;,\;\dfrac{{n{s^2}}}{{{\chi ^2}( {\frac{{1 + \gamma }}{2},n - 1} )}} \right) = 
+            \left(52.9413, 169.089\right)\)
+        </li>
+        <li>
+            Xét bài toán \(H_0: EX = 167, H_1: EX > 167, \alpha = 2\%\).<br>
+
+            \({t_{qs}} = 1.3665\),
+            \(t_0 = 2.1503\).<br>
+
+            \(t_{qs} < t_0\Rightarrow\) chấp nhận \(H_0\), (bác bỏ \(H_1\)), tức là chưa thể khẳng định lượng điện sử dụng trung bình vượt quá 167 kWh.
+        </li>
+    </ol>
+    
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.4</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.4:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 3-->
+    Từ một lô sản phẩm gồm 100 chiếc trong đó có 10 phế phẩm, người chọn ngẫu nhiên 5 chiếc để kiểm tra chất lượng.
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+
+    <ol type="a">
+        <li>Lập bảng phân bố của số phế phẩm trong mẫu chọn ra.</li>
+        <li>Tính kỳ vọng và phương sai của đại lượng ngẫu nhiên trên.</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+
+    Đặt \(X = \) số phấm phẩm chọn ra.
+    <ol type="a">
+        <li>
+            <table>
+                <thead>
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>\(P\)</th>
+                        <td>0.5838</td>
+                        <td>0.3394</td>
+                        <td>0.07022</td>
+                        <td>0.006384</td>
+                        <td>0.00025104</td>
+                        <td>\(3.347\cdot 10^{-6}\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+        <li>\(EX = 0.5, DX = 0.4318\).</li>
+    </ol>
+    
+</body>
+</html>

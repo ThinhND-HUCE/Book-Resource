@@ -4,6 +4,8 @@ import MathJaxRender from '../MathJaxRender';
 import {BackButton,ButtonContainer,ContentCell,CorrectAnswer,ExerciseContainer,Hint,Input,InputGroup,Label,NewQuestionButton,PopupContent,PopupOverlay,QuestionText,ResultContainer,ResultTable,ScoreCell,SubmitButton,TableCell,TableHeader,TableRow,TimerDisplay,TotalCell,WrongAnswer} from '../InterFaceDynamic';
 
 
+
+
 interface ExerciseAnswer {
     m: string;
     t: string;
@@ -15,7 +17,7 @@ interface ExerciseProps {
     timeLimit?: number; // Time limit in seconds, default to 300 (5 minutes)
 }
 
-const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => {
+export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => {
     const [question, setQuestion] = useState<ExerciseQuestion | null>(null);
     const [answer, setAnswer] = useState<ExerciseAnswer>({ m: '', t: '', p: '' });
     const [result, setResult] = useState<any>(null);

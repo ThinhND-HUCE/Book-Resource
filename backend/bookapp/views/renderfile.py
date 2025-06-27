@@ -6,18 +6,34 @@ from django.conf import settings
 import os
 import json
 import re
+import urllib.parse
+import mimetypes
 
-COURSES_DIR = os.path.abspath(os.path.join(settings.BASE_DIR, '..', '..', 'Resource'))
+COURSES_DIR = os.path.abspath(os.path.join(settings.BASE_DIR, '..', 'Resource'))
 
 def get_course_info(course_path):
     info_path = os.path.join(course_path, "info.json")
+    info = {}
+
+    # Đọc file info.json nếu có
     if os.path.exists(info_path):
         try:
             with open(info_path, "r", encoding="utf-8") as f:
-                return json.load(f)
+                info = json.load(f)
         except Exception as e:
             print(f"Lỗi khi đọc {info_path}:", e)
-    return None
+
+    # Tìm file ảnh đầu tiên trong thư mục làm ảnh đại diện
+    try:
+        for entry in os.listdir(course_path):
+            if entry.lower().endswith(('.webp', '.png', '.jpg', '.jpeg')):
+                image_path = os.path.join(course_path, entry)
+                info["thumbnail"] = f"/api/files/view/?path={urllib.parse.quote(image_path)}"
+                break
+    except Exception as e:
+        print(f"Lỗi khi tìm ảnh trong {course_path}:", e)
+
+    return info if info else None
 
 def read_folder_structure(dir_path):
     results = []
@@ -54,11 +70,8 @@ def read_folder_structure(dir_path):
                 })
 
         def get_number(item):
-            match = re.search(r'(\d+\.?\d*)', item["sort_key"])
-            if match:
-                # Chuyển đổi số thành float để sắp xếp đúng thứ tự (1.1, 1.2, 1.10, 1.11)
-                return float(match.group(1))
-            return 0
+            matches = re.findall(r'\d+', item["sort_key"])
+            return tuple(map(int, matches)) if matches else (0,)
 
         results.sort(key=get_number)
     except Exception as e:
@@ -67,26 +80,66 @@ def read_folder_structure(dir_path):
     return results
 
 @api_view(['GET'])
-def list_courses(request):
+def list_grades(request):
+    """API để lấy danh sách tất cả các lớp"""
     try:
         folders = os.listdir(COURSES_DIR)
+        grades = []
+        
+        # Sắp xếp grades theo thứ tự
+        grade_order = [
+            'Grade_1', 'Grade_2', 'Grade_3', 'Grade_4', 'Grade_5', 'Grade_6',
+            'Grade_7', 'Grade_8', 'Grade_9', 'Grade_10', 'Grade_11', 'Grade_12', 'University'
+        ]
+        
+        for grade_id in grade_order:
+            if grade_id in folders:
+                grade_path = os.path.join(COURSES_DIR, grade_id)
+                if os.path.isdir(grade_path):
+                    info = get_course_info(grade_path)
+                    grades.append({
+                        "id": grade_id,
+                        "grade_name": info.get("grade_name") if info else (
+                            "Đại học" if grade_id == "University" else f"Lớp {grade_id.replace('Grade_', '')}"
+                        )
+                    })
+        
+        return Response(grades)
+    except Exception as e:
+        return Response({"error": "Không thể đọc danh sách lớp"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['GET'])
+def list_courses_by_grade(request, grade_id):
+    """API để lấy danh sách khóa học theo lớp"""
+    try:
+        grade_path = os.path.join(COURSES_DIR, grade_id)
+        if not os.path.exists(grade_path) or not os.path.isdir(grade_path):
+            return Response({"error": "Lớp không tồn tại"}, status=status.HTTP_404_NOT_FOUND)
+        
+        folders = os.listdir(grade_path)
         courses = []
+        
         for folder in folders:
-            folder_path = os.path.join(COURSES_DIR, folder)
+            folder_path = os.path.join(grade_path, folder)
             if os.path.isdir(folder_path):
                 info = get_course_info(folder_path)
                 courses.append({
                     "id": folder,
-                    "course_name": info.get("course_name") if info else folder
+                    "course_name": info.get("course_name") if info else folder.replace("_", " "),
+                    "thumbnail": info.get("thumbnail") if info else None
                 })
+        
         return Response(courses)
     except Exception as e:
-        return Response({"error": "Không thể đọc thư mục khóa học"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response({"error": "Không thể đọc danh sách khóa học"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
-def course_detail(request, course_id):
-    course_path = os.path.join(COURSES_DIR, course_id)
+def course_detail(request, grade_id, course_id):
+    course_path = os.path.join(COURSES_DIR, grade_id, course_id)
+    print(f"[DEBUG] Đường dẫn tới khóa học: {course_path}")  # Debug
+
     if not os.path.exists(course_path) or not os.path.isdir(course_path):
+        print("[DEBUG] Không tìm thấy thư mục khóa học.")  # Debug
         return Response({"error": "Khóa học không tồn tại"}, status=status.HTTP_404_NOT_FOUND)
 
     info = get_course_info(course_path)
@@ -98,19 +151,17 @@ def course_detail(request, course_id):
         "content": content
     })
 
+
 @api_view(['GET'])
 def get_file_content(request):
-    # Lấy tham số "path" từ query string
     file_path = request.GET.get("path")
+
     if not file_path or not os.path.exists(file_path):
         return Response({"error": "File không tồn tại"}, status=status.HTTP_404_NOT_FOUND)
 
     try:
-        # Đọc nội dung file
-        with open(file_path, "r", encoding="utf-8") as f:
-            content = f.read()
-
-        # Trả về nội dung với content_type là "text/html" để đảm bảo trình duyệt render đúng
-        return HttpResponse(content, content_type="text/html")
+        mime_type, _ = mimetypes.guess_type(file_path)
+        with open(file_path, "rb") as f:
+            return HttpResponse(f.read(), content_type=mime_type or "application/octet-stream")
     except Exception as e:
         return Response({"error": "Không thể đọc file"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

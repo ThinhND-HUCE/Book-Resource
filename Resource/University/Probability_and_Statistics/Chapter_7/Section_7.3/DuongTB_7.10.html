@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.10</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.10:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 11-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    Với mức ý nghĩa 0.08 hãy kiểm định \(H_0: EX = EY, H_1: EX > EY\), trong đó \(X\) và \(Y\) là hai đại lượng ngẫu nhiên có phân bố chuẩn. 
+    Biết rằng hai mẫu độc lập cỡ \(n=17\) từ \(X\) và \(m=13\) từ \(Y\) cho ta số liệu sau:
+    <table>
+        <thead>
+            <tr>
+                <th>\(x_i\)</th><td>21.7</td><td>21.9</td><td>22.1</td><td>22.2</td><td>22.5</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>\(n_i\)</th><td>1</td><td>4</td><td>6</td><td>5</td><td>1</td>
+        </tr>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th>\(y_i\)</th><td>21.8</td><td>22</td><td>22.2</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>\(m_i\)</th><td>5</td><td>7</td><td>1</td>
+        </tr>
+    </table>
+    
+    Cho biết \(DX = 0.03, DY = 0.02\).
+    <br><br>
+    <i>Đáp số:</i><br>
+    \({z_{qs}} = \dfrac{{\overline x  - \overline y }}{{\sqrt {\frac{{DX}}{n} + \frac{{DY}}{m}} }} = 2.5036\),
+    \({z_0} = 1.4051\).<br>
+
+    \(z_{qs} > z_0\Rightarrow\) bác bỏ \(H_0\).
+    
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.19</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.19:</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 10-->
+    Đại lượng ngẫu nhiên hai chiều \(\left( X, Y \right)\) có hàm mật độ xác suất đồng thời
+    \[
+    f\left(x, y\right) = \begin{cases}
+    C\sin\left(x+y\right) & \text{khi } \left(x, y\right)\in \left[0,\dfrac{\pi}{2}\right] \times \left[0,\dfrac{\pi}{2}\right] \\
+    0 & \text{khi } \left(x, y\right)\notin \left[0,\dfrac{\pi}{2}\right] \times \left[0,\dfrac{\pi}{2}\right].
+    \end{cases}
+    \]
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Xác định \(C\).</li>
+        <li>Tính \(P\left(X< \dfrac{\pi}{4}\right)\).</li>
+        <li>Tính \(\psi\left(y\mid x\right)\) với \(0\le x\le \dfrac{\pi}{2}\).</li>
+        <li>Tính \(EX, DX, \sigma\left(X\right)\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>\(\dfrac{1}{2}\)</li>
+        <li>\(\dfrac{1}{2}\)</li>
+        <li>
+            \(\displaystyle {f_1}\left(x\right) = 
+            \begin{cases}
+            \dfrac{{\cos x + \sin x}}{2}, & 0\le x\le \dfrac{\pi}{2} \\
+            0, & \text{ngược lại}.
+            \end{cases}\)
+
+            Khi \(f_1\left(x\right)\ne 0\Leftrightarrow 0 \le x \le \dfrac{\pi }{2}\), ta có
+            \(\psi\left(y\mid x\right) = 
+            \begin{cases}
+            \dfrac{{\sin \left(x + y\right)}}{{\cos x + \sin x}}, & 0 \le y \le \dfrac{\pi }{2} \\
+            0, & \text{ngược lại}.
+            \end{cases}\)
+        </li>
+        <li>
+            \(EX = \dfrac{\pi}{4}\),
+            \(DX = 0.1876\),
+            \(\sigma\left(X\right) = 0.4332\).
+        </li>
+    </ol>
+
+
+</body>
+</html>

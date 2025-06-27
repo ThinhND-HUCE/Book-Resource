@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.7</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.7\(\star\):</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 11-->
+    Cho \(X\) và \(Y\) là hai đại lượng ngẫu nhiên độc lập có cùng phân bố với hàm mật độ có dạng sau:
+    \[
+    f\left(u\right) = \begin{cases}
+    2e^{-2u} & \text{khi } u>0 \\
+    0 & \text{khi } u\le 0.
+    \end{cases}
+    \]
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Tìm hàm phân bố đồng thời của \(X\) và \(Z = X+Y\).</li>
+        <li>Tìm hàm mật độ đồng thời của \(X\) và \(Z\).</li>
+        <li>Tìm phân bố có điều kiện của \(Z\) khi \(X=x\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            \(\left(X, Y\right)\) có hàm mật độ xác suất đồng thời \({f_{XY}}\left(x,y\right) = f\left(x\right)f\left(y\right)\).<br>
+
+            Hàm phân bố đồng thời của \(\left(X, Z\right)\):
+            \begin{align}
+            G\left(x,z\right) & = P\left(X < x, Z < z\right) = P\left(X < x, X+Y < z\right) \\
+            & = \iint\limits_{u < x, u + v < z} {{f_{XY}}\left(u,v\right)dudv} =  
+            \begin{cases}
+            1 - e^{-2z}\left(1+2z\right), & x\ge z > 0 \\
+            1 - {e^{ - 2x}} - 2{e^{ - 2z}}x, & 0 < x < z \\
+            0, & \text{miền còn lại},
+            \end{cases}
+            \end{align}
+        </li>
+        <li>
+            \(g\left( {x,z} \right) = \dfrac{{{\partial ^2}G}}{{\partial x\partial z}}\left( {x,z} \right) = 
+            \begin{cases}
+            4{e^{ - 2z}}, & 0 < x < z \\
+            0, & \text{ngược lại}.
+            \end{cases}\)
+        </li>
+        <li>
+            Khi \(x> 0\), \(\varphi\left(z \mid X=x\right) = \dfrac{g\left(x,z\right)}{f\left(x\right)} = 
+            \begin{cases}
+            2{e^{2x - 2z}}, & z > x \\
+            0, & z\le x .
+            \end{cases}\)
+        </li>
+    </ol>
+
+</body>
+</html>

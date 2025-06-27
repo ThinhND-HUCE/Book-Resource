@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.16</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.16:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 16-->
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+
+    Mẫu cỡ \(n=100\) từ đại lượng ngẫu nhiên \(X\) cho ta số liệu sau:
+    <table>
+        <tr style="border-bottom: 1px solid black;">
+            <th>Giá trị của \(X\)</th><td>10 -- 11</td><td>11 -- 12</td><td>12 -- 13</td><td>13 -- 14</td>
+        </tr>
+        <tr>
+            <th>Số lần</th><td>12</td><td>43</td><td>30</td><td>15</td>
+        </tr>
+    </table>
+
+    Hãy kiểm tra giả thuyết cho rằng \(X\) là đại lượng ngẫu nhiên có phân bố chuẩn ở mức ý nghĩa 0.05.
+
+    <br><br>
+    <i>Đáp số:</i><br>
+
+    <ul>
+        <li>
+            \(H_0: X\in N\left(\mu, \sigma^2\right); H_1: X\notin N\left(\mu, \sigma^2\right); \alpha = 0.05\).<br>
+
+            Thay \(\mu, \sigma^2\) bởi ước lượng theo phương pháp bình phương nhỏ nhất \(\mu^* = \overline x = 11.98, {\sigma^*}^2 = s^2\Rightarrow \sigma^* = s = 0.8886\).
+        </li>
+        <li>
+            Xét bài toán
+            \(H_0^*: X\in N\left(\mu^*, {\sigma^*}^2\right); H_1^*: X\notin N\left(\mu^*, {\sigma^*}^2\right); \alpha = 0.05\).<br>
+
+            \(\chi _{qs}^2 = 2.6603\),
+            \(\chi _0^2 = {\chi ^2}(\alpha , h - r - 1) = {\chi ^2}(0.04 ,4 - 2 - 1) = 12.7062\).<br>
+
+            \(\chi _{qs}^2 < \chi _0^2\Rightarrow \) chấp nhận \(H_0^*\), nên chấp nhận \(H_0\), tức là \(X\) có phân bố chuẩn.
+        </li>
+    </ul>
+
+</body>
+</html>

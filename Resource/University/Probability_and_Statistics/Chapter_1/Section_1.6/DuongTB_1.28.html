@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1.20</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 1.20:</b><br><br>
+    <!--Thái Bình Dương, Chương 1, Bài 20-->
+    Một hãng bảo hiểm tai nạn có 400 khách hàng được bảo hiểm cùng một loại tai nạn. 
+    Mỗi khách hàng được bảo hiểm phải đóng 100 000 đồng mỗi năm. 
+    Trường hợp xảy ra tai nạn, hãng phải trả cho người bị nạn 800 000 đồng. 
+    Biết rằng xác suất để xảy ra tai nạn đối với bất cứ người được bảo hiểm nào cũng bằng 0.1, các chi phí khác của hãng không đáng kể. 
+    Tính xác suất để hãng bảo hiểm đó bị lỗ trong một năm nào đó.
+    <br><br>
+
+    <i>Đáp số:</i><br>
+    Đặt \(k = \) số người bị tai nạn. Hãng bị lỗ nếu \(k > 50\).<br>
+
+    Xác suất cần tìm là \(\displaystyle \sum\limits_{k = 51}^{400} {C_{400}^k{{0.1}^k}{{0.9}^{400 - k}}}  = 0.04364\).
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.10</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.10:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 16-->
+    Có hai hộp bi: hộp I có 4 bi đen và 5 bi trắng, hộp II có 4 bi đen và 7 bi trắng. 
+    Gieo một xúc sắc đồng chất và đối xứng. 
+    Nếu xuất hiện mặt có số chấm lớn hơn 1 thì lấy ngẫu nhiên từ hộp I 2 viên bi, ngược lại thì lấy ngẫu nhiên từ hộp II 2 viên bi. 
+    Hỏi trong 2 bi lấy ra, trung bình có mấy bi đen?
+    <br><br>
+
+    <i>Đáp số:</i><br>
+    Đặt \(X = \) số bi đen lấy được. Bảng phân bố của \(X\):
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th>\(X\)</th>
+                <td>0</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>\(P\)</th>
+                <td>0.2951</td>
+                <td>0.5478</td>
+                <td>0.1571</td>
+            </tr>
+        </tbody>
+    </table>
+    trong đó các xác suất được tính theo công thức xác suất đầy đủ.<br>
+
+    Giá trị cần tìm là \(EX = 0.862\).	
+    
+</body>
+</html>

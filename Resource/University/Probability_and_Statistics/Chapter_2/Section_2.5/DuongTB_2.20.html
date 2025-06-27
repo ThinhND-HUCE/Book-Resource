@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.20</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.20:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 12-->
+    Cho hình tròn tâm \(O\) bán kính \(R\) và một lục giác đều \(A_1A_2A_3A_4A_5A_6\) nội tiếp hình tròn. 
+    Lấy ngẫu nhiên và độc lập 6 lần, mỗi lần một điểm trong hình tròn.
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Tìm xác suất để có ít nhất 2 lần lấy được điểm nằm trong lục giác đều.</li>
+        <li>Trong 6 lần lấy ngẫu nhiên và độc lập, trung bình có bao nhiêu lần lấy được điểm nằm trong lục giác đều.</li>
+    </ol>
+
+    <i>Đáp số:</i>
+    <ol type="a">
+        <li>Đặt \(A = \) {điểm nằm trong lục giác đều}. \(p = P\left( A \right) = \dfrac{{3\sqrt 3 }}{{2\pi }}\). 
+            Xác suất cần tìm là \(\displaystyle \sum\limits_{k = 2}^6 {C_6^k{p^k}{{\left(1 - p\right)}^{6 - k}}} = 0.9992\).</li>
+        <li>Đặt \(Y = \) số lần lấy được điểm nằm trong lục giác đều. Số cần tìm là \(EY = 6p\).</li>
+    </ol>
+
+</body>
+</html>

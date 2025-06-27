@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CourseList from "../components/CourseList";
+import GradeList from "../components/GradeList";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
@@ -76,6 +76,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
+    console.log()
     if (token) {
       try {
         const decoded = jwtDecode<MyJwtPayload>(token);
@@ -119,7 +120,7 @@ export default function Dashboard() {
       </FlexRight>
 
       <MainContent>
-        <CourseList />
+        <GradeList />
       </MainContent>
     </Container>
   );

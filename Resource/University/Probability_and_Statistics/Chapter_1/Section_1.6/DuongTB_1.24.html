@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1.24</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 1.24:</b><br><br>
+    <!--Thái Bình Dương, Chương 1, Bài 22-->
+    Từ một kho có vô hạn viên bi ta lấy 12 lần, mỗi lần một bi rồi cho vào một chiếc hộp. 
+    Xác suất lấy được bi đỏ và xác suất lấy được bi xanh trong mỗi lần đều bằng 0.5. 
+    Tiếp theo, từ hộp ta rút ngẫu ngẫu nhiên 7 lần, có hoàn lại, mỗi lần 1 bi. 
+    Tính xác suất sao cho trong hộp có 12 bi đỏ, nếu 7 lần lấy từ hộp đều được bi đỏ.
+    <br><br>
+
+    <i>Đáp số:</i><br>
+    Đặt \(A = \) {7 lần rút từ hộp đều được bi đỏ}, \(H_i = \) {trong 12 lần lấy bi từ kho, \(i\) lần lấy được bi đỏ}.<br>
+
+    \(\displaystyle P\left(A\right) = \sum\limits_{i = 0}^{12} {{{0.5}^{12}}C_{12}^i{{\left( {\frac{i}{{12}}} \right)}^7}}\), \(P\left(H_{12} \mid A\right) = \dfrac{P\left(H_{12}\right) P\left(A \mid H_{12}\right)}{P\left(A\right)} = 0.008955\).
+</body>
+</html>

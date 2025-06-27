@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 8.2</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 8.2:</b><br><br>
+    <!--Thái Bình Dương, Chương 8, Bài 2-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+
+    Với mẫu từ \(\left(X, Y\right)\):
+    <table style="border-collapse:collapse">
+        <!-- Hàng đầu tiên: kẻ ngang dưới -->
+        <tr style="border-bottom:1px solid #000">
+            <!-- Ô đầu tiên: chéo và kẻ dọc phải -->
+            <th style="
+            position:relative;
+            width:80px; height:40px;
+            border-right:1px solid #000;
+            background:
+                linear-gradient(
+                to top right,
+                transparent 49%, #000 49%, #000 51%, transparent 51%
+                );
+            padding:0;
+            ">
+            <div style="position:absolute;top:20px;left:20px;">\(Y\)</div>
+            <div style="position:absolute;bottom:20px;right:20px;">\(X\)</div>
+            </th>
+            <th>7</th><th>8</th><th>9</th>
+        </tr>
+        <!-- Các hàng sau: chỉ kẻ cột đầu (th) -->
+        <tr>
+            <th>200</th><td>41</td><td>7</td>
+        </tr>
+        <tr>
+            <th>300</th><td>1</td><td>51</td><td>1</td>
+        </tr>
+        <tr>
+            <th>400</th><td></td><td>8</td><td>40</td>
+        </tr>
+        </table>
+    
+    <ol type="a">
+        <li>Tính hệ số tương quan mẫu giữa \(X\) và \(Y\).</li>
+        <li>Tìm hồi quy bình phương trung bình tuyến tính thực nghiệm của \(Y\) theo \(X\). Ước lượng sai số.</li>
+        <li>Viết phương trình đường thẳng hồi quy bình phương trung bình thực nghiệm của \(Y\) đối với \(X\) và vẽ nó.</li>
+        <li>Dự báo \(Y\) khi \(X = 8.5\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>\(r = 0.9075\)</li>
+        <li>\(\overset{\sim}{\varphi} = 97.5982 X - 480.1350\), \(s_Y^2 (1-r^2) = 1129.6972\).</li>
+        <li>\(y = 97.5982 x - 480.135\).</li>
+        <li>Khi \(X = 8.5\), ta dự báo \(Y = 349.4498\).</li>
+    </ol>
+    
+</body>
+</html>

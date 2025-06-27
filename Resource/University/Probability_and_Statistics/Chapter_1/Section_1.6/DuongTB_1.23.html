@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1.23</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 1.23:</b><br><br>
+    <!--Thái Bình Dương, Chương 1, Bài 17-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Chứng minh trong các gia đình có hai con thì tỷ lệ các gia đình sinh con một bề không bé hơn tỷ lệ các gia đình sinh con cả trai và gái.</li>
+        <li>Nếu xét trong các gia đình có 3 con  thì nhận định trên còn đúng không?</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    Đặt \(B = \) {gia đình sinh con một bề}.
+    <ol type="a">
+        <li>
+            \(P\left( B \right) = C_2^0{p^0}{\left(1 - p\right)^2} + C_2^2{p^2}{\left(1 - p\right)^0} \ge
+    P\left( {\overline B } \right) = C_2^1{p^1}{\left(1 - p\right)^1}\).
+        </li>
+
+        <li>Với \(p = \dfrac{1}{2}\), \(P\left(B\right) = \dfrac{1}{4} < P\left( {\overline B } \right)\).</li>
+    </ol>
+</body>
+</html>

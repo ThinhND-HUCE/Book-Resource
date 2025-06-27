@@ -3,20 +3,26 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FiArrowLeft } from "react-icons/fi";
 import { sendOtp } from "../constants/apiService";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import backgroundImage from "../assets/images/HUCE.jpg";
+
 
 const ForgotPasswordWrapper = styled.div`
-  background-color: #f4f6f9;
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
-  margin: 0;
-  padding: 0;
 `;
+
 
 const ForgotPasswordCard = styled.div`
   background-color: white;
@@ -59,7 +65,7 @@ const Error = styled.div`
 const SendOtpButton = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: #4caf50;
+  background-color: #2196f3;
   color: white;
   font-size: 16px;
   border: none;
@@ -67,7 +73,7 @@ const SendOtpButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #45a049;
+    background-color: #007bff;
   }
 `;
 
@@ -89,32 +95,80 @@ const BackButton = styled.button`
   }
 `;
 
+const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const LoadingSpinner = styled.div`
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+
+const LoadingText = styled.div`
+  color: white;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+`;
+
+const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export default function ForgotPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSendOtp = async () => {
     setError(null);
+    setIsLoading(true);
     try {
       const response = await sendOtp(email);
       if (response.success) {
-        alert("🎉 Một mã OTP đã được gửi đến email của bạn!");
+        localStorage.setItem("forgot_email", email);
+        toast.success("🎉 Một mã OTP đã được gửi đến email của bạn!");
         navigate("/verify-otp");
       } else {
-        setError("Có lỗi xảy ra. Vui lòng thử lại.");
+        toast.error(response.message || "Có lỗi xảy ra. Vui lòng thử lại.");
+        setError(response.message);
       }
     } catch (err: any) {
-      setError("Không thể kết nối đến server.");
+      toast.error("Không thể kết nối đến máy chủ.");
+      setError("Không thể kết nối đến máy chủ.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
+
     <ForgotPasswordWrapper>
       <ForgotPasswordCard>
         <BackButton onClick={() => navigate("/login")}>
           <FiArrowLeft size={20} />
-          
+
         </BackButton>
 
         <Title>Quên Mật Khẩu</Title>
@@ -130,6 +184,14 @@ export default function ForgotPassword() {
         {error && <Error>{error}</Error>}
 
         <SendOtpButton onClick={handleSendOtp}>Gửi mã OTP</SendOtpButton>
+        {isLoading && (
+          <LoadingOverlay>
+            <LoadingContainer>
+              <LoadingSpinner />
+              <LoadingText>Đang gửi mã OTP...</LoadingText>
+            </LoadingContainer>
+          </LoadingOverlay>
+        )}
       </ForgotPasswordCard>
     </ForgotPasswordWrapper>
   );

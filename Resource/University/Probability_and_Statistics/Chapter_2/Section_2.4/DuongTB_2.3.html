@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.3</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.3:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 2-->
+    Hai cầu thủ bóng rổ lần lượt ném bóng vào rổ đến khi một người ném lọt rổ thì thôi. 
+    Xác suất lọt rổ ở mỗi lần ném của người ném đầu là \(p_1\), của người thứ hai là \(p_2\).
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Lập bảng phân bố xác suất của số lần ném của người ném đầu.</li>
+        <li>Tính kỳ vọng và phương sai của đại lượng ngẫu nhiên trên.</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    Đặt \(X = \) số lần ném của người ném đầu.
+    <ol type="a">
+        <li>
+            \(P\left( {X = k} \right) = {p^{k - 1}}\left( {1 - p} \right)\), \(k=1,2,\ldots\), trong đó \(p = \left( {1 - {p_1}} \right)\left( {1 - {p_2}} \right)\).
+        </li>
+        <li>
+            \(EX = \dfrac{1}{{1 - p}}\), \(DX = \dfrac{p}{{{{\left( {1 - p} \right)}^2}}}\).
+        </li>
+    </ol>
+
+</body>
+</html>
