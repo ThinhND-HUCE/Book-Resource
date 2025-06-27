@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.hashers import make_password
 
 class User(models.Model):
-    id = models.CharField(max_length=255, primary_key=True, db_column="id")
+    # id = models.CharField(max_length=255, primary_key=True, db_column="id")
     student_id = models.CharField(max_length=255, null=True, blank=True, db_column="student_id")
     last_name = models.CharField(max_length=255, null=True, blank=True, db_column="last_name")  
     first_name = models.CharField(max_length=255, null=True, blank=True, db_column="first_name")  
