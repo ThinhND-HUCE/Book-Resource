@@ -61,11 +61,11 @@ def submit_answer_view_cong_nhan_xac_suat(request):
         p1,p2,p3 = decode_values(question_code)
 
         # Get user answers for P_a and P_b
-        user_p1 = round(float(data.get('p_1', 0)), 4)
-        user_p2 = round(float(data.get('p_2', 0)), 4)
-        user_p3 = round(float(data.get('p_3', 0)), 4)
-        user_pa = round(float(data.get('P_a', 0)), 4)
-        user_pb = round(float(data.get('P_b', 0)), 4)
+        user_p1 = round(float(data.get('p1', 0)), 4)
+        user_p2 = round(float(data.get('p2', 0)), 4)
+        user_p3 = round(float(data.get('p3', 0)), 4)
+        user_pa = round(float(data.get('pa', 0)), 4)
+        user_pb = round(float(data.get('pb', 0)), 4)
 
         # Get correct answers
         correct_pa, correct_pb = correct_answer(p1, p2, p3)
@@ -87,11 +87,11 @@ def submit_answer_view_cong_nhan_xac_suat(request):
             'frame_scores_total': sum(frame_scores.values()),
             'scores': scores,
             'correct_answers': {
-                'p_1': f"{N(p1, 4)}",
-                'p_2': f"{N(p2, 4)}",
-                'p_3': f"{N(p3, 4)}",
-                'P_a': f"{N(correct_pa, 6)}",
-                'P_b': f"{N(correct_pb, 6)}"
+                'p1': f"{N(p1, 4)}",
+                'p2': f"{N(p2, 4)}",
+                'p3': f"{N(p3, 4)}",
+                'pa': f"{N(correct_pa, 6)}",
+                'pb': f"{N(correct_pb, 6)}"
             },
             'success': scores['total_score'] == sum(frame_scores.values())
         })

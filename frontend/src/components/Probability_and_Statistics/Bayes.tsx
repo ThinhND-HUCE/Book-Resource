@@ -1,18 +1,16 @@
-export const exerciseMeta = {
-  label: "Xác suất cổ điển dạng 1"
-};
-
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestion } from '../../../../../constants/Probability_and_Statistics/xacSuatCoDienService';
-import MathJaxRender from '../../../../MathJaxRender'; 
-import {BackButton,ButtonContainer,ContentCell,CorrectAnswer,ExerciseContainer,Hint,Input,InputGroup,Label,NewQuestionButton,PopupContent,PopupOverlay,QuestionText,ResultContainer,ResultTable,ScoreCell,SubmitButton,TableCell,TableHeader,TableRow,TimerDisplay,TotalCell,WrongAnswer} from '../../../../InterFaceDynamic';
+import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestionBayes} from '../../constants/Probability_and_Statistics/bayesService';
+import MathJaxRender from '../MathJaxRender'; 
+import {BackButton,ButtonContainer,ContentCell,CorrectAnswer,ExerciseContainer,Hint,Input,InputGroup,Label,NewQuestionButton,PopupContent,PopupOverlay,QuestionText,ResultContainer,ResultTable,ScoreCell,SubmitButton,TableCell,TableHeader,TableRow,TimerDisplay,TotalCell,WrongAnswer} from '../InterFaceDynamic';
 
 
 interface ExerciseAnswer {
-    m: string;
-    t: string;
+    p_1: string;
+    p_2: string;
+    p_dk1: string;
+    p_dk2: string;
     p: string;
+    p_bayes: string;
 }
 
 interface ExerciseProps {
@@ -20,9 +18,9 @@ interface ExerciseProps {
     timeLimit?: number; // Time limit in seconds, default to 300 (5 minutes)
 }
 
-export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => {
-    const [question, setQuestion] = useState<ExerciseQuestion | null>(null);
-    const [answer, setAnswer] = useState<ExerciseAnswer>({ m: '', t: '', p: '' });
+const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300 }) => {
+    const [question, setQuestion] = useState<ExerciseQuestionBayes | null>(null);
+    const [answer, setAnswer] = useState<ExerciseAnswer>({ p_1: '', p_2: '', p_dk1: '',p_dk2:'',p:'', p_bayes: '' });
     const [result, setResult] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [hintVisible, setHintVisible] = useState(false);
@@ -43,9 +41,12 @@ export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300
         } else if (timeLeft === 0 && !result) {
             // Tự động điền 0 cho các ô còn trống
             setAnswer(prev => ({
-                m: prev.m === '' ? '0' : prev.m,
-                t: prev.t === '' ? '0' : prev.t,
-                p: prev.p === '' ? '0' : prev.p
+                p_1: prev.p_1 === '' ? '0' : prev.p_1,
+                p_2: prev.p_2 === '' ? '0' : prev.p_2,
+                p_dk1: prev.p_dk1 === '' ? '0' : prev.p_dk1,
+                p_dk2: prev.p_dk2 === '' ? '0' : prev.p_dk2,
+                p: prev.p === '' ? '0' : prev.p,
+                p_bayes: prev.p_bayes === '' ? '0' : prev.p_bayes
             }));
             setShowTimeoutPopup(true);
         }
@@ -62,7 +63,7 @@ export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300
     const loadQuestion = async () => {
         try {
             // Đặt lại giá trị cho tất cả biển
-            setAnswer({ m: '', t: '', p: '' }); // biến câu trả lời
+            setAnswer({ p_1: '', p_2: '', p_dk1: '', p_dk2: '', p : '' ,p_bayes:''}); // biến câu trả lời
             setResult(null); // biến kết quả
             setLoading(false); // biến loading
             setHintVisible(false); // biến gợi ý
@@ -97,7 +98,7 @@ export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300
         if (!question) return;
 
         // Bắt buộc tất cả các input đều phải có giá tri
-        if (answer.m === '' || answer.t === '' || answer.p === '') {
+        if (answer.p_1 === '' || answer.p_2 === '' || answer.p_dk1 === '' || answer.p_dk2 === '' || answer.p === '' || answer.p_bayes === '') {
             alert('Vui lòng điền đầy đủ các giá trị');
             return;
         }
@@ -108,10 +109,13 @@ export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300
         try {
             const response = await submitExerciseAnswer(
                 {
-                    m: convertFractionToDecimal(answer.m),
-                    t: convertFractionToDecimal(answer.t),
+                    p_1: convertFractionToDecimal(answer.p_1),
+                    p_2: convertFractionToDecimal(answer.p_2),
+                    p_dk1: convertFractionToDecimal(answer.p_dk1),
+                    p_dk2: convertFractionToDecimal(answer.p_dk2),
                     p: convertFractionToDecimal(answer.p),
-                    question_code: question.question_code
+                    p_bayes: convertFractionToDecimal(answer.p_bayes),
+                    question_code: question.question_code,
                 }
             );
             setResult(response);
@@ -153,36 +157,57 @@ export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300
             <form onSubmit={handleSubmit}>
                 {/* Ý 1 */}
                 <InputGroup>
-                    <Label>Phép thử: Rút ngẫu nhiên {question.k3} bi. Số trường hợp có thể của phép thử: </Label>
-                    <Input
-                        type="text"
-                        name="m"
-                        value={answer.m}
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                    />
-                </InputGroup>
-
-                {/* Ý 2 */}
-                <InputGroup>
                     <Label>
-                        <MathJaxRender latex={`Biến cố \\(A\\) = {rút được ${question.k4} bi đỏ (và ${question.k3 - question.k4} bi xanh)}. Áp dụng quy tắc tổ hợp, số trường hợp thuận lợi cho \\(A\\) là:`}></MathJaxRender>
+                    <MathJaxRender latex='Ta cần tính \(P\left(\text{thẻ lấy được thuộc hộp B} \mid \text{thẻ lấy được có màu đỏ}\right)\). 
+Trước hết ta cần tính \(P\left(\text{thẻ lấy đuọc có màu đỏ}\right)\). Rõ ràng xác suất này phụ thuộc vào việc trước đó ta lấy được hộp nào.'></MathJaxRender>
+                    <MathJaxRender latex='Xét hệ biến cố đầy đủ'></MathJaxRender>
+                    <MathJaxRender latex='\(H_1 = \) \{lấy được hộp A\}, \(H_2 = \) \{lấy được hộp B\}'></MathJaxRender>
+                    <MathJaxRender latex='Dễ thấy \(P\left( H_1 \right) ='></MathJaxRender>
                     </Label>
                     <Input
                         type="text"
-                        name="t"
-                        value={answer.t}
+                        name="p_1"
+                        value={answer.p_1}
                         onChange={handleInputChange}
                         required
                         autoComplete="off"
                     />
-                </InputGroup>
-
-                {/* Ý 3 */}
-                <InputGroup>
                     <Label>
-                        <MathJaxRender latex={`\\(\\Rightarrow P(A) = \\)`}></MathJaxRender>
+                    <MathJaxRender latex='\(P\left(H_2\right) =  \)'></MathJaxRender>
+                    </Label>
+                    <Input
+                        type="text"
+                        name="p_2"
+                        value={answer.p_2}
+                        onChange={handleInputChange}
+                        required
+                        autoComplete="off"
+                    />
+                    <Label>
+                    <MathJaxRender latex='Đặt \(A\) là biến cố thẻ lấy được có màu đỏ, thì'></MathJaxRender>
+                    <MathJaxRender latex='\[P\left(A \mid H_1\right)\] = '></MathJaxRender>
+                    </Label>
+                    <Input
+                        type="text"
+                        name="p_dk1"
+                        value={answer.p_dk1}
+                        onChange={handleInputChange}
+                        required
+                        autoComplete="off"
+                    />
+                    <Label>
+                    <MathJaxRender latex=' \[(P\left(H_2\right) =\]'></MathJaxRender>
+                    </Label>
+                    <Input
+                        type="text"
+                        name="p_dk2"
+                        value={answer.p_dk2}
+                        onChange={handleInputChange}
+                        required
+                        autoComplete="off"
+                    />
+                    <Label>
+                    <MathJaxRender latex='Khi đó \(P\left(A\right) = P\left(H_1\right) P\left(A \mid H_1\right) + P\left(H_2\right) P\left(A \mid H_2\right) ='></MathJaxRender>
                     </Label>
                     <Input
                         type="text"
@@ -196,8 +221,26 @@ export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300
                         autoComplete="off"
                     />
                     <Hint className={hintVisible ? 'hint' : ''}>(Làm tròn đến 4 chữ số có nghĩa)</Hint>
+                    <Label>
+                    <MathJaxRender latex='Theo lập luận trên, ta cần tính
+\[
+P\left(H_2\mid A\right) = \frac{P\left(H_2\right) P\left(A \mid H_2\right)}{P\left(A\right)} =\]'></MathJaxRender>
+                    </Label>
                 </InputGroup>
+                <Input
+                        type="text"
+                        name="p_bayes"
+                        value={answer.p_bayes}
+                        onChange={handleInputChange}
+                        step="0.0001"
+                        required
+                        onFocus={() => setHintVisible(true)}
+                        onBlur={() => setHintVisible(false)}
+                        autoComplete="off"
+                    />
+                    <Hint className={hintVisible ? 'hint' : ''}>(Làm tròn đến 4 chữ số có nghĩa)</Hint>
 
+                
                 {/* Khung hiển thị nút kiểm tra và làm mới */}
                 <ButtonContainer>
                     <SubmitButton
@@ -234,33 +277,56 @@ export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300
                             {/* Hàng 2 */}
                             <tr>
                                 <TableCell>Ý thứ 1</TableCell>
-                                <ContentCell>Tổng số cách chọn</ContentCell>
+                                <ContentCell><MathJaxRender latex='\(P\left( H_1 \right) = \fbox{\(\dfrac{1}{2}= p_1\)}\)'></MathJaxRender></ContentCell>
                                 <TableCell>
-                                    {result.scores.m_score === result.frame_scores.m_score ? 
+                                    {result.scores.p1 === result.frame_scores.p1_score ? 
                                         <CorrectAnswer>✓</CorrectAnswer> : 
                                         <WrongAnswer>✗</WrongAnswer>}
                                 </TableCell>
-                                <TableCell>{result.correct_answers.m}</TableCell>
-                                <TableCell>{result.scores.m_score} / {result.frame_scores.m_score}</TableCell>
+                                <TableCell>{result.correct_answers.p1}</TableCell>
+                                <TableCell>{result.scores.p_1_score} / {result.frame_scores.p_1_score}</TableCell>
                             </tr>
 
                             {/* Hàng 3 */}
                             <tr>
-                                <TableCell>Ý thứ 2</TableCell>
-                                <ContentCell>Số cách chọn thỏa mãn</ContentCell>
+                                <TableCell><MathJaxRender latex='\(P\left(H_2\right) = \fbox{\(\dfrac{1}{2}= p_2\)} \)'></MathJaxRender></TableCell>
                                 <TableCell>
-                                    {result.scores.t_score === result.frame_scores.t_score ? 
+                                    {result.scores.p_2 === result.frame_scores.p2_score ? 
                                         <CorrectAnswer>✓</CorrectAnswer> : 
                                         <WrongAnswer>✗</WrongAnswer>}
                                 </TableCell>
-                                <TableCell>{result.correct_answers.t}</TableCell>
-                                <TableCell>{result.scores.t_score} / {result.frame_scores.t_score}</TableCell>
+                                <TableCell>{result.correct_answers.p_2}</TableCell>
+                                <TableCell>{result.scores.p2_score} / {result.frame_scores.p2_score}</TableCell>
                             </tr>
 
                             {/* Hàng 4*/}
                             <tr>
                                 <TableCell>Ý thứ 3</TableCell>
-                                <ContentCell>Xác suất</ContentCell>
+                                <ContentCell><MathJaxRender latex='P\left(A \mid H_1\right) = \fbox{\(\dfrac{k_2}{k_1 + k_2}'></MathJaxRender></ContentCell>
+                                <TableCell>
+                                    {result.scores.p_dk1_score === result.frame_scores.p_dk1_score ? 
+                                        <CorrectAnswer>✓</CorrectAnswer> : 
+                                        <WrongAnswer>✗</WrongAnswer>}
+                                </TableCell>
+                                <TableCell>{result.correct_answers.p}</TableCell>
+                                <TableCell>{result.scores.p_dk1_score} / {result.frame_scores.p_dk1_score}</TableCell>
+                            </tr>
+
+                            <tr>
+                                <TableCell>Ý p_dk2</TableCell>
+                                <ContentCell><MathJaxRender latex='P\left(A \mid H_2\right) = \fbox{\(\dfrac{k_4}{k_3 + k_4} \)}'></MathJaxRender></ContentCell>
+                                <TableCell>
+                                    {result.scores.p_dk2_score === result.frame_scores.p_dk2_score ? 
+                                        <CorrectAnswer>✓</CorrectAnswer> : 
+                                        <WrongAnswer>✗</WrongAnswer>}
+                                </TableCell>
+                                <TableCell>{result.correct_answers.p_dk2_score}</TableCell>
+                                <TableCell>{result.scores.p_dk2_score} / {result.frame_scores.p_dk2_score}</TableCell>
+                            </tr>
+
+                            <tr>
+                                <TableCell>Ý p</TableCell>
+                                <ContentCell><MathJaxRender latex='\(P\left(A\right) = P\left(H_1\right) P\left(A \mid H_1\right) + P\left(H_2\right) P\left(A \mid H_2\right) = \fbox{\(p = \dfrac{1}{2} \times \dfrac{k_2}{k_1 + k_2} + \dfrac{1}{2} \times \dfrac{k_4}{k_3 + k_4}\)}\)'></MathJaxRender></ContentCell>
                                 <TableCell>
                                     {result.scores.p_score === result.frame_scores.p_score ? 
                                         <CorrectAnswer>✓</CorrectAnswer> : 
@@ -269,8 +335,20 @@ export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300
                                 <TableCell>{result.correct_answers.p}</TableCell>
                                 <TableCell>{result.scores.p_score} / {result.frame_scores.p_score}</TableCell>
                             </tr>
-
+                            <tr>
+                                <TableCell>Ý p_bayes</TableCell>
+                                <ContentCell><MathJaxRender latex='\[
+P\left(H_2\mid A\right) = \frac{P\left(H_2\right) P\left(A \mid H_2\right)}{P\left(A\right)} = \].'></MathJaxRender></ContentCell>
+                                <TableCell>
+                                    {result.scores.p_bayes_score === result.frame_scores.p_bayes_score ? 
+                                        <CorrectAnswer>✓</CorrectAnswer> : 
+                                        <WrongAnswer>✗</WrongAnswer>}
+                                </TableCell>
+                                <TableCell>{result.correct_answers.p_bayes_score}</TableCell>
+                                <TableCell>{result.scores.p_bayes_score} / {result.frame_scores.p_bayes_score}</TableCell>
+                            </tr>
                             {/* Hàng cuối*/}
+
                             <TableRow>
                                 <TotalCell colSpan={4}>Tổng điểm:</TotalCell>
                                 <ScoreCell score={result.frame_scores_total !== 10 ? 
@@ -306,9 +384,12 @@ export const XacSuatCoDien: React.FC<ExerciseProps> = ({ onBack, timeLimit = 300
                                 try {
                                     const response = await submitExerciseAnswer(
                                         {
-                                            m: convertFractionToDecimal(answer.m),
-                                            t: convertFractionToDecimal(answer.t),
+                                            p_1: convertFractionToDecimal(answer.p_1),
+                                            p_2: convertFractionToDecimal(answer.p_2),
+                                            p_dk1: convertFractionToDecimal(answer.p_dk1),
+                                            p_dk2: convertFractionToDecimal(answer.p_dk2),
                                             p: convertFractionToDecimal(answer.p),
+                                            p_bayes: convertFractionToDecimal(answer.p_bayes),
                                             question_code: question.question_code
                                         }
                                     );

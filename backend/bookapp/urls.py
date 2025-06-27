@@ -26,12 +26,12 @@ urlpatterns = [
     # API tạo trang mới
     path("generate-pages-from-template/", renderfile.generate_pages_from_template, name='generate-pages-from-template'),
     # API for Xác suất Cổ điển
-    path('xac_suat_co_dien/', generate_question_view_xac_suat_co_dien, name='generate_question_xac_suat_co_dien'),
-    path('xac_suat_co_dien/submit/', submit_answer_view_xac_suat_co_dien, name='submit_answer_xac_suat_co_dien'),
+    path('Probability_and_Statistics/xac_suat_co_dien/', generate_question_view_xac_suat_co_dien, name='generate_question_xac_suat_co_dien'),
+    path('Probability_and_Statistics/xac_suat_co_dien/submit/', submit_answer_view_xac_suat_co_dien, name='submit_answer_xac_suat_co_dien'),
     # API for Cộng Nhân Xác suất
-    path('cong-nhan-xac-suat/', generate_question_view_cong_nhan_xac_suat, name='generate_question_cong_nhan_xac_suat'),
-    path('cong-nhan-xac-suat/submit', submit_answer_view_cong_nhan_xac_suat, name='submit_answer_cong_nhan_xac_suat' ),
-    # api for bayes
-    path('bayes/', generate_question_view_bayes, name='generate_question_bayes'),
-    path('bayes/submit', submit_answer_view_bayes, name='submit_answer_bayes'),
+    path('Probability_and_Statistics/cong-nhan-xac-suat/', generate_question_view_cong_nhan_xac_suat, name='generate_question_cong_nhan_xac_suat'),
+    path('Probability_and_Statistics/cong-nhan-xac-suat/submit', submit_answer_view_cong_nhan_xac_suat, name='submit_answer_cong_nhan_xac_suat' ),
+    # API for bayes
+    path('Probability_and_Statistics/bayes/', generate_question_view_bayes, name='generate_question_bayes'),
+    path('Probability_and_Statistics/bayes/submit', submit_answer_view_bayes, name='submit_answer_bayes'),
 ]

@@ -4,9 +4,12 @@ export const exerciseMeta = {
 
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestion } from '../../../../../constants/Probability_and_Statistics/xacSuatCoDienService';
-import MathJaxRender from '../../../../MathJaxRender'; 
-import {BackButton,ButtonContainer,ContentCell,CorrectAnswer,ExerciseContainer,Hint,Input,InputGroup,Label,NewQuestionButton,PopupContent,PopupOverlay,QuestionText,ResultContainer,ResultTable,ScoreCell,SubmitButton,TableCell,TableHeader,TableRow,TimerDisplay,TotalCell,WrongAnswer} from '../../../../InterFaceDynamic';
+import { fetchExerciseQuestion, submitExerciseAnswer, ExerciseQuestion } from '../../constants/Probability_and_Statistics/xacSuatCoDienService';
+import MathJaxRender from '../MathJaxRender';
+import {BackButton,ButtonContainer,ContentCell,CorrectAnswer,ExerciseContainer,Hint,Input,InputGroup,Label,NewQuestionButton,PopupContent,PopupOverlay,QuestionText,ResultContainer,ResultTable,ScoreCell,SubmitButton,TableCell,TableHeader,TableRow,TimerDisplay,TotalCell,WrongAnswer} from '../InterFaceDynamic';
+
+
+
 
 
 interface ExerciseAnswer {

@@ -77,7 +77,7 @@ def submit_answer_view_bayes(request):
             'p1_score': frame_scores['p1_score'] if score(user_p1,correct_p1) else 0,
             'p2_score': frame_scores['p2_score'] if score(user_p2, correct_p2) else 0,
             'p_dk1_score': frame_scores['p_dk1_score'] if score(user_p_dk1,correct_p_dk1) else 0,
-            'p_dk2_score': frame_scores['p_dk2_score'] if score(user_p2,correct_p_dk2) else 0,
+            'p_dk2_score': frame_scores['p_dk2_score'] if score(user_p_dk2,correct_p_dk2) else 0,
             'p_score': frame_scores['p_score'] if score(user_p, correct_p) else 0,
             'p_bayes_score': frame_scores['p_bayes_score'] if score(user_p_bayes, correct_p_bayes) else 0
         }

@@ -21,5 +21,10 @@ export default defineConfig({
   optimizeDeps: {
     include: ['mathjax'],
   },
+  resolve: {
+    alias: {
+      'react-native': 'react-native-web',
+    },
+  },
 })
   

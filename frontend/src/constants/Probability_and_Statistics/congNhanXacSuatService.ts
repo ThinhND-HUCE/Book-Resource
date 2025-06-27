@@ -1,40 +1,39 @@
-import { API_URL } from "./apiConfig";
 //Câu hỏi
-export interface ExerciseQuestion {
-    k1: number;
-    k2: number;
-    k3: number;
-    k4: number;
+export interface ExerciseQuestionCongNhanXacSuat {
     content: string;
     question_code: string;
 }
 
 //Thông tin người dùng nhập vào
-export interface ExerciseAnswer {
-    m: number;
-    t: number;
-    p: number;
+export interface ExerciseAnswerCongNhanXacSuat {
+    p1: number;
+    p2: number;
+    p3: number;
+    pa : number;
+    pb : number;
     question_code: string;
 }
 
 //Thông tin được trả về sau khi kiểm tra (kết quả)
-export interface ExerciseResponse {
+export interface ExerciseResponseCongNhanXacSuat {
     frame_scores: {
-        m_score: number;
-        t_score: number;
-        p_score: number;
+        p_n: number;
+        pa: number;
+        pb: number;
     };
     frame_scores_total: number;
     scores: {
-        m_score: number;
-        t_score: number;
-        p_score: number;
+        p_n : number;
+        pa_score: number;
+        pb_score: number;
         total_score: number;
     };
     correct_answers: {
-        m: number;
-        t: number;
-        p: number;
+        p1: number;
+        p2: number;
+        p3: number;
+        pa :number;
+        pb : number;
     };
     success: boolean;
 }
@@ -48,8 +47,8 @@ const getAuthHeaders = () => {
     };
 };
 
-export const fetchExerciseQuestion = async (): Promise<ExerciseQuestion> => {
-    const response = await fetch(`${API_URL}/api/xac_suat_co_dien/`, {
+export const fetchExerciseQuestion = async (): Promise<ExerciseQuestionCongNhanXacSuat> => {
+    const response = await fetch('http://localhost:8000/api/Probability_and_Statistics/cong-nhan-xac-suat/', {
         headers: getAuthHeaders()
     });
     if (!response.ok) {
@@ -60,9 +59,9 @@ export const fetchExerciseQuestion = async (): Promise<ExerciseQuestion> => {
 };
 
 export const submitExerciseAnswer = async (
-    answer: ExerciseAnswer,
-): Promise<ExerciseResponse> => {
-    const response = await fetch(`${API_URL}/api/xac_suat_co_dien/submit/`, {
+    answer: ExerciseAnswerCongNhanXacSuat,
+): Promise<ExerciseResponseCongNhanXacSuat> => {
+    const response = await fetch('http://localhost:8000/api/Probability_and_Statistics/cong-nhan-xac-suat/submit', {
         method: 'POST',
         headers: getAuthHeaders(),
         body: JSON.stringify({
