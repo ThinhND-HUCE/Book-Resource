@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.1</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.1:</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 2-->
+    Các tọa độ \(X, Y\) của điểm ngẫu nhiên phân bố đều trong hình chữ nhận giới hạn bởi các đường \(x=a, x=b, y=c, y=d\) (\(a < b, c < d\)). 
+    Tìm mật độ xác suất và hàm phân bố của hệ thống \(\left(X,Y\right)\).
+    <br><br>
+
+    <i>Đáp số:</i><br>
+    \(\displaystyle F\left(x,y\right) = \begin{cases}
+    1 & x>b, y>d \\
+    \frac{{x - a}}{{b - a}} & a < x\le b, y > d \\
+    \frac{{y - c}}{{d - c}} & x > b, c < y\le d \\
+    \frac{{(x - a)(y - c)}}{{(b - a)(d - c)}} & a < x\le b, c < y\le d \\
+    0 & x\le a \text{ hoặc } x\le b \text{ (miền còn lại)}.
+    \end{cases}\)    
+
+</body>
+</html>
+
+<!--Bảng kẻ chéo ô
+    <table style="border-collapse:collapse">
+    <!-- Hàng đầu tiên: kẻ ngang dưới -->
+    <tr style="border-bottom:1px solid #000">
+        <!-- Ô đầu tiên: chéo và kẻ dọc phải -->
+        <th style="
+        position:relative;
+        width:80px; height:40px;
+        border-right:1px solid #000;
+        background:
+            linear-gradient(
+            to top right,
+            transparent 49%, #000 49%, #000 51%, transparent 51%
+            );
+        padding:0;
+        ">
+        <div style="position:absolute;top:20px;left:20px;">\(X\)</div>
+        <div style="position:absolute;bottom:20px;right:20px;">\(Y\)</div>
+        </th>
+        <th>1</th><th>2</th>
+    </tr>
+    <!-- Các hàng sau: chỉ kẻ cột đầu (th) -->
+    <tr>
+        <th style="border-right:1px solid #000">1</th><td>A</td><td>B</td>
+    </tr>
+    <tr>
+        <th style="border-right:1px solid #000">2</th><td>C</td><td>D</td>
+    </tr>
+    </table>
+-->

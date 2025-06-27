@@ -13,7 +13,12 @@
     <b>Bài 1.18:</b><br><br>
     <!--Thái Bình Dương, Chương 1, Bài 14-->
     Có hai hộp bi. Hộp I có 6 bi đen và 4 bi trắng, hộp II có 7 bi đen và 3 bi trắng. Lấy ngẫu nhiên 2 bi từ hộp I bỏ vào hộp II rồi từ hộp II lấy ngẫu nhiên ra 2 bi.
-    <ol type="a" style="list-style-type: lower-alpha;">
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
         <li>Tìm xác suất để 2 bi lấy ra cuối cùng cùng màu.</li>
         <li>Biết rằng 2 bi lấy ra sau cùng là 2 bi đen, tìm xác suất để 2 bi lấy ra từ hộp I bỏ vào hộp II cũng là 2 bi đen.</li>
         <li>Tìm xác suất để lần 1 lấy được hai bi khác màu và lần 2 lấy được hai bi cùng màu.</li>
@@ -25,7 +30,7 @@
     Đặt \(H_1 = \) {2 bi lấy từ hộp I là 2 bi đen}, 
     \(H_2 = \) {2 bi lấy từ hộp I là 2 bi trắng}, 
     \(H_3 = \) {2 bi lấy từ hộp I là 1 đen 1 trắng}.
-    <ol type="a" style="list-style-type: lower-alpha;">
+    <ol type="a">
         <li>Đặt \(A = \) {2 bi lấy ra cuối cùng cùng màu}. 
             \(P\left( A \right) = \dfrac{C_6^2}{C_{10}^2}\, \dfrac{C_{9}^2 + C_3^2}{C_{12}^2} + \dfrac{C_4^2}{C_{10}^2}\, \dfrac{C_{7}^2 + C_5^2}{C_{12}^2} + \dfrac{6\cdot 4}{C_{10}^2}\, \dfrac{C_{8}^2 + C_4^2}{C_{12}^2}\).</li>
 

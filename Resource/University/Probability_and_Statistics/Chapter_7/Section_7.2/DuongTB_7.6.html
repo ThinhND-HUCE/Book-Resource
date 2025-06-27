@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.6</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.6:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 6-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    Một mẫu gồm 11 giá trị quan sát được của đại lượng ngẫu nhiên có phân bố chuẩn \(X\) được cho ở bảng
+    <table>
+        <thead>
+            <tr>
+                <th>Giá trị của \(X\)</th><td>3</td><td>3.5</td><td>4</td><td>4.5</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>Số lần</th><td>1</td><td>2</td><td>4</td><td>4</td>
+        </tr>
+    </table>
+    <ol type="a">
+        <li>Hãy ước lượng giá trị trung bình và độ lệch chuẩn của \(X\).</li>
+        <li>Tìm khoảng tin cậy của \(EX\) với độ tin cậy 96%.</li>
+        <li>Kiểm định ở mức ý nghĩa 4%: \(H_0: EX = 3.7, H_1: EX > 3.7\).</li>
+    </ol>
+    
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>\(\overline x = 4\), \(s' = 0.5\)</li>
+        <li>\(\left( \overline x  - {t_0}\dfrac{{s}}{{\sqrt {n-1} }}\;,\;\overline x  + {t_0}\dfrac{{s}}{{\sqrt {n-1} }} \right) = \left( 3.6443, 4.3557 \right)\)</li>
+        <li>
+            \({t_{qs}} = 1.99\),
+            \(t_0 = 1.9481\).
+            \(t_{qs} > t_0\Rightarrow \) bác bỏ \(H_0\).    
+        </li>
+    </ol>
+
+</body>
+</html>

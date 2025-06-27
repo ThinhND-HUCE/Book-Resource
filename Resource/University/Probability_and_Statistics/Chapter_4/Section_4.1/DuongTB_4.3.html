@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 4.3</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 4.3:</b><br><br>
+    <!--Thái Bình Dương, Chương 4, Bài ?-->
+    Biết rằng khối lượng của một sản phẩm lấy ngẫu nhiên là đại lượng ngẫu nhiên có phân bố chuẩn với kỳ vọng bằng 10g, độ lệch chuẩn 1g. 
+    Tìm xác suất để trong 200 sản phẩm lấy ngẫu nhiên có:
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>ít nhất một sản phẩm có khối lượng lớn hơn 11g.</li>
+        <li>từ 60 đến 100 sản phẩm có khối lượng lớn hơn 11g.</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    \(X = \) khối lượng một sản phẩm. \(X\in N\left(\mu, \sigma^2\right)\): \(\mu=10, \sigma = 1\).<br>
+
+    \(p = P\left(X>11\right) = 0.1587\), \(n = 200\), \(m = \) số sản phẩm có khối lượng lớn hơn 11g.
+    <ol type="a">
+        <li>\(P\left(m\ge 1\right) = P\left[ { - 5.9477 \le \dfrac{{m - np}}{{\sqrt {np\left( {1 - p} \right)} }} \le 32.5668} \right] \approx P\left[ { - 5.9477 \le N\left( {0,1} \right) \le 32.5668} \right] = 1\).</li>
+        <li>\(P\left(60 \le m \le 100\right) = P\left[ {5.4712 \le \dfrac{{m - np}}{{\sqrt {np\left( {1 - p} \right)} }} \le 13.2128} \right] \approx P\left[ {5.4712 \le N\left( {0,1} \right) \le 13.2128} \right] = 0\).</li>
+    </ol>    
+
+</body>
+</html>

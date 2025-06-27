@@ -12,14 +12,19 @@
 <body>
     <b>Bài 1.23:</b><br><br>
     <!--Thái Bình Dương, Chương 1, Bài 17-->
-    <ol type="a" style="list-style-type: lower-alpha;">
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
         <li>Chứng minh trong các gia đình có hai con thì tỷ lệ các gia đình sinh con một bề không bé hơn tỷ lệ các gia đình sinh con cả trai và gái.</li>
         <li>Nếu xét trong các gia đình có 3 con  thì nhận định trên còn đúng không?</li>
     </ol>
 
     <i>Đáp số:</i><br>
-    Đặt \(B = \) \{gia đình sinh con một bề\}.
-    <ol type="a" style="list-style-type: lower-alpha;">
+    Đặt \(B = \) {gia đình sinh con một bề}.
+    <ol type="a">
         <li>
             \(P\left( B \right) = C_2^0{p^0}{\left(1 - p\right)^2} + C_2^2{p^2}{\left(1 - p\right)^0} \ge
     P\left( {\overline B } \right) = C_2^1{p^1}{\left(1 - p\right)^1}\).

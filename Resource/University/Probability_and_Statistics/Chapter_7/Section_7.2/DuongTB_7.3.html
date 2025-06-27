@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.3</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.3:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 3-->
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+
+    Giả sử thời gian của một chuyến tàu chạy từ A đến B là một đại lượng ngẫu nhiên có phân bố chuẩn. 
+    Quan sát 25 lần chạy từ A đến B của chuyến tàu đó ta có bảng số liệu
+    <table>
+        <thead>
+            <tr>
+                <th>Thời gian 1 lần chạy (giờ)</th><td>15 -- 15.5</td><td>15.5 -- 16</td><td>16 -- 16.5</td><td>16.5 -- 17</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>Số lần</th><td>1</td><td>8</td><td>14</td><td>2</td>
+        </tr>
+    </table>
+
+    Định mức thời gian chạy từ A đến B là 17 giờ. 
+    Hãy kiểm định ở mức ý nghĩa 1% xem định mức thời gian trên có nhiều quá không?
+    <br><br>
+    <i>Đáp số:</i><br>
+    \begin{align}
+    & \text{Định mức thời gian chạy 17 giờ là nhiều} \\
+    \Leftrightarrow\; & \text{Thời gian chạy trung bình } < 17 \text{ giờ} \\
+    \Leftrightarrow\; & EX < 17.
+    \end{align}
+    trong đó \(X\) là thời gian của một chuyến tàu chạy từ A đến B.<br>
+
+    Xét bài toán \(H_0: EX =  17, H_1: EX < 17, \alpha = 1\%\).<br>
+
+    \({t_{qs}} = \dfrac{{\overline x  - {a_0}}}{{s}}\sqrt {n-1} =  -13.1806\),
+    \(t_0 = t_{2\alpha }^{n - 1} = 2.4922\).<br>
+
+    \(t_{qs} < -t_0 \Rightarrow\) bác bỏ \(H_0\), tức là, định mức thời gian chạy 17 giờ là nhiều.
+    
+</body>
+</html>

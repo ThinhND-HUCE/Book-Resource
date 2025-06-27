@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.14</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.14:</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 25-->
+    Một sản phảm trung bình cân nặng 8 gam với độ lệch chuẩn là 5 gam, người ta đóng gói 144 sản phẩm loại đó vào trong một cái hộp. 
+    Vỏ hộp có khối lượng trung bình là 200 gam với độ lệch chuẩn 10 gam. 
+    Giả sử rằng các đại lượng ngẫu nhiên được xét ở đây có phân bố chuẩn và các sản phẩm được xếp vào hộp đã được lấy ngẫu nhiên từ kho hàng. 
+    Hãy xác định xác suất để một hộp chứa 144 sản phẩm nặng hơn 1400 gam.
+    <br><br>
+    <i>Đáp số:</i><br>
+    Gọi \(X_i = \) khối lượng sản phẩm thứ \(i\), (\(i=\overline{1,144}\)) và \(Y = \) khối lượng vỏ hộp. 
+    \({X_i} \sim N\left(8,{5^2}\right)\), \(Y \sim N\left(200,{10^2}\right)\), và độc lập.<br>
+
+    Khối lượng hộp đã đóng gói
+    \begin{align}
+    Z & = \left(X_1 + X_2+\cdots + X_{144}\right) + Y \\
+    & \sim N\left(\underbrace{8+8+\cdots+8}_{144} + 200, \underbrace{5^2+5^2+\cdots+5^2}_{144} + 10^2\right) = N\left(1352, 3700\right).
+    \end{align}
+
+    \(P\left(Z>1400\right) = 0.2150\).		
+    
+</body>
+</html>

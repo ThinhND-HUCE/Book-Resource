@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.12</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.12:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 7-->
+    Hàm phân bố của đại lượng ngẫu nhiên \(X\) có dạng
+    \[
+    F(x) = \begin{cases}
+    1 & \text{nếu } x\ge a \\
+    A + B\arcsin \dfrac{x}{a} & \text{nếu } -a < x < a \\
+    0 & \text{nếu } x\le -a.
+    \end{cases}
+    \]
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Xác định \(A, B\) sao cho \(F\) liên tục trên \(\Bbb R\).</li>
+        <li>Tính \(P\left( { - \dfrac{a}{2} < X < \dfrac{a}{2}} \right)\).</li>
+        <li>Tìm mật độ phân bố xác suất của \(X\).</li>
+        <li>Tính \(EX, DX, \sigma(X)\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>\(A = \dfrac{1}{2}, B = \dfrac{1}{\pi}\)</li>
+        <li>\(\dfrac{1}{3}\)</li>
+        <li>
+            \(f\left( x \right) = F'\left( x \right) = \begin{cases}
+            \dfrac{1}{{\pi \sqrt {{a^2} - {x^2}} }} & \text{nếu } -a < x < a \\
+            0 & \text{nếu } \left| x \right| \ge a
+            \end{cases}\)
+        </li>
+        <li>0, \(\dfrac{{{a^2}}}{2}\), \(\dfrac{a}{{\sqrt 2 }}\)</li>
+    </ol>
+    
+</body>
+</html>

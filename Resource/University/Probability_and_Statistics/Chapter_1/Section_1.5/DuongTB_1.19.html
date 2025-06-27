@@ -13,15 +13,19 @@
     <b>Bài 1.19:</b><br><br>
     <!--Thái Bình Dương, Chương 1, Bài 21-->
     Trong một kho sản phẩm của nhà máy có 7 hộp sản phẩm của phân xưởng 1, 5 hộp của phân xưởng 2 và 4 hộp của phân xưởng 3. Tỷ lệ phế phẩm trong mỗi hộp của các phân xưởng 1, 2, 3 tương ứng là 5%, 9% và 15%.
-    <ol type="a" style="list-style-type: lower-alpha;">
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
         <li>Lấy ngẫu nhiên 1 hộp sản phẩm từ kho, sau đó lấy ngẫu nhiên từ hộp ra 1 sản phẩm. 
             Tính xác suất để sản phẩm lấy ra là chính phẩm.</li>
         <li>Giả sử sản phẩm lấy được là chính phẩm. Tính xác suất để lấy được sản phẩm của phân xưởng 1.</li>
-        <li></li>
     </ol>
 
     <i>Đáp số:</i><br>
-    <ol type="a" style="list-style-type: lower-alpha;">
+    <ol type="a">
         <li>Đặt \(A = \) {sản phẩm lấy ra là chính phẩm}. 
             \(P\left(A\right) = \dfrac{7}{16} 0.95 + \dfrac{5}{16} 0.91 + \dfrac{4}{16} 0.85\).</li>
         <li>\(P\left(H_1 \mid A\right) = \dfrac{\tfrac{7}{16} 0.95}{0.9125}\).</li>

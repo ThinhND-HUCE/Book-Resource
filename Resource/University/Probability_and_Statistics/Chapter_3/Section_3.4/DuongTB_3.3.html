@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.3</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.3:</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 23-->    
+    Có hai hộp đựng bi: hộp I có 7 bi và hộp II có 8 bi. 
+    Người ta ghi số của các viên bi ở hai hộp như sau: ở hộp I có 3 bi ghi số 0, 4 bi ghi số 1; ở hộp II có 3 bi ghi số 1, 5 bi ghi số 2.
+    Lấy ngẫu nhiên từ mỗi hộp một bi. 
+    Gọi \(Z\) là tổng của các số ghi trên 2 bi lấy ra. 
+    Tìm phân bố xác suất của \(Z\).
+    <br><br>
+
+    <i>Đáp số:</i><br>
+    Gọi \(X = \) số ghi trên bi lấy ra ở hộp I, \(Y = \) số ghi trên bi lấy ra ở hộp II.
+
+    \(X, Y\) độc lập và \(Z = X + Y\).
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th>\(X\)</th><td>0</td><td>1</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>\(P\)</th><td>\(\dfrac{3}{7}\)</td><td>\(\dfrac{4}{7}\)</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>\(Y\)</th><td>1</td><td>2</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>\(P\)</th><td>\(\dfrac{3}{8}\)</td><td>\(\dfrac{5}{8}\)</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>\(X+Y\)</th><td>1</td><td>2</td><td>3</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>\(P\)</th><td>\(\dfrac{9}{56}\)</td><td>\(\dfrac{27}{56}\)</td><td>\(\dfrac{5}{14}\)</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

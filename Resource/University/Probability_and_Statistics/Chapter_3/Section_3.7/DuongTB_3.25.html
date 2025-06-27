@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.25</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.25\(\star\):</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 24-->
+    Xét một hành tròn \(D\)	bán kính \(R\).
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Lấy ngẫu nhiên một điểm thuộc \(D\) (vị trí của điểm lấy tuân theo phân bố đều). 
+            Tính khoảng cách trung bình từ điểm lấy đến tâm hình tròn.</li>
+        <li>Chọn ngẫu nhiên hai điểm (hai lần chọn độc lập, vị trí tuân theo phân bố đều) trong miền \(D\). 
+            Gọi \(X, Y\) là khoảng cách từ hai điểm chọn tới tâm hình tròn. 
+            Tìm luật phân bố của đại lượng \(Z=X+Y\).</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            Gọi \(\left(X_1, X_2\right)\) là vị trí (tọa độ) của điểm được chọn. 
+            \(\left(X_1, X_2\right)\) có phân bố đều trên \(D\):
+            \[
+            f\left(x,y\right) = \begin{cases}
+            k, & x^2 + y^2 < R^2 \\
+            0, & x^2 + y^2 \ge R^2.
+            \end{cases}
+            \]
+
+            \(\displaystyle \iint\limits_{{\Bbb R^2}} {f\left(x,y\right)dxdy} = 1 \Rightarrow k\pi {R^2} = 1 \Rightarrow k = \frac{1}{{\pi {R^2}}}\).<br>
+
+            \(X = \) khoảng cách từ \(\left(X_1,X_2\right)\) đến tâm hình tròn \(=\sqrt{X_1^2 + X_2^2}\).<br>
+
+            \(\displaystyle EX = E\sqrt {X_1^2 + X_2^2}  = \iint\limits_{{\Bbb R^2}} {\sqrt {{x^2} + {y^2}} f\left(x,y\right)dxdy} = \dfrac{2R}{3} \).
+        </li>
+        <li>
+            \(X=\sqrt{X_1^2+X_2^2}\) có hàm phân bố
+            \begin{align}
+            F\left(z\right) & = P\left(X < z\right) = P\left(\sqrt{X_1^2 + X_2^2} < z\right) \\
+            & = \iint\limits_{\sqrt {{x^2} + {y^2}}  < z} {f\left(x,y\right)dxdy} = 
+            \begin{cases}
+            1, & z>R \\
+            \frac{{{z^2}}}{{{R^2}}}, & 0 < z\le R \\
+            0, & z\le 0.
+            \end{cases}
+            \end{align}
+
+
+            \(X\) có hàm mật độ
+            \[
+            f_X\left(z\right) = F'\left(z\right) = \begin{cases}
+            \dfrac{2z}{R^2}, & 0 < z\le R \\
+            0, & \text{ngược lại}.
+            \end{cases}
+            \]
+
+            \(X, Y\) độc lập, có cùng hàm mật độ \(f_X\).<br>
+
+            \(\left(X, Y\right)\) có hàm mật độ đồng thời \({f_{XY}}\left(x,y\right) = {f_X}\left(x\right){f_X}\left(y\right)\).<br>
+
+            \(Z = X+Y\) có hàm mật độ
+            \begin{align}
+            g\left( z \right) & = \int_{ - \infty }^\infty  {{f_{XY}}\left(x,z - x\right)dx}  = \int_{ - \infty }^\infty  {{f_X}\left(x\right){f_X}\left(z - x\right)dx} \\
+            & = 
+            \begin{cases}
+            \dfrac{{2{z^3}}}{{3{R^4}}}, & 0 < z\le R \\
+            - \dfrac{{2\left(4{R^3} - 6{R^2}z + {z^3}\right)}}{{3{R^4}}}, & R < z < 2R \\
+            0, & z\notin \left(0, 2R\right).
+            \end{cases}
+            \end{align}
+        </li>
+    </ol>
+    
+
+</body>
+</html>

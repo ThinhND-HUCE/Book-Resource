@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 5.3</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 5.3:</b><br><br>
+    <!--Thái Bình Dương, Chương 5, Bài 3-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    Bảng sau cho số liệu thống kê theo khoảng chiều cao của 30 người trưởng thành
+    <table>
+        <thead>
+            <tr>
+                <th>Chiều cao (m)</th><td>1.55 -- 1.65</td><td>1.65 -- 1.75</td><td>1.75 -- 1.85</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>Số người</th><td>6</td><td>15</td><td>9</td>
+        </tr>
+    </table>
+    <ol type="a">
+        <li>Vẽ tổ chức đồ của mẫu đã cho.</li>
+        <li>Tính xác đặc trưng mẫu \(\overline x, s^2, s, s'^2, s'\).</li>
+    </ol>
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            <img src="DuongTB_5.3.jpg" alt="DuongTB 5.3" style="max-width:25%;vertical-align: top;"/>
+        </li>
+        <li>\(\overline x  = 1.71, {s^2} = 0.0049, s'^2 = 0.005069, s = 0.07, s' = 0.07120\).</li>
+    </ol>
+
+</body>
+</html>

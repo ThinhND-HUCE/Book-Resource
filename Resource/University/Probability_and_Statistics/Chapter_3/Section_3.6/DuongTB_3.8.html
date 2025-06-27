@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.8</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 3.8:</b><br><br>
+    <!--Thái Bình Dương, Chương 3, Bài 1-->
+    Cho phân bố đồng thời của hai đại lượng ngẫu nhiên rời rạc \(\left(X,Y\right)\)
+
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+
+    <table style="border-collapse:collapse">
+        <!-- Hàng đầu tiên: kẻ ngang dưới -->
+        <tr style="border-bottom:1px solid #000">
+            <!-- Ô đầu tiên: chéo và kẻ dọc phải -->
+            <th style="
+            position:relative;
+            width:80px; height:40px;
+            border-right:1px solid #000;
+            background:
+                linear-gradient(
+                to top right,
+                transparent 49%, #000 49%, #000 51%, transparent 51%
+                );
+            padding:0;
+            ">
+            <div style="position:absolute;top:20px;left:20px;">\(Y\)</div>
+            <div style="position:absolute;bottom:20px;right:20px;">\(X\)</div>
+            </th>
+            <th>1</th><th>2</th><th>3</th><th>4</th>
+        </tr>
+        <tr>
+            <th>1</th><td>0.1</td><td>0.15</td><td>0.06</td><td>0.09</td>
+        </tr>
+        <tr>
+            <th>2</th><td>0.1</td><td>0.1</td><td>0.05</td><td>0.05</td>
+        </tr>
+        <tr>
+            <th>3</th><td>0.05</td><td>0.125</td><td>0.05</td><td>0.075</td>
+        </tr>
+        </table>
+    
+    Hãy xác định:
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
+        <li>Các phân bố của từng thành phần.</li>
+        <li>\(P\left(Y < 2 \mid X < 3\right)\).</li>
+        <li>Phân bố \(X\) với điều kiện \(Y=2\).</li>
+        <li>Phân bố của tổng.</li>
+        <li>Kiểm tra xem \(X\) và \(Y\) có phải là hai đại lượng ngẫu nhiên độc lập hay không?</li>
+    </ol>
+
+    <i>Đáp số:</i><br>
+    <ol type="a">
+        <li>
+            <table>
+                <thead>
+                    <tr>
+                        <th>\(X\)</th><td>1</td><td>2</td><td>3</td><td>4</td>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>\(P\)</th><td>0.25</td><td>0.375</td><td>0.16</td><td>0.215</td>
+                </tr>
+            </table>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>\(Y\)</th><td>1</td><td>2</td><td>3</td>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>\(P\)</th><td>0.4</td><td>0.3</td><td>0.3</td>
+                </tr>
+            </table>
+        </li>
+        <li>\(\dfrac{{0.1 + 0.15}}{{0.25 + 0.375}}\)</li>
+        <li>
+            <table>
+                <thead>
+                    <tr>
+                        <th>\(X \mid Y=2 \)</th><td>1</td><td>2</td><td>3</td><td>4</td>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>\(P\)</th><td>\(\dfrac{1}{3}\)</td><td>\(\dfrac{1}{3}\)</td><td>\(\dfrac{1}{6}\)</td><td>\(\dfrac{1}{6}\) </td>
+                </tr>
+            </table>
+        </li>
+        <li>
+            <table>
+                <thead>
+                    <tr>
+                        <th>\(X + Y\)</th><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>\(P\)</th><td>0.1</td><td>0.25</td><td>0.21</td><td>0.265</td><td>0.1</td><td>0.075</td>
+                </tr>
+            </table>
+        </li>
+        <li>Tại ô \(Y = 1, X = 3\): \(0.06\ne 0.4\cdot 0.16\Rightarrow X, Y\) không độc lập.</li>
+    </ol>    
+
+</body>
+</html>

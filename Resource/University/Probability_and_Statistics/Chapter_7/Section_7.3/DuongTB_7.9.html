@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7.8</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 7.8:</b><br><br>
+    <!--Thái Bình Dương, Chương 7, Bài 8-->
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    Giả sử cường độ chịu kéo của các dây thép cùng một loại trên một công trường xây dựng là một đại lượng ngẫu nhiên có phân bố chuẩn. 
+    Đo ngẫu nhiên cường độ chịu kéo của 29 cây thép trên công trường đó, ta có bảng số liệu
+    <table>
+        <thead>
+            <tr>
+                <th>Cường độ (kg/cm\({}^2\))</th><td>3570 -- 3580</td><td>3580 -- 3590</td><td>3590 -- 3600</td><td>3600 -- 3610</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>Số cây thép \(n_i\)</th><td>5</td><td>9</td><td>8</td><td>7</td>
+        </tr>
+    </table>
+    <ol type="a">
+        <li>Hãy cho một ước lượng khoảng của cường độ chịu kéo trung bình với độ tin cậy 99%.</li>
+        <li>
+            Quy định về kỹ thuật đòi hỏi cường độ chịu kéo trung bình phải đạt 3600 kg/cm\({}^2\). 
+            Dư luận cho rằng công trường sử dụng thép chưa đạt yêu cầu kỹ thuật. 
+            Hãy kiểm định ở mức ý nghĩa 1% xem dư luận trên có đúng không?
+        </li>
+    </ol>
+    
+    <i>Đáp số:</i><br>
+
+    <ol type="a">
+        <li>\(\left( \overline x  - {t_0}\dfrac{{s}}{{\sqrt {n-1} }}\;,\;\overline x  + {t_0}\dfrac{{s}}{{\sqrt {n-1} }} \right) = \left( 3585.4599, 3596.2642 \right)\)</li>
+        <li>
+            \begin{align}
+            & \text{thép chưa đạt yêu cầu kỹ thuật} \\
+            \Leftrightarrow\; & \text{cường độ chịu kéo trung bình } < 3600 \text{ kg/cm}^2 \\
+            \Leftrightarrow\; & EX < 3600.
+            \end{align}
+        
+            Xét bài toán \(H_0: EX = 3600, H_1: EX < 3600, \alpha = 1\%\).<br>
+        
+            \({t_{qs}} = -4.6742\),
+            \(t_0 = 2.4671\).<br>
+        
+            \(t_{qs} < -t_0\Rightarrow\) bác bỏ \(H_0\), tức là thép chưa đạt yêu cầu.<br>
+        </li>
+    </ol>
+
+</body>
+</html>

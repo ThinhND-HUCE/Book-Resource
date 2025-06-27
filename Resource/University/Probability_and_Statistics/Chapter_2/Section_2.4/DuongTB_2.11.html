@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.11</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.11\(\star\):</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 25-->
+    Số khách hàng đến siêu thị trong một ngày là một đại lượng ngẫu nhiên tuân theo luật Poisson với tham số \(\lambda\). 
+    Một khách hàng đến siêu thị chọn mua sản phẩm của hãng A với xác suất là \(p\). 
+    Hỏi trung bình một ngày có bao nhiêu người mua sản phẩm của hãng A tại siêu thị nói trên?
+    <br><br>
+
+    <i>Đáp số:</i><br>
+    Đặt \(X = \) số người vào siêu thị, thì \(X\sim P_{\lambda}\).
+    \(Y = \) số người mua sản phẩm. \({\mathop{\rm Im}\nolimits} Y = \{ 0,1,2, \ldots \} \), và
+    \begin{align}
+    P(Y = k) & = \sum\limits_{n = k}^\infty  {P(Y = k,X = n)}  = \sum\limits_{n = k}^\infty  {P(X = n) \cdot P(Y = k|X = n)} \\
+    & = \sum\limits_{n = k}^\infty  {{e^{ - \lambda }}\frac{{{\lambda ^n}}}{{k!}} \cdot C_n^k{p^k}{{(1 - p)}^{n - k}}}  = {e^{ - \lambda p}}\frac{{{{(\lambda p)}^k}}}{{k!}} .
+    \end{align}
+    tức là \(Y \sim P_{\lambda p}\). Giá trị cần tìm là \(EY = \lambda p\).
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.1</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.1:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 4-->
+    Trong hộp có 8 bi đỏ và 5 bi xanh. 
+    Lấy ngẫu nhiên 5 bi. 
+    Hãy lập phân bố xác suất của \(X = \) số bi đỏ trong 5 bi lấy ra.
+    <br><br>
+
+    <i>Đáp số:</i><br>
+    \(P(X = k) = \dfrac{{C_8^k \times C_5^{5 - k}}}{{C_{13}^5}}, \quad k=\overline{0, 5}\).
+
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+
+    <table>
+        <thead>
+            <tr>
+                <th>\(X\)</th>
+                <th>0</th>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+            </tr>
+        </thead>
+        <tr>
+            <th>\(P\)</th>
+            <td>\(\dfrac{1}{1287}\)</td>
+            <td>\(\dfrac{40}{1287}\)</td>
+            <td>\(\dfrac{280}{1287}\)</td>
+            <td>\(\dfrac{560}{1287}\)</td>
+            <td>\(\dfrac{350}{1287}\)</td>
+            <td>\(\dfrac{56}{1287}\)</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+<!--Cấu hình để có mọi đường kẻ
+    <style>
+        table { border-collapse: collapse; margin: 20px auto; }
+        th, td { border: 1px solid #000; padding: 6px 10px; text-align: center; }
+    </style>
+-->

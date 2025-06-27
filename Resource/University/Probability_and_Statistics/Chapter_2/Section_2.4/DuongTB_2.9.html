@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2.9</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <b>Bài 2.9:</b><br><br>
+    <!--Thái Bình Dương, Chương 2, Bài 15-->
+    Một xạ thủ có 6 viên đạn. 
+    Xác suất bắn trúng bia của xạ thủ đó là 0.6. 
+    Xạ thủ bắn đến khi có 2 viên trúng bia liên tiếp thì dừng. 
+    Hỏi trung bình xạ thủ đó còn bao nhiêu viên đạn chưa dùng đến.
+    <br><br>
+
+    <i>Đáp số:</i><br>
+    Đặt \(X = \) số viên đạn chưa dùng đến.
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+    
+        th, td {
+            padding: 3px 5px;
+            text-align: center;
+        }
+    
+        /* Đường kẻ ngang sau dòng đầu tiên */
+        thead tr {
+            border-bottom: 1px solid black;
+        }
+    
+        /* Đường kẻ dọc sau cột đầu tiên */
+        td:nth-child(1),
+        th:nth-child(1) {
+            border-right: 1px solid black;
+        }
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th>\(X\)</th>
+                <td>0</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>\(P\)</th>
+                <td></td>
+                <td>0.09216</td>
+                <td>0.144</td>
+                <td>0.144</td>
+                <td>0.36</td>
+            </tr>
+        </tbody>
+    </table>
+
+    Cần tính \(EX = 2.2522\).
+    
+</body>
+</html>

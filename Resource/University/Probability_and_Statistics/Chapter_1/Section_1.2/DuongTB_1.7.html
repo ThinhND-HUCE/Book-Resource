@@ -13,13 +13,18 @@
     <b>Bài 1.7:</b><br><br>
     <!--Thái Bình Dương, Chương 1, Bài 20-->
     Một trạm y tế có 8 bác sỹ, 12 y tá và 6 hộ lý. Chọn ngẫu nhiên một nhóm 5 cán bộ y tế của trạm. Tính xác suất sao cho trong nhóm 5 người ấy:
-    <ol type="a" style="list-style-type: lower-alpha;">
+    <style>
+        ol[type="a"] li::marker {
+          content: counter(list-item, lower-alpha) ") ";
+        }
+    </style>
+    <ol type="a">
         <li>có ít nhất một bác sỹ.</li>
         <li>có một bác sỹ, một hộ lý và 3 y tá.</li>
     </ol>
 
     <i>Đáp số:</i><br>
-    <ol type="a" style="list-style-type: lower-alpha;">
+    <ol type="a">
         <li>\(\dfrac{\binom{18}{5}}{\binom{26}{5}}\)</li>
         <li>\(\dfrac{8\cdot 6 \cdot \binom{12}{3}}{\binom{26}{5}}\)</li>
     </ol>
