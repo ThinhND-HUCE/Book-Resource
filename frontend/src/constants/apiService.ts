@@ -131,7 +131,7 @@ export const createStudent = async (data: CreateStudentPayload) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("token"),
+      Authorization: "Bearer " + localStorage.getItem("access_token"),
     },
     body: JSON.stringify(data),
   });
@@ -143,7 +143,7 @@ export const getAllStudents = async (page: number = 1) => {
   const res = await fetch(`${API_ENDPOINTS.GET_ALL_USER}?page=${page}`, {
     method: "GET",
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("token"),
+      Authorization: "Bearer " + localStorage.getItem("access_token"),
     },
   });
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {XacSuatCoDien} from '../../components/Probability_and_Statistics/XacSuatCoDien';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { BackButton, NextButton, Course, FileItem, Iframe, FolderItem, ContentItem, Button, VerticalWrapper, VerticalGroup, ChapterContainer, ChapterButton, SectionContainer, SectionButton, PracticeButton, Title, PracticeButtonsContainer, DashboardButton, Container, SelectionBar, DetailBar } from "./UseInterFace";
+import { BackButton, NextButton, Course, FileItem, Iframe, FolderItem, ContentItem, Button, VerticalWrapper, VerticalGroup, ChapterContainer, ChapterButton, SectionContainer, SectionButton, PracticeButton, Title, PracticeButtonsContainer, DashboardButton, Container, SelectionBar, DetailBar, DashboardTitle, DashboardWrapper } from "./CourseInterfaceCSS";
 
 const ProbabilityandStatistics: React.FC = () => {
     const [course, setCourse] = useState<Course | null>(null);
@@ -262,9 +262,14 @@ const ProbabilityandStatistics: React.FC = () => {
 
     return (
         <>
-            <DashboardButton onClick={() => navigate(gradeId ? `/courses/${gradeId}` : '/Dashboard')}>
-                ← Khóa học
-            </DashboardButton>
+            <DashboardWrapper>
+                <DashboardButton onClick={() => navigate(gradeId ? `/courses/${gradeId}` : '/Dashboard')}>
+                    ← Khóa học
+                </DashboardButton>
+                <DashboardTitle>
+                    {course?.course_name}
+                </DashboardTitle>
+            </DashboardWrapper>
             <Container>
                 <SelectionBar>{renderChapters()}</SelectionBar>
                 <DetailBar>{htmlContent ? renderHtmlViewer() : renderSectionContent()}</DetailBar>

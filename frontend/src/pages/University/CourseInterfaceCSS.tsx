@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from '../Dashboard';
 
 export interface FileItem {
     type: "file";
@@ -99,6 +100,7 @@ export const Title = styled.h2`
 `;
 
 export const Button = styled.button`
+    background-color: #ffffff;
     border: 1px solid #000000;
     border-radius: 8px;
     padding: 10px;
@@ -110,7 +112,7 @@ export const Button = styled.button`
     transition: 0.2s;
     
     &:hover {
-        background-color: #c5c5c5;
+        background-color: #dedcdc;
         border: 1px solid #2e2e2e;
     }
 `;
@@ -140,16 +142,17 @@ export const ChapterButton = styled(Button)`
     margin: 0;
     display: flex;
     align-items: center;
+    background-color: #ffffff;
     justify-content: space-between;
 
     &:hover {
-        background-color: #939393;
+        background-color: #dedcdc;
         border: 1px solid #ddd;
     }
 
     &.active {
-        background-color: #939393;
-        border-color:rgb(120, 120, 121);
+        background-color: #dedcdc;
+        border: 1px solid #939393;
     }
 `;
 
@@ -161,6 +164,21 @@ export const SectionContainer = styled.div<{ isOpen: boolean }>`
     max-height: ${props => props.isOpen ? '1000px' : '0'};
     overflow: hidden;
     transition: max-height 0.3s ease;
+`;
+
+export const DashboardWrapper = styled.div`
+    display: flex, 
+    align-items: center, 
+    gap: 16px, 
+    padding-left: 16px, 
+    margin-bottom: 12px
+`;
+
+export const DashboardTitle = styled.h2`
+    font-weight: 700;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 `;
 
 export const DashboardButton = styled(BackButton)`
@@ -188,6 +206,7 @@ export const VerticalGroup = styled.div`
 export const Iframe = styled.iframe`
     width: 100%;
     height: 80vh;
+    background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 8px;
 `;
